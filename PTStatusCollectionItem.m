@@ -19,9 +19,9 @@
 	if([theView isKindOfClass:[PTStatusEntityView class]]) {
 		[theView setSelected:flag];
 		[theView setNeedsDisplay:YES];
-		if (![self representedObject]) return;
+		//if (![self representedObject]) return;
 		//[[statusDisplay textStorage] setAttributedString:[[self representedObject] statusMessage]];
-		[theView syncStatusMessage:[[self representedObject] statusMessage]];
+		//[theView syncStatusMessage:[[self representedObject] statusMessage]];
 	}
 }
 
