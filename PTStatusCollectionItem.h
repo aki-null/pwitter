@@ -9,6 +9,6 @@
 #import <Cocoa/Cocoa.h>
 
 @interface PTStatusCollectionItem : NSCollectionViewItem {
-    IBOutlet id statusDisplay;
+
 }
 @end

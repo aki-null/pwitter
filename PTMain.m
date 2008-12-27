@@ -62,8 +62,13 @@
 
 - (void)requestFailed:(NSString *)requestIdentifier withError:(NSError *)error
 {
-	if ([requestDetails objectForKey:requestIdentifier] == @"POST") {
+	NSString *requestType = [requestDetails objectForKey:requestIdentifier];
+	if (requestType == @"POST") {
 		[statusUpdateField setEnabled:YES];
+	} else if (requestType == @"IMAGE") {
+		[statusBoxesForReq removeObjectForKey:requestIdentifier];
+		[imageReqForLocation removeObjectForKey:[imageLocationForReq objectForKey:requestIdentifier]];
+		[imageLocationForReq removeObjectForKey:requestIdentifier];
 	}
 	[requestDetails removeObjectForKey:requestIdentifier];
 	NSLog(@"Twitter request failed! (%@) Error: %@ (%@)", 
@@ -117,6 +122,7 @@
 	if (!imageData) {
 		if (![imageReqForLocation objectForKey:imageLocation]) {
 			NSString *imageReq = [twitterEngine getImageAtURL:imageLocation];
+			[requestDetails setObject:@"IMAGE" forKey:imageReq];
 			[imageReqForLocation setObject:imageReq forKey:imageLocation];
 			[imageLocationForReq setObject:imageLocation forKey:imageReq];
 			[statusBoxesForReq setObject:[[NSMutableArray alloc] init] forKey:imageReq];
@@ -177,6 +183,7 @@
 	[statusBoxesForReq removeObjectForKey:identifier];
 	[imageReqForLocation removeObjectForKey:imageLocation];
 	[imageLocationForReq removeObjectForKey:identifier];
+	[requestDetails removeObjectForKey:identifier];
 }
 
 - (IBAction)updateTimeline:(id)sender {

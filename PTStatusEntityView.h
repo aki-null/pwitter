@@ -9,8 +9,7 @@
 #import <Cocoa/Cocoa.h>
 
 
-@interface PTStatusEntityView : NSView {
-    IBOutlet id statusView;
+@interface PTStatusEntityView : NSBox {
 	BOOL _isSelected;
 	id _theDelegate;
 }

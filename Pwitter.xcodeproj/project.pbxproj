@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		610BF8AB0F030DFA008D9A3B /* PTStatusBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 610BF8AA0F030DFA008D9A3B /* PTStatusBox.m */; };
 		611A24C80F04481900C6FEB3 /* default.png in Resources */ = {isa = PBXBuildFile; fileRef = 611A24C70F04481900C6FEB3 /* default.png */; };
+		6134601A0F0602AB00B422A6 /* PTArrayObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 613460190F0602AB00B422A6 /* PTArrayObserver.m */; };
+		613461370F06134900B422A6 /* PTLevelIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 613461360F06134900B422A6 /* PTLevelIndicator.m */; };
 		61B1A7DB0F02591E00D73870 /* Pwitter.icns in Resources */ = {isa = PBXBuildFile; fileRef = 61B1A7DA0F02591E00D73870 /* Pwitter.icns */; };
 		61C773BD0F0509F100258650 /* PTStatusEntityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C773BC0F0509F100258650 /* PTStatusEntityView.m */; };
 		61C773F80F050BBB00258650 /* PTStatusCollectionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C773F70F050BBB00258650 /* PTStatusCollectionItem.m */; };
@@ -51,6 +53,10 @@
 		610BF8A90F030DFA008D9A3B /* PTStatusBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTStatusBox.h; sourceTree = "<group>"; };
 		610BF8AA0F030DFA008D9A3B /* PTStatusBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTStatusBox.m; sourceTree = "<group>"; };
 		611A24C70F04481900C6FEB3 /* default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default.png; sourceTree = "<group>"; };
+		613460180F0602AB00B422A6 /* PTArrayObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTArrayObserver.h; sourceTree = "<group>"; };
+		613460190F0602AB00B422A6 /* PTArrayObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTArrayObserver.m; sourceTree = "<group>"; };
+		613461350F06134900B422A6 /* PTLevelIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTLevelIndicator.h; sourceTree = "<group>"; };
+		613461360F06134900B422A6 /* PTLevelIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTLevelIndicator.m; sourceTree = "<group>"; };
 		61B1A7DA0F02591E00D73870 /* Pwitter.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Pwitter.icns; sourceTree = "<group>"; };
 		61C773BB0F0509F100258650 /* PTStatusEntityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTStatusEntityView.h; sourceTree = "<group>"; };
 		61C773BC0F0509F100258650 /* PTStatusEntityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTStatusEntityView.m; sourceTree = "<group>"; };
@@ -287,6 +293,10 @@
 				61C773BC0F0509F100258650 /* PTStatusEntityView.m */,
 				61C773F60F050BBB00258650 /* PTStatusCollectionItem.h */,
 				61C773F70F050BBB00258650 /* PTStatusCollectionItem.m */,
+				613460180F0602AB00B422A6 /* PTArrayObserver.h */,
+				613460190F0602AB00B422A6 /* PTArrayObserver.m */,
+				613461350F06134900B422A6 /* PTLevelIndicator.h */,
+				613461360F06134900B422A6 /* PTLevelIndicator.m */,
 			);
 			name = Pwitter;
 			sourceTree = "<group>";
@@ -371,6 +381,8 @@
 				61D9FE1C0F04B6DA003CC890 /* PTPreferenceManager.m in Sources */,
 				61C773BD0F0509F100258650 /* PTStatusEntityView.m in Sources */,
 				61C773F80F050BBB00258650 /* PTStatusCollectionItem.m in Sources */,
+				6134601A0F0602AB00B422A6 /* PTArrayObserver.m in Sources */,
+				613461370F06134900B422A6 /* PTLevelIndicator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

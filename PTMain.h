@@ -4,14 +4,14 @@
 #import <PTStatusBox.h>
 
 @interface PTMain : NSObject <MGTwitterEngineDelegate> {
-    IBOutlet id statusUpdateField;
-    IBOutlet id statusController;
-    IBOutlet id preferenceWindow;
-    IBOutlet id authPanel;
-    IBOutlet id mainWindow;
-    IBOutlet id authPassword;
-    IBOutlet id authUserName;
-    IBOutlet id testView;
+	IBOutlet id statusUpdateField;
+	IBOutlet id statusController;
+	IBOutlet id preferenceWindow;
+	IBOutlet id authPanel;
+	IBOutlet id mainWindow;
+	IBOutlet id authPassword;
+	IBOutlet id authUserName;
+	IBOutlet id selectedTextView;
 	MGTwitterEngine *twitterEngine;
 	bool shouldExit;
 	NSString *lastUpdateID;
