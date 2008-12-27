@@ -14,6 +14,10 @@
     IBOutlet id testView;
 	MGTwitterEngine *twitterEngine;
 	bool shouldExit;
+	NSString *lastUpdateID;
+	NSMutableDictionary *requestDetails;
+	NSMutableDictionary *imageReqForLocation;
+	NSMutableDictionary *statusBoxesForReq;
 }
 - (IBAction)updateTimeline:(id)sender;
 - (IBAction)postStatus:(id)sender;
