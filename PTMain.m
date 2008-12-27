@@ -33,6 +33,13 @@
 	userImageCache = [[NSMutableDictionary alloc] init];
 	defaultImage = [NSImage imageNamed:@"default.png"];
 	warningImage = [NSImage imageNamed:@"console.png"];
+	NSDictionary *linkFormat =
+		[NSDictionary dictionaryWithObjectsAndKeys:
+			[NSColor cyanColor], @"NSColor",
+			[NSCursor pointingHandCursor], @"NSCursor",
+			[NSNumber numberWithInt:1], @"NSUnderline",
+			nil];
+	[selectedTextView setLinkTextAttributes:linkFormat];
 }
 
 - (IBAction)closeAuthSheet:(id)sender

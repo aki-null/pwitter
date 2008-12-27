@@ -30,7 +30,12 @@
 {
 	NSArrayController *arrController = object;
 	PTStatusBox *selectedBox = [[arrController selectedObjects] lastObject];
-	[[statusDetailBox textStorage]setAttributedString:selectedBox.statusMessage];
+	NSMutableAttributedString *selectedMessage = [[NSMutableAttributedString alloc] initWithAttributedString:selectedBox.statusMessage];
+	[selectedMessage addAttribute:NSFontAttributeName
+					 value:[NSFont fontWithName:@"Helvetica" size:11.0]
+					 range:NSMakeRange(0, [selectedMessage length])];
+	[[statusDetailBox textStorage]setAttributedString:selectedMessage];
+	[userNameBox setStringValue:selectedBox.userName];
 }
 
 @end
