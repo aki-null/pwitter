@@ -15,9 +15,12 @@
 	MGTwitterEngine *twitterEngine;
 	bool shouldExit;
 	NSString *lastUpdateID;
+	NSImage *defaultImage;
 	NSMutableDictionary *requestDetails;
+	NSMutableDictionary *imageLocationForReq;
 	NSMutableDictionary *imageReqForLocation;
 	NSMutableDictionary *statusBoxesForReq;
+	NSMutableDictionary *userImageCache;
 }
 - (IBAction)updateTimeline:(id)sender;
 - (IBAction)postStatus:(id)sender;

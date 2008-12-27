@@ -25,10 +25,14 @@
 
 - (void)awakeFromNib
 {
-	shouldExit = false;
+	shouldExit = NO;
 	requestDetails = [[NSMutableDictionary alloc] init];
+	imageLocationForReq = [[NSMutableDictionary alloc] init];
 	imageReqForLocation = [[NSMutableDictionary alloc] init];
 	statusBoxesForReq = [[NSMutableDictionary alloc] init];
+	userImageCache = [[NSMutableDictionary alloc] init];
+	NSString *pathToDefImage = [[NSBundle mainBundle] pathForResource:@"default" ofType:@"png"];
+	defaultImage = [[NSImage alloc] initWithContentsOfFile:pathToDefImage];
 }
 
 - (IBAction)closeAuthSheet:(id)sender
@@ -58,6 +62,10 @@
 
 - (void)requestFailed:(NSString *)requestIdentifier withError:(NSError *)error
 {
+	if ([requestDetails objectForKey:requestIdentifier] == @"POST") {
+		[statusUpdateField setEnabled:YES];
+	}
+	[requestDetails removeObjectForKey:requestIdentifier];
 	NSLog(@"Twitter request failed! (%@) Error: %@ (%@)", 
           requestIdentifier, 
           [error localizedDescription], 
@@ -68,13 +76,13 @@
 	NSString* string = [targetString string];
 	NSRange searchRange = NSMakeRange(0, [string length]);
 	NSRange foundRange;
-	foundRange=[string rangeOfString:@"http://" options:0 range:searchRange];
+	foundRange = [string rangeOfString:@"http://" options:0 range:searchRange];
 	if (foundRange.length > 0) {
 		NSURL* theURL;
 		NSDictionary* linkAttributes;
 		NSRange endOfURLRange;
-		searchRange.location=foundRange.location+foundRange.length;
-		searchRange.length = [string length]-searchRange.location;
+		searchRange.location = foundRange.location + foundRange.length;
+		searchRange.length = [string length] - searchRange.location;
 		endOfURLRange = [string rangeOfCharacterFromSet:
 								[NSCharacterSet whitespaceAndNewlineCharacterSet]
 								options:0 range:searchRange];
@@ -82,7 +90,7 @@
 			endOfURLRange.location = [string length] - 1;
 		foundRange.length = endOfURLRange.location - foundRange.location + 1;
 		theURL=[NSURL URLWithString:[string substringWithRange:foundRange]];
-		linkAttributes= [NSDictionary dictionaryWithObjectsAndKeys: theURL, NSLinkAttributeName,
+		linkAttributes= [NSDictionary dictionaryWithObjectsAndKeys:theURL, NSLinkAttributeName,
 						[NSNumber numberWithInt:NSSingleUnderlineStyle], NSUnderlineStyleAttributeName,
 						[NSColor cyanColor], NSForegroundColorAttributeName,
 						nil];
@@ -104,6 +112,21 @@
 				range:NSMakeRange(0, [newMessage length])];
 	[PTMain processLinks:newMessage];
 	newBox.statusMessage = newMessage;
+	NSString *imageLocation = [[statusInfo objectForKey:@"user"] objectForKey:@"profile_image_url"];
+	NSImage *imageData = [userImageCache objectForKey:imageLocation];
+	if (!imageData) {
+		if (![imageReqForLocation objectForKey:imageLocation]) {
+			NSString *imageReq = [twitterEngine getImageAtURL:imageLocation];
+			[imageReqForLocation setObject:imageReq forKey:imageLocation];
+			[imageLocationForReq setObject:imageLocation forKey:imageReq];
+			[statusBoxesForReq setObject:[[NSMutableArray alloc] init] forKey:imageReq];
+		}
+		NSMutableArray *requestedBoxes = [statusBoxesForReq objectForKey:[imageReqForLocation objectForKey:imageLocation]];
+		[requestedBoxes addObject:newBox];
+		newBox.userImage = defaultImage;
+	} else {
+		newBox.userImage = imageData;
+	}
 	return newBox;
 }
 
@@ -121,6 +144,11 @@
 		lastStatus = currentStatus;
 	}
 	lastUpdateID = [[NSString alloc] initWithString:[lastStatus objectForKey:@"id"]];
+	if ([requestDetails objectForKey:identifier] == @"POST") {
+		[statusUpdateField setEnabled:YES];
+		[statusUpdateField setStringValue:[[NSString alloc] init]];
+	}
+	[requestDetails removeObjectForKey:identifier];
 }
 
 - (void)directMessagesReceived:(NSArray *)messages forRequest:(NSString *)identifier
@@ -140,7 +168,15 @@
 
 - (void)imageReceived:(NSImage *)image forRequest:(NSString *)identifier
 {
-	NSLog(@"Got an image: %@", image);
+	PTStatusBox *currentBox;
+	for (currentBox in [statusBoxesForReq objectForKey:identifier]) {
+		currentBox.userImage = image;
+	}
+	NSString *imageLocation = [imageLocationForReq objectForKey:identifier];
+	[userImageCache setObject:image forKey:imageLocation];
+	[statusBoxesForReq removeObjectForKey:identifier];
+	[imageReqForLocation removeObjectForKey:imageLocation];
+	[imageLocationForReq removeObjectForKey:identifier];
 }
 
 - (IBAction)updateTimeline:(id)sender {
@@ -149,11 +185,12 @@
 }
 
 - (IBAction)postStatus:(id)sender {
-	
+	[requestDetails setObject:@"POST" forKey:[twitterEngine sendUpdate:[statusUpdateField stringValue]]];
+	[statusUpdateField setEnabled:NO];
 }
 
 - (IBAction)quitApp:(id)sender {
-	shouldExit = true;
+	shouldExit = YES;
 	[NSApp endSheet:authPanel];
 }
 
