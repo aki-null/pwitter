@@ -7,7 +7,7 @@
 //
 
 #import "PTArrayObserver.h"
-
+#import "PTStatusBox.h"
 
 @implementation PTArrayObserver
 
@@ -28,12 +28,9 @@
 							   change:(NSDictionary *)change
 							   context:(void *)context
 {
-//	if (context == <#context#>) {
-//		<#work#>
-//	}
-//	else {
-//		[super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
-//	}
+	NSArrayController *arrController = object;
+	PTStatusBox *selectedBox = [[arrController selectedObjects] lastObject];
+	[[statusDetailBox textStorage]setAttributedString:selectedBox.statusMessage];
 }
 
 @end

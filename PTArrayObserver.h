@@ -11,6 +11,7 @@
 
 @interface PTArrayObserver : NSObject {
     IBOutlet id arrayController;
+    IBOutlet id statusDetailBox;
 }
 
 @end
