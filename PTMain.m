@@ -31,8 +31,8 @@
 	imageReqForLocation = [[NSMutableDictionary alloc] init];
 	statusBoxesForReq = [[NSMutableDictionary alloc] init];
 	userImageCache = [[NSMutableDictionary alloc] init];
-	NSString *pathToDefImage = [[NSBundle mainBundle] pathForResource:@"default" ofType:@"png"];
-	defaultImage = [[NSImage alloc] initWithContentsOfFile:pathToDefImage];
+	defaultImage = [NSImage imageNamed:@"default.png"];
+	warningImage = [NSImage imageNamed:@"console.png"];
 }
 
 - (IBAction)closeAuthSheet:(id)sender
@@ -71,10 +71,8 @@
 		[imageLocationForReq removeObjectForKey:requestIdentifier];
 	}
 	[requestDetails removeObjectForKey:requestIdentifier];
-	NSLog(@"Twitter request failed! (%@) Error: %@ (%@)", 
-          requestIdentifier, 
-          [error localizedDescription], 
-          [[error userInfo] objectForKey:NSErrorFailingURLStringKey]);
+	PTStatusBox *errorBox = [self constructErrorBox:error];
+	[statusController insertObject:errorBox atArrangedObjectIndex:0];
 }
 
 + (void)processLinks:(NSMutableAttributedString *)targetString {
@@ -101,6 +99,22 @@
 						nil];
 		[targetString addAttributes:linkAttributes range:foundRange];
 	}
+}
+
+- (PTStatusBox *)constructErrorBox:(NSError *)error {
+	PTStatusBox *newBox = [[PTStatusBox alloc] init];
+	newBox.userName = @"Twitter request failed:";
+	NSMutableString *tempString = [[NSMutableString alloc] initWithString:[error localizedDescription]];
+	[tempString appendString:@" ("];
+	[tempString appendString:[[error userInfo] objectForKey:NSErrorFailingURLStringKey]];
+	[tempString appendString:@")"];
+	NSMutableAttributedString *finalString = [[NSMutableAttributedString alloc] initWithString:tempString];
+	[finalString addAttribute:NSForegroundColorAttributeName
+				 value:[NSColor whiteColor]
+				 range:NSMakeRange(0, [finalString length])];
+	newBox.statusMessage = finalString;
+	newBox.userImage = warningImage;
+	return newBox;
 }
 
 - (PTStatusBox *)constructStatusBox:(NSDictionary *)statusInfo {
@@ -153,6 +167,7 @@
 	if ([requestDetails objectForKey:identifier] == @"POST") {
 		[statusUpdateField setEnabled:YES];
 		[statusUpdateField setStringValue:[[NSString alloc] init]];
+		[textLevelIndicator setIntValue:0];
 	}
 	[requestDetails removeObjectForKey:identifier];
 }
@@ -188,7 +203,8 @@
 
 - (IBAction)updateTimeline:(id)sender {
 	[requestDetails setObject:@"UPDATE" forKey:
-		[twitterEngine getFollowedTimelineFor:[[PTPreferenceManager getInstance] getUserName] sinceID:lastUpdateID startingAtPage:0 count:20]];
+		[twitterEngine getFollowedTimelineFor:[[PTPreferenceManager getInstance] getUserName] 
+					   sinceID:lastUpdateID startingAtPage:0 count:20]];
 }
 
 - (IBAction)postStatus:(id)sender {

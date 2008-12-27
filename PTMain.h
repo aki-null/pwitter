@@ -12,10 +12,12 @@
 	IBOutlet id authPassword;
 	IBOutlet id authUserName;
 	IBOutlet id selectedTextView;
+	IBOutlet id textLevelIndicator;
 	MGTwitterEngine *twitterEngine;
 	bool shouldExit;
 	NSString *lastUpdateID;
 	NSImage *defaultImage;
+	NSImage *warningImage;
 	NSMutableDictionary *requestDetails;
 	NSMutableDictionary *imageLocationForReq;
 	NSMutableDictionary *imageReqForLocation;
@@ -26,4 +28,5 @@
 - (IBAction)postStatus:(id)sender;
 - (IBAction)quitApp:(id)sender;
 - (IBAction)closeAuthSheet:(id)sender;
+- (PTStatusBox *)constructErrorBox:(NSError *)error;
 @end

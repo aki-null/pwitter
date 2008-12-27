@@ -11,6 +11,7 @@
 		611A24C80F04481900C6FEB3 /* default.png in Resources */ = {isa = PBXBuildFile; fileRef = 611A24C70F04481900C6FEB3 /* default.png */; };
 		6134601A0F0602AB00B422A6 /* PTArrayObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 613460190F0602AB00B422A6 /* PTArrayObserver.m */; };
 		613461370F06134900B422A6 /* PTLevelIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 613461360F06134900B422A6 /* PTLevelIndicator.m */; };
+		61A50F520F063ADB009050CC /* console.png in Resources */ = {isa = PBXBuildFile; fileRef = 61A50F510F063ADB009050CC /* console.png */; };
 		61B1A7DB0F02591E00D73870 /* Pwitter.icns in Resources */ = {isa = PBXBuildFile; fileRef = 61B1A7DA0F02591E00D73870 /* Pwitter.icns */; };
 		61C773BD0F0509F100258650 /* PTStatusEntityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C773BC0F0509F100258650 /* PTStatusEntityView.m */; };
 		61C773F80F050BBB00258650 /* PTStatusCollectionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C773F70F050BBB00258650 /* PTStatusCollectionItem.m */; };
@@ -57,6 +58,7 @@
 		613460190F0602AB00B422A6 /* PTArrayObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTArrayObserver.m; sourceTree = "<group>"; };
 		613461350F06134900B422A6 /* PTLevelIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTLevelIndicator.h; sourceTree = "<group>"; };
 		613461360F06134900B422A6 /* PTLevelIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTLevelIndicator.m; sourceTree = "<group>"; };
+		61A50F510F063ADB009050CC /* console.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = console.png; sourceTree = "<group>"; };
 		61B1A7DA0F02591E00D73870 /* Pwitter.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Pwitter.icns; sourceTree = "<group>"; };
 		61C773BB0F0509F100258650 /* PTStatusEntityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTStatusEntityView.h; sourceTree = "<group>"; };
 		61C773BC0F0509F100258650 /* PTStatusEntityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTStatusEntityView.m; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				61A50F510F063ADB009050CC /* console.png */,
 				611A24C70F04481900C6FEB3 /* default.png */,
 				61B1A7DA0F02591E00D73870 /* Pwitter.icns */,
 				8D1107310486CEB800E47090 /* Info.plist */,
@@ -348,6 +351,7 @@
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				61B1A7DB0F02591E00D73870 /* Pwitter.icns in Resources */,
 				611A24C80F04481900C6FEB3 /* default.png in Resources */,
+				61A50F520F063ADB009050CC /* console.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
