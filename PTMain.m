@@ -241,7 +241,8 @@
 }
 
 - (IBAction)openHome:(id)sender {
-	
+	NSURL *homeURL = [[NSURL alloc] initWithString:@"http://twitter.com/home"];
+	[[NSWorkspace sharedWorkspace] openURL:homeURL];
 }
 
 - (IBAction)openWebSelected:(id)sender {
