@@ -4,9 +4,12 @@
 
 - (void)setUpTwitterEngine {
 	twitterEngine = [[MGTwitterEngine alloc] initWithDelegate:self];
-	[twitterEngine setUsername:[[PTPreferenceManager getInstance] getUserName] password:[[PTPreferenceManager getInstance] getPassword]];
-	[requestDetails setObject:@"INIT_UPDATE" forKey:
-		[twitterEngine getFollowedTimelineFor:[[PTPreferenceManager getInstance] getUserName] since:nil startingAtPage:0]];
+	[twitterEngine setClientName:@"Pwitter" version:@"0.1" URL:@"" token:@"pwitter"];
+	[twitterEngine setUsername:[[PTPreferenceManager getInstance] getUserName] 
+				   password:[[PTPreferenceManager getInstance] getPassword]];
+	[requestDetails setObject:@"INIT_UPDATE" 
+					forKey:[twitterEngine getFollowedTimelineFor:[[PTPreferenceManager getInstance] getUserName] 
+					since:nil startingAtPage:0]];
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
@@ -224,9 +227,11 @@
 
 - (IBAction)postStatus:(id)sender {
 	if ([replyButton state] == NSOnState) {
-		[requestDetails setObject:@"POST" forKey:[twitterEngine sendUpdate:[statusUpdateField stringValue] inReplyTo:currentSelection.updateID]];
+		[requestDetails setObject:@"POST" 
+						forKey:[twitterEngine sendUpdate:[statusUpdateField stringValue] inReplyTo:currentSelection.updateID]];
 	} else {
-		[requestDetails setObject:@"POST" forKey:[twitterEngine sendUpdate:[statusUpdateField stringValue]]];
+		[requestDetails setObject:@"POST" 
+						forKey:[twitterEngine sendUpdate:[statusUpdateField stringValue]]];
 	}
 	[statusUpdateField setEnabled:NO];
 }
