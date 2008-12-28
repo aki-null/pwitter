@@ -13,6 +13,9 @@
 	IBOutlet id authUserName;
 	IBOutlet id selectedTextView;
 	IBOutlet id textLevelIndicator;
+	IBOutlet id replyButton;
+	IBOutlet id userNameBox;
+	IBOutlet id webButton;
 	MGTwitterEngine *twitterEngine;
 	bool shouldExit;
 	NSString *lastUpdateID;
@@ -23,10 +26,16 @@
 	NSMutableDictionary *imageReqForLocation;
 	NSMutableDictionary *statusBoxesForReq;
 	NSMutableDictionary *userImageCache;
+	PTStatusBox *currentSelection;
 }
 - (IBAction)updateTimeline:(id)sender;
 - (IBAction)postStatus:(id)sender;
 - (IBAction)quitApp:(id)sender;
 - (IBAction)closeAuthSheet:(id)sender;
+- (IBAction)messageToSelected:(id)sender;
+- (IBAction)openHome:(id)sender;
+- (IBAction)openWebSelected:(id)sender;
+- (IBAction)replyToSelected:(id)sender;
 - (PTStatusBox *)constructErrorBox:(NSError *)error;
+- (void)selectStatusBox:(PTStatusBox *)newSelection;
 @end

@@ -131,6 +131,7 @@
 	[comboName appendString:@" / "];
 	[comboName appendString:[[statusInfo objectForKey:@"user"] objectForKey:@"name"]];
 	newBox.userName = comboName;
+	newBox.userID = [[NSString alloc] initWithString:[[statusInfo objectForKey:@"user"] objectForKey:@"screen_name"]];
 	NSMutableAttributedString *newMessage = 
 		[[NSMutableAttributedString alloc] initWithString:[statusInfo objectForKey:@"text"]];
 	[newMessage addAttribute:NSForegroundColorAttributeName
@@ -153,6 +154,13 @@
 		newBox.userImage = defaultImage;
 	} else {
 		newBox.userImage = imageData;
+	}
+	newBox.updateID = [[NSString alloc] initWithString:[statusInfo objectForKey:@"id"]];
+	NSString *urlStr = [[statusInfo objectForKey:@"user"] objectForKey:@"url"];
+	if ([urlStr length] != 0) {
+		newBox.userHome = [[NSURL alloc] initWithString:urlStr];
+	} else {
+		newBox.userHome = nil;
 	}
 	return newBox;
 }
@@ -215,13 +223,57 @@
 }
 
 - (IBAction)postStatus:(id)sender {
-	[requestDetails setObject:@"POST" forKey:[twitterEngine sendUpdate:[statusUpdateField stringValue]]];
+	if ([replyButton state] == NSOnState) {
+		[requestDetails setObject:@"POST" forKey:[twitterEngine sendUpdate:[statusUpdateField stringValue] inReplyTo:currentSelection.updateID]];
+	} else {
+		[requestDetails setObject:@"POST" forKey:[twitterEngine sendUpdate:[statusUpdateField stringValue]]];
+	}
 	[statusUpdateField setEnabled:NO];
 }
 
 - (IBAction)quitApp:(id)sender {
 	shouldExit = YES;
 	[NSApp endSheet:authPanel];
+}
+
+- (IBAction)messageToSelected:(id)sender {
+	
+}
+
+- (IBAction)openHome:(id)sender {
+	
+}
+
+- (IBAction)openWebSelected:(id)sender {
+	[[NSWorkspace sharedWorkspace] openURL:currentSelection.userHome];
+}
+
+- (IBAction)replyToSelected:(id)sender {
+	if ([sender state] == NSOnState) {
+		NSMutableString *replyTarget = [[NSMutableString alloc] initWithString:@"@"];
+		[replyTarget appendString:currentSelection.userID];
+		[replyTarget appendString:@" "];
+		[replyTarget appendString:[statusUpdateField stringValue]];
+		[statusUpdateField setStringValue:replyTarget];
+		[statusUpdateField selectText:sender];
+	}
+}
+
+- (void)selectStatusBox:(PTStatusBox *)newSelection {
+	NSMutableAttributedString *selectedMessage = 
+		[[NSMutableAttributedString alloc] initWithAttributedString:newSelection.statusMessage];
+	[selectedMessage addAttribute:NSFontAttributeName
+					 value:[NSFont fontWithName:@"Helvetica" size:11.0]
+					 range:NSMakeRange(0, [selectedMessage length])];
+	[[selectedTextView textStorage]setAttributedString:selectedMessage];
+	[userNameBox setStringValue:newSelection.userName];
+	[replyButton setState:NSOffState];
+	if (!newSelection.userHome) {
+		[webButton setEnabled:NO];
+	} else {
+		[webButton setEnabled:YES];
+	}
+	currentSelection = newSelection;
 }
 
 @end

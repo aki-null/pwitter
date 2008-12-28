@@ -13,10 +13,16 @@
 	NSString *userName;
 	NSAttributedString *statusMessage;
 	NSImage *userImage;
+	NSURL *userHome;
+	NSString *userID;
+	NSString *updateID;
 }
 
 @property(copy, readwrite) NSString *userName;
 @property(copy, readwrite) NSAttributedString *statusMessage;
 @property(copy, readwrite) NSImage *userImage;
+@property(copy, readwrite) NSURL *userHome;
+@property(copy, readwrite) NSString *userID;
+@property(copy, readwrite) NSString *updateID;
 
 @end

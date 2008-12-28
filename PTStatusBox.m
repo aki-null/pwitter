@@ -14,5 +14,8 @@
 @synthesize userName;
 @synthesize statusMessage;
 @synthesize userImage;
+@synthesize userHome;
+@synthesize userID;
+@synthesize updateID;
 
 @end

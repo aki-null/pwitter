@@ -8,6 +8,7 @@
 
 #import "PTArrayObserver.h"
 #import "PTStatusBox.h"
+#import "PTMain.h"
 
 @implementation PTArrayObserver
 
@@ -30,12 +31,7 @@
 {
 	NSArrayController *arrController = object;
 	PTStatusBox *selectedBox = [[arrController selectedObjects] lastObject];
-	NSMutableAttributedString *selectedMessage = [[NSMutableAttributedString alloc] initWithAttributedString:selectedBox.statusMessage];
-	[selectedMessage addAttribute:NSFontAttributeName
-					 value:[NSFont fontWithName:@"Helvetica" size:11.0]
-					 range:NSMakeRange(0, [selectedMessage length])];
-	[[statusDetailBox textStorage]setAttributedString:selectedMessage];
-	[userNameBox setStringValue:selectedBox.userName];
+	[mainProgram selectStatusBox:selectedBox];
 }
 
 @end
