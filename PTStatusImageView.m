@@ -13,7 +13,7 @@
 
 - (void)mouseDown:(NSEvent *)theEvent {
 	[[self superview] mouseDown:theEvent];
-	[super performClick:self];
+	[(PTStatusEntityView *)[self superview] forceSelect:YES];
 }
 
 @end

@@ -60,9 +60,9 @@
 
 - (void)didEndSheet:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo
 {
-	[authPanel orderOut:self];
+	[sheet orderOut:self];
 	if (shouldExit) [NSApp terminate:self];
-	[self setUpTwitterEngine];
+	if (sheet == authPanel) [self setUpTwitterEngine];
 }
 
 - (void)dealloc
@@ -137,9 +137,27 @@
 				 range:NSMakeRange(0, [finalString length])];
 	newBox.statusMessage = finalString;
 	newBox.userImage = warningImage;
-	newBox.entityColor = [NSColor colorWithCalibratedRed:0.4 green:0.4 blue:0.4 alpha:0.8];
+	newBox.entityColor = [NSColor colorWithCalibratedRed:0.4 green:0.4 blue:0.4 alpha:0.7];
 	newBox.time = [[NSDate alloc] init];
 	return newBox;
+}
+
+- (NSImage *)requestUserImage:(NSString *)imageLocation forBox:(PTStatusBox *)newBox {
+	NSImage *imageData = [userImageCache objectForKey:imageLocation];
+	if (!imageData) {
+		if (![imageReqForLocation objectForKey:imageLocation]) {
+			NSString *imageReq = [twitterEngine getImageAtURL:imageLocation];
+			[requestDetails setObject:@"IMAGE" forKey:imageReq];
+			[imageReqForLocation setObject:imageReq forKey:imageLocation];
+			[imageLocationForReq setObject:imageLocation forKey:imageReq];
+			[statusBoxesForReq setObject:[[NSMutableArray alloc] init] forKey:imageReq];
+		}
+		NSMutableArray *requestedBoxes = [statusBoxesForReq objectForKey:[imageReqForLocation objectForKey:imageLocation]];
+		[requestedBoxes addObject:newBox];
+		return defaultImage;
+	} else {
+		return imageData;
+	}
 }
 
 - (PTStatusBox *)constructStatusBox:(NSDictionary *)statusInfo {
@@ -160,22 +178,8 @@
 				range:NSMakeRange(0, [newMessage length])];
 	[PTMain processLinks:newMessage];
 	newBox.statusMessage = newMessage;
-	NSString *imageLocation = [[statusInfo objectForKey:@"user"] objectForKey:@"profile_image_url"];
-	NSImage *imageData = [userImageCache objectForKey:imageLocation];
-	if (!imageData) {
-		if (![imageReqForLocation objectForKey:imageLocation]) {
-			NSString *imageReq = [twitterEngine getImageAtURL:imageLocation];
-			[requestDetails setObject:@"IMAGE" forKey:imageReq];
-			[imageReqForLocation setObject:imageReq forKey:imageLocation];
-			[imageLocationForReq setObject:imageLocation forKey:imageReq];
-			[statusBoxesForReq setObject:[[NSMutableArray alloc] init] forKey:imageReq];
-		}
-		NSMutableArray *requestedBoxes = [statusBoxesForReq objectForKey:[imageReqForLocation objectForKey:imageLocation]];
-		[requestedBoxes addObject:newBox];
-		newBox.userImage = defaultImage;
-	} else {
-		newBox.userImage = imageData;
-	}
+	newBox.userImage = [self requestUserImage:[[statusInfo objectForKey:@"user"] objectForKey:@"profile_image_url"]
+											  forBox:newBox];
 	newBox.updateID = [[NSString alloc] initWithString:[statusInfo objectForKey:@"id"]];
 	NSString *urlStr = [[statusInfo objectForKey:@"user"] objectForKey:@"url"];
 	if ([urlStr length] != 0) {
@@ -184,9 +188,9 @@
 		newBox.userHome = nil;
 	}
 	if ([[statusInfo objectForKey:@"in_reply_to_screen_name"] isEqualToString:[twitterEngine username]]) {
-		newBox.entityColor = [NSColor colorWithCalibratedRed:1.0 green:0.3 blue:0.3 alpha:0.8];
+		newBox.entityColor = [NSColor colorWithCalibratedRed:1.0 green:0.3 blue:0.3 alpha:0.7];
 	} else {
-		newBox.entityColor = [NSColor colorWithCalibratedRed:0.4 green:0.4 blue:0.4 alpha:0.8];
+		newBox.entityColor = [NSColor colorWithCalibratedRed:0.4 green:0.4 blue:0.4 alpha:0.7];
 	}
 	return newBox;
 }
@@ -211,24 +215,6 @@
 	[requestDetails removeObjectForKey:identifier];
 }
 
-- (NSImage *)requestUserImage:(NSString *)imageLocation forBox:(PTStatusBox *)newBox {
-	NSImage *imageData = [userImageCache objectForKey:imageLocation];
-	if (!imageData) {
-		if (![imageReqForLocation objectForKey:imageLocation]) {
-			NSString *imageReq = [twitterEngine getImageAtURL:imageLocation];
-			[requestDetails setObject:@"IMAGE" forKey:imageReq];
-			[imageReqForLocation setObject:imageReq forKey:imageLocation];
-			[imageLocationForReq setObject:imageLocation forKey:imageReq];
-			[statusBoxesForReq setObject:[[NSMutableArray alloc] init] forKey:imageReq];
-		}
-		NSMutableArray *requestedBoxes = [statusBoxesForReq objectForKey:[imageReqForLocation objectForKey:imageLocation]];
-		[requestedBoxes addObject:newBox];
-		return defaultImage;
-	} else {
-		return imageData;
-	}
-}
-
 - (PTStatusBox *)constructMessageBox:(NSDictionary *)statusInfo {
 	PTStatusBox *newBox = [[PTStatusBox alloc] init];
 	NSString *comboName = 
@@ -248,8 +234,8 @@
 				range:NSMakeRange(0, [newMessage length])];
 	[PTMain processLinks:newMessage];
 	newBox.statusMessage = newMessage;
-	newBox.userImage = [self requestUserImage: [[statusInfo objectForKey:@"sender"] objectForKey:@"profile_image_url"]
-											   forBox:newBox];
+	newBox.userImage = [self requestUserImage:[[statusInfo objectForKey:@"sender"] objectForKey:@"profile_image_url"]
+											  forBox:newBox];
 	newBox.updateID = [[NSString alloc] initWithString:[statusInfo objectForKey:@"id"]];
 	NSString *urlStr = [[statusInfo objectForKey:@"sender"] objectForKey:@"url"];
 	if ([urlStr length] != 0) {

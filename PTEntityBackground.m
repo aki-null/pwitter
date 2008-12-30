@@ -25,4 +25,9 @@
 	[super drawRect:rect];
 }
 
+- (void)mouseDown:(NSEvent *)theEvent {
+	[super mouseDown:theEvent];
+	[(PTStatusEntityView *)[self superview] forceSelect:YES];
+}
+
 @end
