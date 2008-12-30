@@ -7,10 +7,12 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import <PTStatusBox.h>
 
 @interface PTPreferenceManager : NSObject {
 	NSUserDefaults *prefData;
 	NSString *_userName;
+	PTStatusBox *_currentSelection;
 }
 
 + (PTPreferenceManager *)getInstance;

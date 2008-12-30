@@ -17,5 +17,6 @@
 @synthesize userHome;
 @synthesize userID;
 @synthesize updateID;
+@synthesize entityColor;
 
 @end

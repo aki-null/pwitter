@@ -16,6 +16,7 @@
 	NSURL *userHome;
 	NSString *userID;
 	NSString *updateID;
+	NSColor *entityColor;
 }
 
 @property(copy, readwrite) NSString *userName;
@@ -24,5 +25,6 @@
 @property(copy, readwrite) NSURL *userHome;
 @property(copy, readwrite) NSString *userID;
 @property(copy, readwrite) NSString *updateID;
+@property(copy, readwrite) NSColor *entityColor;
 
 @end

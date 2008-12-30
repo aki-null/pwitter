@@ -12,6 +12,7 @@
 		612BD6900F076F8500EF064D /* Pwitter.icns in Resources */ = {isa = PBXBuildFile; fileRef = 612BD68F0F076F8500EF064D /* Pwitter.icns */; };
 		6134601A0F0602AB00B422A6 /* PTArrayObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 613460190F0602AB00B422A6 /* PTArrayObserver.m */; };
 		613461370F06134900B422A6 /* PTLevelIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 613461360F06134900B422A6 /* PTLevelIndicator.m */; };
+		614393A90F09D23400971122 /* PTEntityBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 614393A80F09D23400971122 /* PTEntityBackground.m */; };
 		61A50F520F063ADB009050CC /* console.png in Resources */ = {isa = PBXBuildFile; fileRef = 61A50F510F063ADB009050CC /* console.png */; };
 		61C773BD0F0509F100258650 /* PTStatusEntityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C773BC0F0509F100258650 /* PTStatusEntityView.m */; };
 		61C773F80F050BBB00258650 /* PTStatusCollectionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C773F70F050BBB00258650 /* PTStatusCollectionItem.m */; };
@@ -59,6 +60,8 @@
 		613460190F0602AB00B422A6 /* PTArrayObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTArrayObserver.m; sourceTree = "<group>"; };
 		613461350F06134900B422A6 /* PTLevelIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTLevelIndicator.h; sourceTree = "<group>"; };
 		613461360F06134900B422A6 /* PTLevelIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTLevelIndicator.m; sourceTree = "<group>"; };
+		614393A70F09D23400971122 /* PTEntityBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTEntityBackground.h; sourceTree = "<group>"; };
+		614393A80F09D23400971122 /* PTEntityBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTEntityBackground.m; sourceTree = "<group>"; };
 		61A50F510F063ADB009050CC /* console.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = console.png; sourceTree = "<group>"; };
 		61C773BB0F0509F100258650 /* PTStatusEntityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTStatusEntityView.h; sourceTree = "<group>"; };
 		61C773BC0F0509F100258650 /* PTStatusEntityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTStatusEntityView.m; sourceTree = "<group>"; };
@@ -274,6 +277,8 @@
 				61C773F70F050BBB00258650 /* PTStatusCollectionItem.m */,
 				613460180F0602AB00B422A6 /* PTArrayObserver.h */,
 				613460190F0602AB00B422A6 /* PTArrayObserver.m */,
+				614393A70F09D23400971122 /* PTEntityBackground.h */,
+				614393A80F09D23400971122 /* PTEntityBackground.m */,
 				613461350F06134900B422A6 /* PTLevelIndicator.h */,
 				613461360F06134900B422A6 /* PTLevelIndicator.m */,
 			);
@@ -363,6 +368,7 @@
 				61D6BE430F077DF300C6B98D /* MGTwitterXMLParser.m in Sources */,
 				61D6BE440F077DF300C6B98D /* NSData+Base64.m in Sources */,
 				61D6BE450F077DF300C6B98D /* NSString+UUID.m in Sources */,
+				614393A90F09D23400971122 /* PTEntityBackground.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

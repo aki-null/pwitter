@@ -129,6 +129,7 @@
 				 range:NSMakeRange(0, [finalString length])];
 	newBox.statusMessage = finalString;
 	newBox.userImage = warningImage;
+	newBox.entityColor = [NSColor redColor];
 	return newBox;
 }
 
@@ -170,6 +171,7 @@
 	} else {
 		newBox.userHome = nil;
 	}
+	newBox.entityColor = [NSColor colorWithCalibratedRed:0.4 green:0.4 blue:0.4 alpha:1.0];
 	return newBox;
 }
 
@@ -198,6 +200,7 @@
 
 - (void)directMessagesReceived:(NSArray *)messages forRequest:(NSString *)identifier
 {
+	//newBox.entityColor = [NSColor colorWithCalibratedRed:0.4 green:0.5 blue:1.0 alpha:1.0];
 	NSLog(@"Got direct messages:\r%@", messages);
 }
 

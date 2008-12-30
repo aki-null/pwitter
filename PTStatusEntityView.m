@@ -34,15 +34,6 @@
 }
 
 - (void)drawRect:(NSRect)rect {
-	[[NSColor colorWithCalibratedRed:0.4 green:0.4 blue:0.4 alpha:1.0] set];
-	NSBezierPath *thePath = [NSBezierPath bezierPath];
-	[thePath appendBezierPathWithRoundedRect:NSInsetRect([self bounds], 3.0, 2.0) xRadius:12.0 yRadius:12.0];
-	[thePath fill];
-	if([self selected]) {
-		[[NSColor colorWithCalibratedRed:0.7 green:0.7 blue:0.7 alpha:1.0] set];
-		[thePath setLineWidth:3.0];
-		[thePath stroke];
-	}
 	[super drawRect:rect];
 }
 

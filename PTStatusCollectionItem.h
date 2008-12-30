@@ -11,4 +11,5 @@
 @interface PTStatusCollectionItem : NSCollectionViewItem {
 
 }
+
 @end
