@@ -18,5 +18,6 @@
 @synthesize userID;
 @synthesize updateID;
 @synthesize entityColor;
+@synthesize time;
 
 @end

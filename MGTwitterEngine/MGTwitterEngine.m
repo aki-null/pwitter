@@ -1133,13 +1133,13 @@
 }
 
 
-- (NSString *)getDirectMessagesSinceID:(int)updateID startingAtPage:(int)pageNum
+- (NSString *)getDirectMessagesSinceID:(NSString *)updateID startingAtPage:(int)pageNum
 {
     NSString *path = @"direct_messages.xml";
     
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:0];
-    if (updateID > 0) {
-        [params setObject:[NSString stringWithFormat:@"%d", updateID] forKey:@"since_id"];
+    if (updateID) {
+        [params setObject:updateID forKey:@"since_id"];
     }
     if (pageNum > 0) {
         [params setObject:[NSString stringWithFormat:@"%d", pageNum] forKey:@"page"];
@@ -1169,13 +1169,13 @@
 }
 
 
-- (NSString *)getSentDirectMessagesSinceID:(int)updateID startingAtPage:(int)pageNum
+- (NSString *)getSentDirectMessagesSinceID:(NSString *)updateID startingAtPage:(int)pageNum
 {
     NSString *path = @"direct_messages/sent.xml";
     
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:0];
-    if (updateID > 0) {
-        [params setObject:[NSString stringWithFormat:@"%d", updateID] forKey:@"since_id"];
+    if (updateID) {
+        [params setObject:updateID forKey:@"since_id"];
     }
     if (pageNum > 0) {
         [params setObject:[NSString stringWithFormat:@"%d", pageNum] forKey:@"page"];

@@ -96,9 +96,9 @@
 
 // Retrieving direct messages
 - (NSString *)getDirectMessagesSince:(NSDate *)date startingAtPage:(int)pageNum;              // sent TO this user
-- (NSString *)getDirectMessagesSinceID:(int)updateID startingAtPage:(int)pageNum;             // sent TO this user
+- (NSString *)getDirectMessagesSinceID:(NSString *)updateID startingAtPage:(int)pageNum;             // sent TO this user
 - (NSString *)getSentDirectMessagesSince:(NSDate *)date startingAtPage:(int)pageNum;          // sent BY this user
-- (NSString *)getSentDirectMessagesSinceID:(int)updateID startingAtPage:(int)pageNum;         // sent BY this user
+- (NSString *)getSentDirectMessagesSinceID:(NSString *)updateID startingAtPage:(int)pageNum;         // sent BY this user
 
 // Retrieving user information
 - (NSString *)getUserInformationFor:(NSString *)username;

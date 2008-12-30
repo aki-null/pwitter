@@ -17,6 +17,7 @@
 	NSString *userID;
 	NSString *updateID;
 	NSColor *entityColor;
+	NSDate *time;
 }
 
 @property(copy, readwrite) NSString *userName;
@@ -26,5 +27,6 @@
 @property(copy, readwrite) NSString *userID;
 @property(copy, readwrite) NSString *updateID;
 @property(copy, readwrite) NSColor *entityColor;
+@property(copy, readwrite) NSDate *time;
 
 @end

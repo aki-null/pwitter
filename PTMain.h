@@ -17,9 +17,11 @@
 	IBOutlet id userNameBox;
 	IBOutlet id webButton;
 	IBOutlet id messageButton;
+	IBOutlet id statusArrayController;
 	MGTwitterEngine *twitterEngine;
 	bool shouldExit;
 	NSString *lastUpdateID;
+	NSString *lastMessageID;
 	NSImage *defaultImage;
 	NSImage *warningImage;
 	NSMutableDictionary *requestDetails;
