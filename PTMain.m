@@ -46,8 +46,10 @@
 			[NSNumber numberWithInt:1], @"NSUnderline",
 			nil];
 	[selectedTextView setLinkTextAttributes:linkFormat];
-	NSSortDescriptor * sd = [[NSSortDescriptor alloc] initWithKey:@"time" ascending:NO];
-	[statusArrayController setSortDescriptors:[NSArray arrayWithObject:sd]];
+	NSSortDescriptor * sortDesc = [[NSSortDescriptor alloc] initWithKey:@"time" ascending:NO];
+	[statusArrayController setSortDescriptors:[NSArray arrayWithObject:sortDesc]];
+	[sortDesc release];
+	
 }
 
 - (IBAction)closeAuthSheet:(id)sender
@@ -357,6 +359,7 @@
 }
 
 - (void)selectStatusBox:(PTStatusBox *)newSelection {
+	if (!newSelection) return;
 	NSMutableAttributedString *selectedMessage = 
 		[[NSMutableAttributedString alloc] initWithAttributedString:newSelection.statusMessage];
 	[selectedMessage addAttribute:NSFontAttributeName 
