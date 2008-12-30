@@ -332,7 +332,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>617AEE0B0F0A0F9200DD352A</string>
+										<string>617AEEBB0F0A288700DD352A</string>
 										<key>history</key>
 										<array>
 											<string>615C70A60F023EDF00017E65</string>
@@ -368,10 +368,10 @@
 											<string>617AED940F0A058700DD352A</string>
 											<string>617AEDC80F0A09B200DD352A</string>
 											<string>617AEDC90F0A09B200DD352A</string>
-											<string>617AEDCB0F0A09B200DD352A</string>
 											<string>617AEDDA0F0A0A3500DD352A</string>
 											<string>617AEDE50F0A0B0200DD352A</string>
-											<string>617AEDE60F0A0B0200DD352A</string>
+											<string>617AEEB10F0A27DF00DD352A</string>
+											<string>617AEEB20F0A27DF00DD352A</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -501,6 +501,12 @@
 											<string>617AEDDD0F0A0A3500DD352A</string>
 											<string>617AEDE70F0A0B0200DD352A</string>
 											<string>617AEDE80F0A0B0200DD352A</string>
+											<string>617AEEB30F0A27DF00DD352A</string>
+											<string>617AEEB40F0A27DF00DD352A</string>
+											<string>617AEEB50F0A27DF00DD352A</string>
+											<string>617AEEB60F0A27DF00DD352A</string>
+											<string>617AEEB70F0A27DF00DD352A</string>
+											<string>617AEEB80F0A27DF00DD352A</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -1042,7 +1048,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {1440, 777}}</string>
 								<key>RubberWindowFrame</key>
-								<string>0 60 1440 818 0 0 1440 878 </string>
+								<string>18 60 1440 818 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXDebugCLIModule</string>
@@ -1071,7 +1077,7 @@
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.consoleV3</string>
 			<key>WindowString</key>
-			<string>0 60 1440 818 0 0 1440 878 </string>
+			<string>18 60 1440 818 0 0 1440 878 </string>
 			<key>WindowToolGUID</key>
 			<string>1C78EAAD065D492600B07095</string>
 			<key>WindowToolIsVisible</key>

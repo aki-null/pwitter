@@ -40,5 +40,6 @@
 - (IBAction)openWebSelected:(id)sender;
 - (IBAction)replyToSelected:(id)sender;
 - (PTStatusBox *)constructErrorBox:(NSError *)error;
+- (NSImage *)requestUserImage:(NSString *)imageLocation forBox:(PTStatusBox *)newBox;
 - (void)selectStatusBox:(PTStatusBox *)newSelection;
 @end
