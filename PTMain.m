@@ -12,7 +12,7 @@
 										   startingAtPage:0]];
 	[requestDetails setObject:@"INIT_UPDATE" 
 					forKey:[twitterEngine getFollowedTimelineFor:[[PTPreferenceManager getInstance] getUserName] 
-					since:nil startingAtPage:0]];
+										  since:nil startingAtPage:0 count:50]];
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
@@ -187,10 +187,12 @@
 	if ([statuses count] == 0) return;
 	NSDictionary *currentStatus;
 	NSDictionary *lastStatus;
+	NSMutableArray *tempBoxes = [[NSMutableArray alloc] init];
 	for (currentStatus in [statuses reverseObjectEnumerator]) {
-		[statusController addObject:[self constructStatusBox:currentStatus]];
+		[tempBoxes addObject:[self constructStatusBox:currentStatus]];
 		lastStatus = currentStatus;
 	}
+	[statusController addObjects:tempBoxes];
 	lastUpdateID = [[NSString alloc] initWithString:[lastStatus objectForKey:@"id"]];
 	if ([requestDetails objectForKey:identifier] == @"POST") {
 		[statusUpdateField setEnabled:YES];
@@ -248,10 +250,12 @@
 	if ([messages count] == 0) return;
 	NSDictionary *currentDic;
 	NSDictionary *lastDic;
+	NSMutableArray *tempArray = [[NSMutableArray alloc] init];
 	for (currentDic in [messages reverseObjectEnumerator]) {
-		[statusController addObject:[self constructMessageBox:currentDic]];
+		[tempArray addObject:[self constructMessageBox:currentDic]];
 		lastDic = currentDic;
 	}
+	[statusController addObjects:tempArray];
 	lastMessageID = [[NSString alloc] initWithString:[lastDic objectForKey:@"id"]];
 }
 
