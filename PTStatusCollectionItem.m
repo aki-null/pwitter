@@ -14,12 +14,21 @@
 
 - (void)setSelected:(BOOL)flag {
 	[super setSelected:flag];
-	// tell the view that it has been selected
 	PTStatusEntityView* theView = (PTStatusEntityView* )[self view];
 	if([theView isKindOfClass:[PTStatusEntityView class]]) {
 		[theView setSelected:flag];
 		[theView setNeedsDisplay:YES];
 	}
+}
+
+- (void)setView:(NSView *)view {
+	[(PTStatusEntityView *)view setColItem:self];
+	[super setView:view];
+}
+
+- (id)initWithCoder:(NSCoder *)decoder {
+	
+	return [super initWithCoder:decoder];
 }
 
 @end

@@ -49,7 +49,6 @@
 	NSSortDescriptor * sortDesc = [[NSSortDescriptor alloc] initWithKey:@"time" ascending:NO];
 	[statusArrayController setSortDescriptors:[NSArray arrayWithObject:sortDesc]];
 	[sortDesc release];
-	
 }
 
 - (IBAction)closeAuthSheet:(id)sender
@@ -133,6 +132,9 @@
 	[finalString addAttribute:NSForegroundColorAttributeName 
 				 value:[NSColor whiteColor] 
 				 range:NSMakeRange(0, [finalString length])];
+	[finalString addAttribute:NSFontAttributeName 
+				 value:[NSFont fontWithName:@"Helvetica" size:10.0] 
+				 range:NSMakeRange(0, [finalString length])];
 	newBox.statusMessage = finalString;
 	newBox.userImage = warningImage;
 	newBox.entityColor = [NSColor colorWithCalibratedRed:0.4 green:0.4 blue:0.4 alpha:0.8];
@@ -142,17 +144,19 @@
 
 - (PTStatusBox *)constructStatusBox:(NSDictionary *)statusInfo {
 	PTStatusBox *newBox = [[PTStatusBox alloc] init];
-	NSString *comboName = 
+	newBox.userName = 
 		[[NSString alloc] initWithFormat:@"%@ / %@", 
 						  [[statusInfo objectForKey:@"user"] objectForKey:@"screen_name"], 
 						  [[statusInfo objectForKey:@"user"] objectForKey:@"name"]];
-	newBox.userName = comboName;
 	newBox.userID = [[NSString alloc] initWithString:[[statusInfo objectForKey:@"user"] objectForKey:@"screen_name"]];
 	newBox.time = [statusInfo objectForKey:@"created_at"];
 	NSMutableAttributedString *newMessage = 
 		[[NSMutableAttributedString alloc] initWithString:[statusInfo objectForKey:@"text"]];
 	[newMessage addAttribute:NSForegroundColorAttributeName
 				value:[NSColor whiteColor]
+				range:NSMakeRange(0, [newMessage length])];
+	[newMessage addAttribute:NSFontAttributeName 
+				value:[NSFont fontWithName:@"Helvetica" size:10.0] 
 				range:NSMakeRange(0, [newMessage length])];
 	[PTMain processLinks:newMessage];
 	newBox.statusMessage = newMessage;
@@ -238,6 +242,9 @@
 		[[NSMutableAttributedString alloc] initWithString:[statusInfo objectForKey:@"text"]];
 	[newMessage addAttribute:NSForegroundColorAttributeName
 				value:[NSColor whiteColor]
+				range:NSMakeRange(0, [newMessage length])];
+	[newMessage addAttribute:NSFontAttributeName 
+				value:[NSFont fontWithName:@"Helvetica" size:10.0] 
 				range:NSMakeRange(0, [newMessage length])];
 	[PTMain processLinks:newMessage];
 	newBox.statusMessage = newMessage;

@@ -11,5 +11,6 @@
 @interface PTStatusCollectionItem : NSCollectionViewItem {
 
 }
+- (void)setSelected:(BOOL)flag;
 
 @end

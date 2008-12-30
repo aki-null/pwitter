@@ -12,7 +12,6 @@
 @interface PTPreferenceManager : NSObject {
 	NSUserDefaults *prefData;
 	NSString *_userName;
-	PTStatusBox *_currentSelection;
 }
 
 + (PTPreferenceManager *)getInstance;

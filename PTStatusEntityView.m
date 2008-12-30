@@ -10,51 +10,20 @@
 
 @implementation PTStatusEntityView
 
-- (id)copyWithZone:(NSZone *)zone {
-	PTStatusEntityView *theCopy = [[PTStatusEntityView allocWithZone:zone] initWithFrame:[self frame]];
-	[theCopy setDelegate:[self delegate]];
-	[theCopy setSelected:[self selected]];  
-	return theCopy;
-}
-
 - (void)setSelected:(BOOL)flag {
 	_isSelected = flag;
-}
-
-- (id)delegate {
-	return _theDelegate;
-}
-
-- (void)setDelegate:(id)theDelegate {
-	_theDelegate = theDelegate;
 }
 
 - (BOOL)selected {
 	return _isSelected;
 }
 
-- (void)drawRect:(NSRect)rect {
-	[super drawRect:rect];
+- (void)forceSelect:(BOOL)flag {
+	[colItem setSelected:flag];
 }
 
-- (NSView *)hitTest:(NSPoint)aPoint {
-	// don't allow any mouse clicks for subviews in this view
-	if(NSPointInRect(aPoint,[self convertRect:[self bounds] toView:[self superview]])) {
-		return self;
-	} else {
-		return nil;
-	}
-}
-
-- (void)mouseDown:(NSEvent *)theEvent {
-	[super mouseDown:theEvent];
-
-	// check for click count above one
-	if([theEvent clickCount] > 1) {
-		if([[self delegate] respondsToSelector:@selector(doubleClick:)]) {
-			[[self delegate] doubleClick:self];
-		}
-	}
+- (void)setColItem:(PTStatusCollectionItem *)parentCol {
+	colItem = parentCol;
 }
 
 @end

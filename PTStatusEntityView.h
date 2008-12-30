@@ -7,20 +7,16 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import <PTStatusCollectionItem.h>
 
 
 @interface PTStatusEntityView : NSBox {
 	BOOL _isSelected;
-	id _theDelegate;
+	PTStatusCollectionItem *colItem;
 }
-
-- (id)delegate;
-- (void)setDelegate:(id)theDelegate;
 - (void)setSelected:(BOOL)flag;
 - (BOOL)selected;
+- (void)forceSelect:(BOOL)flag;
+- (void)setColItem:(PTStatusCollectionItem *)parentCol;
 
-@end
-
-@interface NSObject (ViewDelegate)
-- (void)doubleClick:(id)sender;
 @end
