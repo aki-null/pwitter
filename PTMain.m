@@ -114,11 +114,11 @@
 - (PTStatusBox *)constructErrorBox:(NSError *)error {
 	PTStatusBox *newBox = [[PTStatusBox alloc] init];
 	newBox.userName = @"Twitter request failed:";
-	NSMutableString *tempString = [[NSMutableString alloc] initWithString:[error localizedDescription]];
-	[tempString appendString:@" ("];
-	[tempString appendString:[[error userInfo] objectForKey:NSErrorFailingURLStringKey]];
-	[tempString appendString:@")"];
-	NSMutableAttributedString *finalString = [[NSMutableAttributedString alloc] initWithString:tempString];
+	NSMutableString *errorMessage = 
+		[[NSMutableString alloc] initWithFormat:@"%@ (%@)", 
+								 [error localizedDescription], 
+								 [[error userInfo] objectForKey:NSErrorFailingURLStringKey]];
+	NSMutableAttributedString *finalString = [[NSMutableAttributedString alloc] initWithString:errorMessage];
 	[finalString addAttribute:NSForegroundColorAttributeName
 				 value:[NSColor whiteColor]
 				 range:NSMakeRange(0, [finalString length])];
@@ -129,10 +129,10 @@
 
 - (PTStatusBox *)constructStatusBox:(NSDictionary *)statusInfo {
 	PTStatusBox *newBox = [[PTStatusBox alloc] init];
-	NSMutableString *comboName = [[NSMutableString alloc] init];
-	[comboName appendString:[[statusInfo objectForKey:@"user"] objectForKey:@"screen_name"]];
-	[comboName appendString:@" / "];
-	[comboName appendString:[[statusInfo objectForKey:@"user"] objectForKey:@"name"]];
+	NSString *comboName = 
+		[[NSString alloc] initWithFormat:@"%@ / %@", 
+						  [[statusInfo objectForKey:@"user"] objectForKey:@"screen_name"], 
+						  [[statusInfo objectForKey:@"user"] objectForKey:@"name"]];
 	newBox.userName = comboName;
 	newBox.userID = [[NSString alloc] initWithString:[[statusInfo objectForKey:@"user"] objectForKey:@"screen_name"]];
 	NSMutableAttributedString *newMessage = 
@@ -256,10 +256,10 @@
 
 - (IBAction)replyToSelected:(id)sender {
 	if ([sender state] == NSOnState) {
-		NSMutableString *replyTarget = [[NSMutableString alloc] initWithString:@"@"];
-		[replyTarget appendString:currentSelection.userID];
-		[replyTarget appendString:@" "];
-		[replyTarget appendString:[statusUpdateField stringValue]];
+		NSString *replyTarget = 
+			[[NSString alloc] initWithFormat:@"%@ %@", 
+			currentSelection.userID, 
+			[statusUpdateField stringValue]];
 		[statusUpdateField setStringValue:replyTarget];
 		[statusUpdateField selectText:sender];
 	}
