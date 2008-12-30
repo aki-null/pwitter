@@ -1298,9 +1298,9 @@
 }
 
 
-- (NSString *)deleteUpdate:(int)updateID
+- (NSString *)deleteUpdate:(NSString *)updateID
 {
-    NSString *path = [NSString stringWithFormat:@"statuses/destroy/%d.xml", updateID];
+    NSString *path = [NSString stringWithFormat:@"statuses/destroy/%@.xml", updateID];
     
     return [self _sendRequestWithMethod:HTTP_POST_METHOD path:path queryParameters:nil body:nil 
                             requestType:MGTwitterAccountRequest 
@@ -1308,9 +1308,9 @@
 }
 
 
-- (NSString *)markUpdate:(int)updateID asFavorite:(BOOL)flag
+- (NSString *)markUpdate:(NSString *)updateID asFavorite:(BOOL)flag
 {
-    NSString *path = [NSString stringWithFormat:@"favorites/%@/%d.xml", 
+    NSString *path = [NSString stringWithFormat:@"favorites/%@/%@.xml", 
                       (flag) ? @"create" : @"destroy" ,
                       updateID];
     
@@ -1348,9 +1348,9 @@
 }
 
 
-- (NSString *)deleteDirectMessage:(int)updateID
+- (NSString *)deleteDirectMessage:(NSString *)updateID
 {
-    NSString *path = [NSString stringWithFormat:@"direct_messages/destroy/%d.xml", updateID];
+    NSString *path = [NSString stringWithFormat:@"direct_messages/destroy/%@.xml", updateID];
     
     return [self _sendRequestWithMethod:HTTP_POST_METHOD path:path queryParameters:nil body:nil 
                             requestType:MGTwitterAccountRequest 

@@ -110,11 +110,11 @@
 // Sending and editing updates
 - (NSString *)sendUpdate:(NSString *)status;
 - (NSString *)sendUpdate:(NSString *)status inReplyTo:(NSString *)updateID;
-- (NSString *)deleteUpdate:(int)updateID;                 // this user must be the AUTHOR
-- (NSString *)markUpdate:(int)updateID asFavorite:(BOOL)flag;
+- (NSString *)deleteUpdate:(NSString *)updateID;                 // this user must be the AUTHOR
+- (NSString *)markUpdate:(NSString *)updateID asFavorite:(BOOL)flag;
 
 // Sending and editing direct messages
 - (NSString *)sendDirectMessage:(NSString *)message to:(NSString *)username;
-- (NSString *)deleteDirectMessage:(int)updateID;          // this user must be the RECIPIENT
+- (NSString *)deleteDirectMessage:(NSString *)updateID;          // this user must be the RECIPIENT
 
 @end
