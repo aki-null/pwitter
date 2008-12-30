@@ -68,12 +68,17 @@
 - (void)requestSucceeded:(NSString *)requestIdentifier
 {
 	NSLog(@"Request succeeded (%@)", requestIdentifier);
+	if ([requestDetails objectForKey:requestIdentifier] == @"MESSAGE") {
+		[statusUpdateField setEnabled:YES];
+		[statusUpdateField setStringValue:@""];
+		[messageButton setState:NSOffState];
+	}
 }
 
 - (void)requestFailed:(NSString *)requestIdentifier withError:(NSError *)error
 {
 	NSString *requestType = [requestDetails objectForKey:requestIdentifier];
-	if (requestType == @"POST") {
+	if (requestType == @"POST" || requestType == @"MESSAGE") {
 		[statusUpdateField setEnabled:YES];
 	} else if (requestType == @"IMAGE") {
 		[statusBoxesForReq removeObjectForKey:requestIdentifier];
@@ -178,7 +183,8 @@
 	NSDictionary *currentStatus;
 	NSDictionary *lastStatus;
 	for (currentStatus in [statuses reverseObjectEnumerator]) {
-		[statusController insertObject:[self constructStatusBox:currentStatus] atArrangedObjectIndex:0];
+		[statusController insertObject:[self constructStatusBox:currentStatus] 
+						  atArrangedObjectIndex:0];
 		lastStatus = currentStatus;
 	}
 	lastUpdateID = [[NSString alloc] initWithString:[lastStatus objectForKey:@"id"]];
@@ -226,9 +232,14 @@
 }
 
 - (IBAction)postStatus:(id)sender {
-	if ([replyButton state] == NSOnState) {
+	if ([messageButton state] == NSOnState) {
+		[requestDetails setObject:@"MESSAGE" 
+						forKey:[twitterEngine sendDirectMessage:[statusUpdateField stringValue]
+											  to:currentSelection.userID]];
+	} else if ([replyButton state] == NSOnState) {
 		[requestDetails setObject:@"POST" 
-						forKey:[twitterEngine sendUpdate:[statusUpdateField stringValue] inReplyTo:currentSelection.updateID]];
+						forKey:[twitterEngine sendUpdate:[statusUpdateField stringValue] 
+											  inReplyTo:currentSelection.updateID]];
 	} else {
 		[requestDetails setObject:@"POST" 
 						forKey:[twitterEngine sendUpdate:[statusUpdateField stringValue]]];
@@ -242,7 +253,12 @@
 }
 
 - (IBAction)messageToSelected:(id)sender {
-	
+	if ([sender state] == NSOnState) {
+		if ([replyButton state] == NSOnState) {
+			[replyButton setState:NSOffState];
+		}
+		[statusUpdateField selectText:sender];
+	}
 }
 
 - (IBAction)openHome:(id)sender {
@@ -256,6 +272,9 @@
 
 - (IBAction)replyToSelected:(id)sender {
 	if ([sender state] == NSOnState) {
+		if ([messageButton state] == NSOnState) {
+			[messageButton setState:NSOffState];
+		}
 		NSString *replyTarget = 
 			[[NSString alloc] initWithFormat:@"%@ %@", 
 			currentSelection.userID, 
@@ -274,6 +293,7 @@
 	[[selectedTextView textStorage]setAttributedString:selectedMessage];
 	[userNameBox setStringValue:newSelection.userName];
 	[replyButton setState:NSOffState];
+	[messageButton setState:NSOffState];
 	if (!newSelection.userHome) {
 		[webButton setEnabled:NO];
 	} else {

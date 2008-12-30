@@ -16,6 +16,7 @@
 	IBOutlet id replyButton;
 	IBOutlet id userNameBox;
 	IBOutlet id webButton;
+	IBOutlet id messageButton;
 	MGTwitterEngine *twitterEngine;
 	bool shouldExit;
 	NSString *lastUpdateID;
