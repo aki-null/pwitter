@@ -30,7 +30,10 @@
 	} else {
 		[[PTPreferenceManager getInstance] setAlwaysOnTop:NO];
 	}
-	[[PTPreferenceManager getInstance] setTimeInterval:[timeInterval indexOfSelectedItem] + 1];
+	if ([[PTPreferenceManager getInstance] timeInterval] != [timeInterval indexOfSelectedItem] + 1) {
+		[[PTPreferenceManager getInstance] setTimeInterval:[timeInterval indexOfSelectedItem] + 1];
+		[mainController setupUpdateTimer];
+	}
 	if ([[password stringValue] length] != 0) {
 		[[PTPreferenceManager getInstance] savePassword:[password stringValue]];
 		[[PTPreferenceManager getInstance] setUserName:[userName stringValue]];

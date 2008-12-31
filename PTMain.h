@@ -21,7 +21,7 @@
 	IBOutlet id statusArrayController;
 	IBOutlet id progressBar;
 	MGTwitterEngine *twitterEngine;
-	bool shouldExit;
+	BOOL shouldExit;
 	NSString *lastUpdateID;
 	NSString *lastMessageID;
 	NSImage *defaultImage;
@@ -32,6 +32,7 @@
 	NSMutableDictionary *statusBoxesForReq;
 	NSMutableDictionary *userImageCache;
 	PTStatusBox *currentSelection;
+	NSTimer *updateTimer;
 }
 - (IBAction)updateTimeline:(id)sender;
 - (IBAction)postStatus:(id)sender;
@@ -42,8 +43,9 @@
 - (IBAction)openWebSelected:(id)sender;
 - (IBAction)replyToSelected:(id)sender;
 - (IBAction)openPref:(id)sender;
-- (PTStatusBox *)constructErrorBox:(NSError *)error;
-- (NSImage *)requestUserImage:(NSString *)imageLocation forBox:(PTStatusBox *)newBox;
-- (void)selectStatusBox:(PTStatusBox *)newSelection;
+- (PTStatusBox *)constructErrorBox:(NSError *)aError;
+- (NSImage *)requestUserImage:(NSString *)aImageLocation forBox:(PTStatusBox *)aNewBox;
+- (void)selectStatusBox:(PTStatusBox *)aSelection;
 - (void)changeAccount;
+- (void)setupUpdateTimer;
 @end

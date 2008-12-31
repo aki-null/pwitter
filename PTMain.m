@@ -2,6 +2,34 @@
 
 @implementation PTMain
 
+- (void)setupUpdateTimer {
+	if (!updateTimer) {
+		[updateTimer invalidate];
+		[updateTimer release];
+	}
+	int intervalTime;
+	switch ([[PTPreferenceManager getInstance] timeInterval]) {
+		case 1:
+			intervalTime = 180;
+			break;
+		case 2:
+			intervalTime = 120;
+			break;
+		case 3:
+			intervalTime = 90;
+			break;
+	}
+	updateTimer = [[NSTimer scheduledTimerWithTimeInterval:intervalTime 
+													target:self 
+												  selector:@selector(runUpdateFromTimer:) 
+												  userInfo:nil 
+												   repeats:YES] retain];
+}
+
+- (void)runUpdateFromTimer:(NSTimer *)aTimer {
+	[self updateTimeline:aTimer];
+}
+
 - (void)setUpTwitterEngine {
 	twitterEngine = [[MGTwitterEngine alloc] initWithDelegate:self];
 	[twitterEngine setClientName:@"Pwitter" version:@"0.1" URL:@"" token:@"pwitter"];
@@ -14,6 +42,7 @@
 	[requestDetails setObject:@"INIT_UPDATE" 
 					   forKey:[twitterEngine getFollowedTimelineFor:[[PTPreferenceManager getInstance] getUserName] 
 															  since:nil startingAtPage:0 count:50]];
+	[self setupUpdateTimer];
 }
 
 - (void)changeAccount {
@@ -22,11 +51,12 @@
 	[twitterEngine setUsername:[[PTPreferenceManager getInstance] getUserName] 
 					  password:[[PTPreferenceManager getInstance] getPassword]];
 	[requestDetails setObject:@"MESSAGE_UPDATE" 
-					   forKey: [twitterEngine getDirectMessagesSince:nil
-													  startingAtPage:0]];
+					   forKey:[twitterEngine getDirectMessagesSince:nil
+													 startingAtPage:0]];
 	[requestDetails setObject:@"INIT_UPDATE" 
 					   forKey:[twitterEngine getFollowedTimelineFor:[[PTPreferenceManager getInstance] getUserName] 
 															  since:nil startingAtPage:0 count:50]];
+	[self setupUpdateTimer];
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
@@ -45,6 +75,7 @@
 
 - (void)awakeFromNib
 {
+	updateTimer = nil;
 	shouldExit = NO;
 	requestDetails = [[NSMutableDictionary alloc] init];
 	imageLocationForReq = [[NSMutableDictionary alloc] init];
@@ -73,11 +104,11 @@
     [NSApp endSheet:authPanel];
 }
 
-- (void)didEndSheet:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo
+- (void)didEndSheet:(NSWindow *)aSheet returnCode:(int)aReturnCode contextInfo:(void *)aContextInfo
 {
-	[sheet orderOut:self];
+	[aSheet orderOut:self];
 	if (shouldExit) [NSApp terminate:self];
-	if (sheet == authPanel) [self setUpTwitterEngine];
+	if (aSheet == authPanel) [self setUpTwitterEngine];
 }
 
 - (void)dealloc
@@ -111,8 +142,8 @@
 	[statusController addObject:[self constructErrorBox:error]];
 }
 
-+ (void)processLinks:(NSMutableAttributedString *)targetString {
-	NSString* string = [targetString string];
++ (void)processLinks:(NSMutableAttributedString *)aTargetString {
+	NSString* string = [aTargetString string];
 	NSRange searchRange = NSMakeRange(0, [string length]);
 	NSRange foundRange;
 	foundRange = [string rangeOfString:@"http://" options:0 range:searchRange];
@@ -133,17 +164,17 @@
 						 [NSNumber numberWithInt:NSSingleUnderlineStyle], NSUnderlineStyleAttributeName,
 						 [NSColor cyanColor], NSForegroundColorAttributeName,
 						 nil];
-		[targetString addAttributes:linkAttributes range:foundRange];
+		[aTargetString addAttributes:linkAttributes range:foundRange];
 	}
 }
 
-- (PTStatusBox *)constructErrorBox:(NSError *)error {
+- (PTStatusBox *)constructErrorBox:(NSError *)aError {
 	PTStatusBox *newBox = [[PTStatusBox alloc] init];
 	newBox.userName = @"Twitter Error:";
 	NSMutableString *errorMessage = 
 	[[NSMutableString alloc] initWithFormat:@"%@ (%@)", 
-	 [error localizedDescription], 
-	 [[error userInfo] objectForKey:NSErrorFailingURLStringKey]];
+	 [aError localizedDescription], 
+	 [[aError userInfo] objectForKey:NSErrorFailingURLStringKey]];
 	NSMutableAttributedString *finalString = [[NSMutableAttributedString alloc] initWithString:errorMessage];
 	[finalString addAttribute:NSForegroundColorAttributeName 
 						value:[NSColor whiteColor] 
@@ -158,35 +189,35 @@
 	return newBox;
 }
 
-- (NSImage *)requestUserImage:(NSString *)imageLocation forBox:(PTStatusBox *)newBox {
-	NSImage *imageData = [userImageCache objectForKey:imageLocation];
+- (NSImage *)requestUserImage:(NSString *)aImageLocation forBox:(PTStatusBox *)aNewBox {
+	NSImage *imageData = [userImageCache objectForKey:aImageLocation];
 	if (!imageData) {
-		if (![imageReqForLocation objectForKey:imageLocation]) {
+		if (![imageReqForLocation objectForKey:aImageLocation]) {
 			[progressBar startAnimation:self];
-			NSString *imageReq = [twitterEngine getImageAtURL:imageLocation];
+			NSString *imageReq = [twitterEngine getImageAtURL:aImageLocation];
 			[requestDetails setObject:@"IMAGE" forKey:imageReq];
-			[imageReqForLocation setObject:imageReq forKey:imageLocation];
-			[imageLocationForReq setObject:imageLocation forKey:imageReq];
+			[imageReqForLocation setObject:imageReq forKey:aImageLocation];
+			[imageLocationForReq setObject:aImageLocation forKey:imageReq];
 			[statusBoxesForReq setObject:[[NSMutableArray alloc] init] forKey:imageReq];
 		}
-		NSMutableArray *requestedBoxes = [statusBoxesForReq objectForKey:[imageReqForLocation objectForKey:imageLocation]];
-		[requestedBoxes addObject:newBox];
+		NSMutableArray *requestedBoxes = [statusBoxesForReq objectForKey:[imageReqForLocation objectForKey:aImageLocation]];
+		[requestedBoxes addObject:aNewBox];
 		return defaultImage;
 	} else {
 		return imageData;
 	}
 }
 
-- (PTStatusBox *)constructStatusBox:(NSDictionary *)statusInfo {
+- (PTStatusBox *)constructStatusBox:(NSDictionary *)aStatusInfo {
 	PTStatusBox *newBox = [[PTStatusBox alloc] init];
 	newBox.userName = 
 	[[NSString alloc] initWithFormat:@"%@ / %@", 
-	 [[statusInfo objectForKey:@"user"] objectForKey:@"screen_name"], 
-	 [[statusInfo objectForKey:@"user"] objectForKey:@"name"]];
-	newBox.userID = [[NSString alloc] initWithString:[[statusInfo objectForKey:@"user"] objectForKey:@"screen_name"]];
-	newBox.time = [statusInfo objectForKey:@"created_at"];
+	 [[aStatusInfo objectForKey:@"user"] objectForKey:@"screen_name"], 
+	 [[aStatusInfo objectForKey:@"user"] objectForKey:@"name"]];
+	newBox.userID = [[NSString alloc] initWithString:[[aStatusInfo objectForKey:@"user"] objectForKey:@"screen_name"]];
+	newBox.time = [aStatusInfo objectForKey:@"created_at"];
 	NSMutableAttributedString *newMessage = 
-	[[NSMutableAttributedString alloc] initWithString:[statusInfo objectForKey:@"text"]];
+	[[NSMutableAttributedString alloc] initWithString:[aStatusInfo objectForKey:@"text"]];
 	[newMessage addAttribute:NSForegroundColorAttributeName
 					   value:[NSColor whiteColor]
 					   range:NSMakeRange(0, [newMessage length])];
@@ -195,16 +226,16 @@
 					   range:NSMakeRange(0, [newMessage length])];
 	[PTMain processLinks:newMessage];
 	newBox.statusMessage = newMessage;
-	newBox.userImage = [self requestUserImage:[[statusInfo objectForKey:@"user"] objectForKey:@"profile_image_url"]
+	newBox.userImage = [self requestUserImage:[[aStatusInfo objectForKey:@"user"] objectForKey:@"profile_image_url"]
 									   forBox:newBox];
-	newBox.updateID = [[NSString alloc] initWithString:[statusInfo objectForKey:@"id"]];
-	NSString *urlStr = [[statusInfo objectForKey:@"user"] objectForKey:@"url"];
+	newBox.updateID = [[NSString alloc] initWithString:[aStatusInfo objectForKey:@"id"]];
+	NSString *urlStr = [[aStatusInfo objectForKey:@"user"] objectForKey:@"url"];
 	if ([urlStr length] != 0) {
 		newBox.userHome = [[NSURL alloc] initWithString:urlStr];
 	} else {
 		newBox.userHome = nil;
 	}
-	if ([[statusInfo objectForKey:@"in_reply_to_screen_name"] isEqualToString:[twitterEngine username]]) {
+	if ([[aStatusInfo objectForKey:@"in_reply_to_screen_name"] isEqualToString:[twitterEngine username]]) {
 		newBox.entityColor = [NSColor colorWithCalibratedRed:1.0 green:0.3 blue:0.3 alpha:0.7];
 	} else {
 		newBox.entityColor = [NSColor colorWithCalibratedRed:0.4 green:0.4 blue:0.4 alpha:0.7];
@@ -231,23 +262,23 @@
 	if ([requestDetails objectForKey:identifier] == @"POST") {
 		[statusUpdateField setEnabled:YES];
 		[statusUpdateField setStringValue:[[NSString alloc] init]];
-		[textLevelIndicator setIntValue:0];
+		[textLevelIndicator setIntValue:140];
 	}
 	[requestDetails removeObjectForKey:identifier];
 	if ([requestDetails count] == 0) [progressBar stopAnimation:self];
 }
 
-- (PTStatusBox *)constructMessageBox:(NSDictionary *)statusInfo {
+- (PTStatusBox *)constructMessageBox:(NSDictionary *)aStatusInfo {
 	PTStatusBox *newBox = [[PTStatusBox alloc] init];
 	NSString *comboName = 
 	[[NSString alloc] initWithFormat:@"%@ / %@", 
-	 [[statusInfo objectForKey:@"sender"] objectForKey:@"screen_name"], 
-	 [[statusInfo objectForKey:@"sender"] objectForKey:@"name"]];
+	 [[aStatusInfo objectForKey:@"sender"] objectForKey:@"screen_name"], 
+	 [[aStatusInfo objectForKey:@"sender"] objectForKey:@"name"]];
 	newBox.userName = comboName;
-	newBox.userID = [[NSString alloc] initWithString:[[statusInfo objectForKey:@"sender"] objectForKey:@"screen_name"]];
-	newBox.time = [statusInfo objectForKey:@"created_at"];
+	newBox.userID = [[NSString alloc] initWithString:[[aStatusInfo objectForKey:@"sender"] objectForKey:@"screen_name"]];
+	newBox.time = [aStatusInfo objectForKey:@"created_at"];
 	NSMutableAttributedString *newMessage = 
-	[[NSMutableAttributedString alloc] initWithString:[statusInfo objectForKey:@"text"]];
+	[[NSMutableAttributedString alloc] initWithString:[aStatusInfo objectForKey:@"text"]];
 	[newMessage addAttribute:NSForegroundColorAttributeName
 					   value:[NSColor whiteColor]
 					   range:NSMakeRange(0, [newMessage length])];
@@ -256,10 +287,10 @@
 					   range:NSMakeRange(0, [newMessage length])];
 	[PTMain processLinks:newMessage];
 	newBox.statusMessage = newMessage;
-	newBox.userImage = [self requestUserImage:[[statusInfo objectForKey:@"sender"] objectForKey:@"profile_image_url"]
+	newBox.userImage = [self requestUserImage:[[aStatusInfo objectForKey:@"sender"] objectForKey:@"profile_image_url"]
 									   forBox:newBox];
-	newBox.updateID = [[NSString alloc] initWithString:[statusInfo objectForKey:@"id"]];
-	NSString *urlStr = [[statusInfo objectForKey:@"sender"] objectForKey:@"url"];
+	newBox.updateID = [[NSString alloc] initWithString:[aStatusInfo objectForKey:@"id"]];
+	NSString *urlStr = [[aStatusInfo objectForKey:@"sender"] objectForKey:@"url"];
 	if ([urlStr length] != 0) {
 		newBox.userHome = [[NSURL alloc] initWithString:urlStr];
 	} else {
@@ -318,6 +349,7 @@
 	[requestDetails setObject:@"MESSAGE_UPDATE" 
 					   forKey: [twitterEngine getDirectMessagesSinceID:lastMessageID
 														startingAtPage:0]];
+	[self setupUpdateTimer];
 }
 
 - (IBAction)postStatus:(id)sender {
@@ -374,30 +406,30 @@
 	}
 }
 
-- (void)selectStatusBox:(PTStatusBox *)newSelection {
-	if (!newSelection) return;
+- (void)selectStatusBox:(PTStatusBox *)aSelection {
+	if (!aSelection) return;
 	NSMutableAttributedString *selectedMessage = 
-	[[NSMutableAttributedString alloc] initWithAttributedString:newSelection.statusMessage];
+	[[NSMutableAttributedString alloc] initWithAttributedString:aSelection.statusMessage];
 	[selectedMessage addAttribute:NSFontAttributeName 
 							value:[NSFont fontWithName:@"Helvetica" size:11.0] 
 							range:NSMakeRange(0, [selectedMessage length])];
 	[[selectedTextView textStorage]setAttributedString:selectedMessage];
-	[userNameBox setStringValue:newSelection.userName];
+	[userNameBox setStringValue:aSelection.userName];
 	[replyButton setState:NSOffState];
 	[messageButton setState:NSOffState];
-	if (!newSelection.userHome) {
+	if (!aSelection.userHome) {
 		[webButton setEnabled:NO];
 	} else {
 		[webButton setEnabled:YES];
 	}
-	if (newSelection.userName == @"Twitter Error:") {
+	if (aSelection.userName == @"Twitter Error:") {
 		[replyButton setEnabled:NO];
 		[messageButton setEnabled:NO];
 	} else {
 		[replyButton setEnabled:YES];
 		[messageButton setEnabled:YES];
 	}
-	currentSelection = newSelection;
+	currentSelection = aSelection;
 }
 
 - (IBAction)openPref:(id)sender {

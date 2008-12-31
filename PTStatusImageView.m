@@ -12,7 +12,7 @@
 @implementation PTStatusImageView
 
 - (void)mouseDown:(NSEvent *)theEvent {
-	[[self superview] mouseDown:theEvent];
+	[super mouseDown:theEvent];
 	[(PTStatusEntityView *)[self superview] forceSelect:YES];
 }
 

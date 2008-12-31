@@ -1068,7 +1068,7 @@
 							<reference key="NSSuperview" ref="439893737"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="BGHUDButtonCell" key="NSCell" id="17763240">
-								<int key="NSCellFlags">67239424</int>
+								<int key="NSCellFlags">604110336</int>
 								<int key="NSCellFlags2">134479872</int>
 								<string key="NSContents">Reply</string>
 								<object class="NSFont" key="NSSupport" id="22">
@@ -1094,7 +1094,7 @@
 							<reference key="NSSuperview" ref="439893737"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="BGHUDButtonCell" key="NSCell" id="46416272">
-								<int key="NSCellFlags">67239424</int>
+								<int key="NSCellFlags">604110336</int>
 								<int key="NSCellFlags2">134479872</int>
 								<string key="NSContents">Message</string>
 								<reference key="NSSupport" ref="22"/>
@@ -1116,7 +1116,7 @@
 							<reference key="NSSuperview" ref="439893737"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="BGHUDButtonCell" key="NSCell" id="33740031">
-								<int key="NSCellFlags">67239424</int>
+								<int key="NSCellFlags">604110336</int>
 								<int key="NSCellFlags2">134479872</int>
 								<string key="NSContents">Web</string>
 								<reference key="NSSupport" ref="22"/>
@@ -1175,11 +1175,11 @@
 								<string key="themeKey">gradientTheme</string>
 							</object>
 						</object>
-						<object class="BGHUDProgressIndicator" id="218279949">
+						<object class="BGHUDProgressIndicator" id="1067605922">
 							<reference key="NSNextResponder" ref="439893737"/>
 							<int key="NSvFlags">1313</int>
 							<object class="NSPSMatrix" key="NSDrawMatrix"/>
-							<string key="NSFrame">{{132, 2}, {65, 12}}</string>
+							<string key="NSFrame">{{134, 2}, {63, 12}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
 							<int key="NSpiFlags">16650</int>
 							<double key="NSMinValue">2.000000e+01</double>
@@ -2522,7 +2522,7 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">progressBar</string>
 						<reference key="source" ref="186084955"/>
-						<reference key="destination" ref="218279949"/>
+						<reference key="destination" ref="1067605922"/>
 					</object>
 					<int key="connectionID">963</int>
 				</object>
@@ -3150,9 +3150,9 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 							<reference ref="833461795"/>
 							<reference ref="417686124"/>
 							<reference ref="491260419"/>
-							<reference ref="251803811"/>
 							<reference ref="148151763"/>
-							<reference ref="218279949"/>
+							<reference ref="1067605922"/>
+							<reference ref="251803811"/>
 						</object>
 						<reference key="parent" ref="972006081"/>
 					</object>
@@ -3763,7 +3763,7 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">962</int>
-						<reference key="object" ref="218279949"/>
+						<reference key="object" ref="1067605922"/>
 						<reference key="parent" ref="439893737"/>
 					</object>
 				</object>
