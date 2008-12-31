@@ -30,6 +30,9 @@
 - (void)setupPrefs {
 	prefData = [NSUserDefaults standardUserDefaults];
 	_userName = [prefData stringForKey:@"user_name"];
+	alwaysOnTop = [prefData boolForKey:@"always_on_top"];
+	timeInterval = [prefData integerForKey:@"time_interval"];
+	if (timeInterval == 0) timeInterval = 2;
 }
 
 - (NSString *) getUserName {
@@ -57,6 +60,24 @@
 	} else {
 		return [tempItem password];
 	}
+}
+
+- (void)setAlwaysOnTop:(BOOL)flag {
+	[prefData setBool:flag forKey:@"always_on_top"];
+	alwaysOnTop = flag;
+}
+
+- (BOOL)alwaysOnTop {
+	return alwaysOnTop;
+}
+
+- (void)setTimeInterval:(int)interval {
+	[prefData setInteger:interval forKey:@"time_interval"];
+	timeInterval = interval;
+}
+
+- (int)timeInterval {
+	return timeInterval;
 }
 
 @end

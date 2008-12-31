@@ -12,6 +12,8 @@
 @interface PTPreferenceManager : NSObject {
 	NSUserDefaults *prefData;
 	NSString *_userName;
+	BOOL alwaysOnTop;
+	int timeInterval;
 }
 
 + (PTPreferenceManager *)getInstance;
@@ -20,5 +22,9 @@
 - (void)setUserName:(NSString *)userName;
 - (void)savePassword:(NSString *)password;
 - (NSString *)getPassword;
+- (void)setAlwaysOnTop:(BOOL)flag;
+- (BOOL)alwaysOnTop;
+- (void)setTimeInterval:(int)interval;
+- (int)timeInterval;
 
 @end

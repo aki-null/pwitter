@@ -9,12 +9,16 @@
 #import <Cocoa/Cocoa.h>
 
 
-@interface PTPreferenceWindow : NSView {
+@interface PTPreferenceWindow : NSPanel {
     IBOutlet id password;
     IBOutlet id userName;
+    IBOutlet id alwaysOnTop;
+    IBOutlet id timeInterval;
+    IBOutlet id mainController;
+    IBOutlet id mainWindow;
 }
+- (void)loadPreferences;
 - (IBAction)pressOK:(id)sender;
-- (NSString *)getUserName;
-- (NSString *)getPassword;
+- (IBAction)pressCancel:(id)sender;
 
 @end

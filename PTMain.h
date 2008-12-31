@@ -2,6 +2,7 @@
 #import <MGTwitterEngine.h>
 #import <PTPreferenceManager.h>
 #import <PTStatusBox.h>
+#import <PTPreferenceWindow.h>
 
 @interface PTMain : NSObject <MGTwitterEngineDelegate> {
 	IBOutlet id statusUpdateField;
@@ -39,7 +40,9 @@
 - (IBAction)openHome:(id)sender;
 - (IBAction)openWebSelected:(id)sender;
 - (IBAction)replyToSelected:(id)sender;
+- (IBAction)openPref:(id)sender;
 - (PTStatusBox *)constructErrorBox:(NSError *)error;
 - (NSImage *)requestUserImage:(NSString *)imageLocation forBox:(PTStatusBox *)newBox;
 - (void)selectStatusBox:(PTStatusBox *)newSelection;
+- (void)changeAccount;
 @end
