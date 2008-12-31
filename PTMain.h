@@ -19,6 +19,7 @@
 	IBOutlet id webButton;
 	IBOutlet id messageButton;
 	IBOutlet id statusArrayController;
+	IBOutlet id progressBar;
 	MGTwitterEngine *twitterEngine;
 	bool shouldExit;
 	NSString *lastUpdateID;

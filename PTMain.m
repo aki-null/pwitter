@@ -7,6 +7,7 @@
 	[twitterEngine setClientName:@"Pwitter" version:@"0.1" URL:@"" token:@"pwitter"];
 	[twitterEngine setUsername:[[PTPreferenceManager getInstance] getUserName] 
 					  password:[[PTPreferenceManager getInstance] getPassword]];
+	[progressBar startAnimation:self];
 	[requestDetails setObject:@"MESSAGE_UPDATE" 
 					   forKey: [twitterEngine getDirectMessagesSince:nil
 													  startingAtPage:0]];
@@ -16,6 +17,7 @@
 }
 
 - (void)changeAccount {
+	[progressBar startAnimation:self];
 	[[statusController content] removeAllObjects];
 	[twitterEngine setUsername:[[PTPreferenceManager getInstance] getUserName] 
 					  password:[[PTPreferenceManager getInstance] getPassword]];
@@ -105,6 +107,7 @@
 		[imageLocationForReq removeObjectForKey:requestIdentifier];
 	}
 	[requestDetails removeObjectForKey:requestIdentifier];
+	if ([requestDetails count] == 0) [progressBar stopAnimation:self];
 	[statusController addObject:[self constructErrorBox:error]];
 }
 
@@ -159,6 +162,7 @@
 	NSImage *imageData = [userImageCache objectForKey:imageLocation];
 	if (!imageData) {
 		if (![imageReqForLocation objectForKey:imageLocation]) {
+			[progressBar startAnimation:self];
 			NSString *imageReq = [twitterEngine getImageAtURL:imageLocation];
 			[requestDetails setObject:@"IMAGE" forKey:imageReq];
 			[imageReqForLocation setObject:imageReq forKey:imageLocation];
@@ -210,7 +214,11 @@
 
 - (void)statusesReceived:(NSArray *)statuses forRequest:(NSString *)identifier
 {
-	if ([statuses count] == 0) return;
+	if ([statuses count] == 0) {
+		[requestDetails removeObjectForKey:identifier];
+		if ([requestDetails count] == 0) [progressBar stopAnimation:self];
+		return;
+	}
 	NSDictionary *currentStatus;
 	NSDictionary *lastStatus;
 	NSMutableArray *tempBoxes = [[NSMutableArray alloc] init];
@@ -226,6 +234,7 @@
 		[textLevelIndicator setIntValue:0];
 	}
 	[requestDetails removeObjectForKey:identifier];
+	if ([requestDetails count] == 0) [progressBar stopAnimation:self];
 }
 
 - (PTStatusBox *)constructMessageBox:(NSDictionary *)statusInfo {
@@ -263,6 +272,7 @@
 - (void)directMessagesReceived:(NSArray *)messages forRequest:(NSString *)identifier
 {
 	[requestDetails removeObjectForKey:identifier];
+	if ([requestDetails count] == 0) [progressBar stopAnimation:self];
 	if ([messages count] == 0) return;
 	NSDictionary *currentDic;
 	NSDictionary *lastDic;
@@ -297,9 +307,11 @@
 	[imageReqForLocation removeObjectForKey:imageLocation];
 	[imageLocationForReq removeObjectForKey:identifier];
 	[requestDetails removeObjectForKey:identifier];
+	if ([requestDetails count] == 0) [progressBar stopAnimation:self];
 }
 
 - (IBAction)updateTimeline:(id)sender {
+	[progressBar startAnimation:sender];
 	[requestDetails setObject:@"UPDATE" 
 					   forKey: [twitterEngine getFollowedTimelineFor:[[PTPreferenceManager getInstance] getUserName] 
 															 sinceID:lastUpdateID startingAtPage:0 count:100]];
@@ -309,6 +321,7 @@
 }
 
 - (IBAction)postStatus:(id)sender {
+	[progressBar startAnimation:sender];
 	if ([messageButton state] == NSOnState) {
 		[requestDetails setObject:@"MESSAGE" 
 						   forKey:[twitterEngine sendDirectMessage:[statusUpdateField stringValue]
