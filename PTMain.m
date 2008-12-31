@@ -433,6 +433,7 @@
 }
 
 - (IBAction)openPref:(id)sender {
+	[preferenceWindow loadPreferences];
 	[NSApp beginSheet:preferenceWindow
 	   modalForWindow:mainWindow
 		modalDelegate:self

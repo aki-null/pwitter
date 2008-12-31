@@ -13,7 +13,9 @@
 @implementation PTPreferenceWindow
 
 - (void)loadPreferences {
-	[userName setStringValue:[[PTPreferenceManager getInstance] getUserName]];
+	NSString *tempUserName = [[PTPreferenceManager getInstance] getUserName];
+	if (tempUserName == nil) tempUserName = [[NSString alloc] init];
+	[userName setStringValue:tempUserName];
 	if ([[PTPreferenceManager getInstance] alwaysOnTop]) {
 		[alwaysOnTop setState:NSOnState];
 	} else {
@@ -35,8 +37,8 @@
 		[mainController setupUpdateTimer];
 	}
 	if ([[password stringValue] length] != 0) {
-		[[PTPreferenceManager getInstance] savePassword:[password stringValue]];
 		[[PTPreferenceManager getInstance] setUserName:[userName stringValue]];
+		[[PTPreferenceManager getInstance] savePassword:[password stringValue]];
 		[mainController changeAccount];
 	}
 	[mainWindow setFloatingPanel:[[PTPreferenceManager getInstance] alwaysOnTop]];
