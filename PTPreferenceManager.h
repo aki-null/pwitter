@@ -20,11 +20,11 @@
 - (void)setupPrefs;
 - (NSString *) getUserName;
 - (void)setUserName:(NSString *)userName;
-- (void)savePassword:(NSString *)password;
+- (void)savePassword:(NSString *)aPassword;
 - (NSString *)getPassword;
-- (void)setAlwaysOnTop:(BOOL)flag;
+- (void)setAlwaysOnTop:(BOOL)aFlag;
 - (BOOL)alwaysOnTop;
-- (void)setTimeInterval:(int)interval;
+- (void)setTimeInterval:(int)aInterval;
 - (int)timeInterval;
 
 @end

@@ -216,10 +216,11 @@
 	 [[aStatusInfo objectForKey:@"user"] objectForKey:@"name"]];
 	newBox.userID = [[NSString alloc] initWithString:[[aStatusInfo objectForKey:@"user"] objectForKey:@"screen_name"]];
 	newBox.time = [aStatusInfo objectForKey:@"created_at"];
+	NSString *unescaped = (NSString *)CFXMLCreateStringByUnescapingEntities(nil, (CFStringRef)[aStatusInfo objectForKey:@"text"], nil);
 	NSMutableAttributedString *newMessage = 
-	[[NSMutableAttributedString alloc] initWithString:[aStatusInfo objectForKey:@"text"]];
-	[newMessage addAttribute:NSForegroundColorAttributeName
-					   value:[NSColor whiteColor]
+	[[NSMutableAttributedString alloc] initWithString:unescaped];
+	[newMessage addAttribute:NSForegroundColorAttributeName 
+					   value:[NSColor whiteColor] 
 					   range:NSMakeRange(0, [newMessage length])];
 	[newMessage addAttribute:NSFontAttributeName 
 					   value:[NSFont fontWithName:@"Helvetica" size:10.0] 
@@ -277,8 +278,9 @@
 	newBox.userName = comboName;
 	newBox.userID = [[NSString alloc] initWithString:[[aStatusInfo objectForKey:@"sender"] objectForKey:@"screen_name"]];
 	newBox.time = [aStatusInfo objectForKey:@"created_at"];
+	NSString *unescaped = (NSString *)CFXMLCreateStringByUnescapingEntities(nil, (CFStringRef)[aStatusInfo objectForKey:@"text"], nil);
 	NSMutableAttributedString *newMessage = 
-	[[NSMutableAttributedString alloc] initWithString:[aStatusInfo objectForKey:@"text"]];
+	[[NSMutableAttributedString alloc] initWithString:unescaped];
 	[newMessage addAttribute:NSForegroundColorAttributeName
 					   value:[NSColor whiteColor]
 					   range:NSMakeRange(0, [newMessage length])];

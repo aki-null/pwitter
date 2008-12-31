@@ -29,55 +29,56 @@
 
 - (void)setupPrefs {
 	prefData = [NSUserDefaults standardUserDefaults];
-	_userName = [prefData stringForKey:@"user_name"];
-	alwaysOnTop = [prefData boolForKey:@"always_on_top"];
-	timeInterval = [prefData integerForKey:@"time_interval"];
-	if (timeInterval == 0) timeInterval = 2;
+	if ([prefData integerForKey:@"time_interval"] == 0)
+		[prefData setInteger:2 forKey:@"time_interval"];;
 }
 
 - (NSString *) getUserName {
-	return _userName;
+	return [prefData stringForKey:@"user_name"];
 }
 
 - (void)setUserName:(NSString *)userName {
 	[prefData setObject:userName forKey:@"user_name"];
-	_userName = userName;
 }
 
-- (void)savePassword:(NSString *)password {
-	EMGenericKeychainItem *tempItem = [[EMKeychainProxy sharedProxy] genericKeychainItemForService:@"Pwitter" withUsername:_userName];
+- (void)savePassword:(NSString *)aPassword {
+	EMGenericKeychainItem *tempItem = 
+		[[EMKeychainProxy sharedProxy] genericKeychainItemForService:@"Pwitter" 
+														withUsername:[prefData stringForKey:@"user_name"]];
 	if (!tempItem) {
-		[[EMKeychainProxy sharedProxy] addGenericKeychainItemForService:@"Pwitter" withUsername:_userName password:password];
+		[[EMKeychainProxy sharedProxy] addGenericKeychainItemForService:@"Pwitter" 
+														   withUsername:[prefData stringForKey:@"user_name"] 
+															   password:aPassword];
 	} else {
-		[tempItem setPassword:password];
+		[tempItem setPassword:aPassword];
 	}
 }
 
 - (NSString *)getPassword {
-	EMGenericKeychainItem *tempItem = [[EMKeychainProxy sharedProxy] genericKeychainItemForService:@"Pwitter" withUsername:_userName];
-	if (!tempItem) {
+	EMGenericKeychainItem *lTempItem = 
+		[[EMKeychainProxy sharedProxy] genericKeychainItemForService:@"Pwitter" 
+														withUsername:[prefData stringForKey:@"user_name"]];
+	if (!lTempItem) {
 		return nil;
 	} else {
-		return [tempItem password];
+		return [lTempItem password];
 	}
 }
 
-- (void)setAlwaysOnTop:(BOOL)flag {
-	[prefData setBool:flag forKey:@"always_on_top"];
-	alwaysOnTop = flag;
+- (void)setAlwaysOnTop:(BOOL)aFlag {
+	[prefData setBool:aFlag forKey:@"always_on_top"];
 }
 
 - (BOOL)alwaysOnTop {
-	return alwaysOnTop;
+	return [prefData boolForKey:@"always_on_top"];
 }
 
-- (void)setTimeInterval:(int)interval {
-	[prefData setInteger:interval forKey:@"time_interval"];
-	timeInterval = interval;
+- (void)setTimeInterval:(int)aInterval {
+	[prefData setInteger:aInterval forKey:@"time_interval"];
 }
 
 - (int)timeInterval {
-	return timeInterval;
+	return [prefData integerForKey:@"time_interval"];
 }
 
 @end
