@@ -73,11 +73,11 @@
 
 - (void)requestSucceeded:(NSString *)requestIdentifier
 {
-	NSLog(@"Request succeeded (%@)", requestIdentifier);
 	if ([requestDetails objectForKey:requestIdentifier] == @"MESSAGE") {
 		[statusUpdateField setEnabled:YES];
 		[statusUpdateField setStringValue:@""];
 		[messageButton setState:NSOffState];
+		[textLevelIndicator setIntValue:140];
 	}
 }
 
@@ -260,9 +260,6 @@
 	}
 	[statusController addObjects:tempArray];
 	lastMessageID = [[NSString alloc] initWithString:[lastDic objectForKey:@"id"]];
-	[statusUpdateField setEnabled:YES];
-	[statusUpdateField setStringValue:[[NSString alloc] init]];
-	[textLevelIndicator setIntValue:0];
 }
 
 - (void)userInfoReceived:(NSArray *)userInfo forRequest:(NSString *)identifier
