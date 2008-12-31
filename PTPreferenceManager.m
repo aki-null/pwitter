@@ -20,41 +20,38 @@
 		if (!instance)
 		{
 			instance = [[PTPreferenceManager alloc] init];
-			[instance setupPrefs];
+			[instance setupPreferences];
 		}
 		return instance;
 	}
 	return nil;
 }
 
-- (void)setupPrefs {
+- (void)setupPreferences {
 	prefData = [NSUserDefaults standardUserDefaults];
 	if ([prefData integerForKey:@"time_interval"] == 0)
 		[prefData setInteger:2 forKey:@"time_interval"];;
 }
 
-- (NSString *) getUserName {
+- (NSString *)userName {
 	return [prefData stringForKey:@"user_name"];
 }
 
-- (void)setUserName:(NSString *)userName {
-	[prefData setObject:userName forKey:@"user_name"];
-}
-
-- (void)savePassword:(NSString *)aPassword {
+- (void)setUserName:(NSString *)aUserName password:(NSString *)aPassword {
+	[prefData setObject:aUserName forKey:@"user_name"];
 	EMGenericKeychainItem *tempItem = 
-		[[EMKeychainProxy sharedProxy] genericKeychainItemForService:@"Pwitter" 
-														withUsername:[prefData stringForKey:@"user_name"]];
+	[[EMKeychainProxy sharedProxy] genericKeychainItemForService:@"Pwitter" 
+													withUsername:aUserName];
 	if (!tempItem) {
 		[[EMKeychainProxy sharedProxy] addGenericKeychainItemForService:@"Pwitter" 
-														   withUsername:[prefData stringForKey:@"user_name"] 
+														   withUsername:aUserName 
 															   password:aPassword];
 	} else {
 		[tempItem setPassword:aPassword];
 	}
 }
 
-- (NSString *)getPassword {
+- (NSString *)password {
 	EMGenericKeychainItem *lTempItem = 
 		[[EMKeychainProxy sharedProxy] genericKeychainItemForService:@"Pwitter" 
 														withUsername:[prefData stringForKey:@"user_name"]];
@@ -79,6 +76,14 @@
 
 - (int)timeInterval {
 	return [prefData integerForKey:@"time_interval"];
+}
+
+- (void)setAutoLogin:(BOOL)aFlag {
+	[prefData setBool:aFlag forKey:@"auto_login"];
+}
+
+- (BOOL)autoLogin {
+	return [prefData boolForKey:@"auto_login"];
 }
 
 @end

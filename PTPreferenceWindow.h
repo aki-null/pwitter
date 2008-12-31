@@ -16,6 +16,7 @@
     IBOutlet id timeInterval;
     IBOutlet id mainController;
     IBOutlet id mainWindow;
+    IBOutlet id autoLogin;
 }
 - (void)loadPreferences;
 - (IBAction)pressOK:(id)sender;

@@ -13,7 +13,7 @@
 @implementation PTPreferenceWindow
 
 - (void)loadPreferences {
-	NSString *tempUserName = [[PTPreferenceManager getInstance] getUserName];
+	NSString *tempUserName = [[PTPreferenceManager getInstance] userName];
 	if (tempUserName == nil) tempUserName = [[NSString alloc] init];
 	[userName setStringValue:tempUserName];
 	if ([[PTPreferenceManager getInstance] alwaysOnTop]) {
@@ -24,21 +24,23 @@
 	[timeInterval selectItemAtIndex:[[PTPreferenceManager getInstance] timeInterval] - 1];
 	[password setStringValue:[[NSString alloc] init]];
 	[mainWindow setFloatingPanel:[[PTPreferenceManager getInstance] alwaysOnTop]];
+	if ([[PTPreferenceManager getInstance] autoLogin]) {
+		[autoLogin setState:NSOnState];
+	} else {
+		[autoLogin setState:NSOffState];
+	}
 }
 
 - (IBAction)pressOK:(id)sender {
-	if ([alwaysOnTop state] == NSOnState) {
-		[[PTPreferenceManager getInstance] setAlwaysOnTop:YES];
-	} else {
-		[[PTPreferenceManager getInstance] setAlwaysOnTop:NO];
-	}
+	[[PTPreferenceManager getInstance] setAlwaysOnTop:[alwaysOnTop state] == NSOnState];
+	[[PTPreferenceManager getInstance] setAutoLogin:[autoLogin state] == NSOnState];
 	if ([[PTPreferenceManager getInstance] timeInterval] != [timeInterval indexOfSelectedItem] + 1) {
 		[[PTPreferenceManager getInstance] setTimeInterval:[timeInterval indexOfSelectedItem] + 1];
 		[mainController setupUpdateTimer];
 	}
 	if ([[password stringValue] length] != 0) {
-		[[PTPreferenceManager getInstance] setUserName:[userName stringValue]];
-		[[PTPreferenceManager getInstance] savePassword:[password stringValue]];
+		[[PTPreferenceManager getInstance] setUserName:[userName stringValue] 
+											  password:[password stringValue]];
 		[mainController changeAccount];
 	}
 	[mainWindow setFloatingPanel:[[PTPreferenceManager getInstance] alwaysOnTop]];

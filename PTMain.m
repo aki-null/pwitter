@@ -33,14 +33,14 @@
 - (void)setUpTwitterEngine {
 	twitterEngine = [[MGTwitterEngine alloc] initWithDelegate:self];
 	[twitterEngine setClientName:@"Pwitter" version:@"0.1" URL:@"" token:@"pwitter"];
-	[twitterEngine setUsername:[[PTPreferenceManager getInstance] getUserName] 
-					  password:[[PTPreferenceManager getInstance] getPassword]];
+	[twitterEngine setUsername:[[PTPreferenceManager getInstance] userName] 
+					  password:[[PTPreferenceManager getInstance] password]];
 	[progressBar startAnimation:self];
 	[requestDetails setObject:@"MESSAGE_UPDATE" 
 					   forKey: [twitterEngine getDirectMessagesSince:nil
 													  startingAtPage:0]];
 	[requestDetails setObject:@"INIT_UPDATE" 
-					   forKey:[twitterEngine getFollowedTimelineFor:[[PTPreferenceManager getInstance] getUserName] 
+					   forKey:[twitterEngine getFollowedTimelineFor:[[PTPreferenceManager getInstance] userName] 
 															  since:nil startingAtPage:0 count:50]];
 	[self setupUpdateTimer];
 }
@@ -48,25 +48,29 @@
 - (void)changeAccount {
 	[progressBar startAnimation:self];
 	[[statusController content] removeAllObjects];
-	[twitterEngine setUsername:[[PTPreferenceManager getInstance] getUserName] 
-					  password:[[PTPreferenceManager getInstance] getPassword]];
+	[twitterEngine setUsername:[[PTPreferenceManager getInstance] userName] 
+					  password:[[PTPreferenceManager getInstance] password]];
 	[requestDetails setObject:@"MESSAGE_UPDATE" 
 					   forKey:[twitterEngine getDirectMessagesSince:nil
 													 startingAtPage:0]];
 	[requestDetails setObject:@"INIT_UPDATE" 
-					   forKey:[twitterEngine getFollowedTimelineFor:[[PTPreferenceManager getInstance] getUserName] 
+					   forKey:[twitterEngine getFollowedTimelineFor:[[PTPreferenceManager getInstance] userName] 
 															  since:nil startingAtPage:0 count:50]];
 	[self setupUpdateTimer];
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
+	if ([[PTPreferenceManager getInstance] autoLogin]) {
+		[self setUpTwitterEngine];
+		return;
+	}
 	[NSApp beginSheet:authPanel
 	   modalForWindow:mainWindow
 		modalDelegate:self
 	   didEndSelector:@selector(didEndSheet:returnCode:contextInfo:)
 		  contextInfo:nil];
-	NSString *tempName = [[PTPreferenceManager getInstance] getUserName];
-	NSString *tempPass = [[PTPreferenceManager getInstance] getPassword];
+	NSString *tempName = [[PTPreferenceManager getInstance] userName];
+	NSString *tempPass = [[PTPreferenceManager getInstance] password];
 	if (tempName)
 		[authUserName setStringValue:tempName];
 	if (tempPass)
@@ -99,8 +103,8 @@
 
 - (IBAction)closeAuthSheet:(id)sender
 {
-	[[PTPreferenceManager getInstance] setUserName:[authUserName stringValue]];
-	[[PTPreferenceManager getInstance] savePassword:[authPassword stringValue]];
+	[[PTPreferenceManager getInstance] setUserName:[authUserName stringValue] 
+										  password:[authPassword stringValue]];
     [NSApp endSheet:authPanel];
 }
 
@@ -346,7 +350,7 @@
 - (IBAction)updateTimeline:(id)sender {
 	[progressBar startAnimation:sender];
 	[requestDetails setObject:@"UPDATE" 
-					   forKey: [twitterEngine getFollowedTimelineFor:[[PTPreferenceManager getInstance] getUserName] 
+					   forKey: [twitterEngine getFollowedTimelineFor:[[PTPreferenceManager getInstance] userName] 
 															 sinceID:lastUpdateID startingAtPage:0 count:100]];
 	[requestDetails setObject:@"MESSAGE_UPDATE" 
 					   forKey: [twitterEngine getDirectMessagesSinceID:lastMessageID
