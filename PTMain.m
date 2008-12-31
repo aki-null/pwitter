@@ -3,7 +3,7 @@
 @implementation PTMain
 
 - (void)setupUpdateTimer {
-	if (!updateTimer) {
+	if (updateTimer) {
 		[updateTimer invalidate];
 		[updateTimer release];
 	}
