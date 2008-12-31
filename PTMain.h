@@ -1,8 +1,8 @@
 #import <Cocoa/Cocoa.h>
 #import <MGTwitterEngine.h>
-#import <PTPreferenceManager.h>
-#import <PTStatusBox.h>
-#import <PTPreferenceWindow.h>
+#import "PTPreferenceManager.h"
+#import "PTStatusBox.h"
+#import "PTPreferenceWindow.h"
 
 @interface PTMain : NSObject <MGTwitterEngineDelegate> {
 	IBOutlet id statusUpdateField;
