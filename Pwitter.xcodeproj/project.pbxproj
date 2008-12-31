@@ -15,6 +15,8 @@
 		613461370F06134900B422A6 /* PTLevelIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 613461360F06134900B422A6 /* PTLevelIndicator.m */; };
 		613B64F70F0A45B500B67438 /* PTStatusImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 613B64F60F0A45B500B67438 /* PTStatusImageView.m */; };
 		614393A90F09D23400971122 /* PTEntityBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 614393A80F09D23400971122 /* PTEntityBackground.m */; };
+		6190A09A0F0AE46100E4F12E /* BGHUDAppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6190A0990F0AE46100E4F12E /* BGHUDAppKit.framework */; };
+		6190A0CB0F0AE55000E4F12E /* BGHUDAppKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6190A0990F0AE46100E4F12E /* BGHUDAppKit.framework */; };
 		61A50F520F063ADB009050CC /* console.png in Resources */ = {isa = PBXBuildFile; fileRef = 61A50F510F063ADB009050CC /* console.png */; };
 		61C773BD0F0509F100258650 /* PTStatusEntityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C773BC0F0509F100258650 /* PTStatusEntityView.m */; };
 		61C773F80F050BBB00258650 /* PTStatusCollectionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C773F70F050BBB00258650 /* PTStatusCollectionItem.m */; };
@@ -45,6 +47,19 @@
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		6190A0C40F0AE4B100E4F12E /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				6190A0CB0F0AE55000E4F12E /* BGHUDAppKit.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
@@ -68,6 +83,7 @@
 		613B64F60F0A45B500B67438 /* PTStatusImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTStatusImageView.m; sourceTree = "<group>"; };
 		614393A70F09D23400971122 /* PTEntityBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTEntityBackground.h; sourceTree = "<group>"; };
 		614393A80F09D23400971122 /* PTEntityBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTEntityBackground.m; sourceTree = "<group>"; };
+		6190A0990F0AE46100E4F12E /* BGHUDAppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BGHUDAppKit.framework; sourceTree = "<group>"; };
 		61A50F510F063ADB009050CC /* console.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = console.png; sourceTree = "<group>"; };
 		61C773BB0F0509F100258650 /* PTStatusEntityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTStatusEntityView.h; sourceTree = "<group>"; };
 		61C773BC0F0509F100258650 /* PTStatusEntityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTStatusEntityView.m; sourceTree = "<group>"; };
@@ -129,6 +145,7 @@
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 				61EE70640F0210C0005C42F5 /* libxml2.2.dylib in Frameworks */,
 				61D9FDFD0F04B41C003CC890 /* Security.framework in Frameworks */,
+				6190A09A0F0AE46100E4F12E /* BGHUDAppKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -157,6 +174,7 @@
 		1058C7A2FEA54F0111CA2CBB /* Other Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6190A0990F0AE46100E4F12E /* BGHUDAppKit.framework */,
 				61EE70630F0210C0005C42F5 /* libxml2.2.dylib */,
 				29B97324FDCFA39411CA2CEA /* AppKit.framework */,
 				13E42FB307B3F0F600E4EEF1 /* CoreData.framework */,
@@ -305,6 +323,8 @@
 				8D1107290486CEB800E47090 /* Resources */,
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
+				6190A0C40F0AE4B100E4F12E /* CopyFiles */,
+				6190A0FB0F0AFB8400E4F12E /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -347,6 +367,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6190A0FB0F0AFB8400E4F12E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "rm -fR \"${CONFIGURATION_BUILD_DIR}/${WRAPPER_NAME}/Contents/Frameworks/BGHUDAppKit.framework/Versions/Current/Resources\" ";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8D11072C0486CEB800E47090 /* Sources */ = {
@@ -410,6 +446,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
@@ -428,6 +468,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Pwitter_Prefix.pch;
