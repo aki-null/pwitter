@@ -7,9 +7,10 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import <PTStatusEntityView.h>
+#import "PTStatusEntityView.h"
 
 @interface PTStatusTextField : NSTextField {
-	BOOL selected;
+
 }
+
 @end

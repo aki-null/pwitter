@@ -15,8 +15,11 @@
 - (void)drawRect:(NSRect)rect {
 	[[self textColor] set];
 	NSBezierPath *thePath = [NSBezierPath bezierPath];
-	[thePath appendBezierPathWithRoundedRect:NSInsetRect([self bounds], 10.0, 2.0) xRadius:12.0 yRadius:12.0];
+	[thePath appendBezierPathWithRoundedRect:NSInsetRect([self bounds], 10.0, 2.0) 
+									 xRadius:12.0 
+									 yRadius:12.0];
 	[thePath fill];
+	// render the selection border
 	if([(PTStatusEntityView *)[self superview] selected]) {
 		[[NSColor colorWithCalibratedRed:0.7 green:0.7 blue:0.7 alpha:1.0] set];
 		[thePath setLineWidth:3.0];
@@ -26,7 +29,9 @@
 }
 
 - (void)mouseDown:(NSEvent *)theEvent {
+	// pass the event to the super class as usual
 	[super mouseDown:theEvent];
+	// send a message to the owner of the status view to select this entity
 	[(PTStatusEntityView *)[self superview] forceSelect:YES];
 }
 

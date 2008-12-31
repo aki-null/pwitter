@@ -1,4 +1,13 @@
+//
+//  PTMain.m
+//  Pwitter
+//
+//  Created by Akihiro Noguchi on 24/12/08.
+//  Copyright 2008 Aki. All rights reserved.
+//
+
 #import "PTMain.h"
+
 
 @implementation PTMain
 
@@ -157,8 +166,7 @@
 		NSRange endOfURLRange;
 		searchRange.location = foundRange.location + foundRange.length;
 		searchRange.length = [string length] - searchRange.location;
-		endOfURLRange = [string rangeOfCharacterFromSet:
-						 [NSCharacterSet whitespaceAndNewlineCharacterSet]
+		endOfURLRange = [string rangeOfCharacterFromSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]
 												options:0 range:searchRange];
 		if (endOfURLRange.length == 0)
 			endOfURLRange.location = [string length] - 1;
@@ -190,6 +198,9 @@
 	newBox.userImage = warningImage;
 	newBox.entityColor = [NSColor colorWithCalibratedRed:0.4 green:0.4 blue:0.4 alpha:0.7];
 	newBox.time = [[NSDate alloc] init];
+	newBox.strTime = [newBox.time descriptionWithCalendarFormat:@"%H:%M:%S" 
+					  timeZone:[NSTimeZone systemTimeZone] 
+					  locale:nil];
 	return newBox;
 }
 
@@ -220,6 +231,9 @@
 	 [[aStatusInfo objectForKey:@"user"] objectForKey:@"name"]];
 	newBox.userID = [[NSString alloc] initWithString:[[aStatusInfo objectForKey:@"user"] objectForKey:@"screen_name"]];
 	newBox.time = [aStatusInfo objectForKey:@"created_at"];
+	newBox.strTime = [newBox.time descriptionWithCalendarFormat:@"%H:%M:%S" 
+					  timeZone:[NSTimeZone systemTimeZone] 
+					  locale:nil];
 	NSString *unescaped = (NSString *)CFXMLCreateStringByUnescapingEntities(nil, (CFStringRef)[aStatusInfo objectForKey:@"text"], nil);
 	NSMutableAttributedString *newMessage = 
 	[[NSMutableAttributedString alloc] initWithString:unescaped];
@@ -256,11 +270,11 @@
 		return;
 	}
 	NSDictionary *currentStatus;
-	NSDictionary *lastStatus;
+	NSDictionary *lastStatus = nil;
 	NSMutableArray *tempBoxes = [[NSMutableArray alloc] init];
-	for (currentStatus in [statuses reverseObjectEnumerator]) {
+	for (currentStatus in statuses) {
 		[tempBoxes addObject:[self constructStatusBox:currentStatus]];
-		lastStatus = currentStatus;
+		if (!lastStatus) lastStatus = currentStatus;
 	}
 	[statusController addObjects:tempBoxes];
 	lastUpdateID = [[NSString alloc] initWithString:[lastStatus objectForKey:@"id"]];
@@ -282,6 +296,9 @@
 	newBox.userName = comboName;
 	newBox.userID = [[NSString alloc] initWithString:[[aStatusInfo objectForKey:@"sender"] objectForKey:@"screen_name"]];
 	newBox.time = [aStatusInfo objectForKey:@"created_at"];
+	newBox.strTime = [newBox.time descriptionWithCalendarFormat:@"%H:%M:%S" 
+					  timeZone:[NSTimeZone systemTimeZone] 
+					  locale:nil];
 	NSString *unescaped = (NSString *)CFXMLCreateStringByUnescapingEntities(nil, (CFStringRef)[aStatusInfo objectForKey:@"text"], nil);
 	NSMutableAttributedString *newMessage = 
 	[[NSMutableAttributedString alloc] initWithString:unescaped];
@@ -312,11 +329,11 @@
 	if ([requestDetails count] == 0) [progressBar stopAnimation:self];
 	if ([messages count] == 0) return;
 	NSDictionary *currentDic;
-	NSDictionary *lastDic;
+	NSDictionary *lastDic = nil;
 	NSMutableArray *tempArray = [[NSMutableArray alloc] init];
-	for (currentDic in [messages reverseObjectEnumerator]) {
+	for (currentDic in messages) {
 		[tempArray addObject:[self constructMessageBox:currentDic]];
-		lastDic = currentDic;
+		if (!lastDic) lastDic = currentDic;
 	}
 	[statusController addObjects:tempArray];
 	lastMessageID = [[NSString alloc] initWithString:[lastDic objectForKey:@"id"]];
@@ -355,7 +372,6 @@
 	[requestDetails setObject:@"MESSAGE_UPDATE" 
 					   forKey: [twitterEngine getDirectMessagesSinceID:lastMessageID
 														startingAtPage:0]];
-	[self setupUpdateTimer];
 }
 
 - (IBAction)postStatus:(id)sender {
@@ -414,13 +430,6 @@
 
 - (void)selectStatusBox:(PTStatusBox *)aSelection {
 	if (!aSelection) return;
-	NSMutableAttributedString *selectedMessage = 
-	[[NSMutableAttributedString alloc] initWithAttributedString:aSelection.statusMessage];
-	[selectedMessage addAttribute:NSFontAttributeName 
-							value:[NSFont fontWithName:@"Helvetica" size:11.0] 
-							range:NSMakeRange(0, [selectedMessage length])];
-	[[selectedTextView textStorage]setAttributedString:selectedMessage];
-	[userNameBox setStringValue:aSelection.userName];
 	[replyButton setState:NSOffState];
 	[messageButton setState:NSOffState];
 	if (!aSelection.userHome) {

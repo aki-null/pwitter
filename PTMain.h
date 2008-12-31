@@ -1,3 +1,11 @@
+//
+//  PTMain.h
+//  Pwitter
+//
+//  Created by Akihiro Noguchi on 24/12/08.
+//  Copyright 2008 Aki. All rights reserved.
+//
+
 #import <Cocoa/Cocoa.h>
 #import <MGTwitterEngine.h>
 #import "PTPreferenceManager.h"
@@ -34,6 +42,7 @@
 	PTStatusBox *currentSelection;
 	NSTimer *updateTimer;
 }
+
 - (IBAction)updateTimeline:(id)sender;
 - (IBAction)postStatus:(id)sender;
 - (IBAction)quitApp:(id)sender;
@@ -48,4 +57,5 @@
 - (void)selectStatusBox:(PTStatusBox *)aSelection;
 - (void)changeAccount;
 - (void)setupUpdateTimer;
+
 @end

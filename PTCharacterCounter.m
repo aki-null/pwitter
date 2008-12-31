@@ -8,9 +8,11 @@
 
 #import "PTCharacterCounter.h"
 
+
 @implementation PTCharacterCounter
 
 - (void)controlTextDidChange:(NSNotification *)aNotification {
+	// update the character counter
 	[self setIntValue:140 - [[postTextField stringValue] length]];
 }
 

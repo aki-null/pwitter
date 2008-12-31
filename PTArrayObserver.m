@@ -10,27 +10,34 @@
 #import "PTStatusBox.h"
 #import "PTMain.h"
 
+
 @implementation PTArrayObserver
 
 - (void)dealloc
 {
+	// remove the observer at deallocation
 	[arrayController removeObserver:self forKeyPath:@"selectionIndexes"];
 	[super dealloc];
 }
 
 -(void)awakeFromNib
 {
-	[arrayController addObserver:self forKeyPath:@"selectionIndexes"
-					 options:NSKeyValueObservingOptionNew context:nil];
+	// add an observer to the array controller that manages the statuses
+	[arrayController addObserver:self 
+					  forKeyPath:@"selectionIndexes"
+						 options:NSKeyValueObservingOptionNew 
+						 context:nil];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath
-							   ofObject:(id)object
-							   change:(NSDictionary *)change
-							   context:(void *)context
+					  ofObject:(id)object
+						change:(NSDictionary *)change
+					   context:(void *)context
 {
 	NSArrayController *arrController = object;
+	// get the status entry that is currently selected
 	PTStatusBox *selectedBox = [[arrController selectedObjects] lastObject];
+	// inform the main program about the new selection
 	[mainProgram selectStatusBox:selectedBox];
 }
 

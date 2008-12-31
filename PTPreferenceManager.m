@@ -9,6 +9,7 @@
 #import "PTPreferenceManager.h"
 #import "EMKeychainProxy.h"
 
+
 @implementation PTPreferenceManager
 
 + (PTPreferenceManager *)getInstance
@@ -33,10 +34,6 @@
 		[prefData setInteger:2 forKey:@"time_interval"];;
 }
 
-- (NSString *)userName {
-	return [prefData stringForKey:@"user_name"];
-}
-
 - (void)setUserName:(NSString *)aUserName password:(NSString *)aPassword {
 	[prefData setObject:aUserName forKey:@"user_name"];
 	EMGenericKeychainItem *tempItem = 
@@ -51,10 +48,14 @@
 	}
 }
 
+- (NSString *)userName {
+	return [prefData stringForKey:@"user_name"];
+}
+
 - (NSString *)password {
 	EMGenericKeychainItem *lTempItem = 
-		[[EMKeychainProxy sharedProxy] genericKeychainItemForService:@"Pwitter" 
-														withUsername:[prefData stringForKey:@"user_name"]];
+	[[EMKeychainProxy sharedProxy] genericKeychainItemForService:@"Pwitter" 
+													withUsername:[prefData stringForKey:@"user_name"]];
 	if (!lTempItem) {
 		return nil;
 	} else {
