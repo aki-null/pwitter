@@ -18,6 +18,7 @@
 		6190A0CB0F0AE55000E4F12E /* BGHUDAppKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6190A0990F0AE46100E4F12E /* BGHUDAppKit.framework */; };
 		61A50F520F063ADB009050CC /* console.png in Resources */ = {isa = PBXBuildFile; fileRef = 61A50F510F063ADB009050CC /* console.png */; };
 		61BD916F0F0B7C7E00F1CA33 /* default.png in Resources */ = {isa = PBXBuildFile; fileRef = 61BD916E0F0B7C7E00F1CA33 /* default.png */; };
+		61C3FB600F0CF84B00630209 /* PTSelectedUserNameTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C3FB5F0F0CF84B00630209 /* PTSelectedUserNameTextField.m */; };
 		61C773BD0F0509F100258650 /* PTStatusEntityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C773BC0F0509F100258650 /* PTStatusEntityView.m */; };
 		61C773F80F050BBB00258650 /* PTStatusCollectionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C773F70F050BBB00258650 /* PTStatusCollectionItem.m */; };
 		61C786F40F046622007CBC1A /* PTPreferenceWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C786F30F046622007CBC1A /* PTPreferenceWindow.m */; };
@@ -85,6 +86,8 @@
 		6190A0990F0AE46100E4F12E /* BGHUDAppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BGHUDAppKit.framework; sourceTree = "<group>"; };
 		61A50F510F063ADB009050CC /* console.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = console.png; sourceTree = "<group>"; };
 		61BD916E0F0B7C7E00F1CA33 /* default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default.png; sourceTree = "<group>"; };
+		61C3FB5E0F0CF84B00630209 /* PTSelectedUserNameTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTSelectedUserNameTextField.h; sourceTree = "<group>"; };
+		61C3FB5F0F0CF84B00630209 /* PTSelectedUserNameTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTSelectedUserNameTextField.m; sourceTree = "<group>"; };
 		61C773BB0F0509F100258650 /* PTStatusEntityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTStatusEntityView.h; sourceTree = "<group>"; };
 		61C773BC0F0509F100258650 /* PTStatusEntityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTStatusEntityView.m; sourceTree = "<group>"; };
 		61C773F60F050BBB00258650 /* PTStatusCollectionItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTStatusCollectionItem.h; sourceTree = "<group>"; };
@@ -287,6 +290,8 @@
 		61EE70620F02107B005C42F5 /* Pwitter */ = {
 			isa = PBXGroup;
 			children = (
+				61C3FB5E0F0CF84B00630209 /* PTSelectedUserNameTextField.h */,
+				61C3FB5F0F0CF84B00630209 /* PTSelectedUserNameTextField.m */,
 				61EE713E0F021802005C42F5 /* PTMain.h */,
 				61EE713F0F021802005C42F5 /* PTMain.m */,
 				610BF8A90F030DFA008D9A3B /* PTStatusBox.h */,
@@ -417,6 +422,7 @@
 				613B64F70F0A45B500B67438 /* PTStatusImageView.m in Sources */,
 				611937630F0A47270065B9ED /* PTStatusTextField.m in Sources */,
 				615D39770F0B016F0086E57F /* PTCharacterCounter.m in Sources */,
+				61C3FB600F0CF84B00630209 /* PTSelectedUserNameTextField.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

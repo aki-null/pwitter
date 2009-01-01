@@ -42,20 +42,29 @@
 	PTStatusBox *currentSelection;
 	NSTimer *updateTimer;
 }
-
-- (IBAction)updateTimeline:(id)sender;
-- (IBAction)postStatus:(id)sender;
-- (IBAction)quitApp:(id)sender;
-- (IBAction)closeAuthSheet:(id)sender;
-- (IBAction)messageToSelected:(id)sender;
-- (IBAction)openHome:(id)sender;
-- (IBAction)openWebSelected:(id)sender;
-- (IBAction)replyToSelected:(id)sender;
-- (IBAction)openPref:(id)sender;
+- (IBAction)updateTimeline:(id)aSender;
+- (IBAction)postStatus:(id)aSender;
+- (IBAction)quitApp:(id)aSender;
+- (IBAction)closeAuthSheet:(id)aSender;
+- (IBAction)messageToSelected:(id)aSender;
+- (IBAction)openHome:(id)aSender;
+- (IBAction)openWebSelected:(id)aSender;
+- (IBAction)replyToSelected:(id)aSender;
+- (IBAction)openPref:(id)aSender;
+- (IBAction)updateTimeline:(id)aSender;
+- (IBAction)postStatus:(id)aSender;
+- (IBAction)quitApp:(id)aSender;
+- (IBAction)closeAuthSheet:(id)aSender;
+- (IBAction)messageToSelected:(id)aSender;
+- (IBAction)openHome:(id)aSender;
+- (IBAction)openWebSelected:(id)aSender;
+- (IBAction)replyToSelected:(id)aSender;
+- (IBAction)openPref:(id)aSender;
 - (PTStatusBox *)constructErrorBox:(NSError *)aError;
 - (NSImage *)requestUserImage:(NSString *)aImageLocation forBox:(PTStatusBox *)aNewBox;
 - (void)selectStatusBox:(PTStatusBox *)aSelection;
 - (void)changeAccount;
 - (void)setupUpdateTimer;
+- (void)openTwitterWeb;
 
 @end

@@ -14,9 +14,9 @@
 @implementation PTPreferenceWindow
 
 - (void)loadPreferences {
-	NSString *tempUserName = [[PTPreferenceManager getInstance] userName];
-	if (tempUserName == nil) tempUserName = @"";
-	[userName setStringValue:tempUserName];
+	NSString *lTempUserName = [[PTPreferenceManager getInstance] userName];
+	if (lTempUserName == nil) lTempUserName = @"";
+	[userName setStringValue:lTempUserName];
 	if ([[PTPreferenceManager getInstance] alwaysOnTop]) {
 		[alwaysOnTop setState:NSOnState];
 	} else {
@@ -32,7 +32,7 @@
 	}
 }
 
-- (IBAction)pressOK:(id)sender {
+- (IBAction)pressOK:(id)aSender {
 	[[PTPreferenceManager getInstance] setAlwaysOnTop:[alwaysOnTop state] == NSOnState];
 	[[PTPreferenceManager getInstance] setAutoLogin:[autoLogin state] == NSOnState];
 	if ([[PTPreferenceManager getInstance] timeInterval] != [timeInterval indexOfSelectedItem] + 1) {
@@ -48,7 +48,7 @@
 	[NSApp endSheet:self];
 }
 
-- (IBAction)pressCancel:(id)sender {
+- (IBAction)pressCancel:(id)aSender {
     [self loadPreferences];
 	[NSApp endSheet:self];
 }

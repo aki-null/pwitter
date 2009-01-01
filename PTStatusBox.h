@@ -10,7 +10,7 @@
 
 
 @interface PTStatusBox : NSObject {
-	NSString *userName;
+	NSAttributedString *userName;
 	NSAttributedString *statusMessage;
 	NSImage *userImage;
 	NSURL *userHome;
@@ -21,7 +21,7 @@
 	NSString *strTime;
 }
 
-@property(copy, readwrite) NSString *userName;
+@property(copy, readwrite) NSAttributedString *userName;
 @property(copy, readwrite) NSAttributedString *statusMessage;
 @property(copy, readwrite) NSImage *userImage;
 @property(copy, readwrite) NSURL *userHome;
