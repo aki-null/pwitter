@@ -15,7 +15,7 @@
 
 - (void)loadPreferences {
 	NSString *tempUserName = [[PTPreferenceManager getInstance] userName];
-	if (tempUserName == nil) tempUserName = [[NSString alloc] init];
+	if (tempUserName == nil) tempUserName = @"";
 	[userName setStringValue:tempUserName];
 	if ([[PTPreferenceManager getInstance] alwaysOnTop]) {
 		[alwaysOnTop setState:NSOnState];
@@ -23,7 +23,7 @@
 		[alwaysOnTop setState:NSOffState];
 	}
 	[timeInterval selectItemAtIndex:[[PTPreferenceManager getInstance] timeInterval] - 1];
-	[password setStringValue:[[NSString alloc] init]];
+	[password setStringValue:@""];
 	[mainWindow setFloatingPanel:[[PTPreferenceManager getInstance] alwaysOnTop]];
 	if ([[PTPreferenceManager getInstance] autoLogin]) {
 		[autoLogin setState:NSOnState];
