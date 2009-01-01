@@ -44,7 +44,7 @@
 
 - (void)setUpTwitterEngine {
 	twitterEngine = [[MGTwitterEngine alloc] initWithDelegate:self];
-	[twitterEngine setClientName:@"Pwitter" version:@"0.2" URL:@"" token:@"pwitter"];
+	[twitterEngine setClientName:@"Pwitter" version:@"0.2" URL:@"http://github.com/koroshiya1/pwitter/wikis/home" token:@"pwitter"];
 	[twitterEngine setUsername:[[PTPreferenceManager getInstance] userName] 
 					  password:[[PTPreferenceManager getInstance] password]];
 	[progressBar startAnimation:self];
