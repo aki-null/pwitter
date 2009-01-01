@@ -444,11 +444,10 @@
 			[messageButton setState:NSOffState];
 		}
 		NSString *replyTarget = 
-		[NSString stringWithFormat:@"@%@ %@", 
-		 currentSelection.userID, 
-		 [statusUpdateField stringValue]];
+		[NSString stringWithFormat:@"@%@ %@", currentSelection.userID, [statusUpdateField stringValue]];
 		[statusUpdateField setStringValue:replyTarget];
-		[statusUpdateField selectText:sender];
+		[mainWindow makeFirstResponder:statusUpdateField];
+		[(NSText *)[mainWindow firstResponder] setSelectedRange:NSMakeRange([[statusUpdateField stringValue] length], 0)];
 	}
 }
 
