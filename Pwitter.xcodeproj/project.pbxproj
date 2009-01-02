@@ -10,6 +10,9 @@
 		610BF8AB0F030DFA008D9A3B /* PTStatusBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 610BF8AA0F030DFA008D9A3B /* PTStatusBox.m */; };
 		611937630F0A47270065B9ED /* PTStatusTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 611937620F0A47270065B9ED /* PTStatusTextField.m */; };
 		612BD6900F076F8500EF064D /* Pwitter.icns in Resources */ = {isa = PBXBuildFile; fileRef = 612BD68F0F076F8500EF064D /* Pwitter.icns */; };
+		6131FD4A0F0E28C7004CA960 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6131FD490F0E28C7004CA960 /* Sparkle.framework */; };
+		6131FD5B0F0E297D004CA960 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6131FD490F0E28C7004CA960 /* Sparkle.framework */; };
+		6131FD600F0E2B5A004CA960 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 6131FD5F0F0E2B5A004CA960 /* dsa_pub.pem */; };
 		6134601A0F0602AB00B422A6 /* PTArrayObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 613460190F0602AB00B422A6 /* PTArrayObserver.m */; };
 		613B64F70F0A45B500B67438 /* PTStatusImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 613B64F60F0A45B500B67438 /* PTStatusImageView.m */; };
 		614393A90F09D23400971122 /* PTEntityBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 614393A80F09D23400971122 /* PTEntityBackground.m */; };
@@ -56,6 +59,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				6131FD5B0F0E297D004CA960 /* Sparkle.framework in CopyFiles */,
 				6190A0CB0F0AE55000E4F12E /* BGHUDAppKit.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -76,6 +80,8 @@
 		611937610F0A47270065B9ED /* PTStatusTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTStatusTextField.h; sourceTree = "<group>"; };
 		611937620F0A47270065B9ED /* PTStatusTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTStatusTextField.m; sourceTree = "<group>"; };
 		612BD68F0F076F8500EF064D /* Pwitter.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Pwitter.icns; sourceTree = "<group>"; };
+		6131FD490F0E28C7004CA960 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
+		6131FD5F0F0E2B5A004CA960 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 		613460180F0602AB00B422A6 /* PTArrayObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTArrayObserver.h; sourceTree = "<group>"; };
 		613460190F0602AB00B422A6 /* PTArrayObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTArrayObserver.m; sourceTree = "<group>"; };
 		613B64F50F0A45B500B67438 /* PTStatusImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTStatusImageView.h; sourceTree = "<group>"; };
@@ -152,6 +158,7 @@
 				61EE70640F0210C0005C42F5 /* libxml2.2.dylib in Frameworks */,
 				61D9FDFD0F04B41C003CC890 /* Security.framework in Frameworks */,
 				6190A09A0F0AE46100E4F12E /* BGHUDAppKit.framework in Frameworks */,
+				6131FD4A0F0E28C7004CA960 /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -171,6 +178,7 @@
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6131FD490F0E28C7004CA960 /* Sparkle.framework */,
 				61D9FDFC0F04B41C003CC890 /* Security.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
 			);
@@ -221,6 +229,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				6131FD5F0F0E2B5A004CA960 /* dsa_pub.pem */,
 				61BD916E0F0B7C7E00F1CA33 /* default.png */,
 				612BD68F0F076F8500EF064D /* Pwitter.icns */,
 				61A50F510F063ADB009050CC /* console.png */,
@@ -373,6 +382,7 @@
 				61A50F520F063ADB009050CC /* console.png in Resources */,
 				612BD6900F076F8500EF064D /* Pwitter.icns in Resources */,
 				61BD916F0F0B7C7E00F1CA33 /* default.png in Resources */,
+				6131FD600F0E2B5A004CA960 /* dsa_pub.pem in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
