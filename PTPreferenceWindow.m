@@ -16,35 +16,35 @@
 - (void)loadPreferences {
 	NSString *lTempUserName = [[PTPreferenceManager getInstance] userName];
 	if (lTempUserName == nil) lTempUserName = @"";
-	[userName setStringValue:lTempUserName];
+	[fUserName setStringValue:lTempUserName];
 	if ([[PTPreferenceManager getInstance] alwaysOnTop]) {
-		[alwaysOnTop setState:NSOnState];
+		[fAlwaysOnTop setState:NSOnState];
 	} else {
-		[alwaysOnTop setState:NSOffState];
+		[fAlwaysOnTop setState:NSOffState];
 	}
-	[timeInterval selectItemAtIndex:[[PTPreferenceManager getInstance] timeInterval] - 1];
-	[password setStringValue:@""];
-	[mainWindow setFloatingPanel:[[PTPreferenceManager getInstance] alwaysOnTop]];
+	[fTimeInterval selectItemAtIndex:[[PTPreferenceManager getInstance] timeInterval] - 1];
+	[fPassword setStringValue:@""];
+	[fMainWindow setFloatingPanel:[[PTPreferenceManager getInstance] alwaysOnTop]];
 	if ([[PTPreferenceManager getInstance] autoLogin]) {
-		[autoLogin setState:NSOnState];
+		[fAutoLogin setState:NSOnState];
 	} else {
-		[autoLogin setState:NSOffState];
+		[fAutoLogin setState:NSOffState];
 	}
 }
 
 - (IBAction)pressOK:(id)aSender {
-	[[PTPreferenceManager getInstance] setAlwaysOnTop:[alwaysOnTop state] == NSOnState];
-	[[PTPreferenceManager getInstance] setAutoLogin:[autoLogin state] == NSOnState];
-	if ([[PTPreferenceManager getInstance] timeInterval] != [timeInterval indexOfSelectedItem] + 1) {
-		[[PTPreferenceManager getInstance] setTimeInterval:[timeInterval indexOfSelectedItem] + 1];
-		[mainController setupUpdateTimer];
+	[[PTPreferenceManager getInstance] setAlwaysOnTop:[fAlwaysOnTop state] == NSOnState];
+	[[PTPreferenceManager getInstance] setAutoLogin:[fAutoLogin state] == NSOnState];
+	if ([[PTPreferenceManager getInstance] timeInterval] != [fTimeInterval indexOfSelectedItem] + 1) {
+		[[PTPreferenceManager getInstance] setTimeInterval:[fTimeInterval indexOfSelectedItem] + 1];
+		[fMainController setupUpdateTimer];
 	}
-	if ([[password stringValue] length] != 0) {
-		[[PTPreferenceManager getInstance] setUserName:[userName stringValue] 
-											  password:[password stringValue]];
-		[mainController changeAccount];
+	if ([[fPassword stringValue] length] != 0) {
+		[[PTPreferenceManager getInstance] setUserName:[fUserName stringValue] 
+											  password:[fPassword stringValue]];
+		[fMainController changeAccount];
 	}
-	[mainWindow setFloatingPanel:[[PTPreferenceManager getInstance] alwaysOnTop]];
+	[fMainWindow setFloatingPanel:[[PTPreferenceManager getInstance] alwaysOnTop]];
 	[NSApp endSheet:self];
 }
 

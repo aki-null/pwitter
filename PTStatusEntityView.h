@@ -11,12 +11,12 @@
 
 
 @interface PTStatusEntityView : NSBox {
-	BOOL _isSelected;
-	PTStatusCollectionItem *colItem;
+	BOOL fIsSelected;
+	PTStatusCollectionItem *fColItem;
 }
-- (void)setSelected:(BOOL)flag;
+- (void)setSelected:(BOOL)aFlag;
 - (BOOL)selected;
-- (void)forceSelect:(BOOL)flag;
-- (void)setColItem:(PTStatusCollectionItem *)parentCol;
+- (void)forceSelect:(BOOL)aFlag;
+- (void)setColItem:(PTStatusCollectionItem *)aParentCol;
 
 @end

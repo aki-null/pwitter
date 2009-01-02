@@ -13,23 +13,18 @@
 
 @implementation PTStatusCollectionItem
 
-- (void)setSelected:(BOOL)flag {
-	[super setSelected:flag];
+- (void)setSelected:(BOOL)aFlag {
+	[super setSelected:aFlag];
 	PTStatusEntityView* theView = (PTStatusEntityView* )[self view];
 	if([theView isKindOfClass:[PTStatusEntityView class]]) {
-		[theView setSelected:flag];
+		[theView setSelected:aFlag];
 		[theView setNeedsDisplay:YES];
 	}
 }
 
-- (void)setView:(NSView *)view {
-	[(PTStatusEntityView *)view setColItem:self];
-	[super setView:view];
-}
-
-- (id)initWithCoder:(NSCoder *)decoder {
-	
-	return [super initWithCoder:decoder];
+- (void)setView:(NSView *)aView {
+	[(PTStatusEntityView *)aView setColItem:self];
+	[super setView:aView];
 }
 
 @end

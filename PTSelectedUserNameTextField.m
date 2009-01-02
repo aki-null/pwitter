@@ -12,10 +12,10 @@
 
 @implementation PTSelectedUserNameTextField
 
-- (void)mouseDown:(NSEvent *)theEvent {
+- (void)mouseDown:(NSEvent *)aEvent {
 	// pass the event to the super class as usual
-	[super mouseDown:theEvent];
-	[mainController openTwitterWeb];
+	[super mouseDown:aEvent];
+	[fMainController openTwitterWeb];
 }
 
 @end

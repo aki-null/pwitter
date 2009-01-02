@@ -10,20 +10,20 @@
 
 @implementation PTStatusEntityView
 
-- (void)setSelected:(BOOL)flag {
-	_isSelected = flag;
+- (void)setSelected:(BOOL)aFlag {
+	fIsSelected = aFlag;
 }
 
 - (BOOL)selected {
-	return _isSelected;
+	return fIsSelected;
 }
 
-- (void)forceSelect:(BOOL)flag {
-	[colItem setSelected:flag];
+- (void)forceSelect:(BOOL)aFlag {
+	[fColItem setSelected:aFlag];
 }
 
-- (void)setColItem:(PTStatusCollectionItem *)parentCol {
-	colItem = parentCol;
+- (void)setColItem:(PTStatusCollectionItem *)aParentCol {
+	fColItem = aParentCol;
 }
 
 @end

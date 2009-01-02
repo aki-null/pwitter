@@ -10,13 +10,13 @@
 
 
 @interface PTPreferenceWindow : NSPanel {
-    IBOutlet id password;
-    IBOutlet id userName;
-    IBOutlet id alwaysOnTop;
-    IBOutlet id timeInterval;
-    IBOutlet id mainController;
-    IBOutlet id mainWindow;
-    IBOutlet id autoLogin;
+    IBOutlet id fPassword;
+    IBOutlet id fUserName;
+    IBOutlet id fAlwaysOnTop;
+    IBOutlet id fTimeInterval;
+    IBOutlet id fMainController;
+    IBOutlet id fMainWindow;
+    IBOutlet id fAutoLogin;
 }
 - (void)loadPreferences;
 - (IBAction)pressOK:(id)aSender;

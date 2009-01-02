@@ -13,9 +13,9 @@
 
 - (void)setupUpdateTimer {
 	// stop the old timer
-	if (updateTimer) {
-		[updateTimer invalidate];
-		[updateTimer release];
+	if (fUpdateTimer) {
+		[fUpdateTimer invalidate];
+		[fUpdateTimer release];
 	}
 	// determine the timer delay
 	int lIntervalTime;
@@ -31,7 +31,7 @@
 			break;
 	}
 	// create new timer
-	updateTimer = [[NSTimer scheduledTimerWithTimeInterval:lIntervalTime 
+	fUpdateTimer = [[NSTimer scheduledTimerWithTimeInterval:lIntervalTime 
 													target:self 
 												  selector:@selector(runUpdateFromTimer:) 
 												  userInfo:nil 
@@ -43,134 +43,134 @@
 }
 
 - (void)setUpTwitterEngine {
-	twitterEngine = [[MGTwitterEngine alloc] initWithDelegate:self];
-	[twitterEngine setClientName:@"Pwitter" version:@"0.2" URL:@"http://github.com/koroshiya1/pwitter/wikis/home" token:@"pwitter"];
-	[twitterEngine setUsername:[[PTPreferenceManager getInstance] userName] 
+	fTwitterEngine = [[MGTwitterEngine alloc] initWithDelegate:self];
+	[fTwitterEngine setClientName:@"Pwitter" version:@"0.2" URL:@"http://github.com/koroshiya1/pwitter/wikis/home" token:@"pwitter"];
+	[fTwitterEngine setUsername:[[PTPreferenceManager getInstance] userName] 
 					  password:[[PTPreferenceManager getInstance] password]];
-	[progressBar startAnimation:self];
-	[requestDetails setObject:@"MESSAGE_UPDATE" 
-					   forKey: [twitterEngine getDirectMessagesSince:nil
+	[fProgressBar startAnimation:self];
+	[fRequestDetails setObject:@"MESSAGE_UPDATE" 
+					   forKey: [fTwitterEngine getDirectMessagesSince:nil
 													  startingAtPage:0]];
-	[requestDetails setObject:@"INIT_UPDATE" 
-					   forKey:[twitterEngine getFollowedTimelineFor:[[PTPreferenceManager getInstance] userName] 
+	[fRequestDetails setObject:@"INIT_UPDATE" 
+					   forKey:[fTwitterEngine getFollowedTimelineFor:[[PTPreferenceManager getInstance] userName] 
 															  since:nil startingAtPage:0 count:50]];
 	[self setupUpdateTimer];
 }
 
 - (void)changeAccount {
-	[progressBar startAnimation:self];
-	[[statusController content] removeAllObjects];
-	[twitterEngine setUsername:[[PTPreferenceManager getInstance] userName] 
+	[fProgressBar startAnimation:self];
+	[[fStatusController content] removeAllObjects];
+	[fTwitterEngine setUsername:[[PTPreferenceManager getInstance] userName] 
 					  password:[[PTPreferenceManager getInstance] password]];
-	[requestDetails setObject:@"MESSAGE_UPDATE" 
-					   forKey:[twitterEngine getDirectMessagesSince:nil
+	[fRequestDetails setObject:@"MESSAGE_UPDATE" 
+					   forKey:[fTwitterEngine getDirectMessagesSince:nil
 													 startingAtPage:0]];
-	[requestDetails setObject:@"INIT_UPDATE" 
-					   forKey:[twitterEngine getFollowedTimelineFor:[[PTPreferenceManager getInstance] userName] 
+	[fRequestDetails setObject:@"INIT_UPDATE" 
+					   forKey:[fTwitterEngine getFollowedTimelineFor:[[PTPreferenceManager getInstance] userName] 
 															  since:nil startingAtPage:0 count:50]];
 	[self setupUpdateTimer];
 }
 
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
+- (void)startAuthentication {
 	if ([[PTPreferenceManager getInstance] autoLogin]) {
 		[self setUpTwitterEngine];
 		return;
 	}
-	[NSApp beginSheet:authPanel
-	   modalForWindow:mainWindow
+	[NSApp beginSheet:fAuthPanel
+	   modalForWindow:fMainWindow
 		modalDelegate:self
 	   didEndSelector:@selector(didEndSheet:returnCode:contextInfo:)
 		  contextInfo:nil];
 	NSString *lTempName = [[PTPreferenceManager getInstance] userName];
 	NSString *lTempPass = [[PTPreferenceManager getInstance] password];
 	if (lTempName)
-		[authUserName setStringValue:lTempName];
+		[fAuthUserName setStringValue:lTempName];
 	if (lTempPass)
-		[authPassword setStringValue:lTempPass];
+		[fAuthPassword setStringValue:lTempPass];
 }
 
 - (void)awakeFromNib
 {
-	updateTimer = nil;
-	shouldExit = NO;
-	requestDetails = [[NSMutableDictionary alloc] init];
-	imageLocationForReq = [[NSMutableDictionary alloc] init];
-	imageReqForLocation = [[NSMutableDictionary alloc] init];
-	statusBoxesForReq = [[NSMutableDictionary alloc] init];
-	userImageCache = [[NSMutableDictionary alloc] init];
-	defaultImage = [NSImage imageNamed:@"default.png"];
-	warningImage = [NSImage imageNamed:@"console.png"];
+	fUpdateTimer = nil;
+	fShouldExit = NO;
+	fRequestDetails = [[NSMutableDictionary alloc] init];
+	fImageLocationForReq = [[NSMutableDictionary alloc] init];
+	fImageReqForLocation = [[NSMutableDictionary alloc] init];
+	fStatusBoxesForReq = [[NSMutableDictionary alloc] init];
+	fUserImageCache = [[NSMutableDictionary alloc] init];
+	fDefaultImage = [NSImage imageNamed:@"default.png"];
+	fWarningImage = [NSImage imageNamed:@"console.png"];
 	NSDictionary *lLinkFormat =
 	[NSDictionary dictionaryWithObjectsAndKeys:
 	 [NSColor cyanColor], @"NSColor",
 	 [NSCursor pointingHandCursor], @"NSCursor",
 	 [NSNumber numberWithInt:1], @"NSUnderline",
 	 nil];
-	[selectedTextView setLinkTextAttributes:lLinkFormat];
+	[fSelectedTextView setLinkTextAttributes:lLinkFormat];
 	NSSortDescriptor * sortDesc = [[NSSortDescriptor alloc] initWithKey:@"time" ascending:NO];
-	[statusArrayController setSortDescriptors:[NSArray arrayWithObject:sortDesc]];
+	[fStatusArrayController setSortDescriptors:[NSArray arrayWithObject:sortDesc]];
 	[sortDesc release];
-	[preferenceWindow loadPreferences];
+	[fPreferenceWindow loadPreferences];
 }
 
 - (IBAction)closeAuthSheet:(id)aSender
 {
-	[[PTPreferenceManager getInstance] setUserName:[authUserName stringValue] 
-										  password:[authPassword stringValue]];
-    [NSApp endSheet:authPanel];
+	[[PTPreferenceManager getInstance] setUserName:[fAuthUserName stringValue] 
+										  password:[fAuthPassword stringValue]];
+    [NSApp endSheet:fAuthPanel];
 }
 
 - (void)didEndSheet:(NSWindow *)aSheet returnCode:(int)aReturnCode contextInfo:(void *)aContextInfo
 {
 	[aSheet orderOut:self];
-	if (shouldExit) [NSApp terminate:self];
-	if (aSheet == authPanel) [self setUpTwitterEngine];
+	if (fShouldExit) [NSApp terminate:self];
+	if (aSheet == fAuthPanel) [self setUpTwitterEngine];
 }
 
 - (void)dealloc
 {
-	if (requestDetails) [requestDetails release];
-	if (imageLocationForReq) [imageLocationForReq release];
-	if (imageReqForLocation) [imageReqForLocation release];
-	if (statusBoxesForReq) [statusBoxesForReq release];
-	if (userImageCache) [userImageCache release];
-	if (twitterEngine) [twitterEngine release];
-	if (lastUpdateID) [lastUpdateID release];
-	if (lastMessageID) [lastMessageID release];
-	if (updateTimer) {
-		[updateTimer invalidate];
-		[updateTimer release];
+	if (fRequestDetails) [fRequestDetails release];
+	if (fImageLocationForReq) [fImageLocationForReq release];
+	if (fImageReqForLocation) [fImageReqForLocation release];
+	if (fStatusBoxesForReq) [fStatusBoxesForReq release];
+	if (fUserImageCache) [fUserImageCache release];
+	if (fTwitterEngine) [fTwitterEngine release];
+	if (fLastUpdateID) [fLastUpdateID release];
+	if (fLastMessageID) [fLastMessageID release];
+	if (fUpdateTimer) {
+		[fUpdateTimer invalidate];
+		[fUpdateTimer release];
 	}
 	[super dealloc];
 }
 
 - (void)requestSucceeded:(NSString *)requestIdentifier
 {
-	if ([requestDetails objectForKey:requestIdentifier] == @"MESSAGE") {
-		[statusUpdateField setEnabled:YES];
-		[statusUpdateField setStringValue:@""];
-		[messageButton setState:NSOffState];
-		[textLevelIndicator setIntValue:140];
+	if ([fRequestDetails objectForKey:requestIdentifier] == @"MESSAGE") {
+		[fStatusUpdateField setEnabled:YES];
+		[fStatusUpdateField setStringValue:@""];
+		[fMessageButton setState:NSOffState];
+		[fTextLevelIndicator setIntValue:140];
 	}
 }
 
 - (void)requestFailed:(NSString *)aRequestIdentifier withError:(NSError *)aError
 {
 	BOOL lIgnoreError = NO;
-	NSString *lRequestType = [requestDetails objectForKey:aRequestIdentifier];
+	NSString *lRequestType = [fRequestDetails objectForKey:aRequestIdentifier];
 	if (lRequestType == @"POST" || lRequestType == @"MESSAGE") {
-		[statusUpdateField setEnabled:YES];
+		[fStatusUpdateField setEnabled:YES];
 	} else if (lRequestType == @"IMAGE") {
-		[statusBoxesForReq removeObjectForKey:aRequestIdentifier];
-		[imageReqForLocation removeObjectForKey:[imageLocationForReq objectForKey:aRequestIdentifier]];
-		[imageLocationForReq removeObjectForKey:aRequestIdentifier];
+		[fStatusBoxesForReq removeObjectForKey:aRequestIdentifier];
+		[fImageReqForLocation removeObjectForKey:[fImageLocationForReq objectForKey:aRequestIdentifier]];
+		[fImageLocationForReq removeObjectForKey:aRequestIdentifier];
 		lIgnoreError = YES;
 	}
-	[requestDetails removeObjectForKey:aRequestIdentifier];
-	if ([requestDetails count] == 0) [progressBar stopAnimation:self];
+	[fRequestDetails removeObjectForKey:aRequestIdentifier];
+	if ([fRequestDetails count] == 0) [fProgressBar stopAnimation:self];
 	if (!lIgnoreError) {
 		PTStatusBox *lErrorBox = [self constructErrorBox:aError];
-		[statusController addObject:lErrorBox];
+		[fStatusController addObject:lErrorBox];
 		[lErrorBox release];
 	}
 }
@@ -216,7 +216,7 @@
 						 range:NSMakeRange(0, [lFinalString length])];
 	lNewBox.statusMessage = lFinalString;
 	[lFinalString release];
-	lNewBox.userImage = warningImage;
+	lNewBox.userImage = fWarningImage;
 	lNewBox.entityColor = [NSColor colorWithCalibratedRed:0.4 green:0.4 blue:0.4 alpha:0.7];
 	lNewBox.time = [NSDate date];
 	lNewBox.strTime = [lNewBox.time descriptionWithCalendarFormat:@"%H:%M:%S" 
@@ -226,19 +226,19 @@
 }
 
 - (NSImage *)requestUserImage:(NSString *)aImageLocation forBox:(PTStatusBox *)aNewBox {
-	NSImage *lImageData = [userImageCache objectForKey:aImageLocation];
+	NSImage *lImageData = [fUserImageCache objectForKey:aImageLocation];
 	if (!lImageData) {
-		if (![imageReqForLocation objectForKey:aImageLocation]) {
-			[progressBar startAnimation:self];
-			NSString *lImageReq = [twitterEngine getImageAtURL:aImageLocation];
-			[requestDetails setObject:@"IMAGE" forKey:lImageReq];
-			[imageReqForLocation setObject:lImageReq forKey:aImageLocation];
-			[imageLocationForReq setObject:aImageLocation forKey:lImageReq];
-			[statusBoxesForReq setObject:[[[NSMutableArray alloc] init] autorelease] forKey:lImageReq];
+		if (![fImageReqForLocation objectForKey:aImageLocation]) {
+			[fProgressBar startAnimation:self];
+			NSString *lImageReq = [fTwitterEngine getImageAtURL:aImageLocation];
+			[fRequestDetails setObject:@"IMAGE" forKey:lImageReq];
+			[fImageReqForLocation setObject:lImageReq forKey:aImageLocation];
+			[fImageLocationForReq setObject:aImageLocation forKey:lImageReq];
+			[fStatusBoxesForReq setObject:[[[NSMutableArray alloc] init] autorelease] forKey:lImageReq];
 		}
-		NSMutableArray *lRequestedBoxes = [statusBoxesForReq objectForKey:[imageReqForLocation objectForKey:aImageLocation]];
+		NSMutableArray *lRequestedBoxes = [fStatusBoxesForReq objectForKey:[fImageReqForLocation objectForKey:aImageLocation]];
 		[lRequestedBoxes addObject:aNewBox];
-		return defaultImage;
+		return fDefaultImage;
 	} else {
 		return lImageData;
 	}
@@ -281,7 +281,7 @@
 	} else {
 		lNewBox.userHome = nil;
 	}
-	if ([[aStatusInfo objectForKey:@"in_reply_to_screen_name"] isEqualToString:[twitterEngine username]]) {
+	if ([[aStatusInfo objectForKey:@"in_reply_to_screen_name"] isEqualToString:[fTwitterEngine username]]) {
 		lNewBox.entityColor = [NSColor colorWithCalibratedRed:1.0 green:0.3 blue:0.3 alpha:0.7];
 	} else {
 		lNewBox.entityColor = [NSColor colorWithCalibratedRed:0.4 green:0.4 blue:0.4 alpha:0.7];
@@ -292,8 +292,8 @@
 - (void)statusesReceived:(NSArray *)aStatuses forRequest:(NSString *)aIdentifier
 {
 	if ([aStatuses count] == 0) {
-		[requestDetails removeObjectForKey:aIdentifier];
-		if ([requestDetails count] == 0) [progressBar stopAnimation:self];
+		[fRequestDetails removeObjectForKey:aIdentifier];
+		if ([fRequestDetails count] == 0) [fProgressBar stopAnimation:self];
 		return;
 	}
 	NSDictionary *lCurrentStatus;
@@ -305,17 +305,17 @@
 		[lBoxToAdd release];
 		if (!lLastStatus) lLastStatus = lCurrentStatus;
 	}
-	[statusController addObjects:lTempBoxes];
+	[fStatusController addObjects:lTempBoxes];
 	[lTempBoxes release];
-	if (lastUpdateID) [lastUpdateID release];
-	lastUpdateID = [[NSString alloc] initWithString:[lLastStatus objectForKey:@"id"]];
-	if ([requestDetails objectForKey:aIdentifier] == @"POST") {
-		[statusUpdateField setEnabled:YES];
-		[statusUpdateField setStringValue:@""];
-		[textLevelIndicator setIntValue:140];
+	if (fLastUpdateID) [fLastUpdateID release];
+	fLastUpdateID = [[NSString alloc] initWithString:[lLastStatus objectForKey:@"id"]];
+	if ([fRequestDetails objectForKey:aIdentifier] == @"POST") {
+		[fStatusUpdateField setEnabled:YES];
+		[fStatusUpdateField setStringValue:@""];
+		[fTextLevelIndicator setIntValue:140];
 	}
-	[requestDetails removeObjectForKey:aIdentifier];
-	if ([requestDetails count] == 0) [progressBar stopAnimation:self];
+	[fRequestDetails removeObjectForKey:aIdentifier];
+	if ([fRequestDetails count] == 0) [fProgressBar stopAnimation:self];
 }
 
 - (PTStatusBox *)constructMessageBox:(NSDictionary *)aStatusInfo {
@@ -361,8 +361,8 @@
 
 - (void)directMessagesReceived:(NSArray *)aMessages forRequest:(NSString *)aIdentifier
 {
-	[requestDetails removeObjectForKey:aIdentifier];
-	if ([requestDetails count] == 0) [progressBar stopAnimation:self];
+	[fRequestDetails removeObjectForKey:aIdentifier];
+	if ([fRequestDetails count] == 0) [fProgressBar stopAnimation:self];
 	if ([aMessages count] == 0) return;
 	NSDictionary *lCurrentDic;
 	NSDictionary *lLastDic = nil;
@@ -373,10 +373,10 @@
 		[lBoxToAdd release];
 		if (!lLastDic) lLastDic = lCurrentDic;
 	}
-	[statusController addObjects:lTempArray];
+	[fStatusController addObjects:lTempArray];
 	[lTempArray release];
-	if (lastUpdateID) [lastUpdateID release];
-	lastMessageID = [[NSString alloc] initWithString:[lLastDic objectForKey:@"id"]];
+	if (fLastUpdateID) [fLastUpdateID release];
+	fLastMessageID = [[NSString alloc] initWithString:[lLastDic objectForKey:@"id"]];
 }
 
 - (void)userInfoReceived:(NSArray *)aUserInfo forRequest:(NSString *)aIdentifier
@@ -392,56 +392,56 @@
 - (void)imageReceived:(NSImage *)aImage forRequest:(NSString *)aIdentifier
 {
 	PTStatusBox *lCurrentBox;
-	for (lCurrentBox in [statusBoxesForReq objectForKey:aIdentifier]) {
+	for (lCurrentBox in [fStatusBoxesForReq objectForKey:aIdentifier]) {
 		lCurrentBox.userImage = aImage;
 	}
-	NSString *lImageLocation = [imageLocationForReq objectForKey:aIdentifier];
-	[userImageCache setObject:aImage forKey:lImageLocation];
-	[statusBoxesForReq removeObjectForKey:aIdentifier];
-	[imageReqForLocation removeObjectForKey:lImageLocation];
-	[imageLocationForReq removeObjectForKey:aIdentifier];
-	[requestDetails removeObjectForKey:aIdentifier];
-	if ([requestDetails count] == 0) [progressBar stopAnimation:self];
+	NSString *lImageLocation = [fImageLocationForReq objectForKey:aIdentifier];
+	[fUserImageCache setObject:aImage forKey:lImageLocation];
+	[fStatusBoxesForReq removeObjectForKey:aIdentifier];
+	[fImageReqForLocation removeObjectForKey:lImageLocation];
+	[fImageLocationForReq removeObjectForKey:aIdentifier];
+	[fRequestDetails removeObjectForKey:aIdentifier];
+	if ([fRequestDetails count] == 0) [fProgressBar stopAnimation:self];
 }
 
 - (IBAction)updateTimeline:(id)aSender {
-	[progressBar startAnimation:aSender];
-	[requestDetails setObject:@"UPDATE" 
-					   forKey: [twitterEngine getFollowedTimelineFor:[[PTPreferenceManager getInstance] userName] 
-															 sinceID:lastUpdateID startingAtPage:0 count:100]];
-	[requestDetails setObject:@"MESSAGE_UPDATE" 
-					   forKey: [twitterEngine getDirectMessagesSinceID:lastMessageID
+	[fProgressBar startAnimation:aSender];
+	[fRequestDetails setObject:@"UPDATE" 
+					   forKey: [fTwitterEngine getFollowedTimelineFor:[[PTPreferenceManager getInstance] userName] 
+															 sinceID:fLastUpdateID startingAtPage:0 count:100]];
+	[fRequestDetails setObject:@"MESSAGE_UPDATE" 
+					   forKey: [fTwitterEngine getDirectMessagesSinceID:fLastMessageID
 														startingAtPage:0]];
 }
 
 - (IBAction)postStatus:(id)aSender {
-	[progressBar startAnimation:aSender];
-	if ([messageButton state] == NSOnState) {
-		[requestDetails setObject:@"MESSAGE" 
-						   forKey:[twitterEngine sendDirectMessage:[statusUpdateField stringValue]
-																to:currentSelection.userID]];
-	} else if ([replyButton state] == NSOnState) {
-		[requestDetails setObject:@"POST" 
-						   forKey:[twitterEngine sendUpdate:[statusUpdateField stringValue] 
-												  inReplyTo:currentSelection.updateID]];
+	[fProgressBar startAnimation:aSender];
+	if ([fMessageButton state] == NSOnState) {
+		[fRequestDetails setObject:@"MESSAGE" 
+						   forKey:[fTwitterEngine sendDirectMessage:[fStatusUpdateField stringValue]
+																to:fCurrentSelection.userID]];
+	} else if ([fReplyButton state] == NSOnState) {
+		[fRequestDetails setObject:@"POST" 
+						   forKey:[fTwitterEngine sendUpdate:[fStatusUpdateField stringValue] 
+												  inReplyTo:fCurrentSelection.updateID]];
 	} else {
-		[requestDetails setObject:@"POST" 
-						   forKey:[twitterEngine sendUpdate:[statusUpdateField stringValue]]];
+		[fRequestDetails setObject:@"POST" 
+						   forKey:[fTwitterEngine sendUpdate:[fStatusUpdateField stringValue]]];
 	}
-	[statusUpdateField setEnabled:NO];
+	[fStatusUpdateField setEnabled:NO];
 }
 
 - (IBAction)quitApp:(id)aSender {
-	shouldExit = YES;
-	[NSApp endSheet:authPanel];
+	fShouldExit = YES;
+	[NSApp endSheet:fAuthPanel];
 }
 
 - (IBAction)messageToSelected:(id)aSender {
 	if ([aSender state] == NSOnState) {
-		if ([replyButton state] == NSOnState) {
-			[replyButton setState:NSOffState];
+		if ([fReplyButton state] == NSOnState) {
+			[fReplyButton setState:NSOffState];
 		}
-		[statusUpdateField selectText:aSender];
+		[fStatusUpdateField selectText:aSender];
 	}
 }
 
@@ -450,48 +450,48 @@
 }
 
 - (void)openTwitterWeb {
-	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://twitter.com/%@", currentSelection.userID]]];
+	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://twitter.com/%@", fCurrentSelection.userID]]];
 }
 
 - (IBAction)openWebSelected:(id)aSender {
-	[[NSWorkspace sharedWorkspace] openURL:currentSelection.userHome];
+	[[NSWorkspace sharedWorkspace] openURL:fCurrentSelection.userHome];
 }
 
 - (IBAction)replyToSelected:(id)aSender {
 	if ([aSender state] == NSOnState) {
-		if ([messageButton state] == NSOnState) {
-			[messageButton setState:NSOffState];
+		if ([fMessageButton state] == NSOnState) {
+			[fMessageButton setState:NSOffState];
 		}
-		NSString *replyTarget = [NSString stringWithFormat:@"@%@ %@", currentSelection.userID, [statusUpdateField stringValue]];
-		[statusUpdateField setStringValue:replyTarget];
-		[mainWindow makeFirstResponder:statusUpdateField];
-		[(NSText *)[mainWindow firstResponder] setSelectedRange:NSMakeRange([[statusUpdateField stringValue] length], 0)];
+		NSString *replyTarget = [NSString stringWithFormat:@"@%@ %@", fCurrentSelection.userID, [fStatusUpdateField stringValue]];
+		[fStatusUpdateField setStringValue:replyTarget];
+		[fMainWindow makeFirstResponder:fStatusUpdateField];
+		[(NSText *)[fMainWindow firstResponder] setSelectedRange:NSMakeRange([[fStatusUpdateField stringValue] length], 0)];
 	}
 }
 
 - (void)selectStatusBox:(PTStatusBox *)aSelection {
 	if (!aSelection) return;
-	[replyButton setState:NSOffState];
-	[messageButton setState:NSOffState];
+	[fReplyButton setState:NSOffState];
+	[fMessageButton setState:NSOffState];
 	if (!aSelection.userHome) {
-		[webButton setEnabled:NO];
+		[fWebButton setEnabled:NO];
 	} else {
-		[webButton setEnabled:YES];
+		[fWebButton setEnabled:YES];
 	}
 	if (aSelection.userName == @"Twitter Error:") {
-		[replyButton setEnabled:NO];
-		[messageButton setEnabled:NO];
+		[fReplyButton setEnabled:NO];
+		[fMessageButton setEnabled:NO];
 	} else {
-		[replyButton setEnabled:YES];
-		[messageButton setEnabled:YES];
+		[fReplyButton setEnabled:YES];
+		[fMessageButton setEnabled:YES];
 	}
-	currentSelection = aSelection;
+	fCurrentSelection = aSelection;
 }
 
 - (IBAction)openPref:(id)aSender {
-	[preferenceWindow loadPreferences];
-	[NSApp beginSheet:preferenceWindow
-	   modalForWindow:mainWindow
+	[fPreferenceWindow loadPreferences];
+	[NSApp beginSheet:fPreferenceWindow
+	   modalForWindow:fMainWindow
 		modalDelegate:self
 	   didEndSelector:@selector(didEndSheet:returnCode:contextInfo:)
 		  contextInfo:nil];

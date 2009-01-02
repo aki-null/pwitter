@@ -29,13 +29,13 @@
 }
 
 - (void)setupPreferences {
-	prefData = [NSUserDefaults standardUserDefaults];
-	if ([prefData integerForKey:@"time_interval"] == 0)
-		[prefData setInteger:2 forKey:@"time_interval"];;
+	fPrefData = [NSUserDefaults standardUserDefaults];
+	if ([fPrefData integerForKey:@"time_interval"] == 0)
+		[fPrefData setInteger:2 forKey:@"time_interval"];;
 }
 
 - (void)setUserName:(NSString *)aUserName password:(NSString *)aPassword {
-	[prefData setObject:aUserName forKey:@"user_name"];
+	[fPrefData setObject:aUserName forKey:@"user_name"];
 	EMGenericKeychainItem *tempItem = 
 	[[EMKeychainProxy sharedProxy] genericKeychainItemForService:@"Pwitter" 
 													withUsername:aUserName];
@@ -49,13 +49,13 @@
 }
 
 - (NSString *)userName {
-	return [prefData stringForKey:@"user_name"];
+	return [fPrefData stringForKey:@"user_name"];
 }
 
 - (NSString *)password {
 	EMGenericKeychainItem *lTempItem = 
 	[[EMKeychainProxy sharedProxy] genericKeychainItemForService:@"Pwitter" 
-													withUsername:[prefData stringForKey:@"user_name"]];
+													withUsername:[fPrefData stringForKey:@"user_name"]];
 	if (!lTempItem) {
 		return nil;
 	} else {
@@ -64,27 +64,27 @@
 }
 
 - (void)setAlwaysOnTop:(BOOL)aFlag {
-	[prefData setBool:aFlag forKey:@"always_on_top"];
+	[fPrefData setBool:aFlag forKey:@"always_on_top"];
 }
 
 - (BOOL)alwaysOnTop {
-	return [prefData boolForKey:@"always_on_top"];
+	return [fPrefData boolForKey:@"always_on_top"];
 }
 
 - (void)setTimeInterval:(int)aInterval {
-	[prefData setInteger:aInterval forKey:@"time_interval"];
+	[fPrefData setInteger:aInterval forKey:@"time_interval"];
 }
 
 - (int)timeInterval {
-	return [prefData integerForKey:@"time_interval"];
+	return [fPrefData integerForKey:@"time_interval"];
 }
 
 - (void)setAutoLogin:(BOOL)aFlag {
-	[prefData setBool:aFlag forKey:@"auto_login"];
+	[fPrefData setBool:aFlag forKey:@"auto_login"];
 }
 
 - (BOOL)autoLogin {
-	return [prefData boolForKey:@"auto_login"];
+	return [fPrefData boolForKey:@"auto_login"];
 }
 
 @end

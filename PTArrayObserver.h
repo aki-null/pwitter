@@ -10,8 +10,8 @@
 
 
 @interface PTArrayObserver : NSObject {
-    IBOutlet id arrayController;
-	IBOutlet id mainProgram;
+    IBOutlet id fArrayController;
+	IBOutlet id fMainController;
 }
 
 @end

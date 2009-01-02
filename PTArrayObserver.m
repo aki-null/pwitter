@@ -16,29 +16,29 @@
 - (void)dealloc
 {
 	// remove the observer at deallocation
-	[arrayController removeObserver:self forKeyPath:@"selectionIndexes"];
+	[fArrayController removeObserver:self forKeyPath:@"selectionIndexes"];
 	[super dealloc];
 }
 
 -(void)awakeFromNib
 {
 	// add an observer to the array controller that manages the statuses
-	[arrayController addObserver:self 
+	[fArrayController addObserver:self 
 					  forKeyPath:@"selectionIndexes"
 						 options:NSKeyValueObservingOptionNew 
 						 context:nil];
 }
 
-- (void)observeValueForKeyPath:(NSString *)keyPath
-					  ofObject:(id)object
-						change:(NSDictionary *)change
-					   context:(void *)context
+- (void)observeValueForKeyPath:(NSString *)aKeyPath
+					  ofObject:(id)aObject
+						change:(NSDictionary *)aChange
+					   context:(void *)aContext
 {
-	NSArrayController *arrController = object;
+	NSArrayController *arrController = aObject;
 	// get the status entry that is currently selected
 	PTStatusBox *selectedBox = [[arrController selectedObjects] lastObject];
 	// inform the main program about the new selection
-	[mainProgram selectStatusBox:selectedBox];
+	[fMainController selectStatusBox:selectedBox];
 }
 
 @end

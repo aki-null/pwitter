@@ -11,9 +11,9 @@
 
 @implementation PTStatusImageView
 
-- (void)mouseDown:(NSEvent *)theEvent {
+- (void)mouseDown:(NSEvent *)aEvent {
 	// pass the event to the super class as usual
-	[super mouseDown:theEvent];
+	[super mouseDown:aEvent];
 	// send a message to the owner of the status view to select this entity
 	[(PTStatusEntityView *)[self superview] forceSelect:YES];
 }

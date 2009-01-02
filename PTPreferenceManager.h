@@ -10,7 +10,7 @@
 #import "PTStatusBox.h"
 
 @interface PTPreferenceManager : NSObject {
-	NSUserDefaults *prefData;
+	NSUserDefaults *fPrefData;
 }
 
 + (PTPreferenceManager *)getInstance;

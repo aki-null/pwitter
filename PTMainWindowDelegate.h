@@ -1,5 +1,5 @@
 //
-//  PTSelectedUserNameTextField.h
+//  PTMainWindowDelegate.h
 //  Pwitter
 //
 //  Created by Akihiro Noguchi on 2/01/09.
@@ -9,8 +9,9 @@
 #import <Cocoa/Cocoa.h>
 
 
-@interface PTSelectedUserNameTextField : NSTextField {
-    IBOutlet id fMainController;
+@interface PTMainWindowDelegate : NSObject {
+	IBOutlet id fMainWindow;
+	IBOutlet id fMainController;
 }
 
 @end
