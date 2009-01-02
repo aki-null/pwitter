@@ -276,8 +276,9 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>36</integer>
-									<integer>32</integer>
+									<integer>4</integer>
+									<integer>2</integer>
+									<integer>1</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -331,7 +332,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>618129E20F0D9DAB00BE1A88</string>
+										<string>614AF6460F0DA09E00026A8F</string>
 										<key>history</key>
 										<array>
 											<string>615C70A60F023EDF00017E65</string>
@@ -378,7 +379,7 @@
 											<string>618129B50F0D9D5400BE1A88</string>
 											<string>618129B70F0D9D5400BE1A88</string>
 											<string>618129DF0F0D9DAB00BE1A88</string>
-											<string>618129E00F0D9DAB00BE1A88</string>
+											<string>614AF6340F0DA04300026A8F</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -427,41 +428,6 @@
 											<string>61C3FB6C0F0CF8C200630209</string>
 											<string>61E999910F0D89E800509EE8</string>
 											<string>61E999930F0D89E800509EE8</string>
-											<string>618129B90F0D9D5400BE1A88</string>
-											<string>618129BA0F0D9D5400BE1A88</string>
-											<string>618129BB0F0D9D5400BE1A88</string>
-											<string>618129BC0F0D9D5400BE1A88</string>
-											<string>618129BD0F0D9D5400BE1A88</string>
-											<string>618129BE0F0D9D5400BE1A88</string>
-											<string>618129BF0F0D9D5400BE1A88</string>
-											<string>618129C00F0D9D5400BE1A88</string>
-											<string>618129C10F0D9D5400BE1A88</string>
-											<string>618129C20F0D9D5400BE1A88</string>
-											<string>618129C30F0D9D5400BE1A88</string>
-											<string>618129C40F0D9D5400BE1A88</string>
-											<string>618129C50F0D9D5400BE1A88</string>
-											<string>618129C60F0D9D5400BE1A88</string>
-											<string>618129C70F0D9D5400BE1A88</string>
-											<string>618129C80F0D9D5400BE1A88</string>
-											<string>618129C90F0D9D5400BE1A88</string>
-											<string>618129CA0F0D9D5400BE1A88</string>
-											<string>618129CB0F0D9D5400BE1A88</string>
-											<string>618129CC0F0D9D5400BE1A88</string>
-											<string>618129CD0F0D9D5400BE1A88</string>
-											<string>618129CE0F0D9D5400BE1A88</string>
-											<string>618129CF0F0D9D5400BE1A88</string>
-											<string>618129D00F0D9D5400BE1A88</string>
-											<string>618129D10F0D9D5400BE1A88</string>
-											<string>618129D20F0D9D5400BE1A88</string>
-											<string>618129D30F0D9D5400BE1A88</string>
-											<string>618129D40F0D9D5400BE1A88</string>
-											<string>618129D50F0D9D5400BE1A88</string>
-											<string>618129D60F0D9D5400BE1A88</string>
-											<string>618129D70F0D9D5400BE1A88</string>
-											<string>618129D80F0D9D5400BE1A88</string>
-											<string>618129D90F0D9D5400BE1A88</string>
-											<string>618129DA0F0D9D5400BE1A88</string>
-											<string>618129E10F0D9DAB00BE1A88</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -519,9 +485,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>6181296F0F0D91DD00BE1A88</string>
+				<string>614AF6360F0DA04300026A8F</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>618129700F0D91DD00BE1A88</string>
+				<string>614AF6370F0DA04300026A8F</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -655,9 +621,11 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>61EE71270F02179E005C42F5</string>
+		<string>614AF6400F0DA04300026A8F</string>
+		<string>614AF6410F0DA04300026A8F</string>
 		<string>1C78EAAD065D492600B07095</string>
 		<string>1CD10A99069EF8BA00B06720</string>
-		<string>61EE71270F02179E005C42F5</string>
 		<string>/Users/Aki/Documents/GitRepos/Pwitter/Pwitter.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
@@ -677,14 +645,12 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>PTPreferenceWindow.m</string>
+								<string></string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -740,7 +706,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>61EE71270F02179E005C42F5</string>
-				<string>618129730F0D921100BE1A88</string>
+				<string>614AF6450F0DA09600026A8F</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -860,13 +826,13 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1CD10A99069EF8BA00B06720</string>
-				<string>6181299F0F0D9D5200BE1A88</string>
+				<string>614AF6380F0DA04300026A8F</string>
 				<string>1C162984064C10D400B95A72</string>
-				<string>618129A00F0D9D5200BE1A88</string>
-				<string>618129A10F0D9D5200BE1A88</string>
-				<string>618129A20F0D9D5200BE1A88</string>
-				<string>618129A30F0D9D5200BE1A88</string>
-				<string>618129A40F0D9D5200BE1A88</string>
+				<string>614AF6390F0DA04300026A8F</string>
+				<string>614AF63A0F0DA04300026A8F</string>
+				<string>614AF63B0F0DA04300026A8F</string>
+				<string>614AF63C0F0DA04300026A8F</string>
+				<string>614AF63D0F0DA04300026A8F</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debugV3</string>
@@ -985,6 +951,8 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -1020,7 +988,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C78EAAD065D492600B07095</string>
-				<string>618129A50F0D9D5200BE1A88</string>
+				<string>614AF63E0F0DA04300026A8F</string>
 				<string>1C78EAAC065D492600B07095</string>
 			</array>
 			<key>ToolbarConfiguration</key>

@@ -375,7 +375,7 @@
 	}
 	[fStatusController addObjects:lTempArray];
 	[lTempArray release];
-	if (fLastUpdateID) [fLastUpdateID release];
+	if (fLastMessageID) [fLastMessageID release];
 	fLastMessageID = [[NSString alloc] initWithString:[lLastDic objectForKey:@"id"]];
 }
 
