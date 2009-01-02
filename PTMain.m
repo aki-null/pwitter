@@ -32,10 +32,10 @@
 	}
 	// create new timer
 	fUpdateTimer = [[NSTimer scheduledTimerWithTimeInterval:lIntervalTime 
-													target:self 
-												  selector:@selector(runUpdateFromTimer:) 
-												  userInfo:nil 
-												   repeats:YES] retain];
+													 target:self 
+												   selector:@selector(runUpdateFromTimer:) 
+												   userInfo:nil 
+													repeats:YES] retain];
 }
 
 - (void)runUpdateFromTimer:(NSTimer *)aTimer {
@@ -46,14 +46,14 @@
 	fTwitterEngine = [[MGTwitterEngine alloc] initWithDelegate:self];
 	[fTwitterEngine setClientName:@"Pwitter" version:@"0.2" URL:@"http://github.com/koroshiya1/pwitter/wikis/home" token:@"pwitter"];
 	[fTwitterEngine setUsername:[[PTPreferenceManager getInstance] userName] 
-					  password:[[PTPreferenceManager getInstance] password]];
+					   password:[[PTPreferenceManager getInstance] password]];
 	[fProgressBar startAnimation:self];
 	[fRequestDetails setObject:@"MESSAGE_UPDATE" 
-					   forKey: [fTwitterEngine getDirectMessagesSince:nil
-													  startingAtPage:0]];
+						forKey: [fTwitterEngine getDirectMessagesSince:nil
+														startingAtPage:0]];
 	[fRequestDetails setObject:@"INIT_UPDATE" 
-					   forKey:[fTwitterEngine getFollowedTimelineFor:[[PTPreferenceManager getInstance] userName] 
-															  since:nil startingAtPage:0 count:50]];
+						forKey:[fTwitterEngine getFollowedTimelineFor:[[PTPreferenceManager getInstance] userName] 
+																since:nil startingAtPage:0 count:50]];
 	[self setupUpdateTimer];
 }
 
@@ -61,13 +61,13 @@
 	[fProgressBar startAnimation:self];
 	[[fStatusController content] removeAllObjects];
 	[fTwitterEngine setUsername:[[PTPreferenceManager getInstance] userName] 
-					  password:[[PTPreferenceManager getInstance] password]];
+					   password:[[PTPreferenceManager getInstance] password]];
 	[fRequestDetails setObject:@"MESSAGE_UPDATE" 
-					   forKey:[fTwitterEngine getDirectMessagesSince:nil
-													 startingAtPage:0]];
+						forKey:[fTwitterEngine getDirectMessagesSince:nil
+													   startingAtPage:0]];
 	[fRequestDetails setObject:@"INIT_UPDATE" 
-					   forKey:[fTwitterEngine getFollowedTimelineFor:[[PTPreferenceManager getInstance] userName] 
-															  since:nil startingAtPage:0 count:50]];
+						forKey:[fTwitterEngine getFollowedTimelineFor:[[PTPreferenceManager getInstance] userName] 
+																since:nil startingAtPage:0 count:50]];
 	[self setupUpdateTimer];
 }
 
@@ -407,26 +407,26 @@
 - (IBAction)updateTimeline:(id)aSender {
 	[fProgressBar startAnimation:aSender];
 	[fRequestDetails setObject:@"UPDATE" 
-					   forKey: [fTwitterEngine getFollowedTimelineFor:[[PTPreferenceManager getInstance] userName] 
-															 sinceID:fLastUpdateID startingAtPage:0 count:100]];
+						forKey: [fTwitterEngine getFollowedTimelineFor:[[PTPreferenceManager getInstance] userName] 
+															   sinceID:fLastUpdateID startingAtPage:0 count:100]];
 	[fRequestDetails setObject:@"MESSAGE_UPDATE" 
-					   forKey: [fTwitterEngine getDirectMessagesSinceID:fLastMessageID
-														startingAtPage:0]];
+						forKey: [fTwitterEngine getDirectMessagesSinceID:fLastMessageID
+														  startingAtPage:0]];
 }
 
 - (IBAction)postStatus:(id)aSender {
 	[fProgressBar startAnimation:aSender];
 	if ([fMessageButton state] == NSOnState) {
 		[fRequestDetails setObject:@"MESSAGE" 
-						   forKey:[fTwitterEngine sendDirectMessage:[fStatusUpdateField stringValue]
-																to:fCurrentSelection.userID]];
+							forKey:[fTwitterEngine sendDirectMessage:[fStatusUpdateField stringValue]
+																  to:fCurrentSelection.userID]];
 	} else if ([fReplyButton state] == NSOnState) {
 		[fRequestDetails setObject:@"POST" 
-						   forKey:[fTwitterEngine sendUpdate:[fStatusUpdateField stringValue] 
-												  inReplyTo:fCurrentSelection.updateID]];
+							forKey:[fTwitterEngine sendUpdate:[fStatusUpdateField stringValue] 
+													inReplyTo:fCurrentSelection.updateID]];
 	} else {
 		[fRequestDetails setObject:@"POST" 
-						   forKey:[fTwitterEngine sendUpdate:[fStatusUpdateField stringValue]]];
+							forKey:[fTwitterEngine sendUpdate:[fStatusUpdateField stringValue]]];
 	}
 	[fStatusUpdateField setEnabled:NO];
 }
@@ -450,7 +450,8 @@
 }
 
 - (void)openTwitterWeb {
-	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://twitter.com/%@", fCurrentSelection.userID]]];
+	if (fCurrentSelection && fCurrentSelection.userID != @"Twitter Error:")
+		[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://twitter.com/%@", fCurrentSelection.userID]]];
 }
 
 - (IBAction)openWebSelected:(id)aSender {

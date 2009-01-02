@@ -16,8 +16,8 @@
 	[[self textColor] set];
 	NSBezierPath *lPath = [NSBezierPath bezierPath];
 	[lPath appendBezierPathWithRoundedRect:NSInsetRect([self bounds], 10.0, 2.0) 
-									 xRadius:12.0 
-									 yRadius:12.0];
+								   xRadius:12.0 
+								   yRadius:12.0];
 	[lPath fill];
 	// render the selection border
 	if([(PTStatusEntityView *)[self superview] selected]) {

@@ -333,7 +333,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>6112BEF40F0D919E005442EC</string>
+										<string>618129720F0D921100BE1A88</string>
 										<key>history</key>
 										<array>
 											<string>615C70A60F023EDF00017E65</string>
@@ -380,7 +380,7 @@
 											<string>6112BECB0F0D919E005442EC</string>
 											<string>6112BECC0F0D919E005442EC</string>
 											<string>6112BECD0F0D919E005442EC</string>
-											<string>61E999AF0F0D8A9C00509EE8</string>
+											<string>6112BEF40F0D919E005442EC</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -429,51 +429,6 @@
 											<string>61C3FB6C0F0CF8C200630209</string>
 											<string>61E999910F0D89E800509EE8</string>
 											<string>61E999930F0D89E800509EE8</string>
-											<string>6112BE9B0F0D8B8E005442EC</string>
-											<string>6112BE9C0F0D8B8E005442EC</string>
-											<string>6112BE9D0F0D8B8E005442EC</string>
-											<string>6112BE9E0F0D8B8E005442EC</string>
-											<string>6112BE9F0F0D8B8E005442EC</string>
-											<string>6112BEA00F0D8B8E005442EC</string>
-											<string>6112BEA10F0D8B8E005442EC</string>
-											<string>6112BECE0F0D919E005442EC</string>
-											<string>6112BECF0F0D919E005442EC</string>
-											<string>6112BED00F0D919E005442EC</string>
-											<string>6112BED10F0D919E005442EC</string>
-											<string>6112BED20F0D919E005442EC</string>
-											<string>6112BED30F0D919E005442EC</string>
-											<string>6112BED40F0D919E005442EC</string>
-											<string>6112BED50F0D919E005442EC</string>
-											<string>6112BED60F0D919E005442EC</string>
-											<string>6112BED70F0D919E005442EC</string>
-											<string>6112BED80F0D919E005442EC</string>
-											<string>6112BED90F0D919E005442EC</string>
-											<string>6112BEDA0F0D919E005442EC</string>
-											<string>6112BEDB0F0D919E005442EC</string>
-											<string>6112BEDC0F0D919E005442EC</string>
-											<string>6112BEDD0F0D919E005442EC</string>
-											<string>6112BEDE0F0D919E005442EC</string>
-											<string>6112BEDF0F0D919E005442EC</string>
-											<string>6112BEE00F0D919E005442EC</string>
-											<string>6112BEE10F0D919E005442EC</string>
-											<string>6112BEE20F0D919E005442EC</string>
-											<string>6112BEE30F0D919E005442EC</string>
-											<string>6112BEE40F0D919E005442EC</string>
-											<string>6112BEE50F0D919E005442EC</string>
-											<string>6112BEE60F0D919E005442EC</string>
-											<string>6112BEE70F0D919E005442EC</string>
-											<string>6112BEE80F0D919E005442EC</string>
-											<string>6112BEE90F0D919E005442EC</string>
-											<string>6112BEEA0F0D919E005442EC</string>
-											<string>6112BEEB0F0D919E005442EC</string>
-											<string>6112BEEC0F0D919E005442EC</string>
-											<string>6112BEED0F0D919E005442EC</string>
-											<string>6112BEEE0F0D919E005442EC</string>
-											<string>6112BEEF0F0D919E005442EC</string>
-											<string>6112BEF00F0D919E005442EC</string>
-											<string>6112BEF10F0D919E005442EC</string>
-											<string>6112BEF20F0D919E005442EC</string>
-											<string>6112BEF30F0D919E005442EC</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -531,9 +486,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>6112BE950F0D8B2A005442EC</string>
+				<string>6181296F0F0D91DD00BE1A88</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>6112BE960F0D8B2A005442EC</string>
+				<string>618129700F0D91DD00BE1A88</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -667,10 +622,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>1C78EAAD065D492600B07095</string>
-		<string>1CD10A99069EF8BA00B06720</string>
 		<string>61EE71270F02179E005C42F5</string>
-		<string>6184523A0F0B52790002773F</string>
 		<string>/Users/Aki/Documents/GitRepos/Pwitter/Pwitter.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
@@ -751,7 +703,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>61EE71270F02179E005C42F5</string>
-				<string>6112BEA70F0D8B94005442EC</string>
+				<string>618129730F0D921100BE1A88</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>

@@ -24,9 +24,9 @@
 {
 	// add an observer to the array controller that manages the statuses
 	[fArrayController addObserver:self 
-					  forKeyPath:@"selectionIndexes"
-						 options:NSKeyValueObservingOptionNew 
-						 context:nil];
+					   forKeyPath:@"selectionIndexes"
+						  options:NSKeyValueObservingOptionNew 
+						  context:nil];
 }
 
 - (void)observeValueForKeyPath:(NSString *)aKeyPath
