@@ -44,7 +44,7 @@
 
 - (void)setUpTwitterEngine {
 	fTwitterEngine = [[MGTwitterEngine alloc] initWithDelegate:self];
-	[fTwitterEngine setClientName:@"Pwitter" version:@"0.2" URL:@"http://github.com/koroshiya1/pwitter/wikis/home" token:@"pwitter"];
+	[fTwitterEngine setClientName:@"Pwitter" version:@"0.2.1" URL:@"http://github.com/koroshiya1/pwitter/wikis/home" token:@"pwitter"];
 	[fTwitterEngine setUsername:[[PTPreferenceManager getInstance] userName] 
 					   password:[[PTPreferenceManager getInstance] password]];
 	[fProgressBar startAnimation:self];
@@ -57,7 +57,7 @@
 	[self setupUpdateTimer];
 }
 
-- (void)changeAccount {
+- (IBAction)changeAccount:(id)aSender {
 	[fProgressBar startAnimation:self];
 	[[fStatusController content] removeAllObjects];
 	[fTwitterEngine setUsername:[[PTPreferenceManager getInstance] userName] 

@@ -42,7 +42,7 @@
 	if ([[fPassword stringValue] length] != 0) {
 		[[PTPreferenceManager getInstance] setUserName:[fUserName stringValue] 
 											  password:[fPassword stringValue]];
-		[fMainController changeAccount];
+		[fMainController changeAccount:self];
 	}
 	[fMainWindow setFloatingPanel:[[PTPreferenceManager getInstance] alwaysOnTop]];
 	[NSApp endSheet:self];

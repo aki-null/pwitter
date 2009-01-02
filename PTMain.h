@@ -64,7 +64,7 @@
 - (PTStatusBox *)constructErrorBox:(NSError *)aError;
 - (NSImage *)requestUserImage:(NSString *)aImageLocation forBox:(PTStatusBox *)aNewBox;
 - (void)selectStatusBox:(PTStatusBox *)aSelection;
-- (void)changeAccount;
+- (IBAction)changeAccount:(id)aSender;
 - (void)setupUpdateTimer;
 - (void)openTwitterWeb;
 
