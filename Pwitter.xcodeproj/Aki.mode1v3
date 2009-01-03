@@ -231,8 +231,6 @@
 			<key>Layout</key>
 			<array>
 				<dict>
-					<key>BecomeActive</key>
-					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -286,7 +284,7 @@
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 0}, {283, 760}}</string>
+							<string>{{0, 36}, {283, 760}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -316,6 +314,8 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -333,13 +333,15 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>618527110F0F7EDA00674CEE</string>
+										<string>6185271B0F0F81A500674CEE</string>
 										<key>history</key>
 										<array>
 											<string>61DF482C0F0F7BED00B8BD2A</string>
 											<string>61DF48410F0F7ECA00B8BD2A</string>
 											<string>61DF48420F0F7ECA00B8BD2A</string>
-											<string>61DF48450F0F7ECA00B8BD2A</string>
+											<string>618527150F0F81A500674CEE</string>
+											<string>618527160F0F81A500674CEE</string>
+											<string>618527170F0F81A500674CEE</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -347,6 +349,9 @@
 											<string>61DF482F0F0F7BED00B8BD2A</string>
 											<string>61DF48430F0F7ECA00B8BD2A</string>
 											<string>61DF48440F0F7ECA00B8BD2A</string>
+											<string>618527180F0F81A500674CEE</string>
+											<string>618527190F0F81A500674CEE</string>
+											<string>6185271A0F0F81A500674CEE</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -540,6 +545,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>61EE71270F02179E005C42F5</string>
 		<string>/Users/Aki/Documents/GitRepos/Pwitter/Pwitter.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
@@ -559,14 +565,12 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>PTMain.m</string>
+								<string></string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -622,7 +626,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>61EE71270F02179E005C42F5</string>
-				<string>61DF44DE0F0F043C00B8BD2A</string>
+				<string>6185271C0F0F81A500674CEE</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
