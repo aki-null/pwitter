@@ -231,6 +231,8 @@
 			<key>Layout</key>
 			<array>
 				<dict>
+					<key>BecomeActive</key>
+					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -277,9 +279,8 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>4</integer>
-									<integer>2</integer>
-									<integer>1</integer>
+									<integer>41</integer>
+									<integer>34</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -314,8 +315,6 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -333,7 +332,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>6185271B0F0F81A500674CEE</string>
+										<string>610D7B8D0F0F837700ACE2A8</string>
 										<key>history</key>
 										<array>
 											<string>61DF482C0F0F7BED00B8BD2A</string>
@@ -341,7 +340,7 @@
 											<string>61DF48420F0F7ECA00B8BD2A</string>
 											<string>618527150F0F81A500674CEE</string>
 											<string>618527160F0F81A500674CEE</string>
-											<string>618527170F0F81A500674CEE</string>
+											<string>6185271B0F0F81A500674CEE</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -349,7 +348,6 @@
 											<string>61DF482F0F0F7BED00B8BD2A</string>
 											<string>61DF48430F0F7ECA00B8BD2A</string>
 											<string>61DF48440F0F7ECA00B8BD2A</string>
-											<string>618527180F0F81A500674CEE</string>
 											<string>618527190F0F81A500674CEE</string>
 											<string>6185271A0F0F81A500674CEE</string>
 										</array>
@@ -409,9 +407,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>618527120F0F7EDA00674CEE</string>
+				<string>610D7B8A0F0F836000ACE2A8</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>618527130F0F7EDA00674CEE</string>
+				<string>610D7B8B0F0F836000ACE2A8</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -626,7 +624,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>61EE71270F02179E005C42F5</string>
-				<string>6185271C0F0F81A500674CEE</string>
+				<string>610D7B8E0F0F837700ACE2A8</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
