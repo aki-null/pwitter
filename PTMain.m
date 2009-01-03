@@ -42,11 +42,7 @@
 	[self updateTimeline:aTimer];
 }
 
-- (void)setUpTwitterEngine {
-	fTwitterEngine = [[MGTwitterEngine alloc] initWithDelegate:self];
-	[fTwitterEngine setClientName:@"Pwitter" version:@"0.2.1" URL:@"http://github.com/koroshiya1/pwitter/wikis/home" token:@"pwitter"];
-	[fTwitterEngine setUsername:[[PTPreferenceManager getInstance] userName] 
-					   password:[[PTPreferenceManager getInstance] password]];
+- (void)runInitialUpdates {
 	[fProgressBar startAnimation:self];
 	[fRequestDetails setObject:@"MESSAGE_UPDATE" 
 						forKey: [fTwitterEngine getDirectMessagesSince:nil
@@ -54,20 +50,27 @@
 	[fRequestDetails setObject:@"INIT_UPDATE" 
 						forKey:[fTwitterEngine getFollowedTimelineFor:[[PTPreferenceManager getInstance] userName] 
 																since:nil startingAtPage:0 count:50]];
+	[fRequestDetails setObject:@"REPLY_UPDATE" 
+						forKey:[fTwitterEngine getRepliesStartingAtPage:0]];
+}
+
+- (void)setUpTwitterEngine {
+	fTwitterEngine = [[MGTwitterEngine alloc] initWithDelegate:self];
+	[fTwitterEngine setClientName:@"Pwitter" 
+						  version:[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"]
+							  URL:@"http://github.com/koroshiya1/pwitter/wikis/home" 
+							token:@"pwitter"];
+	[fTwitterEngine setUsername:[[PTPreferenceManager getInstance] userName] 
+					   password:[[PTPreferenceManager getInstance] password]];
+	[self runInitialUpdates];
 	[self setupUpdateTimer];
 }
 
 - (IBAction)changeAccount:(id)aSender {
-	[fProgressBar startAnimation:self];
 	[[fStatusController content] removeAllObjects];
 	[fTwitterEngine setUsername:[[PTPreferenceManager getInstance] userName] 
 					   password:[[PTPreferenceManager getInstance] password]];
-	[fRequestDetails setObject:@"MESSAGE_UPDATE" 
-						forKey:[fTwitterEngine getDirectMessagesSince:nil
-													   startingAtPage:0]];
-	[fRequestDetails setObject:@"INIT_UPDATE" 
-						forKey:[fTwitterEngine getFollowedTimelineFor:[[PTPreferenceManager getInstance] userName] 
-																since:nil startingAtPage:0 count:50]];
+	[self runInitialUpdates];
 	[self setupUpdateTimer];
 }
 
@@ -244,7 +247,7 @@
 	}
 }
 
-- (PTStatusBox *)constructStatusBox:(NSDictionary *)aStatusInfo {
+- (PTStatusBox *)constructStatusBox:(NSDictionary *)aStatusInfo isReply:(BOOL)aIsReply {
 	PTStatusBox *lNewBox = [[PTStatusBox alloc] init];
 	lNewBox.userID = [[aStatusInfo objectForKey:@"user"] objectForKey:@"screen_name"];
 	NSString *lTempUserLabel = [NSString stringWithFormat:@"%@ / %@", 
@@ -281,7 +284,7 @@
 	} else {
 		lNewBox.userHome = nil;
 	}
-	if ([[aStatusInfo objectForKey:@"in_reply_to_screen_name"] isEqualToString:[fTwitterEngine username]]) {
+	if (aIsReply) {
 		lNewBox.entityColor = [NSColor colorWithCalibratedRed:1.0 green:0.3 blue:0.3 alpha:0.7];
 	} else {
 		lNewBox.entityColor = [NSColor colorWithCalibratedRed:0.4 green:0.4 blue:0.4 alpha:0.7];
@@ -300,15 +303,25 @@
 	NSDictionary *lLastStatus = nil;
 	NSMutableArray *lTempBoxes = [[NSMutableArray alloc] init];
 	for (lCurrentStatus in aStatuses) {
-		PTStatusBox *lBoxToAdd = [self constructStatusBox:lCurrentStatus];
-		[lTempBoxes addObject:lBoxToAdd];
-		[lBoxToAdd release];
+		PTStatusBox *lBoxToAdd = nil;
+		if ([[lCurrentStatus objectForKey:@"in_reply_to_screen_name"] isEqualToString:[fTwitterEngine username]]) {
+			if ([fRequestDetails objectForKey:aIdentifier] != @"INIT_UPDATE")
+				lBoxToAdd = [self constructStatusBox:lCurrentStatus isReply:YES];
+		} else lBoxToAdd = [self constructStatusBox:lCurrentStatus isReply:NO];
+		if (lBoxToAdd) {
+			[lTempBoxes addObject:lBoxToAdd];
+			[lBoxToAdd release];
+		}
 		if (!lLastStatus) lLastStatus = lCurrentStatus;
 	}
 	[fStatusController addObjects:lTempBoxes];
 	[lTempBoxes release];
-	if (fLastUpdateID) [fLastUpdateID release];
-	fLastUpdateID = [[NSString alloc] initWithString:[lLastStatus objectForKey:@"id"]];
+	if (fLastUpdateID) {
+		if ([fLastUpdateID longLongValue] < [[lLastStatus objectForKey:@"id"] longLongValue]) {
+			[fLastUpdateID release];
+			fLastUpdateID = [[NSString alloc] initWithString:[lLastStatus objectForKey:@"id"]];
+		}
+	} else fLastUpdateID = [[NSString alloc] initWithString:[lLastStatus objectForKey:@"id"]];
 	if ([fRequestDetails objectForKey:aIdentifier] == @"POST") {
 		[fStatusUpdateField setEnabled:YES];
 		[fStatusUpdateField setStringValue:@""];
