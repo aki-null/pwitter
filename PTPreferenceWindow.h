@@ -19,7 +19,7 @@
     IBOutlet id fAutoLogin;
 }
 - (void)loadPreferences;
-- (IBAction)pressOK:(id)aSender;
-- (IBAction)pressCancel:(id)aSender;
+- (IBAction)pressOK:(id)sender;
+- (IBAction)pressCancel:(id)sender;
 
 @end

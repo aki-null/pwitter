@@ -10,7 +10,6 @@
 #import "PTStatusEntityView.h"
 
 @interface PTStatusImageView : NSImageView {
-
 }
 
 @end

@@ -23,10 +23,10 @@
 	return YES;
 }
 
-- (BOOL)windowShouldClose:(id)aSender
+- (BOOL)windowShouldClose:(id)sender
 {
 	BOOL lResult = YES;
-	if (aSender == fMainWindow) {
+	if (sender == fMainWindow) {
 		[fMainWindow orderOut:self];
 		lResult = NO;
 	}

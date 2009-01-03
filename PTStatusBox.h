@@ -11,7 +11,8 @@
 typedef enum statusType {
 	NormalMessage = 0,
 	ReplyMessage = 1,
-	DirectMessage = 2
+	DirectMessage = 2,
+	ErrorMessage = 3
 }StatusType;
 
 @interface PTStatusBox : NSObject {
@@ -24,6 +25,7 @@ typedef enum statusType {
 	NSColor *entityColor;
 	NSDate *time;
 	NSString *strTime;
+	NSString *searchString;
 	StatusType sType;
 }
 
@@ -36,6 +38,7 @@ typedef enum statusType {
 @property(copy, readwrite) NSColor *entityColor;
 @property(copy, readwrite) NSDate *time;
 @property(copy, readwrite) NSString *strTime;
+@property(copy, readwrite) NSString *searchString;
 @property(readwrite) StatusType sType;
 
 @end

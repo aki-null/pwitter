@@ -10,7 +10,6 @@
 #import "PTStatusEntityView.h"
 
 @interface PTStatusTextField : NSTextField {
-
 }
 
 @end

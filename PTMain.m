@@ -66,7 +66,7 @@
 	[self setupUpdateTimer];
 }
 
-- (IBAction)changeAccount:(id)aSender {
+- (IBAction)changeAccount:(id)sender {
 	[[fStatusController content] removeAllObjects];
 	[fTwitterEngine setUsername:[[PTPreferenceManager getInstance] userName] 
 					   password:[[PTPreferenceManager getInstance] password]];
@@ -116,7 +116,7 @@
 	[fPreferenceWindow loadPreferences];
 }
 
-- (IBAction)closeAuthSheet:(id)aSender
+- (IBAction)closeAuthSheet:(id)sender
 {
 	[[PTPreferenceManager getInstance] setUserName:[fAuthUserName stringValue] 
 										  password:[fAuthPassword stringValue]];
@@ -207,10 +207,7 @@
 	PTStatusBox *lNewBox = [[PTStatusBox alloc] init];
 	lNewBox.userName = @"Twitter Error:";
 	lNewBox.userID = @"Twitter Error:";
-	NSString *lErrorMessage = [NSString stringWithFormat:@"%@ (%@)", 
-							   [aError localizedDescription], 
-							   [[aError userInfo] objectForKey:NSErrorFailingURLStringKey]];
-	NSMutableAttributedString *lFinalString = [[NSMutableAttributedString alloc] initWithString:lErrorMessage];
+	NSMutableAttributedString *lFinalString = [[NSMutableAttributedString alloc] initWithString:[aError localizedDescription]];
 	[lFinalString addAttribute:NSForegroundColorAttributeName 
 						 value:[NSColor whiteColor] 
 						 range:NSMakeRange(0, [lFinalString length])];
@@ -225,6 +222,10 @@
 	lNewBox.strTime = [lNewBox.time descriptionWithCalendarFormat:@"%H:%M:%S" 
 					   timeZone:[NSTimeZone systemTimeZone] 
 					   locale:nil];
+	lNewBox.sType = ErrorMessage;
+	lNewBox.searchString = [NSString stringWithFormat:@"%@ %@", 
+							@"Twitter Error:", 
+							[aError localizedDescription]];
 	return lNewBox;
 }
 
@@ -291,6 +292,10 @@
 		lNewBox.entityColor = [NSColor colorWithCalibratedRed:0.4 green:0.4 blue:0.4 alpha:0.7];
 		lNewBox.sType = NormalMessage;
 	}
+	lNewBox.searchString = [NSString stringWithFormat:@"%@ %@ %@",
+							[[aStatusInfo objectForKey:@"user"] objectForKey:@"screen_name"], 
+							[[aStatusInfo objectForKey:@"user"] objectForKey:@"name"], 
+							[aStatusInfo objectForKey:@"text"]];
 	return lNewBox;
 }
 
@@ -372,6 +377,10 @@
 	}
 	lNewBox.entityColor = [NSColor colorWithCalibratedRed:0.4 green:0.5 blue:1.0 alpha:0.8];
 	lNewBox.sType = DirectMessage;
+	lNewBox.searchString = [NSString stringWithFormat:@"%@ %@ %@",
+							[[aStatusInfo objectForKey:@"sender"] objectForKey:@"screen_name"], 
+							[[aStatusInfo objectForKey:@"sender"] objectForKey:@"name"], 
+							[aStatusInfo objectForKey:@"text"]];
 	return lNewBox;
 }
 
@@ -420,8 +429,8 @@
 	if ([fRequestDetails count] == 0) [fProgressBar stopAnimation:self];
 }
 
-- (IBAction)updateTimeline:(id)aSender {
-	[fProgressBar startAnimation:aSender];
+- (IBAction)updateTimeline:(id)sender {
+	[fProgressBar startAnimation:sender];
 	[fRequestDetails setObject:@"UPDATE" 
 						forKey: [fTwitterEngine getFollowedTimelineFor:[[PTPreferenceManager getInstance] userName] 
 															   sinceID:fLastUpdateID startingAtPage:0 count:100]];
@@ -430,16 +439,17 @@
 														  startingAtPage:0]];
 }
 
-- (IBAction)postStatus:(id)aSender {
-	[fProgressBar startAnimation:aSender];
+- (IBAction)postStatus:(id)sender {
+	[fProgressBar startAnimation:sender];
+	PTStatusBox *lCurrentSelection = [[fStatusController selectedObjects] lastObject];
 	if ([fMessageButton state] == NSOnState) {
 		[fRequestDetails setObject:@"MESSAGE" 
 							forKey:[fTwitterEngine sendDirectMessage:[fStatusUpdateField stringValue]
-																  to:fCurrentSelection.userID]];
+																  to:lCurrentSelection.userID]];
 	} else if ([fReplyButton state] == NSOnState) {
 		[fRequestDetails setObject:@"POST" 
 							forKey:[fTwitterEngine sendUpdate:[fStatusUpdateField stringValue] 
-													inReplyTo:fCurrentSelection.updateID]];
+													inReplyTo:lCurrentSelection.updateID]];
 	} else {
 		[fRequestDetails setObject:@"POST" 
 							forKey:[fTwitterEngine sendUpdate:[fStatusUpdateField stringValue]]];
@@ -447,39 +457,42 @@
 	[fStatusUpdateField setEnabled:NO];
 }
 
-- (IBAction)quitApp:(id)aSender {
+- (IBAction)quitApp:(id)sender {
 	fShouldExit = YES;
 	[NSApp endSheet:fAuthPanel];
 }
 
-- (IBAction)messageToSelected:(id)aSender {
-	if ([aSender state] == NSOnState) {
+- (IBAction)messageToSelected:(id)sender {
+	if ([sender state] == NSOnState) {
 		if ([fReplyButton state] == NSOnState) {
 			[fReplyButton setState:NSOffState];
 		}
-		[fStatusUpdateField selectText:aSender];
+		[fStatusUpdateField selectText:sender];
 	}
 }
 
-- (IBAction)openHome:(id)aSender {
+- (IBAction)openHome:(id)sender {
 	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://twitter.com/home"]];
 }
 
 - (void)openTwitterWeb {
-	if (fCurrentSelection && fCurrentSelection.userID != @"Twitter Error:")
-		[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://twitter.com/%@", fCurrentSelection.userID]]];
+	PTStatusBox *lCurrentSelection = [[fStatusController selectedObjects] lastObject];
+	if (lCurrentSelection && lCurrentSelection.sType != ErrorMessage)
+		[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://twitter.com/%@", lCurrentSelection.userID]]];
 }
 
-- (IBAction)openWebSelected:(id)aSender {
-	[[NSWorkspace sharedWorkspace] openURL:fCurrentSelection.userHome];
+- (IBAction)openWebSelected:(id)sender {
+	PTStatusBox *lCurrentSelection = [[fStatusController selectedObjects] lastObject];
+	[[NSWorkspace sharedWorkspace] openURL:lCurrentSelection.userHome];
 }
 
-- (IBAction)replyToSelected:(id)aSender {
-	if ([aSender state] == NSOnState) {
+- (IBAction)replyToSelected:(id)sender {
+	if ([sender state] == NSOnState) {
+		PTStatusBox *lCurrentSelection = [[fStatusController selectedObjects] lastObject];
 		if ([fMessageButton state] == NSOnState) {
 			[fMessageButton setState:NSOffState];
 		}
-		NSString *replyTarget = [NSString stringWithFormat:@"@%@ %@", fCurrentSelection.userID, [fStatusUpdateField stringValue]];
+		NSString *replyTarget = [NSString stringWithFormat:@"@%@ %@", lCurrentSelection.userID, [fStatusUpdateField stringValue]];
 		[fStatusUpdateField setStringValue:replyTarget];
 		[fMainWindow makeFirstResponder:fStatusUpdateField];
 		[(NSText *)[fMainWindow firstResponder] setSelectedRange:NSMakeRange([[fStatusUpdateField stringValue] length], 0)];
@@ -487,31 +500,54 @@
 }
 
 - (void)selectStatusBox:(PTStatusBox *)aSelection {
-	if (!aSelection) return;
+	if (!aSelection) {
+		[fWebButton setEnabled:NO];
+		[fReplyButton setEnabled:NO];
+		[fMessageButton setEnabled:NO];
+		return;
+	}
 	[fReplyButton setState:NSOffState];
 	[fMessageButton setState:NSOffState];
-	if (!aSelection.userHome) {
-		[fWebButton setEnabled:NO];
-	} else {
-		[fWebButton setEnabled:YES];
-	}
-	if (aSelection.userName == @"Twitter Error:") {
+	!aSelection.userHome ? [fWebButton setEnabled:NO] : [fWebButton setEnabled:YES];
+	if (aSelection.sType == ErrorMessage) {
 		[fReplyButton setEnabled:NO];
 		[fMessageButton setEnabled:NO];
 	} else {
 		[fReplyButton setEnabled:YES];
 		[fMessageButton setEnabled:YES];
 	}
-	fCurrentSelection = aSelection;
 }
 
-- (IBAction)openPref:(id)aSender {
+- (IBAction)openPref:(id)sender {
 	[fPreferenceWindow loadPreferences];
 	[NSApp beginSheet:fPreferenceWindow
 	   modalForWindow:fMainWindow
 		modalDelegate:self
 	   didEndSelector:@selector(didEndSheet:returnCode:contextInfo:)
 		  contextInfo:nil];
+}
+
+- (IBAction)openSearchBox:(id)sender {
+	if (!fSearchBoxIsOpen) {
+		fSearchBoxIsOpen = YES;
+		NSRect lTempRect = [fSearchView frame];
+		[[fSearchView animator] setFrame:NSMakeRect(lTempRect.origin.x, lTempRect.origin.y - 21, lTempRect.size.width, 22)];
+		lTempRect = [fStatusScrollView frame];
+		[[fStatusScrollView animator] setFrame:NSMakeRect(lTempRect.origin.x, lTempRect.origin.y, lTempRect.size.width, lTempRect.size.height - 21)];
+		[fSearchBox selectText:sender];
+	}
+}
+
+- (IBAction)closeSearchBox:(id)sender {
+	if (fSearchBoxIsOpen) {
+		fSearchBoxIsOpen = NO;
+		NSRect lTempRect = [fSearchView frame];
+		[[fSearchView animator] setFrame:NSMakeRect(lTempRect.origin.x, lTempRect.origin.y + 21, lTempRect.size.width, 1)];
+		lTempRect = [fStatusScrollView frame];
+		[[fStatusScrollView animator] setFrame:NSMakeRect(lTempRect.origin.x, lTempRect.origin.y, lTempRect.size.width, lTempRect.size.height + 21)];
+		[fStatusController setFilterPredicate:nil];
+		[fMainWindow makeFirstResponder:fMainWindow];
+	}
 }
 
 @end

@@ -17,22 +17,14 @@
 	NSString *lTempUserName = [[PTPreferenceManager getInstance] userName];
 	if (lTempUserName == nil) lTempUserName = @"";
 	[fUserName setStringValue:lTempUserName];
-	if ([[PTPreferenceManager getInstance] alwaysOnTop]) {
-		[fAlwaysOnTop setState:NSOnState];
-	} else {
-		[fAlwaysOnTop setState:NSOffState];
-	}
+	[[PTPreferenceManager getInstance] alwaysOnTop] ? [fAlwaysOnTop setState:NSOnState] : [fAlwaysOnTop setState:NSOffState];
 	[fTimeInterval selectItemAtIndex:[[PTPreferenceManager getInstance] timeInterval] - 1];
 	[fPassword setStringValue:@""];
 	[fMainWindow setFloatingPanel:[[PTPreferenceManager getInstance] alwaysOnTop]];
-	if ([[PTPreferenceManager getInstance] autoLogin]) {
-		[fAutoLogin setState:NSOnState];
-	} else {
-		[fAutoLogin setState:NSOffState];
-	}
+	[[PTPreferenceManager getInstance] autoLogin] ? [fAutoLogin setState:NSOnState] : [fAutoLogin setState:NSOffState];
 }
 
-- (IBAction)pressOK:(id)aSender {
+- (IBAction)pressOK:(id)sender {
 	[[PTPreferenceManager getInstance] setAlwaysOnTop:[fAlwaysOnTop state] == NSOnState];
 	[[PTPreferenceManager getInstance] setAutoLogin:[fAutoLogin state] == NSOnState];
 	if ([[PTPreferenceManager getInstance] timeInterval] != [fTimeInterval indexOfSelectedItem] + 1) {
@@ -48,7 +40,7 @@
 	[NSApp endSheet:self];
 }
 
-- (IBAction)pressCancel:(id)aSender {
+- (IBAction)pressCancel:(id)sender {
     [self loadPreferences];
 	[NSApp endSheet:self];
 }
