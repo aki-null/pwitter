@@ -43,6 +43,7 @@
 		61D9FBC80F04B0D9003CC890 /* EMKeychainProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 61D9FBC60F04B0D9003CC890 /* EMKeychainProxy.m */; };
 		61D9FDFD0F04B41C003CC890 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61D9FDFC0F04B41C003CC890 /* Security.framework */; };
 		61D9FE1C0F04B6DA003CC890 /* PTPreferenceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 61D9FE1B0F04B6DA003CC890 /* PTPreferenceManager.m */; };
+		61DF44B30F0F027C00B8BD2A /* PTStatusFilterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61DF44B20F0F027C00B8BD2A /* PTStatusFilterController.m */; };
 		61E9997A0F0D88C800509EE8 /* PTMainWindowDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E999790F0D88C800509EE8 /* PTMainWindowDelegate.m */; };
 		61EE70640F0210C0005C42F5 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 61EE70630F0210C0005C42F5 /* libxml2.2.dylib */; };
 		61EE71400F021802005C42F5 /* PTMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 61EE713F0F021802005C42F5 /* PTMain.m */; };
@@ -140,6 +141,8 @@
 		61D9FDFC0F04B41C003CC890 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
 		61D9FE1A0F04B6DA003CC890 /* PTPreferenceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTPreferenceManager.h; sourceTree = "<group>"; };
 		61D9FE1B0F04B6DA003CC890 /* PTPreferenceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTPreferenceManager.m; sourceTree = "<group>"; };
+		61DF44B10F0F027C00B8BD2A /* PTStatusFilterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTStatusFilterController.h; sourceTree = "<group>"; };
+		61DF44B20F0F027C00B8BD2A /* PTStatusFilterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTStatusFilterController.m; sourceTree = "<group>"; };
 		61E999780F0D88C800509EE8 /* PTMainWindowDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTMainWindowDelegate.h; sourceTree = "<group>"; };
 		61E999790F0D88C800509EE8 /* PTMainWindowDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTMainWindowDelegate.m; sourceTree = "<group>"; };
 		61EE70630F0210C0005C42F5 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = /usr/lib/libxml2.2.dylib; sourceTree = "<absolute>"; };
@@ -328,6 +331,8 @@
 				61E999790F0D88C800509EE8 /* PTMainWindowDelegate.m */,
 				61C3FB5E0F0CF84B00630209 /* PTSelectedUserNameTextField.h */,
 				61C3FB5F0F0CF84B00630209 /* PTSelectedUserNameTextField.m */,
+				61DF44B10F0F027C00B8BD2A /* PTStatusFilterController.h */,
+				61DF44B20F0F027C00B8BD2A /* PTStatusFilterController.m */,
 			);
 			name = Pwitter;
 			sourceTree = "<group>";
@@ -439,6 +444,7 @@
 				615D39770F0B016F0086E57F /* PTCharacterCounter.m in Sources */,
 				61C3FB600F0CF84B00630209 /* PTSelectedUserNameTextField.m in Sources */,
 				61E9997A0F0D88C800509EE8 /* PTMainWindowDelegate.m in Sources */,
+				61DF44B30F0F027C00B8BD2A /* PTStatusFilterController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

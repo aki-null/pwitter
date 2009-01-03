@@ -20,5 +20,6 @@
 @synthesize entityColor;
 @synthesize time;
 @synthesize strTime;
+@synthesize sType;
 
 @end

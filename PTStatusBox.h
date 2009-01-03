@@ -8,6 +8,11 @@
 
 #import <Cocoa/Cocoa.h>
 
+typedef enum statusType {
+	NormalMessage = 0,
+	ReplyMessage = 1,
+	DirectMessage = 2
+}StatusType;
 
 @interface PTStatusBox : NSObject {
 	NSAttributedString *userName;
@@ -19,6 +24,7 @@
 	NSColor *entityColor;
 	NSDate *time;
 	NSString *strTime;
+	StatusType sType;
 }
 
 @property(copy, readwrite) NSAttributedString *userName;
@@ -30,5 +36,6 @@
 @property(copy, readwrite) NSColor *entityColor;
 @property(copy, readwrite) NSDate *time;
 @property(copy, readwrite) NSString *strTime;
+@property(readwrite) StatusType sType;
 
 @end
