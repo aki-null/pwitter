@@ -42,8 +42,22 @@
 	[self updateTimeline:aTimer];
 }
 
+- (void)startIndicatorAnimation {
+	if ([fRequestDetails count] == 0) {
+		[fProgressBar startAnimation:self];
+		[fProgressBar setHidden:NO];
+	}
+}
+
+- (void)stopIndicatorAnimation {
+	if ([fRequestDetails count] == 0) {
+		[fProgressBar stopAnimation:self];
+		[fProgressBar setHidden:YES];
+	}
+}
+
 - (void)runInitialUpdates {
-	[fProgressBar startAnimation:self];
+	[self startIndicatorAnimation];
 	[fRequestDetails setObject:@"MESSAGE_UPDATE" 
 						forKey: [fTwitterEngine getDirectMessagesSince:nil
 														startingAtPage:0]];
@@ -67,6 +81,14 @@
 }
 
 - (IBAction)changeAccount:(id)sender {
+	if (fLastUpdateID) {
+		[fLastUpdateID release];
+		fLastUpdateID = nil;
+	}
+	if (fLastMessageID) {
+		[fLastMessageID release];
+		fLastMessageID = nil;
+	}
 	[[fStatusController content] removeAllObjects];
 	[fTwitterEngine setUsername:[[PTPreferenceManager getInstance] userName] 
 					   password:[[PTPreferenceManager getInstance] password]];
@@ -170,7 +192,7 @@
 		lIgnoreError = YES;
 	}
 	[fRequestDetails removeObjectForKey:aRequestIdentifier];
-	if ([fRequestDetails count] == 0) [fProgressBar stopAnimation:self];
+	[self stopIndicatorAnimation];
 	if (!lIgnoreError) {
 		PTStatusBox *lErrorBox = [self constructErrorBox:aError];
 		[fStatusController addObject:lErrorBox];
@@ -233,7 +255,7 @@
 	NSImage *lImageData = [fUserImageCache objectForKey:aImageLocation];
 	if (!lImageData) {
 		if (![fImageReqForLocation objectForKey:aImageLocation]) {
-			[fProgressBar startAnimation:self];
+			[self startIndicatorAnimation];
 			NSString *lImageReq = [fTwitterEngine getImageAtURL:aImageLocation];
 			[fRequestDetails setObject:@"IMAGE" forKey:lImageReq];
 			[fImageReqForLocation setObject:lImageReq forKey:aImageLocation];
@@ -302,8 +324,9 @@
 - (void)statusesReceived:(NSArray *)aStatuses forRequest:(NSString *)aIdentifier
 {
 	if ([aStatuses count] == 0) {
+		if (!fLastUpdateID) fLastUpdateID = [[NSString alloc] initWithString:@"0"];
 		[fRequestDetails removeObjectForKey:aIdentifier];
-		if ([fRequestDetails count] == 0) [fProgressBar stopAnimation:self];
+		[self stopIndicatorAnimation];
 		return;
 	}
 	NSDictionary *lCurrentStatus;
@@ -335,7 +358,7 @@
 		[fTextLevelIndicator setIntValue:140];
 	}
 	[fRequestDetails removeObjectForKey:aIdentifier];
-	if ([fRequestDetails count] == 0) [fProgressBar stopAnimation:self];
+	[self stopIndicatorAnimation];
 }
 
 - (PTStatusBox *)constructMessageBox:(NSDictionary *)aStatusInfo {
@@ -387,7 +410,7 @@
 - (void)directMessagesReceived:(NSArray *)aMessages forRequest:(NSString *)aIdentifier
 {
 	[fRequestDetails removeObjectForKey:aIdentifier];
-	if ([fRequestDetails count] == 0) [fProgressBar stopAnimation:self];
+	[self stopIndicatorAnimation];
 	if ([aMessages count] == 0) return;
 	NSDictionary *lCurrentDic;
 	NSDictionary *lLastDic = nil;
@@ -426,21 +449,25 @@
 	[fImageReqForLocation removeObjectForKey:lImageLocation];
 	[fImageLocationForReq removeObjectForKey:aIdentifier];
 	[fRequestDetails removeObjectForKey:aIdentifier];
-	if ([fRequestDetails count] == 0) [fProgressBar stopAnimation:self];
+	[self stopIndicatorAnimation];
 }
 
 - (IBAction)updateTimeline:(id)sender {
-	[fProgressBar startAnimation:sender];
-	[fRequestDetails setObject:@"UPDATE" 
-						forKey: [fTwitterEngine getFollowedTimelineFor:[[PTPreferenceManager getInstance] userName] 
-															   sinceID:fLastUpdateID startingAtPage:0 count:100]];
-	[fRequestDetails setObject:@"MESSAGE_UPDATE" 
-						forKey: [fTwitterEngine getDirectMessagesSinceID:fLastMessageID
-														  startingAtPage:0]];
+	if (!fLastUpdateID) {
+		[self runInitialUpdates];
+	} else {
+		[self startIndicatorAnimation];
+		[fRequestDetails setObject:@"UPDATE" 
+							forKey: [fTwitterEngine getFollowedTimelineFor:[[PTPreferenceManager getInstance] userName] 
+																   sinceID:fLastUpdateID startingAtPage:0 count:100]];
+		[fRequestDetails setObject:@"MESSAGE_UPDATE" 
+							forKey: [fTwitterEngine getDirectMessagesSinceID:[fLastUpdateID intValue] == 0 ? nil : fLastMessageID
+															  startingAtPage:0]];
+	}
 }
 
 - (IBAction)postStatus:(id)sender {
-	[fProgressBar startAnimation:sender];
+	[self startIndicatorAnimation];
 	PTStatusBox *lCurrentSelection = [[fStatusController selectedObjects] lastObject];
 	if ([fMessageButton state] == NSOnState) {
 		[fRequestDetails setObject:@"MESSAGE" 
@@ -464,11 +491,12 @@
 
 - (IBAction)messageToSelected:(id)sender {
 	if ([sender state] == NSOnState) {
+		[fStatusController setSelectsInsertedObjects:NO];
 		if ([fReplyButton state] == NSOnState) {
 			[fReplyButton setState:NSOffState];
 		}
 		[fStatusUpdateField selectText:sender];
-	}
+	} else [fStatusController setSelectsInsertedObjects:YES];
 }
 
 - (IBAction)openHome:(id)sender {
@@ -488,6 +516,7 @@
 
 - (IBAction)replyToSelected:(id)sender {
 	if ([sender state] == NSOnState) {
+		[fStatusController setSelectsInsertedObjects:NO];
 		PTStatusBox *lCurrentSelection = [[fStatusController selectedObjects] lastObject];
 		if ([fMessageButton state] == NSOnState) {
 			[fMessageButton setState:NSOffState];
@@ -496,10 +525,11 @@
 		[fStatusUpdateField setStringValue:replyTarget];
 		[fMainWindow makeFirstResponder:fStatusUpdateField];
 		[(NSText *)[fMainWindow firstResponder] setSelectedRange:NSMakeRange([[fStatusUpdateField stringValue] length], 0)];
-	}
+	} else [fStatusController setSelectsInsertedObjects:YES];
 }
 
 - (void)selectStatusBox:(PTStatusBox *)aSelection {
+	[fStatusController setSelectsInsertedObjects:YES];
 	if (!aSelection) {
 		[fWebButton setEnabled:NO];
 		[fReplyButton setEnabled:NO];

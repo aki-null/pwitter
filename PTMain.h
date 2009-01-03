@@ -72,5 +72,6 @@
 - (IBAction)changeAccount:(id)sender;
 - (void)setupUpdateTimer;
 - (void)openTwitterWeb;
+- (void)runInitialUpdates;
 
 @end
