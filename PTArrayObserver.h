@@ -12,6 +12,7 @@
 @interface PTArrayObserver : NSObject {
     IBOutlet id fArrayController;
 	IBOutlet id fMainController;
+	IBOutlet id fMainWindow;
 }
 
 @end

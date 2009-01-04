@@ -31,12 +31,12 @@
 	IBOutlet id fSearchView;
 	IBOutlet id fStatusScrollView;
 	IBOutlet id fSearchBox;
+	IBOutlet id fStatusBoxGenerator;
 	MGTwitterEngine *fTwitterEngine;
 	BOOL fShouldExit;
 	NSString *fLastUpdateID;
 	NSString *fLastMessageID;
 	NSImage *fDefaultImage;
-	NSImage *fWarningImage;
 	NSMutableDictionary *fRequestDetails;
 	NSMutableDictionary *fImageLocationForReq;
 	NSMutableDictionary *fImageReqForLocation;
@@ -66,7 +66,6 @@
 - (IBAction)openSearchBox:(id)sender;
 - (IBAction)closeSearchBox:(id)sender;
 - (void)startAuthentication;
-- (PTStatusBox *)constructErrorBox:(NSError *)aError;
 - (NSImage *)requestUserImage:(NSString *)aImageLocation forBox:(PTStatusBox *)aNewBox;
 - (void)selectStatusBox:(PTStatusBox *)aSelection;
 - (IBAction)changeAccount:(id)sender;

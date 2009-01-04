@@ -21,7 +21,6 @@
 		6190A0CB0F0AE55000E4F12E /* BGHUDAppKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6190A0990F0AE46100E4F12E /* BGHUDAppKit.framework */; };
 		61A50F520F063ADB009050CC /* console.png in Resources */ = {isa = PBXBuildFile; fileRef = 61A50F510F063ADB009050CC /* console.png */; };
 		61BD916F0F0B7C7E00F1CA33 /* default.png in Resources */ = {isa = PBXBuildFile; fileRef = 61BD916E0F0B7C7E00F1CA33 /* default.png */; };
-		61C3FB600F0CF84B00630209 /* PTSelectedUserNameTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C3FB5F0F0CF84B00630209 /* PTSelectedUserNameTextField.m */; };
 		61C773BD0F0509F100258650 /* PTStatusEntityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C773BC0F0509F100258650 /* PTStatusEntityView.m */; };
 		61C773F80F050BBB00258650 /* PTStatusCollectionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C773F70F050BBB00258650 /* PTStatusCollectionItem.m */; };
 		61C786F40F046622007CBC1A /* PTPreferenceWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C786F30F046622007CBC1A /* PTPreferenceWindow.m */; };
@@ -47,7 +46,9 @@
 		61E9997A0F0D88C800509EE8 /* PTMainWindowDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E999790F0D88C800509EE8 /* PTMainWindowDelegate.m */; };
 		61EE70640F0210C0005C42F5 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 61EE70630F0210C0005C42F5 /* libxml2.2.dylib */; };
 		61EE71400F021802005C42F5 /* PTMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 61EE713F0F021802005C42F5 /* PTMain.m */; };
-		8D11072A0486CEB800E47090 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 29B97318FDCFA39411CA2CEA /* MainMenu.nib */; };
+		61F2CF380F10A10800CE073B /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61F2CF360F10A10800CE073B /* MainMenu.xib */; };
+		61F2CF510F10A3DA00CE073B /* PTStatusFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 61F2CF500F10A3DA00CE073B /* PTStatusFormatter.m */; };
+		61F2CF5C0F10A52400CE073B /* PTStatusBoxGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 61F2CF5B0F10A52400CE073B /* PTStatusBoxGenerator.m */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
@@ -72,7 +73,6 @@
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		29B97319FDCFA39411CA2CEA /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/MainMenu.nib; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32CA4F630368D1EE00C91783 /* Pwitter_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pwitter_Prefix.pch; sourceTree = "<group>"; };
@@ -94,8 +94,6 @@
 		6190A0990F0AE46100E4F12E /* BGHUDAppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BGHUDAppKit.framework; sourceTree = "<group>"; };
 		61A50F510F063ADB009050CC /* console.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = console.png; sourceTree = "<group>"; };
 		61BD916E0F0B7C7E00F1CA33 /* default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default.png; sourceTree = "<group>"; };
-		61C3FB5E0F0CF84B00630209 /* PTSelectedUserNameTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTSelectedUserNameTextField.h; sourceTree = "<group>"; };
-		61C3FB5F0F0CF84B00630209 /* PTSelectedUserNameTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTSelectedUserNameTextField.m; sourceTree = "<group>"; };
 		61C773BB0F0509F100258650 /* PTStatusEntityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTStatusEntityView.h; sourceTree = "<group>"; };
 		61C773BC0F0509F100258650 /* PTStatusEntityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTStatusEntityView.m; sourceTree = "<group>"; };
 		61C773F60F050BBB00258650 /* PTStatusCollectionItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTStatusCollectionItem.h; sourceTree = "<group>"; };
@@ -148,6 +146,11 @@
 		61EE70630F0210C0005C42F5 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = /usr/lib/libxml2.2.dylib; sourceTree = "<absolute>"; };
 		61EE713E0F021802005C42F5 /* PTMain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTMain.h; sourceTree = "<group>"; };
 		61EE713F0F021802005C42F5 /* PTMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTMain.m; sourceTree = "<group>"; };
+		61F2CF370F10A10800CE073B /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		61F2CF4F0F10A3DA00CE073B /* PTStatusFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTStatusFormatter.h; sourceTree = "<group>"; };
+		61F2CF500F10A3DA00CE073B /* PTStatusFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTStatusFormatter.m; sourceTree = "<group>"; };
+		61F2CF5A0F10A52400CE073B /* PTStatusBoxGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTStatusBoxGenerator.h; sourceTree = "<group>"; };
+		61F2CF5B0F10A52400CE073B /* PTStatusBoxGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTStatusBoxGenerator.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* Pwitter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pwitter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -232,13 +235,13 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				61F2CF360F10A10800CE073B /* MainMenu.xib */,
 				6131FD5F0F0E2B5A004CA960 /* dsa_pub.pem */,
 				61BD916E0F0B7C7E00F1CA33 /* default.png */,
 				612BD68F0F076F8500EF064D /* Pwitter.icns */,
 				61A50F510F063ADB009050CC /* console.png */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
-				29B97318FDCFA39411CA2CEA /* MainMenu.nib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -329,10 +332,12 @@
 				613B64F60F0A45B500B67438 /* PTStatusImageView.m */,
 				61E999780F0D88C800509EE8 /* PTMainWindowDelegate.h */,
 				61E999790F0D88C800509EE8 /* PTMainWindowDelegate.m */,
-				61C3FB5E0F0CF84B00630209 /* PTSelectedUserNameTextField.h */,
-				61C3FB5F0F0CF84B00630209 /* PTSelectedUserNameTextField.m */,
 				61DF44B10F0F027C00B8BD2A /* PTStatusFilterController.h */,
 				61DF44B20F0F027C00B8BD2A /* PTStatusFilterController.m */,
+				61F2CF4F0F10A3DA00CE073B /* PTStatusFormatter.h */,
+				61F2CF500F10A3DA00CE073B /* PTStatusFormatter.m */,
+				61F2CF5A0F10A52400CE073B /* PTStatusBoxGenerator.h */,
+				61F2CF5B0F10A52400CE073B /* PTStatusBoxGenerator.m */,
 			);
 			name = Pwitter;
 			sourceTree = "<group>";
@@ -382,12 +387,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D11072A0486CEB800E47090 /* MainMenu.nib in Resources */,
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				61A50F520F063ADB009050CC /* console.png in Resources */,
 				612BD6900F076F8500EF064D /* Pwitter.icns in Resources */,
 				61BD916F0F0B7C7E00F1CA33 /* default.png in Resources */,
 				6131FD600F0E2B5A004CA960 /* dsa_pub.pem in Resources */,
+				61F2CF380F10A10800CE073B /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -442,9 +447,10 @@
 				613B64F70F0A45B500B67438 /* PTStatusImageView.m in Sources */,
 				611937630F0A47270065B9ED /* PTStatusTextField.m in Sources */,
 				615D39770F0B016F0086E57F /* PTCharacterCounter.m in Sources */,
-				61C3FB600F0CF84B00630209 /* PTSelectedUserNameTextField.m in Sources */,
 				61E9997A0F0D88C800509EE8 /* PTMainWindowDelegate.m in Sources */,
 				61DF44B30F0F027C00B8BD2A /* PTStatusFilterController.m in Sources */,
+				61F2CF510F10A3DA00CE073B /* PTStatusFormatter.m in Sources */,
+				61F2CF5C0F10A52400CE073B /* PTStatusBoxGenerator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -459,12 +465,12 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		29B97318FDCFA39411CA2CEA /* MainMenu.nib */ = {
+		61F2CF360F10A10800CE073B /* MainMenu.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				29B97319FDCFA39411CA2CEA /* English */,
+				61F2CF370F10A10800CE073B /* English */,
 			);
-			name = MainMenu.nib;
+			name = MainMenu.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
