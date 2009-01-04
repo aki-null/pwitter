@@ -412,6 +412,7 @@
 	[fRequestDetails removeObjectForKey:aIdentifier];
 	[self stopIndicatorAnimation];
 	if ([aMessages count] == 0) return;
+	if ([[[aMessages objectAtIndex:0] objectForKey:@"id"] isEqual: @""]) return;
 	NSDictionary *lCurrentDic;
 	NSDictionary *lLastDic = nil;
 	NSMutableArray *lTempArray = [[NSMutableArray alloc] init];
@@ -469,11 +470,29 @@
 - (IBAction)postStatus:(id)sender {
 	[self startIndicatorAnimation];
 	PTStatusBox *lCurrentSelection = [[fStatusController selectedObjects] lastObject];
-	if ([fMessageButton state] == NSOnState) {
-		[fRequestDetails setObject:@"MESSAGE" 
-							forKey:[fTwitterEngine sendDirectMessage:[fStatusUpdateField stringValue]
-																  to:lCurrentSelection.userID]];
-	} else if ([fReplyButton state] == NSOnState) {
+	NSArray *lSeparated = [[fStatusUpdateField stringValue] componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+	if ([lSeparated count] >= 2) {
+		if ([[lSeparated objectAtIndex:0] isEqual:@"d"]) {
+			NSString *lMessageTarget;
+			NSString *lMessageToSend;
+			lMessageTarget = [lSeparated objectAtIndex:1];
+			if ([lSeparated count] == 2) {
+				lMessageToSend = @"";
+			} else {
+				if ([lSeparated count] == 3 && [[lSeparated objectAtIndex:2] length] == 0) {
+					lMessageToSend = @"";
+				} else {
+					lMessageToSend = [[fStatusUpdateField stringValue] substringFromIndex:3 + [lMessageTarget length]];
+				}
+			}
+			[fRequestDetails setObject:@"MESSAGE" 
+								forKey:[fTwitterEngine sendDirectMessage:lMessageToSend
+																	  to:lMessageTarget]];
+			[fStatusUpdateField setEnabled:NO];
+			return;
+		}
+	}
+	if ([fReplyButton state] == NSOnState) {
 		[fRequestDetails setObject:@"POST" 
 							forKey:[fTwitterEngine sendUpdate:[fStatusUpdateField stringValue] 
 													inReplyTo:lCurrentSelection.updateID]];
@@ -490,13 +509,14 @@
 }
 
 - (IBAction)messageToSelected:(id)sender {
-	if ([sender state] == NSOnState) {
-		[fStatusController setSelectsInsertedObjects:NO];
-		if ([fReplyButton state] == NSOnState) {
-			[fReplyButton setState:NSOffState];
-		}
-		[fStatusUpdateField selectText:sender];
-	} else [fStatusController setSelectsInsertedObjects:YES];
+	if ([fReplyButton state] == NSOnState) {
+		[fReplyButton setState:NSOffState];
+	}
+	PTStatusBox *lCurrentSelection = [[fStatusController selectedObjects] lastObject];
+	NSString *lMessageTarget = [NSString stringWithFormat:@"d %@ %@", lCurrentSelection.userID, [fStatusUpdateField stringValue]];
+	[fStatusUpdateField setStringValue:lMessageTarget];
+	[fMainWindow makeFirstResponder:fStatusUpdateField];
+	[(NSText *)[fMainWindow firstResponder] setSelectedRange:NSMakeRange([[fStatusUpdateField stringValue] length], 0)];
 }
 
 - (IBAction)openHome:(id)sender {
@@ -518,9 +538,6 @@
 	if ([sender state] == NSOnState) {
 		[fStatusController setSelectsInsertedObjects:NO];
 		PTStatusBox *lCurrentSelection = [[fStatusController selectedObjects] lastObject];
-		if ([fMessageButton state] == NSOnState) {
-			[fMessageButton setState:NSOffState];
-		}
 		NSString *replyTarget = [NSString stringWithFormat:@"@%@ %@", lCurrentSelection.userID, [fStatusUpdateField stringValue]];
 		[fStatusUpdateField setStringValue:replyTarget];
 		[fMainWindow makeFirstResponder:fStatusUpdateField];
@@ -576,8 +593,8 @@
 		lTempRect = [fStatusScrollView frame];
 		[[fStatusScrollView animator] setFrame:NSMakeRect(lTempRect.origin.x, lTempRect.origin.y, lTempRect.size.width, lTempRect.size.height + 21)];
 		[fStatusController setFilterPredicate:nil];
-		[fMainWindow makeFirstResponder:fMainWindow];
 	}
+	[fMainWindow makeFirstResponder:fMainWindow];
 }
 
 @end

@@ -332,7 +332,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>616516F20F0F99C9005195B7</string>
+										<string>617C7CB00F10450200F0C195</string>
 										<key>history</key>
 										<array>
 											<string>61DF482C0F0F7BED00B8BD2A</string>
@@ -341,7 +341,7 @@
 											<string>618527160F0F81A500674CEE</string>
 											<string>6103347E0F0F945400902EA5</string>
 											<string>6103347F0F0F945400902EA5</string>
-											<string>610334840F0F945400902EA5</string>
+											<string>616AA9E90F0F9BF300EFC129</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -409,9 +409,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>616516E20F0F99B0005195B7</string>
+				<string>617C7C580F103B1900F0C195</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>616516E30F0F99B0005195B7</string>
+				<string>617C7C590F103B1900F0C195</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -545,11 +545,11 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>616516ED0F0F99B0005195B7</string>
-		<string>616516EE0F0F99B0005195B7</string>
+		<string>61EE71270F02179E005C42F5</string>
+		<string>617C7C6C0F103D8A00F0C195</string>
+		<string>617C7C6D0F103D8A00F0C195</string>
 		<string>1C78EAAD065D492600B07095</string>
 		<string>1CD10A99069EF8BA00B06720</string>
-		<string>61EE71270F02179E005C42F5</string>
 		<string>/Users/Aki/Documents/GitRepos/Pwitter/Pwitter.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
@@ -630,7 +630,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>61EE71270F02179E005C42F5</string>
-				<string>616516E40F0F99B0005195B7</string>
+				<string>617C7C630F103D8A00F0C195</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -750,13 +750,13 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1CD10A99069EF8BA00B06720</string>
-				<string>616516E50F0F99B0005195B7</string>
+				<string>617C7C640F103D8A00F0C195</string>
 				<string>1C162984064C10D400B95A72</string>
-				<string>616516E60F0F99B0005195B7</string>
-				<string>616516E70F0F99B0005195B7</string>
-				<string>616516E80F0F99B0005195B7</string>
-				<string>616516E90F0F99B0005195B7</string>
-				<string>616516EA0F0F99B0005195B7</string>
+				<string>617C7C650F103D8A00F0C195</string>
+				<string>617C7C660F103D8A00F0C195</string>
+				<string>617C7C670F103D8A00F0C195</string>
+				<string>617C7C680F103D8A00F0C195</string>
+				<string>617C7C690F103D8A00F0C195</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debugV3</string>
@@ -875,6 +875,8 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -910,7 +912,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C78EAAD065D492600B07095</string>
-				<string>616516EB0F0F99B0005195B7</string>
+				<string>617C7C6A0F103D8A00F0C195</string>
 				<string>1C78EAAC065D492600B07095</string>
 			</array>
 			<key>ToolbarConfiguration</key>
