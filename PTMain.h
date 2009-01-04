@@ -15,25 +15,13 @@
 @interface PTMain : NSObject <MGTwitterEngineDelegate> {
 	IBOutlet id fStatusUpdateField;
 	IBOutlet id fStatusController;
-	IBOutlet id fPreferenceWindow;
-	IBOutlet id fAuthPanel;
-	IBOutlet id fMainWindow;
-	IBOutlet id fAuthPassword;
-	IBOutlet id fAuthUserName;
-	IBOutlet id fSelectedTextView;
 	IBOutlet id fTextLevelIndicator;
 	IBOutlet id fReplyButton;
-	IBOutlet id fUserNameBox;
 	IBOutlet id fWebButton;
 	IBOutlet id fMessageButton;
-	IBOutlet id fStatusArrayController;
 	IBOutlet id fProgressBar;
-	IBOutlet id fSearchView;
-	IBOutlet id fStatusScrollView;
-	IBOutlet id fSearchBox;
 	IBOutlet id fStatusBoxGenerator;
 	MGTwitterEngine *fTwitterEngine;
-	BOOL fShouldExit;
 	NSString *fLastUpdateID;
 	NSString *fLastMessageID;
 	NSImage *fDefaultImage;
@@ -43,34 +31,15 @@
 	NSMutableDictionary *fStatusBoxesForReq;
 	NSMutableDictionary *fUserImageCache;
 	NSTimer *fUpdateTimer;
-	BOOL fSearchBoxIsOpen;
 }
 - (IBAction)updateTimeline:(id)sender;
 - (IBAction)postStatus:(id)sender;
-- (IBAction)quitApp:(id)sender;
-- (IBAction)closeAuthSheet:(id)sender;
-- (IBAction)messageToSelected:(id)sender;
-- (IBAction)openHome:(id)sender;
-- (IBAction)openWebSelected:(id)sender;
-- (IBAction)replyToSelected:(id)sender;
-- (IBAction)openPref:(id)sender;
-- (IBAction)updateTimeline:(id)sender;
-- (IBAction)postStatus:(id)sender;
-- (IBAction)quitApp:(id)sender;
-- (IBAction)closeAuthSheet:(id)sender;
-- (IBAction)messageToSelected:(id)sender;
-- (IBAction)openHome:(id)sender;
-- (IBAction)openWebSelected:(id)sender;
-- (IBAction)replyToSelected:(id)sender;
-- (IBAction)openPref:(id)sender;
-- (IBAction)openSearchBox:(id)sender;
-- (IBAction)closeSearchBox:(id)sender;
-- (void)startAuthentication;
+- (IBAction)changeAccount:(id)sender;
 - (NSImage *)requestUserImage:(NSString *)aImageLocation forBox:(PTStatusBox *)aNewBox;
 - (void)selectStatusBox:(PTStatusBox *)aSelection;
-- (IBAction)changeAccount:(id)sender;
 - (void)setupUpdateTimer;
 - (void)openTwitterWeb;
 - (void)runInitialUpdates;
+- (void)setUpTwitterEngine;
 
 @end

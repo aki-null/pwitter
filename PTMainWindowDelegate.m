@@ -8,12 +8,13 @@
 
 #import "PTMainWindowDelegate.h"
 #import "PTMain.h"
+#import "PTMainActionHandler.h"
 
 
 @implementation PTMainWindowDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-	[fMainController startAuthentication];
+	[fMainActionHandler startAuthentication];
 }
 
 - (BOOL)applicationShouldHandleReopen:(NSApplication *)aApplication 

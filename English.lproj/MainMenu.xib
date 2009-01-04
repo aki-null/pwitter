@@ -8,6 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
+			<integer value="562"/>
 			<integer value="372"/>
 			<integer value="487"/>
 			<integer value="29"/>
@@ -1591,7 +1592,7 @@
 				<nil key="NSViewClass"/>
 				<string key="NSWindowContentMaxSize">{307, 173}</string>
 				<object class="NSView" key="NSWindowView" id="139662437">
-					<nil key="NSNextResponder"/>
+					<reference key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
 					<object class="NSMutableArray" key="NSSubviews">
 						<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1749,6 +1750,7 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 						</object>
 					</object>
 					<string key="NSFrameSize">{293, 170}</string>
+					<reference key="NSSuperview"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>
 				<string key="NSMaxSize">{307, 195}</string>
@@ -1888,6 +1890,9 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 			</object>
 			<object class="NSCustomObject" id="920804464">
 				<string key="NSClassName">PTStatusBoxGenerator</string>
+			</object>
+			<object class="NSCustomObject" id="405465353">
+				<string key="NSClassName">PTMainActionHandler</string>
 			</object>
 			<object class="NSArrayController" id="414311319">
 				<object class="NSMutableArray" key="NSDeclaredKeys">
@@ -2157,22 +2162,6 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
-						<string key="label">closeAuthSheet:</string>
-						<reference key="source" ref="186084955"/>
-						<reference key="destination" ref="429562043"/>
-					</object>
-					<int key="connectionID">590</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">quitApp:</string>
-						<reference key="source" ref="186084955"/>
-						<reference key="destination" ref="791955205"/>
-					</object>
-					<int key="connectionID">594</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
 						<string key="label">performClick:</string>
 						<reference key="source" ref="429562043"/>
 						<reference key="destination" ref="261106713"/>
@@ -2254,30 +2243,6 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
-						<string key="label">replyToSelected:</string>
-						<reference key="source" ref="186084955"/>
-						<reference key="destination" ref="1002596878"/>
-					</object>
-					<int key="connectionID">815</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">messageToSelected:</string>
-						<reference key="source" ref="186084955"/>
-						<reference key="destination" ref="1030457841"/>
-					</object>
-					<int key="connectionID">819</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">openHome:</string>
-						<reference key="source" ref="186084955"/>
-						<reference key="destination" ref="833461795"/>
-					</object>
-					<int key="connectionID">858</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
 						<string key="label">updateTimeline:</string>
 						<reference key="source" ref="186084955"/>
 						<reference key="destination" ref="417686124"/>
@@ -2291,22 +2256,6 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 						<reference key="destination" ref="148151763"/>
 					</object>
 					<int key="connectionID">943</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">openWebSelected:</string>
-						<reference key="source" ref="186084955"/>
-						<reference key="destination" ref="251800815"/>
-					</object>
-					<int key="connectionID">947</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">openPref:</string>
-						<reference key="source" ref="186084955"/>
-						<reference key="destination" ref="609285721"/>
-					</object>
-					<int key="connectionID">948</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
@@ -2410,14 +2359,6 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
-						<string key="label">fMainController</string>
-						<reference key="source" ref="770116972"/>
-						<reference key="destination" ref="186084955"/>
-					</object>
-					<int key="connectionID">1021</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
 						<string key="label">fPostTextField</string>
 						<reference key="source" ref="148151763"/>
 						<reference key="destination" ref="333982491"/>
@@ -2514,54 +2455,6 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
-						<string key="label">fPreferenceWindow</string>
-						<reference key="source" ref="186084955"/>
-						<reference key="destination" ref="259615924"/>
-					</object>
-					<int key="connectionID">1035</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">fAuthPanel</string>
-						<reference key="source" ref="186084955"/>
-						<reference key="destination" ref="765187618"/>
-					</object>
-					<int key="connectionID">1036</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">fMainWindow</string>
-						<reference key="source" ref="186084955"/>
-						<reference key="destination" ref="972006081"/>
-					</object>
-					<int key="connectionID">1037</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">fAuthPassword</string>
-						<reference key="source" ref="186084955"/>
-						<reference key="destination" ref="745408768"/>
-					</object>
-					<int key="connectionID">1038</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">fAuthUserName</string>
-						<reference key="source" ref="186084955"/>
-						<reference key="destination" ref="261106713"/>
-					</object>
-					<int key="connectionID">1039</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">fSelectedTextView</string>
-						<reference key="source" ref="186084955"/>
-						<reference key="destination" ref="550442859"/>
-					</object>
-					<int key="connectionID">1040</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
 						<string key="label">fTextLevelIndicator</string>
 						<reference key="source" ref="186084955"/>
 						<reference key="destination" ref="148151763"/>
@@ -2591,14 +2484,6 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 						<reference key="destination" ref="1030457841"/>
 					</object>
 					<int key="connectionID">1045</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">fStatusArrayController</string>
-						<reference key="source" ref="186084955"/>
-						<reference key="destination" ref="414311319"/>
-					</object>
-					<int key="connectionID">1046</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
@@ -2718,46 +2603,6 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 					<int key="connectionID">1102</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">openSearchBox:</string>
-						<reference key="source" ref="186084955"/>
-						<reference key="destination" ref="681907763"/>
-					</object>
-					<int key="connectionID">1120</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">fSearchView</string>
-						<reference key="source" ref="186084955"/>
-						<reference key="destination" ref="1036106623"/>
-					</object>
-					<int key="connectionID">1121</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">closeSearchBox:</string>
-						<reference key="source" ref="186084955"/>
-						<reference key="destination" ref="749371821"/>
-					</object>
-					<int key="connectionID">1124</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">fStatusScrollView</string>
-						<reference key="source" ref="186084955"/>
-						<reference key="destination" ref="251803811"/>
-					</object>
-					<int key="connectionID">1125</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">fSearchBox</string>
-						<reference key="source" ref="186084955"/>
-						<reference key="destination" ref="314109897"/>
-					</object>
-					<int key="connectionID">1126</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">fMainController</string>
 						<reference key="source" ref="1036106623"/>
@@ -2803,14 +2648,6 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
-						<string key="label">fUserNameBox</string>
-						<reference key="source" ref="186084955"/>
-						<reference key="destination" ref="332234277"/>
-					</object>
-					<int key="connectionID">1141</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
 						<string key="label">fMainWindow</string>
 						<reference key="source" ref="341237264"/>
 						<reference key="destination" ref="972006081"/>
@@ -2832,6 +2669,214 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 						<reference key="destination" ref="186084955"/>
 					</object>
 					<int key="connectionID">1153</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">closeAuthSheet:</string>
+						<reference key="source" ref="405465353"/>
+						<reference key="destination" ref="429562043"/>
+					</object>
+					<int key="connectionID">1155</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">quitApp:</string>
+						<reference key="source" ref="405465353"/>
+						<reference key="destination" ref="791955205"/>
+					</object>
+					<int key="connectionID">1156</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">closeSearchBox:</string>
+						<reference key="source" ref="405465353"/>
+						<reference key="destination" ref="974569512"/>
+					</object>
+					<int key="connectionID">1157</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">messageToSelected:</string>
+						<reference key="source" ref="405465353"/>
+						<reference key="destination" ref="1030457841"/>
+					</object>
+					<int key="connectionID">1158</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">replyToSelected:</string>
+						<reference key="source" ref="405465353"/>
+						<reference key="destination" ref="1002596878"/>
+					</object>
+					<int key="connectionID">1159</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">openWebSelected:</string>
+						<reference key="source" ref="405465353"/>
+						<reference key="destination" ref="251800815"/>
+					</object>
+					<int key="connectionID">1160</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">openPref:</string>
+						<reference key="source" ref="405465353"/>
+						<reference key="destination" ref="609285721"/>
+					</object>
+					<int key="connectionID">1161</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">openHome:</string>
+						<reference key="source" ref="405465353"/>
+						<reference key="destination" ref="833461795"/>
+					</object>
+					<int key="connectionID">1162</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">openSearchBox:</string>
+						<reference key="source" ref="405465353"/>
+						<reference key="destination" ref="681907763"/>
+					</object>
+					<int key="connectionID">1163</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">fAuthPanel</string>
+						<reference key="source" ref="405465353"/>
+						<reference key="destination" ref="765187618"/>
+					</object>
+					<int key="connectionID">1164</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">fAuthPassword</string>
+						<reference key="source" ref="405465353"/>
+						<reference key="destination" ref="745408768"/>
+					</object>
+					<int key="connectionID">1165</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">fAuthUserName</string>
+						<reference key="source" ref="405465353"/>
+						<reference key="destination" ref="261106713"/>
+					</object>
+					<int key="connectionID">1166</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">fMainWindow</string>
+						<reference key="source" ref="405465353"/>
+						<reference key="destination" ref="972006081"/>
+					</object>
+					<int key="connectionID">1167</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">fPreferenceWindow</string>
+						<reference key="source" ref="405465353"/>
+						<reference key="destination" ref="259615924"/>
+					</object>
+					<int key="connectionID">1168</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">fSearchBox</string>
+						<reference key="source" ref="405465353"/>
+						<reference key="destination" ref="314109897"/>
+					</object>
+					<int key="connectionID">1169</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">fSearchView</string>
+						<reference key="source" ref="405465353"/>
+						<reference key="destination" ref="1036106623"/>
+					</object>
+					<int key="connectionID">1170</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">fStatusScrollView</string>
+						<reference key="source" ref="405465353"/>
+						<reference key="destination" ref="251803811"/>
+					</object>
+					<int key="connectionID">1171</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">fSelectedTextView</string>
+						<reference key="source" ref="405465353"/>
+						<reference key="destination" ref="550442859"/>
+					</object>
+					<int key="connectionID">1172</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">fUserNameBox</string>
+						<reference key="source" ref="405465353"/>
+						<reference key="destination" ref="332234277"/>
+					</object>
+					<int key="connectionID">1173</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">fStatusController</string>
+						<reference key="source" ref="405465353"/>
+						<reference key="destination" ref="414311319"/>
+					</object>
+					<int key="connectionID">1174</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">fMainController</string>
+						<reference key="source" ref="405465353"/>
+						<reference key="destination" ref="186084955"/>
+					</object>
+					<int key="connectionID">1175</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">fWebButton</string>
+						<reference key="source" ref="405465353"/>
+						<reference key="destination" ref="251800815"/>
+					</object>
+					<int key="connectionID">1176</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">fReplyButton</string>
+						<reference key="source" ref="405465353"/>
+						<reference key="destination" ref="1002596878"/>
+					</object>
+					<int key="connectionID">1177</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">fMessageButton</string>
+						<reference key="source" ref="405465353"/>
+						<reference key="destination" ref="1030457841"/>
+					</object>
+					<int key="connectionID">1178</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">fStatusUpdateField</string>
+						<reference key="source" ref="405465353"/>
+						<reference key="destination" ref="333982491"/>
+					</object>
+					<int key="connectionID">1179</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">fMainActionHandler</string>
+						<reference key="source" ref="770116972"/>
+						<reference key="destination" ref="405465353"/>
+					</object>
+					<int key="connectionID">1180</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -4075,6 +4120,11 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 						<reference key="object" ref="920804464"/>
 						<reference key="parent" ref="1049"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">1154</int>
+						<reference key="object" ref="405465353"/>
+						<reference key="parent" ref="1049"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -4121,6 +4171,7 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 					<string>1136.IBPluginDependency</string>
 					<string>1137.IBPluginDependency</string>
 					<string>1151.IBPluginDependency</string>
+					<string>1154.IBPluginDependency</string>
 					<string>129.IBPluginDependency</string>
 					<string>129.ImportedFromIB2</string>
 					<string>130.IBPluginDependency</string>
@@ -4406,6 +4457,7 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
@@ -4493,8 +4545,8 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 					<reference ref="9"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
-					<string>{{487, 68}, {245, 418}}</string>
-					<string>{{487, 68}, {245, 418}}</string>
+					<string>{{485, 100}, {245, 418}}</string>
+					<string>{{485, 100}, {245, 418}}</string>
 					<reference ref="9"/>
 					<string>{{180, 45}, {245, 418}}</string>
 					<reference ref="9"/>
@@ -4576,7 +4628,7 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{222, 425}, {232, 203}}</string>
+					<string>{{73, 373}, {232, 203}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
 					<string>{{160, 355}, {186, 183}}</string>
@@ -4678,7 +4730,7 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">1153</int>
+			<int key="maxID">1180</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -4786,29 +4838,11 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 						<object class="NSMutableArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>changeAccount:</string>
-							<string>closeAuthSheet:</string>
-							<string>closeSearchBox:</string>
-							<string>messageToSelected:</string>
-							<string>openHome:</string>
-							<string>openPref:</string>
-							<string>openSearchBox:</string>
-							<string>openWebSelected:</string>
 							<string>postStatus:</string>
-							<string>quitApp:</string>
-							<string>replyToSelected:</string>
 							<string>updateTimeline:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>id</string>
-							<string>id</string>
-							<string>id</string>
-							<string>id</string>
-							<string>id</string>
-							<string>id</string>
-							<string>id</string>
-							<string>id</string>
-							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -4818,39 +4852,17 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSMutableArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>fAuthPanel</string>
-							<string>fAuthPassword</string>
-							<string>fAuthUserName</string>
-							<string>fMainWindow</string>
 							<string>fMessageButton</string>
-							<string>fPreferenceWindow</string>
 							<string>fProgressBar</string>
 							<string>fReplyButton</string>
-							<string>fSearchBox</string>
-							<string>fSearchView</string>
-							<string>fSelectedTextView</string>
-							<string>fStatusArrayController</string>
 							<string>fStatusBoxGenerator</string>
 							<string>fStatusController</string>
-							<string>fStatusScrollView</string>
 							<string>fStatusUpdateField</string>
 							<string>fTextLevelIndicator</string>
-							<string>fUserNameBox</string>
 							<string>fWebButton</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>id</string>
-							<string>id</string>
-							<string>id</string>
-							<string>id</string>
-							<string>id</string>
-							<string>id</string>
-							<string>id</string>
-							<string>id</string>
-							<string>id</string>
-							<string>id</string>
-							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -4875,20 +4887,95 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
-					<string key="className">PTMainWindowDelegate</string>
+					<string key="className">PTMainActionHandler</string>
 					<string key="superclassName">NSObject</string>
-					<object class="NSMutableDictionary" key="outlets">
+					<object class="NSMutableDictionary" key="actions">
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSMutableArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>fMainController</string>
-							<string>fMainWindow</string>
+							<string>closeAuthSheet:</string>
+							<string>closeSearchBox:</string>
+							<string>messageToSelected:</string>
+							<string>openHome:</string>
+							<string>openPref:</string>
+							<string>openSearchBox:</string>
+							<string>openWebSelected:</string>
+							<string>quitApp:</string>
+							<string>replyToSelected:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>id</string>
 							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
 						</object>
+					</object>
+					<object class="NSMutableDictionary" key="outlets">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSMutableArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>fAuthPanel</string>
+							<string>fAuthPassword</string>
+							<string>fAuthUserName</string>
+							<string>fMainController</string>
+							<string>fMainWindow</string>
+							<string>fMessageButton</string>
+							<string>fPreferenceWindow</string>
+							<string>fReplyButton</string>
+							<string>fSearchBox</string>
+							<string>fSearchView</string>
+							<string>fSelectedTextView</string>
+							<string>fStatusController</string>
+							<string>fStatusScrollView</string>
+							<string>fStatusUpdateField</string>
+							<string>fUserNameBox</string>
+							<string>fWebButton</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+						</object>
+					</object>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">PTMainActionHandler.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">PTMainActionHandler</string>
+					<string key="superclassName">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBUserSource</string>
+						<string key="minorKey"/>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">PTMainWindowDelegate</string>
+					<string key="superclassName">NSObject</string>
+					<object class="NSMutableDictionary" key="outlets">
+						<string key="NS.key.0">fMainWindow</string>
+						<string key="NS.object.0">id</string>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
@@ -4898,6 +4985,10 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 				<object class="IBPartialClassDescription">
 					<string key="className">PTMainWindowDelegate</string>
 					<string key="superclassName">NSObject</string>
+					<object class="NSMutableDictionary" key="outlets">
+						<string key="NS.key.0">fMainActionHandler</string>
+						<string key="NS.object.0">id</string>
+					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBUserSource</string>
 						<string key="minorKey"/>

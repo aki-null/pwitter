@@ -95,66 +95,15 @@
 	[self setupUpdateTimer];
 }
 
-- (void)startAuthentication {
-	if ([[PTPreferenceManager getInstance] autoLogin]) {
-		[self setUpTwitterEngine];
-		return;
-	}
-	[NSApp beginSheet:fAuthPanel
-	   modalForWindow:fMainWindow
-		modalDelegate:self
-	   didEndSelector:@selector(didEndSheet:returnCode:contextInfo:)
-		  contextInfo:nil];
-	NSString *lTempName = [[PTPreferenceManager getInstance] userName];
-	NSString *lTempPass = [[PTPreferenceManager getInstance] password];
-	if (lTempName)
-		[fAuthUserName setStringValue:lTempName];
-	if (lTempPass)
-		[fAuthPassword setStringValue:lTempPass];
-}
-
 - (void)awakeFromNib
 {
 	fUpdateTimer = nil;
-	fShouldExit = NO;
 	fRequestDetails = [[NSMutableDictionary alloc] init];
 	fImageLocationForReq = [[NSMutableDictionary alloc] init];
 	fImageReqForLocation = [[NSMutableDictionary alloc] init];
 	fStatusBoxesForReq = [[NSMutableDictionary alloc] init];
 	fUserImageCache = [[NSMutableDictionary alloc] init];
 	fDefaultImage = [NSImage imageNamed:@"default.png"];
-	NSDictionary *lLinkFormat =
-	[NSDictionary dictionaryWithObjectsAndKeys:
-	 [NSColor cyanColor], @"NSColor",
-	 [NSCursor pointingHandCursor], @"NSCursor",
-	 [NSNumber numberWithInt:1], @"NSUnderline",
-	 nil];
-	[fSelectedTextView setLinkTextAttributes:lLinkFormat];
-	lLinkFormat =
-	[NSDictionary dictionaryWithObjectsAndKeys:
-	 [NSColor whiteColor], @"NSColor",
-	 [NSCursor pointingHandCursor], @"NSCursor",
-	 [NSNumber numberWithInt:1], @"NSUnderline",
-	 nil];
-	[fUserNameBox setLinkTextAttributes:lLinkFormat];
-	NSSortDescriptor * sortDesc = [[NSSortDescriptor alloc] initWithKey:@"time" ascending:NO];
-	[fStatusArrayController setSortDescriptors:[NSArray arrayWithObject:sortDesc]];
-	[sortDesc release];
-	[fPreferenceWindow loadPreferences];
-}
-
-- (IBAction)closeAuthSheet:(id)sender
-{
-	[[PTPreferenceManager getInstance] setUserName:[fAuthUserName stringValue] 
-										  password:[fAuthPassword stringValue]];
-    [NSApp endSheet:fAuthPanel];
-}
-
-- (void)didEndSheet:(NSWindow *)aSheet returnCode:(int)aReturnCode contextInfo:(void *)aContextInfo
-{
-	[aSheet orderOut:self];
-	if (fShouldExit) [NSApp terminate:self];
-	if (aSheet == fAuthPanel) [self setUpTwitterEngine];
 }
 
 - (void)dealloc
@@ -355,46 +304,10 @@
 	[fStatusUpdateField setEnabled:NO];
 }
 
-- (IBAction)quitApp:(id)sender {
-	fShouldExit = YES;
-	[NSApp endSheet:fAuthPanel];
-}
-
-- (IBAction)messageToSelected:(id)sender {
-	if ([fReplyButton state] == NSOnState) {
-		[fReplyButton setState:NSOffState];
-	}
-	PTStatusBox *lCurrentSelection = [[fStatusController selectedObjects] lastObject];
-	NSString *lMessageTarget = [NSString stringWithFormat:@"d %@ %@", lCurrentSelection.userID, [fStatusUpdateField stringValue]];
-	[fStatusUpdateField setStringValue:lMessageTarget];
-	[fMainWindow makeFirstResponder:fStatusUpdateField];
-	[(NSText *)[fMainWindow firstResponder] setSelectedRange:NSMakeRange([[fStatusUpdateField stringValue] length], 0)];
-}
-
-- (IBAction)openHome:(id)sender {
-	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://twitter.com/home"]];
-}
-
 - (void)openTwitterWeb {
 	PTStatusBox *lCurrentSelection = [[fStatusController selectedObjects] lastObject];
 	if (lCurrentSelection && lCurrentSelection.sType != ErrorMessage)
 		[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://twitter.com/%@", lCurrentSelection.userID]]];
-}
-
-- (IBAction)openWebSelected:(id)sender {
-	PTStatusBox *lCurrentSelection = [[fStatusController selectedObjects] lastObject];
-	[[NSWorkspace sharedWorkspace] openURL:lCurrentSelection.userHome];
-}
-
-- (IBAction)replyToSelected:(id)sender {
-	if ([sender state] == NSOnState) {
-		[fStatusController setSelectsInsertedObjects:NO];
-		PTStatusBox *lCurrentSelection = [[fStatusController selectedObjects] lastObject];
-		NSString *replyTarget = [NSString stringWithFormat:@"@%@ %@", lCurrentSelection.userID, [fStatusUpdateField stringValue]];
-		[fStatusUpdateField setStringValue:replyTarget];
-		[fMainWindow makeFirstResponder:fStatusUpdateField];
-		[(NSText *)[fMainWindow firstResponder] setSelectedRange:NSMakeRange([[fStatusUpdateField stringValue] length], 0)];
-	} else [fStatusController setSelectsInsertedObjects:YES];
 }
 
 - (void)selectStatusBox:(PTStatusBox *)aSelection {
@@ -415,38 +328,6 @@
 		[fReplyButton setEnabled:YES];
 		[fMessageButton setEnabled:YES];
 	}
-}
-
-- (IBAction)openPref:(id)sender {
-	[fPreferenceWindow loadPreferences];
-	[NSApp beginSheet:fPreferenceWindow
-	   modalForWindow:fMainWindow
-		modalDelegate:self
-	   didEndSelector:@selector(didEndSheet:returnCode:contextInfo:)
-		  contextInfo:nil];
-}
-
-- (IBAction)openSearchBox:(id)sender {
-	if (!fSearchBoxIsOpen) {
-		fSearchBoxIsOpen = YES;
-		NSRect lTempRect = [fSearchView frame];
-		[[fSearchView animator] setFrame:NSMakeRect(lTempRect.origin.x, lTempRect.origin.y - 21, lTempRect.size.width, 22)];
-		lTempRect = [fStatusScrollView frame];
-		[[fStatusScrollView animator] setFrame:NSMakeRect(lTempRect.origin.x, lTempRect.origin.y, lTempRect.size.width, lTempRect.size.height - 21)];
-		[fSearchBox selectText:sender];
-	}
-}
-
-- (IBAction)closeSearchBox:(id)sender {
-	if (fSearchBoxIsOpen) {
-		fSearchBoxIsOpen = NO;
-		NSRect lTempRect = [fSearchView frame];
-		[[fSearchView animator] setFrame:NSMakeRect(lTempRect.origin.x, lTempRect.origin.y + 21, lTempRect.size.width, 1)];
-		lTempRect = [fStatusScrollView frame];
-		[[fStatusScrollView animator] setFrame:NSMakeRect(lTempRect.origin.x, lTempRect.origin.y, lTempRect.size.width, lTempRect.size.height + 21)];
-		[fStatusController setFilterPredicate:nil];
-	}
-	[fMainWindow makeFirstResponder:fMainWindow];
 }
 
 @end

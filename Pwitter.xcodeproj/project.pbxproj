@@ -43,6 +43,7 @@
 		61D9FDFD0F04B41C003CC890 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61D9FDFC0F04B41C003CC890 /* Security.framework */; };
 		61D9FE1C0F04B6DA003CC890 /* PTPreferenceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 61D9FE1B0F04B6DA003CC890 /* PTPreferenceManager.m */; };
 		61DF44B30F0F027C00B8BD2A /* PTStatusFilterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61DF44B20F0F027C00B8BD2A /* PTStatusFilterController.m */; };
+		61E70AF00F10BA17002526FA /* PTMainActionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E70AEF0F10BA17002526FA /* PTMainActionHandler.m */; };
 		61E9997A0F0D88C800509EE8 /* PTMainWindowDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E999790F0D88C800509EE8 /* PTMainWindowDelegate.m */; };
 		61EE70640F0210C0005C42F5 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 61EE70630F0210C0005C42F5 /* libxml2.2.dylib */; };
 		61EE71400F021802005C42F5 /* PTMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 61EE713F0F021802005C42F5 /* PTMain.m */; };
@@ -141,6 +142,8 @@
 		61D9FE1B0F04B6DA003CC890 /* PTPreferenceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTPreferenceManager.m; sourceTree = "<group>"; };
 		61DF44B10F0F027C00B8BD2A /* PTStatusFilterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTStatusFilterController.h; sourceTree = "<group>"; };
 		61DF44B20F0F027C00B8BD2A /* PTStatusFilterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTStatusFilterController.m; sourceTree = "<group>"; };
+		61E70AEE0F10BA17002526FA /* PTMainActionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTMainActionHandler.h; sourceTree = "<group>"; };
+		61E70AEF0F10BA17002526FA /* PTMainActionHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTMainActionHandler.m; sourceTree = "<group>"; };
 		61E999780F0D88C800509EE8 /* PTMainWindowDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTMainWindowDelegate.h; sourceTree = "<group>"; };
 		61E999790F0D88C800509EE8 /* PTMainWindowDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTMainWindowDelegate.m; sourceTree = "<group>"; };
 		61EE70630F0210C0005C42F5 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = /usr/lib/libxml2.2.dylib; sourceTree = "<absolute>"; };
@@ -310,6 +313,10 @@
 			children = (
 				61EE713E0F021802005C42F5 /* PTMain.h */,
 				61EE713F0F021802005C42F5 /* PTMain.m */,
+				61E70AEE0F10BA17002526FA /* PTMainActionHandler.h */,
+				61E70AEF0F10BA17002526FA /* PTMainActionHandler.m */,
+				61E999780F0D88C800509EE8 /* PTMainWindowDelegate.h */,
+				61E999790F0D88C800509EE8 /* PTMainWindowDelegate.m */,
 				610BF8A90F030DFA008D9A3B /* PTStatusBox.h */,
 				610BF8AA0F030DFA008D9A3B /* PTStatusBox.m */,
 				61C786F20F046622007CBC1A /* PTPreferenceWindow.h */,
@@ -330,8 +337,6 @@
 				611937620F0A47270065B9ED /* PTStatusTextField.m */,
 				613B64F50F0A45B500B67438 /* PTStatusImageView.h */,
 				613B64F60F0A45B500B67438 /* PTStatusImageView.m */,
-				61E999780F0D88C800509EE8 /* PTMainWindowDelegate.h */,
-				61E999790F0D88C800509EE8 /* PTMainWindowDelegate.m */,
 				61DF44B10F0F027C00B8BD2A /* PTStatusFilterController.h */,
 				61DF44B20F0F027C00B8BD2A /* PTStatusFilterController.m */,
 				61F2CF4F0F10A3DA00CE073B /* PTStatusFormatter.h */,
@@ -451,6 +456,7 @@
 				61DF44B30F0F027C00B8BD2A /* PTStatusFilterController.m in Sources */,
 				61F2CF510F10A3DA00CE073B /* PTStatusFormatter.m in Sources */,
 				61F2CF5C0F10A52400CE073B /* PTStatusBoxGenerator.m in Sources */,
+				61E70AF00F10BA17002526FA /* PTMainActionHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
