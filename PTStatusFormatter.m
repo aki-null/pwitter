@@ -82,4 +82,29 @@
 	return lUserLabel;
 }
 
++ (NSMutableAttributedString *)createErrorLabel {
+	NSMutableAttributedString *lErrorLabel = [[[NSMutableAttributedString alloc] initWithString:@"Twitter Error:"] autorelease];
+	[lErrorLabel addAttribute:NSForegroundColorAttributeName 
+						value:[NSColor whiteColor] 
+						range:NSMakeRange(0, [lErrorLabel length])];
+	[lErrorLabel addAttribute:NSUnderlineStyleAttributeName 
+						value:[NSNumber numberWithInt:NSSingleUnderlineStyle] 
+						range:NSMakeRange(0, [lErrorLabel length])];
+	return lErrorLabel;
+}
+
++ (NSMutableAttributedString *)createErrorMessage:(NSError *)aError {
+	NSMutableAttributedString *lFinalString = [[[NSMutableAttributedString alloc] initWithString:[aError localizedDescription]] autorelease];
+	[lFinalString addAttribute:NSForegroundColorAttributeName 
+						 value:[NSColor whiteColor] 
+						 range:NSMakeRange(0, [lFinalString length])];
+	[lFinalString addAttribute:NSFontAttributeName 
+						 value:[NSNumber numberWithInt:NSSingleUnderlineStyle] 
+						 range:NSMakeRange(0, [lFinalString length])];
+	[lFinalString addAttribute:NSFontAttributeName 
+						 value:[NSFont fontWithName:@"Helvetica" size:10.0] 
+						 range:NSMakeRange(0, [lFinalString length])];
+	return lFinalString;
+}
+
 @end

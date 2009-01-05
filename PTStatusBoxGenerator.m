@@ -29,8 +29,7 @@
 															locale:nil];
 	lNewBox.statusMessage = [PTStatusFormatter formatStatusMessage:[aStatusInfo objectForKey:@"text"]];
 	lNewBox.userImage = [fMainController requestUserImage:[[aStatusInfo objectForKey:@"user"] objectForKey:@"profile_image_url"]
-										forBox:lNewBox];
-	lNewBox.updateID = [aStatusInfo objectForKey:@"id"];
+												   forBox:lNewBox];
 	NSString *lUrlStr = [[aStatusInfo objectForKey:@"user"] objectForKey:@"url"];
 	if ([lUrlStr length] != 0) {
 		lNewBox.userHome = [NSURL URLWithString:lUrlStr];
@@ -53,26 +52,18 @@
 
 - (PTStatusBox *)constructErrorBox:(NSError *)aError {
 	PTStatusBox *lNewBox = [[PTStatusBox alloc] init];
-	lNewBox.userName = @"Twitter Error:";
-	lNewBox.userID = @"Twitter Error:";
-	NSMutableAttributedString *lFinalString = [[NSMutableAttributedString alloc] initWithString:[aError localizedDescription]];
-	[lFinalString addAttribute:NSForegroundColorAttributeName 
-						 value:[NSColor whiteColor] 
-						 range:NSMakeRange(0, [lFinalString length])];
-	[lFinalString addAttribute:NSFontAttributeName 
-						 value:[NSFont fontWithName:@"Helvetica" size:10.0] 
-						 range:NSMakeRange(0, [lFinalString length])];
-	lNewBox.statusMessage = lFinalString;
-	[lFinalString release];
+	lNewBox.userName = [PTStatusFormatter createErrorLabel];
+	lNewBox.userID = [NSString stringWithString:@"Twitter Error:"];
+	lNewBox.statusMessage = [PTStatusFormatter createErrorMessage:aError];;
 	lNewBox.userImage = fWarningImage;
 	lNewBox.entityColor = [NSColor colorWithCalibratedRed:0.4 green:0.4 blue:0.4 alpha:0.7];
 	lNewBox.time = [NSDate date];
 	lNewBox.strTime = [lNewBox.time descriptionWithCalendarFormat:@"%H:%M:%S" 
 					   timeZone:[NSTimeZone systemTimeZone] 
 					   locale:nil];
+	lNewBox.userHome = nil;
 	lNewBox.sType = ErrorMessage;
-	lNewBox.searchString = [NSString stringWithFormat:@"%@ %@", 
-							@"Twitter Error:", 
+	lNewBox.searchString = [NSString stringWithFormat:@"Twitter Error: %@", 
 							[aError localizedDescription]];
 	return lNewBox;
 }
@@ -88,8 +79,7 @@
 					   locale:nil];
 	lNewBox.statusMessage = [PTStatusFormatter formatStatusMessage:[aStatusInfo objectForKey:@"text"]];
 	lNewBox.userImage = [fMainController requestUserImage:[[aStatusInfo objectForKey:@"sender"] objectForKey:@"profile_image_url"]
-										forBox:lNewBox];
-	lNewBox.updateID = [aStatusInfo objectForKey:@"id"];
+												   forBox:lNewBox];
 	NSString *lUrlStr = [[aStatusInfo objectForKey:@"sender"] objectForKey:@"url"];
 	if ([lUrlStr length] != 0) {
 		lNewBox.userHome = [NSURL URLWithString:lUrlStr];

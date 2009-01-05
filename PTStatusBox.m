@@ -16,7 +16,6 @@
 @synthesize userImage;
 @synthesize userHome;
 @synthesize userID;
-@synthesize updateID;
 @synthesize entityColor;
 @synthesize time;
 @synthesize strTime;

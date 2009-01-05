@@ -74,9 +74,6 @@
 }
 
 - (IBAction)messageToSelected:(id)sender {
-	if ([fReplyButton state] == NSOnState) {
-		[fReplyButton setState:NSOffState];
-	}
 	PTStatusBox *lCurrentSelection = [[fStatusController selectedObjects] lastObject];
 	NSString *lMessageTarget = [NSString stringWithFormat:@"d %@ %@", lCurrentSelection.userID, [fStatusUpdateField stringValue]];
 	[fStatusUpdateField setStringValue:lMessageTarget];
@@ -94,14 +91,11 @@
 }
 
 - (IBAction)replyToSelected:(id)sender {
-	if ([sender state] == NSOnState) {
-		[fStatusController setSelectsInsertedObjects:NO];
-		PTStatusBox *lCurrentSelection = [[fStatusController selectedObjects] lastObject];
-		NSString *replyTarget = [NSString stringWithFormat:@"@%@ %@", lCurrentSelection.userID, [fStatusUpdateField stringValue]];
-		[fStatusUpdateField setStringValue:replyTarget];
-		[fMainWindow makeFirstResponder:fStatusUpdateField];
-		[(NSText *)[fMainWindow firstResponder] setSelectedRange:NSMakeRange([[fStatusUpdateField stringValue] length], 0)];
-	} else [fStatusController setSelectsInsertedObjects:YES];
+	PTStatusBox *lCurrentSelection = [[fStatusController selectedObjects] lastObject];
+	NSString *replyTarget = [NSString stringWithFormat:@"@%@ %@", lCurrentSelection.userID, [fStatusUpdateField stringValue]];
+	[fStatusUpdateField setStringValue:replyTarget];
+	[fMainWindow makeFirstResponder:fStatusUpdateField];
+	[(NSText *)[fMainWindow firstResponder] setSelectedRange:NSMakeRange([[fStatusUpdateField stringValue] length], 0)];
 }
 
 - (IBAction)openPref:(id)sender {
@@ -120,8 +114,8 @@
 		[[fSearchView animator] setFrame:NSMakeRect(lTempRect.origin.x, lTempRect.origin.y - 21, lTempRect.size.width, 22)];
 		lTempRect = [fStatusScrollView frame];
 		[[fStatusScrollView animator] setFrame:NSMakeRect(lTempRect.origin.x, lTempRect.origin.y, lTempRect.size.width, lTempRect.size.height - 21)];
-		[fSearchBox selectText:sender];
 	}
+	[fSearchBox selectText:sender];
 }
 
 - (IBAction)closeSearchBox:(id)sender {

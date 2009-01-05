@@ -149,7 +149,9 @@
 	[self updateIndicatorAnimation];
 	if (!lIgnoreError) {
 		PTStatusBox *lErrorBox = [fStatusBoxGenerator constructErrorBox:aError];
+		NSLog(@"here");
 		[fStatusController addObject:lErrorBox];
+		NSLog(@"here2");
 		[lErrorBox release];
 	}
 }
@@ -265,17 +267,16 @@
 	} else {
 		[self updateIndicatorAnimation];
 		[fRequestDetails setObject:@"UPDATE" 
-							forKey: [fTwitterEngine getFollowedTimelineFor:[[PTPreferenceManager getInstance] userName] 
+							forKey: [fTwitterEngine getFollowedTimelineFor:[fTwitterEngine username] 
 																   sinceID:fLastUpdateID startingAtPage:0 count:100]];
 		[fRequestDetails setObject:@"MESSAGE_UPDATE" 
-							forKey: [fTwitterEngine getDirectMessagesSinceID:[fLastUpdateID intValue] == 0 ? nil : fLastMessageID
+							forKey: [fTwitterEngine getDirectMessagesSinceID:fLastMessageID
 															  startingAtPage:0]];
 	}
 }
 
 - (IBAction)postStatus:(id)sender {
 	[self updateIndicatorAnimation];
-	PTStatusBox *lCurrentSelection = [[fStatusController selectedObjects] lastObject];
 	NSArray *lSeparated = [[fStatusUpdateField stringValue] componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 	if ([lSeparated count] >= 2 && [[lSeparated objectAtIndex:0] isEqual:@"d"]) {
 		NSString *lMessageTarget;
@@ -293,10 +294,6 @@
 		[fRequestDetails setObject:@"MESSAGE" 
 							forKey:[fTwitterEngine sendDirectMessage:lMessageToSend
 																  to:lMessageTarget]];
-	} else if ([fReplyButton state] == NSOnState) {
-		[fRequestDetails setObject:@"POST" 
-							forKey:[fTwitterEngine sendUpdate:[fStatusUpdateField stringValue] 
-													inReplyTo:lCurrentSelection.updateID]];
 	} else {
 		[fRequestDetails setObject:@"POST" 
 							forKey:[fTwitterEngine sendUpdate:[fStatusUpdateField stringValue]]];
@@ -311,7 +308,6 @@
 }
 
 - (void)selectStatusBox:(PTStatusBox *)aSelection {
-	[fStatusController setSelectsInsertedObjects:YES];
 	if (!aSelection) {
 		[fWebButton setEnabled:NO];
 		[fReplyButton setEnabled:NO];

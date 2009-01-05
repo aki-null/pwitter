@@ -47,9 +47,9 @@
 		61E9997A0F0D88C800509EE8 /* PTMainWindowDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E999790F0D88C800509EE8 /* PTMainWindowDelegate.m */; };
 		61EE70640F0210C0005C42F5 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 61EE70630F0210C0005C42F5 /* libxml2.2.dylib */; };
 		61EE71400F021802005C42F5 /* PTMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 61EE713F0F021802005C42F5 /* PTMain.m */; };
-		61F2CF380F10A10800CE073B /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61F2CF360F10A10800CE073B /* MainMenu.xib */; };
 		61F2CF510F10A3DA00CE073B /* PTStatusFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 61F2CF500F10A3DA00CE073B /* PTStatusFormatter.m */; };
 		61F2CF5C0F10A52400CE073B /* PTStatusBoxGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 61F2CF5B0F10A52400CE073B /* PTStatusBoxGenerator.m */; };
+		61FCE2520F11956B00496A23 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61FCE2510F11956B00496A23 /* MainMenu.xib */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
@@ -238,7 +238,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				61F2CF360F10A10800CE073B /* MainMenu.xib */,
+				61FCE2510F11956B00496A23 /* MainMenu.xib */,
 				6131FD5F0F0E2B5A004CA960 /* dsa_pub.pem */,
 				61BD916E0F0B7C7E00F1CA33 /* default.png */,
 				612BD68F0F076F8500EF064D /* Pwitter.icns */,
@@ -397,7 +397,7 @@
 				612BD6900F076F8500EF064D /* Pwitter.icns in Resources */,
 				61BD916F0F0B7C7E00F1CA33 /* default.png in Resources */,
 				6131FD600F0E2B5A004CA960 /* dsa_pub.pem in Resources */,
-				61F2CF380F10A10800CE073B /* MainMenu.xib in Resources */,
+				61FCE2520F11956B00496A23 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -471,7 +471,7 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		61F2CF360F10A10800CE073B /* MainMenu.xib */ = {
+		61FCE2510F11956B00496A23 /* MainMenu.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				61F2CF370F10A10800CE073B /* English */,

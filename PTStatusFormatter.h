@@ -16,5 +16,7 @@
 + (void)detectReplyLinks:(NSMutableAttributedString *)aMessage;
 + (NSMutableAttributedString *)formatStatusMessage:(NSString *)aMessage;
 + (NSMutableAttributedString *)createUserLabel:(NSString *)aScreenName name:(NSString *)aName;
++ (NSMutableAttributedString *)createErrorLabel;
++ (NSMutableAttributedString *)createErrorMessage:(NSError *)aError;
 
 @end

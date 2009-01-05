@@ -9,6 +9,7 @@
 #import "PTStatusCollectionItem.h"
 #import "PTStatusEntityView.h"
 #import "PTStatusBox.h"
+#import "PTStatusTextField.h"
 
 
 @implementation PTStatusCollectionItem

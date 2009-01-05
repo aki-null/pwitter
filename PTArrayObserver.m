@@ -39,7 +39,6 @@
 	PTStatusBox *selectedBox = [[arrController selectedObjects] lastObject];
 	// inform the main program about the new selection
 	[fMainController selectStatusBox:selectedBox];
-	[fMainWindow makeFirstResponder:fMainWindow];
 }
 
 @end
