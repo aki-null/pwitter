@@ -40,6 +40,7 @@
 - (NSImage *)requestUserImage:(NSString *)aImageLocation forBox:(PTStatusBox *)aNewBox;
 - (void)selectStatusBox:(PTStatusBox *)aSelection;
 - (void)setupUpdateTimer;
+- (void)setupMessageUpdateTimer;
 - (void)openTwitterWeb;
 - (void)runInitialUpdates;
 - (void)setUpTwitterEngine;

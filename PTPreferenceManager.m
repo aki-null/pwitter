@@ -31,7 +31,9 @@
 - (void)setupPreferences {
 	fPrefData = [NSUserDefaults standardUserDefaults];
 	if ([fPrefData integerForKey:@"time_interval"] == 0)
-		[fPrefData setInteger:2 forKey:@"time_interval"];;
+		[fPrefData setInteger:2 forKey:@"time_interval"];
+	if ([fPrefData integerForKey:@"message_interval"] == 0)
+		[fPrefData setInteger:3 forKey:@"message_interval"];
 }
 
 - (void)setUserName:(NSString *)aUserName password:(NSString *)aPassword {
@@ -85,6 +87,14 @@
 
 - (int)timeInterval {
 	return [fPrefData integerForKey:@"time_interval"];
+}
+
+- (void)setMessageInterval:(int)aInterval {
+	[fPrefData setInteger:aInterval forKey:@"message_interval"];
+}
+
+- (int)messageInterval {
+	return [fPrefData integerForKey:@"message_interval"];
 }
 
 - (void)setAutoLogin:(BOOL)aFlag {

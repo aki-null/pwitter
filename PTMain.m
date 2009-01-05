@@ -39,10 +39,37 @@
 													repeats:YES] retain];
 }
 
+- (void)setupMessageUpdateTimer {
+	// stop the old timer
+	if (fMessageUpdateTimer) {
+		[fMessageUpdateTimer invalidate];
+		[fMessageUpdateTimer release];
+	}
+	// determine the timer delay
+	int lIntervalTime;
+	switch ([[PTPreferenceManager getInstance] timeInterval]) {
+		case 1:
+			lIntervalTime = 900;
+			break;
+		case 2:
+			lIntervalTime = 600;
+			break;
+		case 3:
+			lIntervalTime = 300;
+			break;
+	}
+	// create new timer
+	fMessageUpdateTimer = [[NSTimer scheduledTimerWithTimeInterval:lIntervalTime 
+															target:self 
+														  selector:@selector(runMessageUpdateFromTimer:) 
+														  userInfo:nil 
+														   repeats:YES] retain];
+}
+
 - (void)runMessageUpdateFromTimer {
 	[fRequestDetails setObject:@"MESSAGE_UPDATE" 
-						forKey: [fTwitterEngine getDirectMessagesSinceID:fLastMessageID 
-														  startingAtPage:0]];
+						forKey:[fTwitterEngine getDirectMessagesSinceID:fLastMessageID 
+														 startingAtPage:0]];
 }
 
 - (void)runUpdateFromTimer:(NSTimer *)aTimer {
@@ -64,7 +91,7 @@
 - (void)runInitialUpdates {
 	[self updateIndicatorAnimation];
 	[fRequestDetails setObject:@"MESSAGE_UPDATE" 
-						forKey: [fTwitterEngine getDirectMessagesSince:nil
+						forKey:[fTwitterEngine getDirectMessagesSince:nil
 														startingAtPage:0]];
 	[fRequestDetails setObject:@"INIT_UPDATE" 
 						forKey:[fTwitterEngine getFollowedTimelineFor:[[PTPreferenceManager getInstance] userName] 
@@ -85,11 +112,7 @@
 					   password:[[PTPreferenceManager getInstance] password]];
 	[self runInitialUpdates];
 	[self setupUpdateTimer];
-	fMessageUpdateTimer = [[NSTimer scheduledTimerWithTimeInterval:300 
-															target:self 
-														  selector:@selector(runMessageUpdateFromTimer:) 
-														  userInfo:nil 
-														   repeats:YES] retain];
+	[self setupMessageUpdateTimer];
 }
 
 - (IBAction)changeAccount:(id)sender {
@@ -107,6 +130,7 @@
 					   password:[[PTPreferenceManager getInstance] password]];
 	[self runInitialUpdates];
 	[self setupUpdateTimer];
+	[self setupMessageUpdateTimer];
 }
 
 - (void)awakeFromNib
@@ -251,7 +275,7 @@
 	[fRequestDetails removeObjectForKey:aIdentifier];
 	[self updateIndicatorAnimation];
 	if ([aMessages count] == 0) return;
-	if ([[[aMessages objectAtIndex:0] objectForKey:@"id"] isEqual: @""]) return;
+	if ([[[aMessages objectAtIndex:0] objectForKey:@"id"] isEqual:@""]) return;
 	NSDictionary *lCurrentDic;
 	NSDictionary *lLastDic = nil;
 	NSMutableArray *lTempArray = [[NSMutableArray alloc] init];
@@ -298,14 +322,14 @@
 	} else {
 		[self updateIndicatorAnimation];
 		[fRequestDetails setObject:@"UPDATE" 
-							forKey: [fTwitterEngine getFollowedTimelineFor:[fTwitterEngine username] 
+							forKey:[fTwitterEngine getFollowedTimelineFor:[fTwitterEngine username] 
 																   sinceID:fLastUpdateID startingAtPage:0 count:100]];
 		if ([[PTPreferenceManager getInstance] receiveFromNonFollowers])
 			[fRequestDetails setObject:@"REPLY_UPDATE" 
 								forKey:[fTwitterEngine getRepliesStartingAtPage:0]];
 		if (sender != self)
 			[fRequestDetails setObject:@"MESSAGE_UPDATE" 
-								forKey: [fTwitterEngine getDirectMessagesSinceID:fLastMessageID 
+								forKey:[fTwitterEngine getDirectMessagesSinceID:fLastMessageID 
 																  startingAtPage:0]];
 	}
 }

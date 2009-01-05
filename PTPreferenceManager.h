@@ -24,6 +24,8 @@
 - (BOOL)receiveFromNonFollowers;
 - (void)setTimeInterval:(int)aInterval;
 - (int)timeInterval;
+- (void)setMessageInterval:(int)aInterval;
+- (int)messageInterval;
 - (void)setAutoLogin:(BOOL)aFlag;
 - (BOOL)autoLogin;
 

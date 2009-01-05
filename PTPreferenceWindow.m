@@ -19,6 +19,7 @@
 	[fUserName setStringValue:lTempUserName];
 	[[PTPreferenceManager getInstance] alwaysOnTop] ? [fAlwaysOnTop setState:NSOnState] : [fAlwaysOnTop setState:NSOffState];
 	[fTimeInterval selectItemAtIndex:[[PTPreferenceManager getInstance] timeInterval] - 1];
+	[fMessageUpdateInterval selectItemAtIndex:[[PTPreferenceManager getInstance] messageInterval] - 1];
 	[fPassword setStringValue:@""];
 	[fMainWindow setFloatingPanel:[[PTPreferenceManager getInstance] alwaysOnTop]];
 	[[PTPreferenceManager getInstance] autoLogin] ? [fAutoLogin setState:NSOnState] : [fAutoLogin setState:NSOffState];
@@ -37,6 +38,10 @@
 	if ([[PTPreferenceManager getInstance] timeInterval] != [fTimeInterval indexOfSelectedItem] + 1) {
 		[[PTPreferenceManager getInstance] setTimeInterval:[fTimeInterval indexOfSelectedItem] + 1];
 		[fMainController setupUpdateTimer];
+	}
+	if ([[PTPreferenceManager getInstance] messageInterval] != [fMessageUpdateInterval indexOfSelectedItem] + 1) {
+		[[PTPreferenceManager getInstance] setMessageInterval:[fMessageUpdateInterval indexOfSelectedItem] + 1];
+		[fMainController setupMessageUpdateTimer];
 	}
 	if ([[fPassword stringValue] length] != 0) {
 		[[PTPreferenceManager getInstance] setUserName:[fUserName stringValue] 
