@@ -22,10 +22,17 @@
 	[fPassword setStringValue:@""];
 	[fMainWindow setFloatingPanel:[[PTPreferenceManager getInstance] alwaysOnTop]];
 	[[PTPreferenceManager getInstance] autoLogin] ? [fAutoLogin setState:NSOnState] : [fAutoLogin setState:NSOffState];
+	[[PTPreferenceManager getInstance] receiveFromNonFollowers] ? [fReceiveFromNonFollowers setState:NSOnState] : [fReceiveFromNonFollowers setState:NSOffState];
 }
 
 - (IBAction)pressOK:(id)sender {
+	BOOL fShouldReset = NO;
 	[[PTPreferenceManager getInstance] setAlwaysOnTop:[fAlwaysOnTop state] == NSOnState];
+	BOOL lNonFollower = [fReceiveFromNonFollowers state] == NSOnState;
+	if ([[PTPreferenceManager getInstance] receiveFromNonFollowers] != lNonFollower) {
+		[[PTPreferenceManager getInstance] setReceiveFromNonFollowers:lNonFollower];
+		fShouldReset = YES;
+	}
 	[[PTPreferenceManager getInstance] setAutoLogin:[fAutoLogin state] == NSOnState];
 	if ([[PTPreferenceManager getInstance] timeInterval] != [fTimeInterval indexOfSelectedItem] + 1) {
 		[[PTPreferenceManager getInstance] setTimeInterval:[fTimeInterval indexOfSelectedItem] + 1];
@@ -34,8 +41,9 @@
 	if ([[fPassword stringValue] length] != 0) {
 		[[PTPreferenceManager getInstance] setUserName:[fUserName stringValue] 
 											  password:[fPassword stringValue]];
-		[fMainController changeAccount:self];
+		fShouldReset = YES;
 	}
+	if (fShouldReset) [fMainController changeAccount:self];
 	[fMainWindow setFloatingPanel:[[PTPreferenceManager getInstance] alwaysOnTop]];
 	[NSApp endSheet:self];
 }

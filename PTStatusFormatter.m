@@ -12,7 +12,7 @@
 @implementation PTStatusFormatter
 
 + (void)processLinks:(NSMutableAttributedString *)aTargetString {
-	NSString* lString = [aTargetString string];
+	NSString *lString = [aTargetString string];
 	NSRange lSearchRange = NSMakeRange(0, [lString length]);
 	NSRange lFoundRange;
 	lFoundRange = [lString rangeOfString:@"http://" options:0 range:lSearchRange];
@@ -59,12 +59,10 @@
 + (NSMutableAttributedString *)formatStatusMessage:(NSString *)aMessage {
 	NSString *lUnescaped = (NSString *)CFXMLCreateStringByUnescapingEntities(nil, (CFStringRef)aMessage, nil);
 	NSMutableAttributedString *lNewMessage = [[[NSMutableAttributedString alloc] initWithString:lUnescaped] autorelease];
-	[lNewMessage addAttribute:NSForegroundColorAttributeName 
-						value:[NSColor whiteColor] 
-						range:NSMakeRange(0, [lNewMessage length])];
-	[lNewMessage addAttribute:NSFontAttributeName 
-						value:[NSFont fontWithName:@"Helvetica" size:10.0] 
-						range:NSMakeRange(0, [lNewMessage length])];
+	NSDictionary *lMessageAttributes = [NSDictionary dictionaryWithObjectsAndKeys:[NSColor whiteColor], NSForegroundColorAttributeName, 
+										[NSFont fontWithName:@"Helvetica" size:10.0], NSFontAttributeName, 
+										nil];
+	[lNewMessage addAttributes:lMessageAttributes range:NSMakeRange(0, [lNewMessage length])];
 	[PTStatusFormatter processLinks:lNewMessage];
 	[PTStatusFormatter detectReplyLinks:lNewMessage];
 	return lNewMessage;
@@ -84,26 +82,19 @@
 
 + (NSMutableAttributedString *)createErrorLabel {
 	NSMutableAttributedString *lErrorLabel = [[[NSMutableAttributedString alloc] initWithString:@"Twitter Error:"] autorelease];
-	[lErrorLabel addAttribute:NSForegroundColorAttributeName 
-						value:[NSColor whiteColor] 
-						range:NSMakeRange(0, [lErrorLabel length])];
-	[lErrorLabel addAttribute:NSUnderlineStyleAttributeName 
-						value:[NSNumber numberWithInt:NSSingleUnderlineStyle] 
-						range:NSMakeRange(0, [lErrorLabel length])];
+	NSDictionary *lMessageAttributes = [NSDictionary dictionaryWithObjectsAndKeys:[NSColor whiteColor], NSForegroundColorAttributeName, 
+										[NSNumber numberWithInt:NSSingleUnderlineStyle], NSUnderlineStyleAttributeName, 
+										nil];
+	[lErrorLabel addAttributes:lMessageAttributes range:NSMakeRange(0, [lErrorLabel length])];
 	return lErrorLabel;
 }
 
 + (NSMutableAttributedString *)createErrorMessage:(NSError *)aError {
 	NSMutableAttributedString *lFinalString = [[[NSMutableAttributedString alloc] initWithString:[aError localizedDescription]] autorelease];
-	[lFinalString addAttribute:NSForegroundColorAttributeName 
-						 value:[NSColor whiteColor] 
-						 range:NSMakeRange(0, [lFinalString length])];
-	[lFinalString addAttribute:NSFontAttributeName 
-						 value:[NSNumber numberWithInt:NSSingleUnderlineStyle] 
-						 range:NSMakeRange(0, [lFinalString length])];
-	[lFinalString addAttribute:NSFontAttributeName 
-						 value:[NSFont fontWithName:@"Helvetica" size:10.0] 
-						 range:NSMakeRange(0, [lFinalString length])];
+	NSDictionary *lMessageAttributes = [NSDictionary dictionaryWithObjectsAndKeys:[NSColor whiteColor], NSForegroundColorAttributeName, 
+										[NSFont fontWithName:@"Helvetica" size:10.0], NSFontAttributeName, 
+										nil];
+	[lFinalString addAttributes:lMessageAttributes range:NSMakeRange(0, [lFinalString length])];
 	return lFinalString;
 }
 

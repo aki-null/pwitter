@@ -20,6 +20,8 @@
 - (NSString *)password;
 - (void)setAlwaysOnTop:(BOOL)aFlag;
 - (BOOL)alwaysOnTop;
+- (void)setReceiveFromNonFollowers:(BOOL)aFlag;
+- (BOOL)receiveFromNonFollowers;
 - (void)setTimeInterval:(int)aInterval;
 - (int)timeInterval;
 - (void)setAutoLogin:(BOOL)aFlag;

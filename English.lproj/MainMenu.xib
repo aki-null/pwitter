@@ -9,6 +9,7 @@
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<integer value="372"/>
+			<integer value="539"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1265,7 +1266,7 @@
 				<nil key="NSViewClass"/>
 				<string key="NSWindowContentMaxSize">{3.40282e+38, 3.40282e+38}</string>
 				<object class="NSView" key="NSWindowView" id="507017274">
-					<nil key="NSNextResponder"/>
+					<reference key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
 					<object class="NSMutableArray" key="NSSubviews">
 						<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1286,7 +1287,7 @@
 											<object class="NSButton" id="950589982">
 												<reference key="NSNextResponder" ref="324604553"/>
 												<int key="NSvFlags">268</int>
-												<string key="NSFrame">{{14, 61}, {126, 18}}</string>
+												<string key="NSFrame">{{14, 68}, {126, 18}}</string>
 												<reference key="NSSuperview" ref="324604553"/>
 												<bool key="NSEnabled">YES</bool>
 												<object class="NSButtonCell" key="NSCell" id="251604495">
@@ -1295,7 +1296,7 @@
 													<string key="NSContents">Always on top</string>
 													<reference key="NSSupport" ref="1062233408"/>
 													<reference key="NSControlView" ref="950589982"/>
-													<int key="NSButtonFlags">104612351</int>
+													<int key="NSButtonFlags">1211912703</int>
 													<int key="NSButtonFlags2">2</int>
 													<object class="NSCustomResource" key="NSNormalImage" id="1037762919">
 														<string key="NSClassName">NSImage</string>
@@ -1313,7 +1314,7 @@
 											<object class="NSPopUpButton" id="279678189">
 												<reference key="NSNextResponder" ref="324604553"/>
 												<int key="NSvFlags">268</int>
-												<string key="NSFrame">{{155, 26}, {109, 26}}</string>
+												<string key="NSFrame">{{155, 18}, {109, 26}}</string>
 												<reference key="NSSuperview" ref="324604553"/>
 												<bool key="NSEnabled">YES</bool>
 												<object class="NSPopUpButtonCell" key="NSCell" id="501096162">
@@ -1329,7 +1330,7 @@
 													<int key="NSPeriodicInterval">75</int>
 													<object class="NSMenuItem" key="NSMenuItem" id="107877388">
 														<reference key="NSMenu" ref="277844283"/>
-														<string key="NSTitle">2 minutes</string>
+														<string key="NSTitle">3 minutes</string>
 														<string key="NSKeyEquiv"/>
 														<int key="NSKeyEquivModMask">1048576</int>
 														<int key="NSMnemonicLoc">2147483647</int>
@@ -1347,7 +1348,7 @@
 															<bool key="EncodedWithXMLCoder">YES</bool>
 															<object class="NSMenuItem" id="1063604336">
 																<reference key="NSMenu" ref="277844283"/>
-																<string key="NSTitle">3 minutes</string>
+																<string key="NSTitle">5 minutes</string>
 																<string key="NSKeyEquiv"/>
 																<int key="NSKeyEquivModMask">1048576</int>
 																<int key="NSMnemonicLoc">2147483647</int>
@@ -1363,7 +1364,7 @@
 															<reference ref="107877388"/>
 															<object class="NSMenuItem" id="375301848">
 																<reference key="NSMenu" ref="277844283"/>
-																<string key="NSTitle">1.5 minute</string>
+																<string key="NSTitle">2 minute</string>
 																<string key="NSKeyEquiv"/>
 																<int key="NSKeyEquivModMask">1048576</int>
 																<int key="NSMnemonicLoc">2147483647</int>
@@ -1385,7 +1386,7 @@
 											<object class="NSTextField" id="228671944">
 												<reference key="NSNextResponder" ref="324604553"/>
 												<int key="NSvFlags">268</int>
-												<string key="NSFrame">{{13, 33}, {140, 17}}</string>
+												<string key="NSFrame">{{13, 25}, {140, 17}}</string>
 												<reference key="NSSuperview" ref="324604553"/>
 												<bool key="NSEnabled">YES</bool>
 												<object class="NSTextFieldCell" key="NSCell" id="564733797">
@@ -1401,6 +1402,28 @@
 														<string key="NSColorName">controlTextColor</string>
 														<reference key="NSColor" ref="725708081"/>
 													</object>
+												</object>
+											</object>
+											<object class="NSButton" id="476733705">
+												<reference key="NSNextResponder" ref="324604553"/>
+												<int key="NSvFlags">268</int>
+												<string key="NSFrame">{{14, 48}, {246, 18}}</string>
+												<reference key="NSSuperview" ref="324604553"/>
+												<bool key="NSEnabled">YES</bool>
+												<object class="NSButtonCell" key="NSCell" id="712334933">
+													<int key="NSCellFlags">67239424</int>
+													<int key="NSCellFlags2">0</int>
+													<string key="NSContents">Receive replies from non-followers</string>
+													<reference key="NSSupport" ref="1062233408"/>
+													<reference key="NSControlView" ref="476733705"/>
+													<int key="NSButtonFlags">1211912703</int>
+													<int key="NSButtonFlags2">130</int>
+													<reference key="NSNormalImage" ref="1037762919"/>
+													<reference key="NSAlternateImage" ref="1063686392"/>
+													<string key="NSAlternateContents"/>
+													<string key="NSKeyEquivalent"/>
+													<int key="NSPeriodicDelay">200</int>
+													<int key="NSPeriodicInterval">25</int>
 												</object>
 											</object>
 										</object>
@@ -1575,6 +1598,7 @@
 						</object>
 					</object>
 					<string key="NSFrameSize">{323, 199}</string>
+					<reference key="NSSuperview"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>
 				<string key="NSMaxSize">{3.40282e+38, 3.40282e+38}</string>
@@ -2892,6 +2916,14 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 					</object>
 					<int key="connectionID">1207</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">fReceiveFromNonFollowers</string>
+						<reference key="source" ref="259615924"/>
+						<reference key="destination" ref="476733705"/>
+					</object>
+					<int key="connectionID">1221</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -3454,6 +3486,7 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 							<reference ref="950589982"/>
 							<reference ref="279678189"/>
 							<reference ref="228671944"/>
+							<reference ref="476733705"/>
 						</object>
 						<reference key="parent" ref="898073496"/>
 					</object>
@@ -4139,6 +4172,20 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 						<reference key="object" ref="792015308"/>
 						<reference key="parent" ref="571067417"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">1219</int>
+						<reference key="object" ref="476733705"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="712334933"/>
+						</object>
+						<reference key="parent" ref="324604553"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">1220</int>
+						<reference key="object" ref="712334933"/>
+						<reference key="parent" ref="476733705"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -4186,6 +4233,8 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 					<string>1182.IBPluginDependency</string>
 					<string>1183.IBPluginDependency</string>
 					<string>1184.IBPluginDependency</string>
+					<string>1219.IBPluginDependency</string>
+					<string>1220.IBPluginDependency</string>
 					<string>129.IBPluginDependency</string>
 					<string>129.ImportedFromIB2</string>
 					<string>130.IBPluginDependency</string>
@@ -4388,6 +4437,7 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 					<string>791.IBPluginDependency</string>
 					<string>796.IBPluginDependency</string>
 					<string>797.IBPluginDependency</string>
+					<string>798.IBEditorWindowLastContentRect</string>
 					<string>798.IBPluginDependency</string>
 					<string>798.editorWindowContentRectSynchronizationRect</string>
 					<string>799.IBPluginDependency</string>
@@ -4465,6 +4515,8 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.binarymethod.BGHUDAppKitPlugin</string>
 					<string>com.binarymethod.BGHUDAppKitPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -4683,6 +4735,7 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>{{316, 553}, {137, 63}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>{{499, 329}, {143, 63}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -4744,7 +4797,7 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">1218</int>
+			<int key="maxID">1221</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -5038,11 +5091,13 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 							<string>fMainController</string>
 							<string>fMainWindow</string>
 							<string>fPassword</string>
+							<string>fReceiveFromNonFollowers</string>
 							<string>fTimeInterval</string>
 							<string>fUserName</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>

@@ -71,6 +71,14 @@
 	return [fPrefData boolForKey:@"always_on_top"];
 }
 
+- (void)setReceiveFromNonFollowers:(BOOL)aFlag {
+	[fPrefData setBool:aFlag forKey:@"receive_updates_from_non_followers"];
+}
+
+- (BOOL)receiveFromNonFollowers {
+	return [fPrefData boolForKey:@"receive_updates_from_non_followers"];
+}
+
 - (void)setTimeInterval:(int)aInterval {
 	[fPrefData setInteger:aInterval forKey:@"time_interval"];
 }

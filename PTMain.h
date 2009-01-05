@@ -24,6 +24,7 @@
 	MGTwitterEngine *fTwitterEngine;
 	NSString *fLastUpdateID;
 	NSString *fLastMessageID;
+	long long int fLastReplyID;
 	NSImage *fDefaultImage;
 	NSMutableDictionary *fRequestDetails;
 	NSMutableDictionary *fImageLocationForReq;
@@ -31,6 +32,7 @@
 	NSMutableDictionary *fStatusBoxesForReq;
 	NSMutableDictionary *fUserImageCache;
 	NSTimer *fUpdateTimer;
+	NSTimer *fMessageUpdateTimer;
 }
 - (IBAction)updateTimeline:(id)sender;
 - (IBAction)postStatus:(id)sender;

@@ -17,6 +17,7 @@
     IBOutlet id fMainController;
     IBOutlet id fMainWindow;
     IBOutlet id fAutoLogin;
+    IBOutlet id fReceiveFromNonFollowers;
 }
 - (void)loadPreferences;
 - (IBAction)pressOK:(id)sender;
