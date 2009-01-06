@@ -66,7 +66,22 @@
 														   repeats:YES] retain];
 }
 
-- (void)runMessageUpdateFromTimer {
+- (void)updateIndicatorAnimation {
+	if ([fRequestDetails count] == 0) {
+		if ([fProgressBar isHidden]) {
+			[fProgressBar startAnimation:self];
+			[fProgressBar setHidden:NO];
+			[fUpdateButton setEnabled:NO];
+		} else {
+			[fProgressBar stopAnimation:self];
+			[fProgressBar setHidden:YES];
+			[fUpdateButton setEnabled:YES];
+		}
+	}
+}
+
+- (void)runMessageUpdateFromTimer:(NSTimer *)aTimer {
+	[self updateIndicatorAnimation];
 	[fRequestDetails setObject:@"MESSAGE_UPDATE" 
 						forKey:[fTwitterEngine getDirectMessagesSinceID:fLastMessageID 
 														 startingAtPage:0]];
@@ -74,18 +89,6 @@
 
 - (void)runUpdateFromTimer:(NSTimer *)aTimer {
 	[self updateTimeline:aTimer];
-}
-
-- (void)updateIndicatorAnimation {
-	if ([fRequestDetails count] == 0) {
-		if ([fProgressBar isHidden]) {
-			[fProgressBar startAnimation:self];
-			[fProgressBar setHidden:NO];
-		} else {
-			[fProgressBar stopAnimation:self];
-			[fProgressBar setHidden:YES];
-		}
-	}
 }
 
 - (void)runInitialUpdates {
@@ -141,6 +144,7 @@
 	fImageReqForLocation = [[NSMutableDictionary alloc] init];
 	fStatusBoxesForReq = [[NSMutableDictionary alloc] init];
 	fUserImageCache = [[NSMutableDictionary alloc] init];
+	fIgnoreUpdate = [[NSMutableDictionary alloc] init];
 	fDefaultImage = [NSImage imageNamed:@"default.png"];
 }
 
@@ -154,6 +158,7 @@
 	if (fTwitterEngine) [fTwitterEngine release];
 	if (fLastUpdateID) [fLastUpdateID release];
 	if (fLastMessageID) [fLastMessageID release];
+	if (fIgnoreUpdate) [fIgnoreUpdate release];
 	if (fUpdateTimer) {
 		[fUpdateTimer invalidate];
 		[fUpdateTimer release];
@@ -191,9 +196,7 @@
 	[self updateIndicatorAnimation];
 	if (!lIgnoreError) {
 		PTStatusBox *lErrorBox = [fStatusBoxGenerator constructErrorBox:aError];
-		NSLog(@"here");
 		[fStatusController addObject:lErrorBox];
-		NSLog(@"here2");
 		[lErrorBox release];
 	}
 }
@@ -230,41 +233,47 @@
 	NSMutableArray *lTempBoxes = [[NSMutableArray alloc] init];
 	long long int lLastReplyID = 0;
 	for (lCurrentStatus in aStatuses) {
-		PTStatusBox *lBoxToAdd = nil;
-		if ([[lCurrentStatus objectForKey:@"in_reply_to_screen_name"] isEqualToString:[fTwitterEngine username]]) {
-			if ([fRequestDetails objectForKey:aIdentifier] == @"REPLY_UPDATE") {
-				long long int lCurrentUpdateID = [[lCurrentStatus objectForKey:@"id"] longLongValue];
-				if (fLastReplyID != 0) {
-					if (lCurrentUpdateID > fLastReplyID) {
+		if ([fIgnoreUpdate objectForKey:[lCurrentStatus objectForKey:@"id"]] != @"IGNORE") {
+			PTStatusBox *lBoxToAdd = nil;
+			if ([[lCurrentStatus objectForKey:@"in_reply_to_screen_name"] isEqualToString:[fTwitterEngine username]]) {
+				if ([fRequestDetails objectForKey:aIdentifier] == @"REPLY_UPDATE") {
+					long long int lCurrentUpdateID = [[lCurrentStatus objectForKey:@"id"] longLongValue];
+					if (fLastReplyID != 0) {
+						if (lCurrentUpdateID > fLastReplyID) {
+							lBoxToAdd = [fStatusBoxGenerator constructStatusBox:lCurrentStatus isReply:YES];
+							if (lLastReplyID < lCurrentUpdateID) lLastReplyID = lCurrentUpdateID;
+						}
+					} else {
 						lBoxToAdd = [fStatusBoxGenerator constructStatusBox:lCurrentStatus isReply:YES];
 						if (lLastReplyID < lCurrentUpdateID) lLastReplyID = lCurrentUpdateID;
 					}
-				} else {
+				} else if (![[PTPreferenceManager getInstance] receiveFromNonFollowers])
 					lBoxToAdd = [fStatusBoxGenerator constructStatusBox:lCurrentStatus isReply:YES];
-					if (lLastReplyID < lCurrentUpdateID) lLastReplyID = lCurrentUpdateID;
-				}
-			} else if (![[PTPreferenceManager getInstance] receiveFromNonFollowers])
-				lBoxToAdd = [fStatusBoxGenerator constructStatusBox:lCurrentStatus isReply:YES];
-		} else lBoxToAdd = [fStatusBoxGenerator constructStatusBox:lCurrentStatus isReply:NO];
-		if (lBoxToAdd) {
-			[lTempBoxes addObject:lBoxToAdd];
-			[lBoxToAdd release];
+			} else lBoxToAdd = [fStatusBoxGenerator constructStatusBox:lCurrentStatus isReply:NO];
+			if (lBoxToAdd) {
+				[lTempBoxes addObject:lBoxToAdd];
+				[lBoxToAdd release];
+			}
+		} else {
+			[fIgnoreUpdate removeObjectForKey:[lCurrentStatus objectForKey:@"id"]];
 		}
 		if (!lLastStatus) lLastStatus = lCurrentStatus;
 	}
 	if (lLastReplyID != 0) fLastReplyID = lLastReplyID;
 	[fStatusController addObjects:lTempBoxes];
 	[lTempBoxes release];
-	if (fLastUpdateID) {
-		if ([fLastUpdateID longLongValue] < [[lLastStatus objectForKey:@"id"] longLongValue]) {
-			[fLastUpdateID release];
-			fLastUpdateID = [[NSString alloc] initWithString:[lLastStatus objectForKey:@"id"]];
-		}
-	} else fLastUpdateID = [[NSString alloc] initWithString:[lLastStatus objectForKey:@"id"]];
 	if ([fRequestDetails objectForKey:aIdentifier] == @"POST") {
+		[fIgnoreUpdate setObject:@"IGNORE" forKey:[[aStatuses lastObject] objectForKey:@"id"]];
 		[fStatusUpdateField setEnabled:YES];
 		[fStatusUpdateField setStringValue:@""];
 		[fTextLevelIndicator setIntValue:140];
+	} else {
+		if (fLastUpdateID) {
+			if ([fLastUpdateID longLongValue] < [[lLastStatus objectForKey:@"id"] longLongValue]) {
+				[fLastUpdateID release];
+				fLastUpdateID = [[NSString alloc] initWithString:[lLastStatus objectForKey:@"id"]];
+			}
+		} else fLastUpdateID = [[NSString alloc] initWithString:[lLastStatus objectForKey:@"id"]];
 	}
 	[fRequestDetails removeObjectForKey:aIdentifier];
 	[self updateIndicatorAnimation];

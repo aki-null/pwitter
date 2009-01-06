@@ -21,6 +21,7 @@
 	IBOutlet id fMessageButton;
 	IBOutlet id fProgressBar;
 	IBOutlet id fStatusBoxGenerator;
+	IBOutlet id fUpdateButton;
 	MGTwitterEngine *fTwitterEngine;
 	NSString *fLastUpdateID;
 	NSString *fLastMessageID;
@@ -31,6 +32,7 @@
 	NSMutableDictionary *fImageReqForLocation;
 	NSMutableDictionary *fStatusBoxesForReq;
 	NSMutableDictionary *fUserImageCache;
+	NSMutableDictionary *fIgnoreUpdate;
 	NSTimer *fUpdateTimer;
 	NSTimer *fMessageUpdateTimer;
 }
