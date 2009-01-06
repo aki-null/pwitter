@@ -285,7 +285,7 @@
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 167}, {283, 760}}</string>
+							<string>{{0, 82}, {283, 760}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -320,7 +320,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>Info.plist</string>
+								<string>PTMain.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -328,11 +328,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>Info.plist</string>
+										<string>PTMain.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>61641A2A0F1334CB0046D5B6</string>
+										<string>617E1A940F133E6300CB029C</string>
 										<key>history</key>
 										<array>
 											<string>617C7CB90F104DEA00F0C195</string>
@@ -367,8 +367,8 @@
 											<string>6112931F0F13122F002487B5</string>
 											<string>611293200F13122F002487B5</string>
 											<string>61B04BF10F132CDF001E3DAE</string>
+											<string>617E1A8E0F133ACD00CB029C</string>
 											<string>6193C27F0F13304100D05F7C</string>
-											<string>613E9A200F13306A006BF225</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -406,6 +406,7 @@
 											<string>61FCE2590F11983800496A23</string>
 											<string>61E6E3610F12310200042136</string>
 											<string>618D20E90F12C7DC00373C14</string>
+											<string>617E1A8F0F133ACD00CB029C</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -463,9 +464,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>61641A270F1334A30046D5B6</string>
+				<string>617E1A910F133ACD00CB029C</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>61641A280F1334A30046D5B6</string>
+				<string>617E1A920F133ACD00CB029C</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -599,6 +600,8 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>1C78EAAD065D492600B07095</string>
+		<string>1CD10A99069EF8BA00B06720</string>
 		<string>61EE71270F02179E005C42F5</string>
 		<string>/Users/Aki/Documents/GitRepos/Pwitter/Pwitter.xcodeproj</string>
 	</array>
@@ -680,7 +683,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>61EE71270F02179E005C42F5</string>
-				<string>61641A2B0F1334CB0046D5B6</string>
+				<string>617E1A950F133E6300CB029C</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -800,13 +803,13 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1CD10A99069EF8BA00B06720</string>
-				<string>6113BB380F13163200CB55AE</string>
+				<string>617E1A960F133E6300CB029C</string>
 				<string>1C162984064C10D400B95A72</string>
-				<string>6113BB390F13163200CB55AE</string>
-				<string>6113BB3A0F13163200CB55AE</string>
-				<string>6113BB3B0F13163200CB55AE</string>
-				<string>6113BB3C0F13163200CB55AE</string>
-				<string>6113BB3D0F13163200CB55AE</string>
+				<string>617E1A970F133E6300CB029C</string>
+				<string>617E1A980F133E6300CB029C</string>
+				<string>617E1A990F133E6300CB029C</string>
+				<string>617E1A9A0F133E6300CB029C</string>
+				<string>617E1A9B0F133E6300CB029C</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debugV3</string>
@@ -960,7 +963,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C78EAAD065D492600B07095</string>
-				<string>61D741F30F12FC06006C259B</string>
+				<string>617E1A9C0F133E6300CB029C</string>
 				<string>1C78EAAC065D492600B07095</string>
 			</array>
 			<key>ToolbarConfiguration</key>
