@@ -16,6 +16,10 @@
 		6134601A0F0602AB00B422A6 /* PTArrayObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 613460190F0602AB00B422A6 /* PTArrayObserver.m */; };
 		613B64F70F0A45B500B67438 /* PTStatusImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 613B64F60F0A45B500B67438 /* PTStatusImageView.m */; };
 		614393A90F09D23400971122 /* PTEntityBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 614393A80F09D23400971122 /* PTEntityBackground.m */; };
+		615B85920F1366DC0005E38F /* Growl Registration Ticket.growlRegDict in Resources */ = {isa = PBXBuildFile; fileRef = 615B85910F1366DC0005E38F /* Growl Registration Ticket.growlRegDict */; };
+		615B85A30F136A2A0005E38F /* Growl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 615B85A20F136A2A0005E38F /* Growl.framework */; };
+		615B85B90F136A4A0005E38F /* Growl.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 615B85A20F136A2A0005E38F /* Growl.framework */; };
+		615B85CF0F136BB30005E38F /* PTGrowlNotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 615B85CE0F136BB30005E38F /* PTGrowlNotificationManager.m */; };
 		615D39770F0B016F0086E57F /* PTCharacterCounter.m in Sources */ = {isa = PBXBuildFile; fileRef = 615D39760F0B016F0086E57F /* PTCharacterCounter.m */; };
 		6190A09A0F0AE46100E4F12E /* BGHUDAppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6190A0990F0AE46100E4F12E /* BGHUDAppKit.framework */; };
 		6190A0CB0F0AE55000E4F12E /* BGHUDAppKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6190A0990F0AE46100E4F12E /* BGHUDAppKit.framework */; };
@@ -62,6 +66,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				615B85B90F136A4A0005E38F /* Growl.framework in CopyFiles */,
 				6131FD5B0F0E297D004CA960 /* Sparkle.framework in CopyFiles */,
 				6190A0CB0F0AE55000E4F12E /* BGHUDAppKit.framework in CopyFiles */,
 			);
@@ -90,6 +95,10 @@
 		613B64F60F0A45B500B67438 /* PTStatusImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTStatusImageView.m; sourceTree = "<group>"; };
 		614393A70F09D23400971122 /* PTEntityBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTEntityBackground.h; sourceTree = "<group>"; };
 		614393A80F09D23400971122 /* PTEntityBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTEntityBackground.m; sourceTree = "<group>"; };
+		615B85910F1366DC0005E38F /* Growl Registration Ticket.growlRegDict */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Growl Registration Ticket.growlRegDict"; sourceTree = "<group>"; };
+		615B85A20F136A2A0005E38F /* Growl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Growl.framework; sourceTree = "<group>"; };
+		615B85CD0F136BB30005E38F /* PTGrowlNotificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTGrowlNotificationManager.h; sourceTree = "<group>"; };
+		615B85CE0F136BB30005E38F /* PTGrowlNotificationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTGrowlNotificationManager.m; sourceTree = "<group>"; };
 		615D39750F0B016F0086E57F /* PTCharacterCounter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTCharacterCounter.h; sourceTree = "<group>"; };
 		615D39760F0B016F0086E57F /* PTCharacterCounter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTCharacterCounter.m; sourceTree = "<group>"; };
 		6190A0990F0AE46100E4F12E /* BGHUDAppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BGHUDAppKit.framework; sourceTree = "<group>"; };
@@ -168,6 +177,7 @@
 				61D9FDFD0F04B41C003CC890 /* Security.framework in Frameworks */,
 				6190A09A0F0AE46100E4F12E /* BGHUDAppKit.framework in Frameworks */,
 				6131FD4A0F0E28C7004CA960 /* Sparkle.framework in Frameworks */,
+				615B85A30F136A2A0005E38F /* Growl.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -187,6 +197,7 @@
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				615B85A20F136A2A0005E38F /* Growl.framework */,
 				6131FD490F0E28C7004CA960 /* Sparkle.framework */,
 				61D9FDFC0F04B41C003CC890 /* Security.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
@@ -243,6 +254,7 @@
 				61BD916E0F0B7C7E00F1CA33 /* default.png */,
 				612BD68F0F076F8500EF064D /* Pwitter.icns */,
 				61A50F510F063ADB009050CC /* console.png */,
+				615B85910F1366DC0005E38F /* Growl Registration Ticket.growlRegDict */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
 			);
@@ -343,6 +355,8 @@
 				61F2CF500F10A3DA00CE073B /* PTStatusFormatter.m */,
 				61F2CF5A0F10A52400CE073B /* PTStatusBoxGenerator.h */,
 				61F2CF5B0F10A52400CE073B /* PTStatusBoxGenerator.m */,
+				615B85CD0F136BB30005E38F /* PTGrowlNotificationManager.h */,
+				615B85CE0F136BB30005E38F /* PTGrowlNotificationManager.m */,
 			);
 			name = Pwitter;
 			sourceTree = "<group>";
@@ -398,6 +412,7 @@
 				61BD916F0F0B7C7E00F1CA33 /* default.png in Resources */,
 				6131FD600F0E2B5A004CA960 /* dsa_pub.pem in Resources */,
 				61FCE2520F11956B00496A23 /* MainMenu.xib in Resources */,
+				615B85920F1366DC0005E38F /* Growl Registration Ticket.growlRegDict in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -457,6 +472,7 @@
 				61F2CF510F10A3DA00CE073B /* PTStatusFormatter.m in Sources */,
 				61F2CF5C0F10A52400CE073B /* PTStatusBoxGenerator.m in Sources */,
 				61E70AF00F10BA17002526FA /* PTMainActionHandler.m in Sources */,
+				615B85CF0F136BB30005E38F /* PTGrowlNotificationManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

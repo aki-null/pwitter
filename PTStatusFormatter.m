@@ -58,44 +58,52 @@
 
 + (NSMutableAttributedString *)formatStatusMessage:(NSString *)aMessage {
 	NSString *lUnescaped = (NSString *)CFXMLCreateStringByUnescapingEntities(nil, (CFStringRef)aMessage, nil);
-	NSMutableAttributedString *lNewMessage = [[[NSMutableAttributedString alloc] initWithString:lUnescaped] autorelease];
+	NSMutableAttributedString *lNewMessage = [[NSMutableAttributedString alloc] initWithString:lUnescaped];
+	[lNewMessage beginEditing];
 	NSDictionary *lMessageAttributes = [NSDictionary dictionaryWithObjectsAndKeys:[NSColor whiteColor], NSForegroundColorAttributeName, 
 										[NSFont fontWithName:@"Helvetica" size:10.0], NSFontAttributeName, 
 										nil];
 	[lNewMessage addAttributes:lMessageAttributes range:NSMakeRange(0, [lNewMessage length])];
 	[PTStatusFormatter processLinks:lNewMessage];
 	[PTStatusFormatter detectReplyLinks:lNewMessage];
-	return lNewMessage;
+	[lNewMessage endEditing];
+	return [lNewMessage autorelease];
 }
 
 + (NSMutableAttributedString *)createUserLabel:(NSString *)aScreenName name:(NSString *)aName {
 	NSString *lTempUserLabel = [NSString stringWithFormat:@"%@ / %@", aScreenName, aName];
-	NSMutableAttributedString *lUserLabel = [[[NSMutableAttributedString alloc] initWithString:lTempUserLabel] autorelease];
+	NSMutableAttributedString *lUserLabel = [[NSMutableAttributedString alloc] initWithString:lTempUserLabel];
+	[lUserLabel beginEditing];
 	NSURL *lUrl = [NSURL URLWithString:[NSString stringWithFormat:@"http://twitter.com/%@", aScreenName]];
 	NSDictionary *lLinkAttributes = [NSDictionary dictionaryWithObjectsAndKeys:lUrl, NSLinkAttributeName,
 									 [NSNumber numberWithInt:NSSingleUnderlineStyle], NSUnderlineStyleAttributeName,
 									 [NSColor whiteColor], NSForegroundColorAttributeName,
 									 nil];
 	[lUserLabel addAttributes:lLinkAttributes range:NSMakeRange(0, [lUserLabel length])];
-	return lUserLabel;
+	[lUserLabel endEditing];
+	return [lUserLabel autorelease];
 }
 
 + (NSMutableAttributedString *)createErrorLabel {
-	NSMutableAttributedString *lErrorLabel = [[[NSMutableAttributedString alloc] initWithString:@"Twitter Error:"] autorelease];
+	NSMutableAttributedString *lErrorLabel = [[NSMutableAttributedString alloc] initWithString:@"Twitter Error:"];
+	[lErrorLabel beginEditing];
 	NSDictionary *lMessageAttributes = [NSDictionary dictionaryWithObjectsAndKeys:[NSColor whiteColor], NSForegroundColorAttributeName, 
 										[NSNumber numberWithInt:NSSingleUnderlineStyle], NSUnderlineStyleAttributeName, 
 										nil];
 	[lErrorLabel addAttributes:lMessageAttributes range:NSMakeRange(0, [lErrorLabel length])];
-	return lErrorLabel;
+	[lErrorLabel endEditing];
+	return [lErrorLabel autorelease];
 }
 
 + (NSMutableAttributedString *)createErrorMessage:(NSError *)aError {
-	NSMutableAttributedString *lFinalString = [[[NSMutableAttributedString alloc] initWithString:[aError localizedDescription]] autorelease];
+	NSMutableAttributedString *lFinalString = [[NSMutableAttributedString alloc] initWithString:[aError localizedDescription]];
+	[lFinalString beginEditing];
 	NSDictionary *lMessageAttributes = [NSDictionary dictionaryWithObjectsAndKeys:[NSColor whiteColor], NSForegroundColorAttributeName, 
 										[NSFont fontWithName:@"Helvetica" size:10.0], NSFontAttributeName, 
 										nil];
 	[lFinalString addAttributes:lMessageAttributes range:NSMakeRange(0, [lFinalString length])];
-	return lFinalString;
+	[lFinalString endEditing];
+	return [lFinalString autorelease];
 }
 
 @end

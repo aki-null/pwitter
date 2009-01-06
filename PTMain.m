@@ -8,6 +8,7 @@
 
 #import "PTMain.h"
 #import "PTStatusBoxGenerator.h"
+#import "PTGrowlNotificationManager.h"
 
 
 @implementation PTMain
@@ -93,14 +94,14 @@
 
 - (void)runInitialUpdates {
 	[self updateIndicatorAnimation];
-	[fRequestDetails setObject:@"MESSAGE_UPDATE" 
+	[fRequestDetails setObject:@"INIT_MESSAGE_UPDATE" 
 						forKey:[fTwitterEngine getDirectMessagesSince:nil
 														startingAtPage:0]];
 	[fRequestDetails setObject:@"INIT_UPDATE" 
 						forKey:[fTwitterEngine getFollowedTimelineFor:[[PTPreferenceManager getInstance] userName] 
 																since:nil startingAtPage:0 count:50]];
 	if ([[PTPreferenceManager getInstance] receiveFromNonFollowers]) {
-		[fRequestDetails setObject:@"REPLY_UPDATE" 
+		[fRequestDetails setObject:@"INIT_REPLY_UPDATE" 
 							forKey:[fTwitterEngine getRepliesStartingAtPage:0]];
 	}
 }
@@ -234,23 +235,24 @@
 	long long int lLastReplyID = 0;
 	for (lCurrentStatus in aStatuses) {
 		if ([fIgnoreUpdate objectForKey:[lCurrentStatus objectForKey:@"id"]] != @"IGNORE") {
-			PTStatusBox *lBoxToAdd = nil;
+			int lDecision = 0;
+			NSString *lUpdateType = [fRequestDetails objectForKey:aIdentifier];
 			if ([[lCurrentStatus objectForKey:@"in_reply_to_screen_name"] isEqualToString:[fTwitterEngine username]]) {
-				if ([fRequestDetails objectForKey:aIdentifier] == @"REPLY_UPDATE") {
+				if (lUpdateType == @"REPLY_UPDATE" || lUpdateType == @"INIT_REPLY_UPDATE") {
 					long long int lCurrentUpdateID = [[lCurrentStatus objectForKey:@"id"] longLongValue];
-					if (fLastReplyID != 0) {
-						if (lCurrentUpdateID > fLastReplyID) {
-							lBoxToAdd = [fStatusBoxGenerator constructStatusBox:lCurrentStatus isReply:YES];
-							if (lLastReplyID < lCurrentUpdateID) lLastReplyID = lCurrentUpdateID;
-						}
-					} else {
-						lBoxToAdd = [fStatusBoxGenerator constructStatusBox:lCurrentStatus isReply:YES];
+					if (fLastReplyID != 0 && lCurrentUpdateID > fLastReplyID || fLastReplyID == 0) {
+						lDecision = 1;
 						if (lLastReplyID < lCurrentUpdateID) lLastReplyID = lCurrentUpdateID;
 					}
 				} else if (![[PTPreferenceManager getInstance] receiveFromNonFollowers])
-					lBoxToAdd = [fStatusBoxGenerator constructStatusBox:lCurrentStatus isReply:YES];
-			} else lBoxToAdd = [fStatusBoxGenerator constructStatusBox:lCurrentStatus isReply:NO];
-			if (lBoxToAdd) {
+					lDecision = 1;
+			} else lDecision = 2;
+			if (lDecision != 0) {
+				PTStatusBox *lBoxToAdd = nil;
+				lBoxToAdd = [fStatusBoxGenerator constructStatusBox:lCurrentStatus 
+															isReply:lDecision == 1];
+				if (lDecision == 1 && lUpdateType != @"INIT_REPLY_UPDATE")
+					[fNotificationMan postReplyNotification:lBoxToAdd];
 				[lTempBoxes addObject:lBoxToAdd];
 				[lBoxToAdd release];
 			}
@@ -281,15 +283,23 @@
 
 - (void)directMessagesReceived:(NSArray *)aMessages forRequest:(NSString *)aIdentifier
 {
-	[fRequestDetails removeObjectForKey:aIdentifier];
-	[self updateIndicatorAnimation];
-	if ([aMessages count] == 0) return;
-	if ([[[aMessages objectAtIndex:0] objectForKey:@"id"] isEqual:@""]) return;
+	if ([aMessages count] == 0) {
+		[fRequestDetails removeObjectForKey:aIdentifier];
+		[self updateIndicatorAnimation];
+		return;
+	}
+	if ([[[aMessages objectAtIndex:0] objectForKey:@"id"] isEqual:@""]) {
+		[fRequestDetails removeObjectForKey:aIdentifier];
+		[self updateIndicatorAnimation];
+		return;
+	}
 	NSDictionary *lCurrentDic;
 	NSDictionary *lLastDic = nil;
 	NSMutableArray *lTempArray = [[NSMutableArray alloc] init];
 	for (lCurrentDic in aMessages) {
 		PTStatusBox *lBoxToAdd = [fStatusBoxGenerator constructMessageBox:lCurrentDic];
+		if ([fRequestDetails objectForKey:aIdentifier] != @"INIT_MESSAGE_UPDATE")
+			[fNotificationMan postMessageNotification:lBoxToAdd];
 		[lTempArray addObject:lBoxToAdd];
 		[lBoxToAdd release];
 		if (!lLastDic) lLastDic = lCurrentDic;
@@ -298,6 +308,8 @@
 	[lTempArray release];
 	if (fLastMessageID) [fLastMessageID release];
 	fLastMessageID = [[NSString alloc] initWithString:[lLastDic objectForKey:@"id"]];
+	[fRequestDetails removeObjectForKey:aIdentifier];
+	[self updateIndicatorAnimation];
 }
 
 - (void)userInfoReceived:(NSArray *)aUserInfo forRequest:(NSString *)aIdentifier

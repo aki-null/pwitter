@@ -22,6 +22,7 @@
 	IBOutlet id fProgressBar;
 	IBOutlet id fStatusBoxGenerator;
 	IBOutlet id fUpdateButton;
+	IBOutlet id fNotificationMan;
 	MGTwitterEngine *fTwitterEngine;
 	NSString *fLastUpdateID;
 	NSString *fLastMessageID;
