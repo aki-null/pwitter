@@ -16,4 +16,5 @@
 - (IBAction)showMessages:(id)sender;
 - (IBAction)showReplies:(id)sender;
 - (IBAction)showUpdates:(id)sender;
+- (IBAction)showError:(id)sender;
 @end

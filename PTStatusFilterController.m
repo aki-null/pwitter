@@ -29,4 +29,10 @@
 	NSPredicate *lPredicate = [NSPredicate predicateWithFormat:@"%K == 0", @"sType"];
 	[fStatusController setFilterPredicate:lPredicate];
 }
+
+- (IBAction)showError:(id)sender {
+	NSPredicate *lPredicate = [NSPredicate predicateWithFormat:@"%K == 3", @"sType"];
+	[fStatusController setFilterPredicate:lPredicate];
+}
+
 @end

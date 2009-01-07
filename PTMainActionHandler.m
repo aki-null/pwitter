@@ -133,8 +133,9 @@
 - (IBAction)clearErrors:(id)sender {
 	NSPredicate *lPredicate = [NSPredicate predicateWithFormat:@"%K == 3", @"sType"];
 	[fStatusController setFilterPredicate:lPredicate];
-	NSArray *lErrorBoxes = [fStatusController content];
-	NSLog(@"%@", lErrorBoxes);
+	NSArray *lErrorBoxes = [fStatusController arrangedObjects];
+	[fStatusController removeObjects:lErrorBoxes];
+	[fStatusController setFilterPredicate:nil];
 }
 
 @end
