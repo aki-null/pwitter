@@ -38,6 +38,7 @@
 - (IBAction)openPref:(id)sender;
 - (IBAction)openSearchBox:(id)sender;
 - (IBAction)closeSearchBox:(id)sender;
+- (IBAction)clearErrors:(id)sender;
 - (void)startAuthentication;
 
 @end
