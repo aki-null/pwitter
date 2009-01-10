@@ -8,6 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
+
 @interface PTStatusCollectionItem : NSCollectionViewItem {
 }
 - (void)setSelected:(BOOL)aFlag;

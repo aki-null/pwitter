@@ -7,6 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "PTStatusBox.h"
 
 
 @interface PTMainActionHandler : NSObject {
@@ -26,6 +27,9 @@
     IBOutlet id fReplyButton;
     IBOutlet id fWebButton;
     IBOutlet id fStatusUpdateField;
+    IBOutlet id fBottomView;
+    IBOutlet id fSelectedStatusView;
+    IBOutlet id fTopView;
 	BOOL fSearchBoxIsOpen;
 	BOOL fShouldExit;
 }
@@ -40,5 +44,7 @@
 - (IBAction)closeSearchBox:(id)sender;
 - (IBAction)clearErrors:(id)sender;
 - (void)startAuthentication;
+- (void)updateSelectedMessage:(PTStatusBox *)aBox;
+- (void)updateViewSizes:(float)aHeightReq withAnim:(BOOL)aAnim;
 
 @end

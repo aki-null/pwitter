@@ -8,7 +8,7 @@
 
 #import "PTArrayObserver.h"
 #import "PTStatusBox.h"
-#import "PTMain.h"
+#import "PTMainActionHandler.h"
 
 
 @implementation PTArrayObserver
@@ -16,7 +16,7 @@
 - (void)dealloc
 {
 	// remove the observer at deallocation
-	[fArrayController removeObserver:self forKeyPath:@"selectionIndexes"];
+	[fArrayController removeObserver:self forKeyPath:@"selection"];
 	[super dealloc];
 }
 
@@ -24,7 +24,7 @@
 {
 	// add an observer to the array controller that manages the statuses
 	[fArrayController addObserver:self 
-					   forKeyPath:@"selectionIndexes"
+					   forKeyPath:@"selection"
 						  options:NSKeyValueObservingOptionNew 
 						  context:nil];
 }
@@ -34,11 +34,14 @@
 						change:(NSDictionary *)aChange
 					   context:(void *)aContext
 {
-	NSArrayController *arrController = aObject;
+	NSArrayController *lArrController = aObject;
 	// get the status entry that is currently selected
-	PTStatusBox *selectedBox = [[arrController selectedObjects] lastObject];
-	// inform the main program about the new selection
-	[fMainController selectStatusBox:selectedBox];
+	PTStatusBox *lSelectedBox = [[lArrController selectedObjects] lastObject];
+	if (lSelectedBox)
+		[[fStatusText textStorage] setAttributedString:lSelectedBox.statusMessage];
+	else
+		[[fStatusText textStorage] setAttributedString:[[[NSAttributedString alloc] init] autorelease]];
+	[fActionHandler updateSelectedMessage:lSelectedBox];
 }
 
 @end

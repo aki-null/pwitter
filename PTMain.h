@@ -13,16 +13,17 @@
 #import "PTPreferenceWindow.h"
 
 @interface PTMain : NSObject <MGTwitterEngineDelegate> {
-	IBOutlet id fStatusUpdateField;
-	IBOutlet id fStatusController;
-	IBOutlet id fTextLevelIndicator;
-	IBOutlet id fReplyButton;
-	IBOutlet id fWebButton;
-	IBOutlet id fMessageButton;
-	IBOutlet id fProgressBar;
-	IBOutlet id fStatusBoxGenerator;
-	IBOutlet id fUpdateButton;
-	IBOutlet id fNotificationMan;
+    IBOutlet id fStatusUpdateField;
+    IBOutlet id fStatusController;
+    IBOutlet id fTextLevelIndicator;
+    IBOutlet id fReplyButton;
+    IBOutlet id fWebButton;
+    IBOutlet id fMessageButton;
+    IBOutlet id fProgressBar;
+    IBOutlet id fStatusBoxGenerator;
+    IBOutlet id fUpdateButton;
+    IBOutlet id fNotificationMan;
+    IBOutlet id fSelectedTextView;
 	MGTwitterEngine *fTwitterEngine;
 	NSString *fLastUpdateID;
 	NSString *fLastMessageID;
@@ -41,7 +42,6 @@
 - (IBAction)postStatus:(id)sender;
 - (IBAction)changeAccount:(id)sender;
 - (NSImage *)requestUserImage:(NSString *)aImageLocation forBox:(PTStatusBox *)aNewBox;
-- (void)selectStatusBox:(PTStatusBox *)aSelection;
 - (void)setupUpdateTimer;
 - (void)setupMessageUpdateTimer;
 - (void)openTwitterWeb;

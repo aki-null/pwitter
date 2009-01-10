@@ -8,6 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
+
 typedef enum statusType {
 	NormalMessage = 0,
 	ReplyMessage = 1,

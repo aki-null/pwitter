@@ -89,14 +89,14 @@
 }
 
 - (void)runUpdateFromTimer:(NSTimer *)aTimer {
-	[self updateTimeline:aTimer];
+	[self updateTimeline:self];
 }
 
 - (void)runInitialUpdates {
 	[self updateIndicatorAnimation];
 	[fRequestDetails setObject:@"INIT_MESSAGE_UPDATE" 
 						forKey:[fTwitterEngine getDirectMessagesSince:nil
-														startingAtPage:0]];
+													   startingAtPage:0]];
 	[fRequestDetails setObject:@"INIT_UPDATE" 
 						forKey:[fTwitterEngine getFollowedTimelineFor:[[PTPreferenceManager getInstance] userName] 
 																since:nil startingAtPage:0 count:50]];
@@ -344,14 +344,14 @@
 		[self updateIndicatorAnimation];
 		[fRequestDetails setObject:@"UPDATE" 
 							forKey:[fTwitterEngine getFollowedTimelineFor:[fTwitterEngine username] 
-																   sinceID:fLastUpdateID startingAtPage:0 count:100]];
+																  sinceID:fLastUpdateID startingAtPage:0 count:100]];
 		if ([[PTPreferenceManager getInstance] receiveFromNonFollowers])
 			[fRequestDetails setObject:@"REPLY_UPDATE" 
 								forKey:[fTwitterEngine getRepliesStartingAtPage:0]];
 		if (sender != self)
 			[fRequestDetails setObject:@"MESSAGE_UPDATE" 
 								forKey:[fTwitterEngine getDirectMessagesSinceID:fLastMessageID 
-																  startingAtPage:0]];
+																 startingAtPage:0]];
 	}
 }
 
@@ -385,25 +385,6 @@
 	PTStatusBox *lCurrentSelection = [[fStatusController selectedObjects] lastObject];
 	if (lCurrentSelection && lCurrentSelection.sType != ErrorMessage)
 		[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://twitter.com/%@", lCurrentSelection.userID]]];
-}
-
-- (void)selectStatusBox:(PTStatusBox *)aSelection {
-	if (!aSelection) {
-		[fWebButton setEnabled:NO];
-		[fReplyButton setEnabled:NO];
-		[fMessageButton setEnabled:NO];
-		return;
-	}
-	[fReplyButton setState:NSOffState];
-	[fMessageButton setState:NSOffState];
-	!aSelection.userHome ? [fWebButton setEnabled:NO] : [fWebButton setEnabled:YES];
-	if (aSelection.sType == ErrorMessage) {
-		[fReplyButton setEnabled:NO];
-		[fMessageButton setEnabled:NO];
-	} else {
-		[fReplyButton setEnabled:YES];
-		[fMessageButton setEnabled:YES];
-	}
 }
 
 @end

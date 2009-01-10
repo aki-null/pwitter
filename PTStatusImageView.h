@@ -9,6 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import "PTStatusEntityView.h"
 
+
 @interface PTStatusImageView : NSImageView {
 }
 

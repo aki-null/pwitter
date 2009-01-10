@@ -138,4 +138,47 @@
 	[fStatusController setFilterPredicate:nil];
 }
 
+- (void)updateViewSizes:(float)aHeightReq withAnim:(BOOL)aAnim {
+	float lTopHeight = 79;
+	if (aHeightReq > 51) lTopHeight += aHeightReq - 51;
+	NSRect lTopFrame = [fTopView frame];
+	float lTopDiff = lTopFrame.size.height - lTopHeight;
+	if (aAnim) {
+		[[fTopView animator] setFrame:NSMakeRect(0, lTopFrame.origin.y + lTopDiff, [fTopView frame].size.width, lTopHeight)];
+		[[fBottomView animator] setFrame:NSMakeRect(0, 43, [fBottomView frame].size.width, [fBottomView frame].size.height + lTopDiff)];
+	} else {
+		[fTopView setFrame:NSMakeRect(0, lTopFrame.origin.y + lTopDiff, [fTopView frame].size.width, lTopHeight)];
+		[fBottomView setFrame:NSMakeRect(0, 43, [fBottomView frame].size.width, [fBottomView frame].size.height + lTopDiff)];
+	}
+}
+
+- (void)updateSelectedMessage:(PTStatusBox *)aBox {
+	if (!aBox) {
+		[self updateViewSizes:0 withAnim:YES];
+		[fWebButton setEnabled:NO];
+		[fReplyButton setEnabled:NO];
+		[fMessageButton setEnabled:NO];
+		return;
+	}
+	[fReplyButton setState:NSOffState];
+	[fMessageButton setState:NSOffState];
+	!aBox.userHome ? [fWebButton setEnabled:NO] : [fWebButton setEnabled:YES];
+	if (aBox.sType == ErrorMessage) {
+		[fReplyButton setEnabled:NO];
+		[fMessageButton setEnabled:NO];
+	} else {
+		[fReplyButton setEnabled:YES];
+		[fMessageButton setEnabled:YES];
+	}
+	
+	NSRect lFrame = NSMakeRect(0, 0, [fSelectedTextView frame].size.width, MAXFLOAT);
+	NSTextView *lTempTextView = [[NSTextView alloc] initWithFrame:lFrame];
+	[[lTempTextView textStorage] setAttributedString:aBox.statusMessage];
+	[lTempTextView setHorizontallyResizable:NO];
+	[lTempTextView sizeToFit];
+	float lHeightReq = [lTempTextView frame].size.height;
+	[lTempTextView release];
+	[self updateViewSizes:lHeightReq withAnim:YES];
+}
+
 @end

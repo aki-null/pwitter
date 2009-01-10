@@ -9,6 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import "PTStatusBox.h"
 
+
 @interface PTPreferenceManager : NSObject {
 	NSUserDefaults *fPrefData;
 }

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		610332F10F1873B000BFB060 /* PTSelectedStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 610332F00F1873B000BFB060 /* PTSelectedStatusView.m */; };
+		610333FA0F18C0C500BFB060 /* PTStatusScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 610333F90F18C0C500BFB060 /* PTStatusScrollView.m */; };
 		610BF8AB0F030DFA008D9A3B /* PTStatusBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 610BF8AA0F030DFA008D9A3B /* PTStatusBox.m */; };
 		611937630F0A47270065B9ED /* PTStatusTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 611937620F0A47270065B9ED /* PTStatusTextField.m */; };
 		612BD6900F076F8500EF064D /* Pwitter.icns in Resources */ = {isa = PBXBuildFile; fileRef = 612BD68F0F076F8500EF064D /* Pwitter.icns */; };
@@ -82,6 +84,10 @@
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32CA4F630368D1EE00C91783 /* Pwitter_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pwitter_Prefix.pch; sourceTree = "<group>"; };
+		610332EF0F1873B000BFB060 /* PTSelectedStatusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTSelectedStatusView.h; sourceTree = "<group>"; };
+		610332F00F1873B000BFB060 /* PTSelectedStatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTSelectedStatusView.m; sourceTree = "<group>"; };
+		610333F80F18C0C500BFB060 /* PTStatusScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTStatusScrollView.h; sourceTree = "<group>"; };
+		610333F90F18C0C500BFB060 /* PTStatusScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTStatusScrollView.m; sourceTree = "<group>"; };
 		610BF8A90F030DFA008D9A3B /* PTStatusBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTStatusBox.h; sourceTree = "<group>"; };
 		610BF8AA0F030DFA008D9A3B /* PTStatusBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTStatusBox.m; sourceTree = "<group>"; };
 		611937610F0A47270065B9ED /* PTStatusTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTStatusTextField.h; sourceTree = "<group>"; };
@@ -357,6 +363,10 @@
 				61F2CF5B0F10A52400CE073B /* PTStatusBoxGenerator.m */,
 				615B85CD0F136BB30005E38F /* PTGrowlNotificationManager.h */,
 				615B85CE0F136BB30005E38F /* PTGrowlNotificationManager.m */,
+				610332EF0F1873B000BFB060 /* PTSelectedStatusView.h */,
+				610332F00F1873B000BFB060 /* PTSelectedStatusView.m */,
+				610333F80F18C0C500BFB060 /* PTStatusScrollView.h */,
+				610333F90F18C0C500BFB060 /* PTStatusScrollView.m */,
 			);
 			name = Pwitter;
 			sourceTree = "<group>";
@@ -473,6 +483,8 @@
 				61F2CF5C0F10A52400CE073B /* PTStatusBoxGenerator.m in Sources */,
 				61E70AF00F10BA17002526FA /* PTMainActionHandler.m in Sources */,
 				615B85CF0F136BB30005E38F /* PTGrowlNotificationManager.m in Sources */,
+				610332F10F1873B000BFB060 /* PTSelectedStatusView.m in Sources */,
+				610333FA0F18C0C500BFB060 /* PTStatusScrollView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

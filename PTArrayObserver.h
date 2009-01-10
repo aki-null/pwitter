@@ -11,8 +11,8 @@
 
 @interface PTArrayObserver : NSObject {
     IBOutlet id fArrayController;
-	IBOutlet id fMainController;
-	IBOutlet id fMainWindow;
+    IBOutlet id fActionHandler;
+    IBOutlet id fStatusText;
 }
 
 @end
