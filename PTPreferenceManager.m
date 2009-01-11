@@ -97,6 +97,14 @@
 	return [fPrefData integerForKey:@"message_interval"];
 }
 
+- (void)setUseMiniView:(BOOL)aFlag {
+	[fPrefData setBool:aFlag forKey:@"enable_mini_view"];
+}
+
+- (BOOL)useMiniView {
+	return [fPrefData boolForKey:@"enable_mini_view"];
+}
+
 - (void)setAutoLogin:(BOOL)aFlag {
 	[fPrefData setBool:aFlag forKey:@"auto_login"];
 }

@@ -19,6 +19,7 @@
     IBOutlet id fAutoLogin;
     IBOutlet id fReceiveFromNonFollowers;
     IBOutlet id fMessageUpdateInterval;
+    IBOutlet id fUseMiniView;
 }
 - (void)loadPreferences;
 - (IBAction)pressOK:(id)sender;

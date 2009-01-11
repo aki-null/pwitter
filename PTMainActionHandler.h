@@ -30,6 +30,9 @@
     IBOutlet id fBottomView;
     IBOutlet id fSelectedStatusView;
     IBOutlet id fTopView;
+    IBOutlet id fMiniItemPrototype;
+    IBOutlet id fNormalItemPrototype;
+    IBOutlet id fStatusCollectionView;
 	BOOL fSearchBoxIsOpen;
 	BOOL fShouldExit;
 }
@@ -46,5 +49,6 @@
 - (void)startAuthentication;
 - (void)updateSelectedMessage:(PTStatusBox *)aBox;
 - (void)updateViewSizes:(float)aHeightReq withAnim:(BOOL)aAnim;
+- (void)setCollectionViewPrototype:(BOOL)aIsMini;
 
 @end

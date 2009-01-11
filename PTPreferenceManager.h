@@ -27,6 +27,8 @@
 - (int)timeInterval;
 - (void)setMessageInterval:(int)aInterval;
 - (int)messageInterval;
+- (void)setUseMiniView:(BOOL)aFlag;
+- (BOOL)useMiniView;
 - (void)setAutoLogin:(BOOL)aFlag;
 - (BOOL)autoLogin;
 

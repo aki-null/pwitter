@@ -34,6 +34,29 @@
 	[fStatusController setSortDescriptors:[NSArray arrayWithObject:sortDesc]];
 	[sortDesc release];
 	[fPreferenceWindow loadPreferences];
+	[self setCollectionViewPrototype:[[PTPreferenceManager getInstance] useMiniView]];
+}
+
+- (void)setCollectionViewPrototype:(BOOL)aIsMini {
+	if (aIsMini) {
+		if ([fStatusCollectionView itemPrototype] != fMiniItemPrototype) {
+			[fStatusCollectionView setItemPrototype:fMiniItemPrototype];
+			NSSize lTempSize = [fStatusCollectionView minItemSize];
+			lTempSize.height = 35;
+			[fStatusCollectionView setMinItemSize:lTempSize];
+			lTempSize = [fStatusCollectionView maxItemSize];
+			lTempSize.height = 35;
+			[fStatusCollectionView setMaxItemSize:lTempSize];
+		}
+	} else if ([fStatusCollectionView itemPrototype] != fNormalItemPrototype) {
+		[fStatusCollectionView setItemPrototype:fNormalItemPrototype];
+		NSSize lTempSize = [fStatusCollectionView minItemSize];
+		lTempSize.height = 65;
+		[fStatusCollectionView setMinItemSize:lTempSize];
+		lTempSize = [fStatusCollectionView maxItemSize];
+		lTempSize.height = 65;
+		[fStatusCollectionView setMaxItemSize:lTempSize];
+	}
 }
 
 - (void)startAuthentication {
@@ -57,6 +80,7 @@
 - (void)didEndSheet:(NSWindow *)aSheet returnCode:(int)aReturnCode contextInfo:(void *)aContextInfo
 {
 	[aSheet orderOut:self];
+	[self setCollectionViewPrototype:[[PTPreferenceManager getInstance] useMiniView]];
 	if (fShouldExit) [NSApp terminate:self];
 	if (aSheet == fAuthPanel) [fMainController setUpTwitterEngine];
 }
@@ -115,7 +139,7 @@
 		lTempRect = [fStatusScrollView frame];
 		[[fStatusScrollView animator] setFrame:NSMakeRect(lTempRect.origin.x, lTempRect.origin.y, lTempRect.size.width, lTempRect.size.height - 21)];
 	}
-	[fSearchBox selectText:sender];
+	[fMainWindow makeFirstResponder:fSearchBox];
 }
 
 - (IBAction)closeSearchBox:(id)sender {
@@ -127,7 +151,7 @@
 		[[fStatusScrollView animator] setFrame:NSMakeRect(lTempRect.origin.x, lTempRect.origin.y, lTempRect.size.width, lTempRect.size.height + 21)];
 		[fStatusController setFilterPredicate:nil];
 	}
-	[fMainWindow makeFirstResponder:fMainWindow];
+	[fMainWindow makeFirstResponder:fStatusCollectionView];
 }
 
 - (IBAction)clearErrors:(id)sender {
