@@ -130,6 +130,7 @@
 		fLastMessageID = nil;
 	}
 	[[fStatusController content] removeAllObjects];
+	[fStatusController rearrangeObjects];
 	[fTwitterEngine setUsername:[[PTPreferenceManager getInstance] userName] 
 					   password:[[PTPreferenceManager getInstance] password]];
 	[self runInitialUpdates];
@@ -238,7 +239,9 @@
 			int lDecision = 0;
 			NSString *lUpdateType = [fRequestDetails objectForKey:aIdentifier];
 			if ([[lCurrentStatus objectForKey:@"in_reply_to_screen_name"] isEqualToString:[fTwitterEngine username]]) {
-				if (lUpdateType == @"REPLY_UPDATE" || lUpdateType == @"INIT_REPLY_UPDATE") {
+				if (lUpdateType == @"REPLY_UPDATE" || 
+					lUpdateType == @"INIT_REPLY_UPDATE" || 
+					lUpdateType == @"POST") {
 					long long int lCurrentUpdateID = [[lCurrentStatus objectForKey:@"id"] longLongValue];
 					if (fLastReplyID != 0 && lCurrentUpdateID > fLastReplyID || fLastReplyID == 0) {
 						lDecision = 1;
