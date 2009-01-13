@@ -24,6 +24,10 @@
     IBOutlet id fUpdateButton;
     IBOutlet id fNotificationMan;
     IBOutlet id fSelectedTextView;
+    IBOutlet id fQuickPostButton;
+    IBOutlet id fQuickPostField;
+    IBOutlet id fQuickPostPanel;
+    IBOutlet id fQuickTextLevelIndicator;
 	MGTwitterEngine *fTwitterEngine;
 	NSString *fLastUpdateID;
 	NSString *fLastMessageID;
@@ -47,5 +51,6 @@
 - (void)openTwitterWeb;
 - (void)runInitialUpdates;
 - (void)setUpTwitterEngine;
+- (void)makePost:(NSString *)aMessage;
 
 @end

@@ -8,6 +8,7 @@
 
 #import "PTPreferenceWindow.h"
 #import "PTPreferenceManager.h"
+#import "PTHotKeyCenter.h"
 #import "PTMain.h"
 
 
@@ -25,12 +26,22 @@
 	[[PTPreferenceManager getInstance] autoLogin] ? [fAutoLogin setState:NSOnState] : [fAutoLogin setState:NSOffState];
 	[[PTPreferenceManager getInstance] receiveFromNonFollowers] ? [fReceiveFromNonFollowers setState:NSOnState] : [fReceiveFromNonFollowers setState:NSOffState];
 	[[PTPreferenceManager getInstance] useMiniView] ? [fUseMiniView setState:NSOnState] : [fUseMiniView setState:NSOffState];
+	[[PTPreferenceManager getInstance] quickPost] ? [fActivateGlobalKey setState:NSOnState] : [fActivateGlobalKey setState:NSOffState];
+	[self loadKeyCombo];
+	[self turnOffHotKey];
+	[fShortcutRecorder setEnabled:NO];
+	if ([[PTPreferenceManager getInstance] quickPost])
+	{
+		[fShortcutRecorder setEnabled:YES];
+		[self turnOnHotKey];
+	}
 }
 
 - (IBAction)pressOK:(id)sender {
 	BOOL fShouldReset = NO;
 	[[PTPreferenceManager getInstance] setAlwaysOnTop:[fAlwaysOnTop state] == NSOnState];
 	[[PTPreferenceManager getInstance] setUseMiniView:[fUseMiniView state] == NSOnState];
+	[[PTPreferenceManager getInstance] setQuickPost:[fActivateGlobalKey state] == NSOnState];
 	BOOL lNonFollower = [fReceiveFromNonFollowers state] == NSOnState;
 	if ([[PTPreferenceManager getInstance] receiveFromNonFollowers] != lNonFollower) {
 		[[PTPreferenceManager getInstance] setReceiveFromNonFollowers:lNonFollower];
@@ -52,12 +63,68 @@
 	}
 	if (fShouldReset) [fMainController changeAccount:self];
 	[fMainWindow setFloatingPanel:[[PTPreferenceManager getInstance] alwaysOnTop]];
+	[self saveKeyCombo];
+	[self turnOffHotKey];
+	if ([fActivateGlobalKey state] == NSOnState)
+		[self turnOnHotKey];
 	[NSApp endSheet:self];
 }
 
 - (IBAction)pressCancel:(id)sender {
     [self loadPreferences];
 	[NSApp endSheet:self];
+}
+
+- (void)turnOffHotKey {
+	[fShortcutRecorder setCanCaptureGlobalHotKeys:NO];
+	if (fHotKey != nil)
+	{
+		[[PTHotKeyCenter sharedCenter] unregisterHotKey: fHotKey];
+		[fHotKey release];
+		fHotKey = nil;
+	}
+}
+
+- (void)turnOnHotKey {
+	[fShortcutRecorder setCanCaptureGlobalHotKeys:YES];
+	fHotKey = [[PTHotKey alloc] initWithIdentifier:@"ActivateQuickPostWindow" 
+										  keyCombo:[PTKeyCombo keyComboWithKeyCode:[(SRRecorderControl *)fShortcutRecorder keyCombo].code 
+																		 modifiers:[(SRRecorderControl *)fShortcutRecorder cocoaToCarbonFlags:[(SRRecorderControl *)fShortcutRecorder keyCombo].flags]]];
+	[fHotKey setTarget: self];
+	[fHotKey setAction: @selector(hitKey:)];
+	[[PTHotKeyCenter sharedCenter] registerHotKey: fHotKey];
+}
+
+- (void)saveKeyCombo {
+	KeyCombo lTempKeyCode = [(SRRecorderControl*)fShortcutRecorder keyCombo];
+	id lValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
+	NSDictionary *lDefValue = [NSDictionary dictionaryWithObjectsAndKeys: 
+							   [NSNumber numberWithShort:lTempKeyCode.code], @"keyCode", 
+							   [NSNumber numberWithUnsignedInt:lTempKeyCode.flags], @"modifierFlags", 
+							   nil];
+	[lValues setValue:lDefValue forKey:@"quick_post_activation_key"];
+}
+
+- (void)loadKeyCombo
+{
+	id lValued = [[NSUserDefaultsController sharedUserDefaultsController] values];
+	NSDictionary *lSavedCombo = [lValued valueForKey:@"quick_post_activation_key"];
+	signed short lKeyCode = [[lSavedCombo valueForKey:@"keyCode"] shortValue];
+	unsigned int lFlags = [[lSavedCombo valueForKey:@"modifierFlags"] unsignedIntValue];
+	if (lKeyCode == 0 && lFlags == 0) return;
+	KeyCombo keyCombo;
+	keyCombo.code = lKeyCode;
+	keyCombo.flags = lFlags;
+	[(SRRecorderControl *)fShortcutRecorder setKeyCombo:keyCombo];
+}
+
+- (void)hitKey:(PTHotKey *)aHotKey {
+	[fQuickPostWindow orderFront:self];
+	[fQuickPostWindow makeKeyWindow];
+}
+
+- (IBAction)quickPostChanged:(id)sender {
+	[fShortcutRecorder setEnabled:[sender state] == NSOnState];
 }
 
 @end

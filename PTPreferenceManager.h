@@ -31,5 +31,7 @@
 - (BOOL)useMiniView;
 - (void)setAutoLogin:(BOOL)aFlag;
 - (BOOL)autoLogin;
+- (void)setQuickPost:(BOOL)aFlag;
+- (BOOL)quickPost;
 
 @end

@@ -7,6 +7,8 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import <ShortcutRecorder/SRRecorderControl.h>
+#import "PTHotKey.h"
 
 
 @interface PTPreferenceWindow : NSPanel {
@@ -20,9 +22,18 @@
     IBOutlet id fReceiveFromNonFollowers;
     IBOutlet id fMessageUpdateInterval;
     IBOutlet id fUseMiniView;
+    IBOutlet id fActivateGlobalKey;
+    IBOutlet id fShortcutRecorder;
+    IBOutlet id fQuickPostWindow;
+	PTHotKey *fHotKey;
 }
 - (void)loadPreferences;
 - (IBAction)pressOK:(id)sender;
 - (IBAction)pressCancel:(id)sender;
+- (IBAction)quickPostChanged:(id)sender;
+- (void)turnOnHotKey;
+- (void)turnOffHotKey;
+- (void)saveKeyCombo;
+- (void)loadKeyCombo;
 
 @end

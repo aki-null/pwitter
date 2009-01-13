@@ -26,6 +26,8 @@
 		6190A09A0F0AE46100E4F12E /* BGHUDAppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6190A0990F0AE46100E4F12E /* BGHUDAppKit.framework */; };
 		6190A0CB0F0AE55000E4F12E /* BGHUDAppKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6190A0990F0AE46100E4F12E /* BGHUDAppKit.framework */; };
 		61A50F520F063ADB009050CC /* console.png in Resources */ = {isa = PBXBuildFile; fileRef = 61A50F510F063ADB009050CC /* console.png */; };
+		61BAFB0F0F1C89B400428121 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61BAFB0E0F1C89B400428121 /* Carbon.framework */; };
+		61BAFCE30F1C98F800428121 /* PTQuickPostPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 61BAFCE20F1C98F800428121 /* PTQuickPostPanel.m */; };
 		61BD916F0F0B7C7E00F1CA33 /* default.png in Resources */ = {isa = PBXBuildFile; fileRef = 61BD916E0F0B7C7E00F1CA33 /* default.png */; };
 		61C773BD0F0509F100258650 /* PTStatusEntityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C773BC0F0509F100258650 /* PTStatusEntityView.m */; };
 		61C773F80F050BBB00258650 /* PTStatusCollectionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C773F70F050BBB00258650 /* PTStatusCollectionItem.m */; };
@@ -53,6 +55,11 @@
 		61E9997A0F0D88C800509EE8 /* PTMainWindowDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E999790F0D88C800509EE8 /* PTMainWindowDelegate.m */; };
 		61EE70640F0210C0005C42F5 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 61EE70630F0210C0005C42F5 /* libxml2.2.dylib */; };
 		61EE71400F021802005C42F5 /* PTMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 61EE713F0F021802005C42F5 /* PTMain.m */; };
+		61F177A90F1C5A6B00C04938 /* ShortcutRecorder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61F177A80F1C5A6B00C04938 /* ShortcutRecorder.framework */; };
+		61F177C10F1C5CE100C04938 /* ShortcutRecorder.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 61F177A80F1C5A6B00C04938 /* ShortcutRecorder.framework */; };
+		61F177DB0F1C833200C04938 /* PTHotKeyCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 61F177D50F1C833200C04938 /* PTHotKeyCenter.m */; };
+		61F177DC0F1C833200C04938 /* PTHotKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 61F177D80F1C833200C04938 /* PTHotKey.m */; };
+		61F177DD0F1C833200C04938 /* PTKeyCombo.m in Sources */ = {isa = PBXBuildFile; fileRef = 61F177D90F1C833200C04938 /* PTKeyCombo.m */; };
 		61F2CF510F10A3DA00CE073B /* PTStatusFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 61F2CF500F10A3DA00CE073B /* PTStatusFormatter.m */; };
 		61F2CF5C0F10A52400CE073B /* PTStatusBoxGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 61F2CF5B0F10A52400CE073B /* PTStatusBoxGenerator.m */; };
 		61FCE2520F11956B00496A23 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61FCE2510F11956B00496A23 /* MainMenu.xib */; };
@@ -68,6 +75,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				61F177C10F1C5CE100C04938 /* ShortcutRecorder.framework in CopyFiles */,
 				615B85B90F136A4A0005E38F /* Growl.framework in CopyFiles */,
 				6131FD5B0F0E297D004CA960 /* Sparkle.framework in CopyFiles */,
 				6190A0CB0F0AE55000E4F12E /* BGHUDAppKit.framework in CopyFiles */,
@@ -109,6 +117,9 @@
 		615D39760F0B016F0086E57F /* PTCharacterCounter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTCharacterCounter.m; sourceTree = "<group>"; };
 		6190A0990F0AE46100E4F12E /* BGHUDAppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BGHUDAppKit.framework; sourceTree = "<group>"; };
 		61A50F510F063ADB009050CC /* console.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = console.png; sourceTree = "<group>"; };
+		61BAFB0E0F1C89B400428121 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
+		61BAFCE10F1C98F800428121 /* PTQuickPostPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTQuickPostPanel.h; sourceTree = "<group>"; };
+		61BAFCE20F1C98F800428121 /* PTQuickPostPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTQuickPostPanel.m; sourceTree = "<group>"; };
 		61BD916E0F0B7C7E00F1CA33 /* default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default.png; sourceTree = "<group>"; };
 		61C773BB0F0509F100258650 /* PTStatusEntityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTStatusEntityView.h; sourceTree = "<group>"; };
 		61C773BC0F0509F100258650 /* PTStatusEntityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTStatusEntityView.m; sourceTree = "<group>"; };
@@ -164,6 +175,13 @@
 		61EE70630F0210C0005C42F5 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = /usr/lib/libxml2.2.dylib; sourceTree = "<absolute>"; };
 		61EE713E0F021802005C42F5 /* PTMain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTMain.h; sourceTree = "<group>"; };
 		61EE713F0F021802005C42F5 /* PTMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTMain.m; sourceTree = "<group>"; };
+		61F177A80F1C5A6B00C04938 /* ShortcutRecorder.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ShortcutRecorder.framework; sourceTree = "<group>"; };
+		61F177D50F1C833200C04938 /* PTHotKeyCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTHotKeyCenter.m; sourceTree = "<group>"; };
+		61F177D60F1C833200C04938 /* PTHotKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTHotKey.h; sourceTree = "<group>"; };
+		61F177D70F1C833200C04938 /* PTKeyCombo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTKeyCombo.h; sourceTree = "<group>"; };
+		61F177D80F1C833200C04938 /* PTHotKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTHotKey.m; sourceTree = "<group>"; };
+		61F177D90F1C833200C04938 /* PTKeyCombo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTKeyCombo.m; sourceTree = "<group>"; };
+		61F177DA0F1C833200C04938 /* PTHotKeyCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTHotKeyCenter.h; sourceTree = "<group>"; };
 		61F2CF370F10A10800CE073B /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		61F2CF4F0F10A3DA00CE073B /* PTStatusFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTStatusFormatter.h; sourceTree = "<group>"; };
 		61F2CF500F10A3DA00CE073B /* PTStatusFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTStatusFormatter.m; sourceTree = "<group>"; };
@@ -184,6 +202,8 @@
 				6190A09A0F0AE46100E4F12E /* BGHUDAppKit.framework in Frameworks */,
 				6131FD4A0F0E28C7004CA960 /* Sparkle.framework in Frameworks */,
 				615B85A30F136A2A0005E38F /* Growl.framework in Frameworks */,
+				61F177A90F1C5A6B00C04938 /* ShortcutRecorder.framework in Frameworks */,
+				61BAFB0F0F1C89B400428121 /* Carbon.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -194,6 +214,7 @@
 			isa = PBXGroup;
 			children = (
 				61EE70620F02107B005C42F5 /* Pwitter */,
+				61F177D30F1C832400C04938 /* HotKey */,
 				61D6BE170F077DDE00C6B98D /* MGTwitterEngine */,
 				61D9FBC00F04B041003CC890 /* EMKeychain */,
 			);
@@ -203,9 +224,11 @@
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				61F177A80F1C5A6B00C04938 /* ShortcutRecorder.framework */,
 				615B85A20F136A2A0005E38F /* Growl.framework */,
 				6131FD490F0E28C7004CA960 /* Sparkle.framework */,
 				61D9FDFC0F04B41C003CC890 /* Security.framework */,
+				61BAFB0E0F1C89B400428121 /* Carbon.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
 			);
 			name = "Linked Frameworks";
@@ -367,8 +390,23 @@
 				610332F00F1873B000BFB060 /* PTSelectedStatusView.m */,
 				610333F80F18C0C500BFB060 /* PTStatusScrollView.h */,
 				610333F90F18C0C500BFB060 /* PTStatusScrollView.m */,
+				61BAFCE10F1C98F800428121 /* PTQuickPostPanel.h */,
+				61BAFCE20F1C98F800428121 /* PTQuickPostPanel.m */,
 			);
 			name = Pwitter;
+			sourceTree = "<group>";
+		};
+		61F177D30F1C832400C04938 /* HotKey */ = {
+			isa = PBXGroup;
+			children = (
+				61F177D60F1C833200C04938 /* PTHotKey.h */,
+				61F177D80F1C833200C04938 /* PTHotKey.m */,
+				61F177D70F1C833200C04938 /* PTKeyCombo.h */,
+				61F177D90F1C833200C04938 /* PTKeyCombo.m */,
+				61F177DA0F1C833200C04938 /* PTHotKeyCenter.h */,
+				61F177D50F1C833200C04938 /* PTHotKeyCenter.m */,
+			);
+			name = HotKey;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -485,6 +523,10 @@
 				615B85CF0F136BB30005E38F /* PTGrowlNotificationManager.m in Sources */,
 				610332F10F1873B000BFB060 /* PTSelectedStatusView.m in Sources */,
 				610333FA0F18C0C500BFB060 /* PTStatusScrollView.m in Sources */,
+				61F177DB0F1C833200C04938 /* PTHotKeyCenter.m in Sources */,
+				61F177DC0F1C833200C04938 /* PTHotKey.m in Sources */,
+				61F177DD0F1C833200C04938 /* PTKeyCombo.m in Sources */,
+				61BAFCE30F1C98F800428121 /* PTQuickPostPanel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

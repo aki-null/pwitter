@@ -176,9 +176,14 @@
 {
 	if ([fRequestDetails objectForKey:requestIdentifier] == @"MESSAGE") {
 		[fStatusUpdateField setEnabled:YES];
+		[fQuickPostField setEnabled:YES];
+		[fQuickPostButton setEnabled:YES];
 		[fStatusUpdateField setStringValue:@""];
+		[fQuickPostField setStringValue:@""];
+		[fQuickPostPanel close];
 		[fMessageButton setState:NSOffState];
 		[fTextLevelIndicator setIntValue:140];
+		[fQuickTextLevelIndicator setIntValue:140];
 	}
 }
 
@@ -188,6 +193,8 @@
 	NSString *lRequestType = [fRequestDetails objectForKey:aRequestIdentifier];
 	if (lRequestType == @"POST" || lRequestType == @"MESSAGE") {
 		[fStatusUpdateField setEnabled:YES];
+		[fQuickPostField setEnabled:YES];
+		[fQuickPostButton setEnabled:YES];
 	} else if (lRequestType == @"IMAGE") {
 		[fStatusBoxesForReq removeObjectForKey:aRequestIdentifier];
 		[fImageReqForLocation removeObjectForKey:[fImageLocationForReq objectForKey:aRequestIdentifier]];
@@ -270,8 +277,13 @@
 	if ([fRequestDetails objectForKey:aIdentifier] == @"POST") {
 		[fIgnoreUpdate setObject:@"IGNORE" forKey:[[aStatuses lastObject] objectForKey:@"id"]];
 		[fStatusUpdateField setEnabled:YES];
+		[fQuickPostField setEnabled:YES];
+		[fQuickPostButton setEnabled:YES];
 		[fStatusUpdateField setStringValue:@""];
+		[fQuickPostField setStringValue:@""];
+		[fQuickPostPanel close];
 		[fTextLevelIndicator setIntValue:140];
+		[fQuickTextLevelIndicator setIntValue:140];
 	} else {
 		if (fLastUpdateID) {
 			if ([fLastUpdateID longLongValue] < [[lLastStatus objectForKey:@"id"] longLongValue]) {
@@ -363,9 +375,9 @@
 	}
 }
 
-- (IBAction)postStatus:(id)sender {
+- (void)makePost:(NSString *)aMessage {
 	[self updateIndicatorAnimation];
-	NSArray *lSeparated = [[fStatusUpdateField stringValue] componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+	NSArray *lSeparated = [aMessage componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 	if ([lSeparated count] >= 2 && [[lSeparated objectAtIndex:0] isEqual:@"d"]) {
 		NSString *lMessageTarget;
 		NSString *lMessageToSend;
@@ -376,17 +388,23 @@
 			if ([lSeparated count] == 3 && [[lSeparated objectAtIndex:2] length] == 0) {
 				lMessageToSend = @"";
 			} else {
-				lMessageToSend = [[fStatusUpdateField stringValue] substringFromIndex:3 + [lMessageTarget length]];
+				lMessageToSend = [aMessage substringFromIndex:3 + [lMessageTarget length]];
 			}
 		}
 		[fRequestDetails setObject:@"MESSAGE" 
-							forKey:[fTwitterEngine sendDirectMessage:lMessageToSend
+							forKey:[fTwitterEngine sendDirectMessage:lMessageToSend 
 																  to:lMessageTarget]];
 	} else {
 		[fRequestDetails setObject:@"POST" 
-							forKey:[fTwitterEngine sendUpdate:[fStatusUpdateField stringValue]]];
+							forKey:[fTwitterEngine sendUpdate:aMessage]];
 	}
 	[fStatusUpdateField setEnabled:NO];
+	[fQuickPostField setEnabled:NO];
+	[fQuickPostButton setEnabled:NO];
+}
+
+- (IBAction)postStatus:(id)sender {
+	[self makePost:[fStatusUpdateField stringValue]];
 }
 
 - (void)openTwitterWeb {

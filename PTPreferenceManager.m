@@ -113,4 +113,12 @@
 	return [fPrefData boolForKey:@"auto_login"];
 }
 
+- (void)setQuickPost:(BOOL)aFlag {
+	[fPrefData setBool:aFlag forKey:@"use_quick_post"];
+}
+
+- (BOOL)quickPost {
+	return [fPrefData boolForKey:@"use_quick_post"];
+}
+
 @end
