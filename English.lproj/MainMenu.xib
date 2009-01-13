@@ -1994,7 +1994,7 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 			<object class="NSWindowTemplate" id="870969316">
 				<int key="NSWindowStyleMask">8337</int>
 				<int key="NSWindowBacking">2</int>
-				<string key="NSWindowRect">{{477, 447}, {400, 56}}</string>
+				<string key="NSWindowRect">{{477, 461}, {400, 42}}</string>
 				<int key="NSWTFlags">1677722624</int>
 				<string key="NSWindowTitle">Quick Post - Pwitter</string>
 				<string key="NSWindowClass">PTQuickPostPanel</string>
@@ -2005,27 +2005,10 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 					<int key="NSvFlags">256</int>
 					<object class="NSMutableArray" key="NSSubviews">
 						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSTextField" id="252433721">
-							<reference key="NSNextResponder" ref="743897400"/>
-							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{5, 27}, {390, 22}}</string>
-							<reference key="NSSuperview" ref="743897400"/>
-							<bool key="NSEnabled">YES</bool>
-							<object class="BGHUDTextFieldCell" key="NSCell" id="120878086">
-								<int key="NSCellFlags">-1804468671</int>
-								<int key="NSCellFlags2">268436480</int>
-								<string key="NSContents"/>
-								<reference key="NSSupport" ref="1062233408"/>
-								<string key="NSPlaceholderString">What are you doing?</string>
-								<reference key="NSControlView" ref="252433721"/>
-								<reference key="NSBackgroundColor" ref="1067252660"/>
-								<reference key="NSTextColor" ref="855123747"/>
-							</object>
-						</object>
 						<object class="NSButton" id="106145755">
 							<reference key="NSNextResponder" ref="743897400"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{325, 4}, {70, 25}}</string>
+							<string key="NSFrame">{{328, -2}, {70, 25}}</string>
 							<reference key="NSSuperview" ref="743897400"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="BGHUDButtonCell" key="NSCell" id="623812603">
@@ -2047,7 +2030,7 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 						<object class="NSButton" id="125681068">
 							<reference key="NSNextResponder" ref="743897400"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{250, 4}, {70, 25}}</string>
+							<string key="NSFrame">{{256, -2}, {70, 25}}</string>
 							<reference key="NSSuperview" ref="743897400"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="BGHUDButtonCell" key="NSCell" id="593246035">
@@ -2069,7 +2052,7 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 						<object class="NSTextField" id="25112094">
 							<reference key="NSNextResponder" ref="743897400"/>
 							<int key="NSvFlags">289</int>
-							<string key="NSFrame">{{5, 8}, {30, 16}}</string>
+							<string key="NSFrame">{{3, 2}, {30, 16}}</string>
 							<reference key="NSSuperview" ref="743897400"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="BGHUDTextFieldCell" key="NSCell" id="983283932">
@@ -2082,8 +2065,29 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 								<reference key="NSTextColor" ref="855123747"/>
 							</object>
 						</object>
+						<object class="NSTextField" id="475159972">
+							<reference key="NSNextResponder" ref="743897400"/>
+							<int key="NSvFlags">268</int>
+							<string key="NSFrame">{{0, 20}, {400, 22}}</string>
+							<reference key="NSSuperview" ref="743897400"/>
+							<bool key="NSEnabled">YES</bool>
+							<object class="NSTextFieldCell" key="NSCell" id="727857227">
+								<int key="NSCellFlags">-1808662975</int>
+								<int key="NSCellFlags2">268436480</int>
+								<string key="NSContents"/>
+								<reference key="NSSupport" ref="1062233408"/>
+								<string key="NSPlaceholderString">What are you doing?</string>
+								<reference key="NSControlView" ref="475159972"/>
+								<bool key="NSDrawsBackground">YES</bool>
+								<object class="NSColor" key="NSBackgroundColor">
+									<int key="NSColorSpace">3</int>
+									<bytes key="NSWhite">MC4zMDAwMDAwMSAwLjg5OTk5OTk4AA</bytes>
+								</object>
+								<reference key="NSTextColor" ref="855123747"/>
+							</object>
+						</object>
 					</object>
-					<string key="NSFrameSize">{400, 56}</string>
+					<string key="NSFrameSize">{400, 42}</string>
 					<reference key="NSSuperview"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>
@@ -3545,30 +3549,6 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 					<int key="connectionID">1363</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">performClick:</string>
-						<reference key="source" ref="106145755"/>
-						<reference key="destination" ref="252433721"/>
-					</object>
-					<int key="connectionID">1373</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">fPostTextField</string>
-						<reference key="source" ref="25112094"/>
-						<reference key="destination" ref="252433721"/>
-					</object>
-					<int key="connectionID">1376</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">fStatusUpdateField</string>
-						<reference key="source" ref="870969316"/>
-						<reference key="destination" ref="252433721"/>
-					</object>
-					<int key="connectionID">1378</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">fPostButton</string>
 						<reference key="source" ref="870969316"/>
@@ -3618,14 +3598,6 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
-						<string key="label">fQuickPostField</string>
-						<reference key="source" ref="186084955"/>
-						<reference key="destination" ref="252433721"/>
-					</object>
-					<int key="connectionID">1386</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
 						<string key="label">fQuickPostPanel</string>
 						<reference key="source" ref="186084955"/>
 						<reference key="destination" ref="870969316"/>
@@ -3642,14 +3614,6 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
-						<string key="label">delegate</string>
-						<reference key="source" ref="252433721"/>
-						<reference key="destination" ref="25112094"/>
-					</object>
-					<int key="connectionID">1391</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
 						<string key="label">fQuickPostWindow</string>
 						<reference key="source" ref="259615924"/>
 						<reference key="destination" ref="870969316"/>
@@ -3663,6 +3627,46 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 						<reference key="destination" ref="25112094"/>
 					</object>
 					<int key="connectionID">1393</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">fPostTextField</string>
+						<reference key="source" ref="25112094"/>
+						<reference key="destination" ref="475159972"/>
+					</object>
+					<int key="connectionID">1396</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">performClick:</string>
+						<reference key="source" ref="106145755"/>
+						<reference key="destination" ref="475159972"/>
+					</object>
+					<int key="connectionID">1397</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">delegate</string>
+						<reference key="source" ref="475159972"/>
+						<reference key="destination" ref="25112094"/>
+					</object>
+					<int key="connectionID">1398</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">fQuickPostField</string>
+						<reference key="source" ref="186084955"/>
+						<reference key="destination" ref="475159972"/>
+					</object>
+					<int key="connectionID">1399</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">fStatusUpdateField</string>
+						<reference key="source" ref="870969316"/>
+						<reference key="destination" ref="475159972"/>
+					</object>
+					<int key="connectionID">1400</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -5204,27 +5208,13 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 						<reference key="object" ref="743897400"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="252433721"/>
+							<reference ref="475159972"/>
 							<reference ref="106145755"/>
 							<reference ref="125681068"/>
 							<reference ref="25112094"/>
 						</object>
 						<reference key="parent" ref="870969316"/>
 						<string key="objectName">QuickPost Window</string>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">1367</int>
-						<reference key="object" ref="252433721"/>
-						<object class="NSMutableArray" key="children">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="120878086"/>
-						</object>
-						<reference key="parent" ref="743897400"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">1368</int>
-						<reference key="object" ref="120878086"/>
-						<reference key="parent" ref="252433721"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">1369</int>
@@ -5267,6 +5257,20 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 						<int key="objectID">1375</int>
 						<reference key="object" ref="983283932"/>
 						<reference key="parent" ref="25112094"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">1394</int>
+						<reference key="object" ref="475159972"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="727857227"/>
+						</object>
+						<reference key="parent" ref="743897400"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">1395</int>
+						<reference key="object" ref="727857227"/>
+						<reference key="parent" ref="475159972"/>
 					</object>
 				</object>
 			</object>
@@ -5375,8 +5379,6 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 					<string>1365.IBWindowTemplateEditedContentRect</string>
 					<string>1365.NSWindowTemplate.visibleAtLaunch</string>
 					<string>1366.IBPluginDependency</string>
-					<string>1367.IBPluginDependency</string>
-					<string>1368.IBPluginDependency</string>
 					<string>1369.IBPluginDependency</string>
 					<string>1370.IBPluginDependency</string>
 					<string>1371.IBPluginDependency</string>
@@ -5384,6 +5386,8 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 					<string>1374.CustomClassName</string>
 					<string>1374.IBPluginDependency</string>
 					<string>1375.IBPluginDependency</string>
+					<string>1394.IBPluginDependency</string>
+					<string>1395.IBPluginDependency</string>
 					<string>143.IBPluginDependency</string>
 					<string>143.ImportedFromIB2</string>
 					<string>144.IBPluginDependency</string>
@@ -5717,12 +5721,10 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 					<reference ref="9"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{217, 177}, {400, 56}}</string>
-					<string>{{217, 177}, {400, 56}}</string>
+					<string>{{352, 208}, {400, 42}}</string>
+					<string>{{352, 208}, {400, 42}}</string>
 					<reference ref="6"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>com.binarymethod.BGHUDAppKitPlugin</string>
-					<string>com.binarymethod.BGHUDAppKitPlugin</string>
 					<string>com.binarymethod.BGHUDAppKitPlugin</string>
 					<string>com.binarymethod.BGHUDAppKitPlugin</string>
 					<string>com.binarymethod.BGHUDAppKitPlugin</string>
@@ -5730,6 +5732,8 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 					<string>PTCharacterCounter</string>
 					<string>com.binarymethod.BGHUDAppKitPlugin</string>
 					<string>com.binarymethod.BGHUDAppKitPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -5995,7 +5999,7 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">1393</int>
+			<int key="maxID">1400</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -6131,6 +6135,7 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 							<string>fQuickPostButton</string>
 							<string>fQuickPostField</string>
 							<string>fQuickPostPanel</string>
+							<string>fQuickTextLevelIndicator</string>
 							<string>fReplyButton</string>
 							<string>fSelectedTextView</string>
 							<string>fStatusBoxGenerator</string>
@@ -6156,6 +6161,7 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
+							<string>id</string>
 						</object>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
@@ -6166,10 +6172,6 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 				<object class="IBPartialClassDescription">
 					<string key="className">PTMain</string>
 					<string key="superclassName">NSObject</string>
-					<object class="NSMutableDictionary" key="outlets">
-						<string key="NS.key.0">fQuickTextLevelIndicator</string>
-						<string key="NS.object.0">id</string>
-					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBUserSource</string>
 						<string key="minorKey"/>
