@@ -341,6 +341,11 @@
 }
 
 - (IBAction)updateTimeline:(id)sender {
+	// sender is self when this method is provoked by the timer
+	if (sender != self) {
+		[self setupUpdateTimer];
+		[self setupMessageUpdateTimer];
+	}
 	if (!fLastUpdateID) {
 		[self runInitialUpdates];
 	} else {
