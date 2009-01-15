@@ -33,5 +33,7 @@
 - (BOOL)autoLogin;
 - (void)setQuickPost:(BOOL)aFlag;
 - (BOOL)quickPost;
+- (void)setIgnoreErrors:(BOOL)aFlag;
+- (BOOL)ignoreErrors;
 
 @end

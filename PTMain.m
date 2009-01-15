@@ -10,6 +10,8 @@
 #import "PTStatusBoxGenerator.h"
 #import "PTGrowlNotificationManager.h"
 
+#define STATUS_LIMIT 250
+
 
 @implementation PTMain
 
@@ -77,6 +79,13 @@
 			[fProgressBar stopAnimation:self];
 			[fProgressBar setHidden:YES];
 			[fUpdateButton setEnabled:YES];
+			// limit the number of status boxes
+			int lStatusCount = [[fStatusController content] count] + 1;
+			if (lStatusCount > STATUS_LIMIT) {
+				NSRange lDeletionRange = NSMakeRange(STATUS_LIMIT - 1, lStatusCount - STATUS_LIMIT);
+				NSIndexSet *lToDelete = [NSIndexSet indexSetWithIndexesInRange:lDeletionRange];
+				[fStatusController removeObjectsAtArrangedObjectIndexes:lToDelete];
+			}
 		}
 	}
 }
@@ -189,7 +198,7 @@
 
 - (void)requestFailed:(NSString *)aRequestIdentifier withError:(NSError *)aError
 {
-	BOOL lIgnoreError = NO;
+	BOOL lIgnoreError = [[PTPreferenceManager getInstance] ignoreErrors];
 	NSString *lRequestType = [fRequestDetails objectForKey:aRequestIdentifier];
 	if (lRequestType == @"POST" || lRequestType == @"MESSAGE") {
 		[fStatusUpdateField setEnabled:YES];

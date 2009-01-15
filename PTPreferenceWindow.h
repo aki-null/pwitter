@@ -25,6 +25,8 @@
     IBOutlet id fActivateGlobalKey;
     IBOutlet id fShortcutRecorder;
     IBOutlet id fQuickPostWindow;
+    IBOutlet id fIgnoreErrors;
+    IBOutlet id fMainActionHandler;
 	PTHotKey *fHotKey;
 }
 - (void)loadPreferences;

@@ -10,6 +10,7 @@
 #import "PTPreferenceManager.h"
 #import "PTHotKeyCenter.h"
 #import "PTMain.h"
+#import "PTMainActionHandler.h"
 
 
 @implementation PTPreferenceWindow
@@ -27,6 +28,7 @@
 	[[PTPreferenceManager getInstance] receiveFromNonFollowers] ? [fReceiveFromNonFollowers setState:NSOnState] : [fReceiveFromNonFollowers setState:NSOffState];
 	[[PTPreferenceManager getInstance] useMiniView] ? [fUseMiniView setState:NSOnState] : [fUseMiniView setState:NSOffState];
 	[[PTPreferenceManager getInstance] quickPost] ? [fActivateGlobalKey setState:NSOnState] : [fActivateGlobalKey setState:NSOffState];
+	[[PTPreferenceManager getInstance] ignoreErrors] ? [fIgnoreErrors setState:NSOnState] : [fIgnoreErrors setState:NSOffState];
 	[self loadKeyCombo];
 	[self turnOffHotKey];
 	[fShortcutRecorder setEnabled:NO];
@@ -42,6 +44,9 @@
 	[[PTPreferenceManager getInstance] setAlwaysOnTop:[fAlwaysOnTop state] == NSOnState];
 	[[PTPreferenceManager getInstance] setUseMiniView:[fUseMiniView state] == NSOnState];
 	[[PTPreferenceManager getInstance] setQuickPost:[fActivateGlobalKey state] == NSOnState];
+	[[PTPreferenceManager getInstance] setIgnoreErrors:[fIgnoreErrors state] == NSOnState];
+	if ([fIgnoreErrors state] == NSOnState)
+		[fMainActionHandler clearErrors:sender];
 	BOOL lNonFollower = [fReceiveFromNonFollowers state] == NSOnState;
 	if ([[PTPreferenceManager getInstance] receiveFromNonFollowers] != lNonFollower) {
 		[[PTPreferenceManager getInstance] setReceiveFromNonFollowers:lNonFollower];

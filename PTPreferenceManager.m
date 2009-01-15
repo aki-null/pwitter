@@ -121,4 +121,12 @@
 	return [fPrefData boolForKey:@"use_quick_post"];
 }
 
+- (void)setIgnoreErrors:(BOOL)aFlag {
+	[fPrefData setBool:aFlag forKey:@"ignore_errors"];
+}
+
+- (BOOL)ignoreErrors {
+	return [fPrefData boolForKey:@"ignore_errors"];
+}
+
 @end
