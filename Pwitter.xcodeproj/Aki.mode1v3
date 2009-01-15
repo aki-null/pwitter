@@ -231,8 +231,6 @@
 			<key>Layout</key>
 			<array>
 				<dict>
-					<key>BecomeActive</key>
-					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -278,13 +276,14 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>48</integer>
-									<integer>47</integer>
+									<integer>4</integer>
+									<integer>2</integer>
+									<integer>1</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 130}, {282, 760}}</string>
+							<string>{{0, 260}, {282, 760}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -314,12 +313,14 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>PTQuickPostPanel.m</string>
+								<string>PTMain.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -327,11 +328,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>PTQuickPostPanel.m</string>
+										<string>PTMain.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>6147D2640F1EDDC10063C8B1</string>
+										<string>61924CE70F1F06F3005F9E20</string>
 										<key>history</key>
 										<array>
 											<string>61D282AC0F199E7E0083DA87</string>
@@ -376,8 +377,8 @@
 											<string>61A57CF90F1EA75A001BB963</string>
 											<string>61A57CFA0F1EA75A001BB963</string>
 											<string>61A57CFB0F1EA75A001BB963</string>
-											<string>6114E24D0F1ECF250084E563</string>
-											<string>612ECE5A0F1ED09B0090F671</string>
+											<string>6125BAC10F1EE46B00E23211</string>
+											<string>612BDB020F1EEC03000E3D5C</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -482,9 +483,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>6147D2650F1EDDC10063C8B1</string>
+				<string>61924CDE0F1F0650005F9E20</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>6147D2660F1EDDC10063C8B1</string>
+				<string>61924CDF0F1F0650005F9E20</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -618,6 +619,8 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>1CD10A99069EF8BA00B06720</string>
+		<string>61EE71270F02179E005C42F5</string>
 		<string>/Users/Aki/Documents/GitRepos/Pwitter/Pwitter.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
@@ -698,7 +701,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>61EE71270F02179E005C42F5</string>
-				<string>612ECE450F1ED04A0090F671</string>
+				<string>61924CE00F1F0650005F9E20</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -818,13 +821,13 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1CD10A99069EF8BA00B06720</string>
-				<string>612ECE490F1ED0590090F671</string>
+				<string>61924CE10F1F0650005F9E20</string>
 				<string>1C162984064C10D400B95A72</string>
-				<string>612ECE4A0F1ED0590090F671</string>
-				<string>612ECE4B0F1ED0590090F671</string>
-				<string>612ECE4C0F1ED0590090F671</string>
-				<string>612ECE4D0F1ED0590090F671</string>
-				<string>612ECE4E0F1ED0590090F671</string>
+				<string>61924CE20F1F0650005F9E20</string>
+				<string>61924CE30F1F0650005F9E20</string>
+				<string>61924CE40F1F0650005F9E20</string>
+				<string>61924CE50F1F0650005F9E20</string>
+				<string>61924CE60F1F0650005F9E20</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debugV3</string>

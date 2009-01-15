@@ -907,7 +907,7 @@
 													<string key="NSMinGridSize">{0, 0}</string>
 													<string key="NSMaxGridSize">{0, 0}</string>
 													<int key="NSMinNumberOfGridRows">0</int>
-													<int key="NSMaxNumberOfGridRows">250</int>
+													<int key="NSMaxNumberOfGridRows">200</int>
 													<int key="NSMinNumberOfGridColumns">0</int>
 													<int key="NSMaxNumberOfGridColumns">1</int>
 													<object class="NSArray" key="NSBackgroundColors">

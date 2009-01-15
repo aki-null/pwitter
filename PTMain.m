@@ -10,7 +10,7 @@
 #import "PTStatusBoxGenerator.h"
 #import "PTGrowlNotificationManager.h"
 
-#define STATUS_LIMIT 250
+#define STATUS_LIMIT 200
 
 
 @implementation PTMain
