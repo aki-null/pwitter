@@ -20,8 +20,10 @@
 }
 
 - (void)orderFront:(id)sender {
+	[self setAlphaValue:0.0];
 	[super orderFront:sender];
 	[self makeFirstResponder:fStatusUpdateField];
+	[[self animator] setAlphaValue:1.0];
 }
 
 @end
