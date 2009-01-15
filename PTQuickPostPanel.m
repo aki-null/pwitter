@@ -23,7 +23,10 @@
 	[self setAlphaValue:0.0];
 	[super orderFront:sender];
 	[self makeFirstResponder:fStatusUpdateField];
+	[NSAnimationContext beginGrouping];
+	[[NSAnimationContext currentContext] setDuration:0.2f];
 	[[self animator] setAlphaValue:1.0];
+	[NSAnimationContext endGrouping];
 }
 
 @end
