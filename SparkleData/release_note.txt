@@ -1,0 +1,38 @@
+16 January 2009: (Version 0.6):
+Improved: Revised reply status handling - more friendly to the Twitter server
+Feature: Option to ignore error messages (available from the preference window)
+Feature: Quick Post feature added (ability to provoke quick post window with a globally defined keyboard shortcut)
+Bug Fixed: Fixed the status duplication issue
+
+11 January 2009: (Version 0.5):
+Bug Fixed: Fixed the problem with checking direct messages at general update check
+Bug Fixed: Fixed the problem that did not display the posted message immediately which is a reply to the user self
+Bug Fixed: Fixed the problem switching to an account with zero status messages
+Feature: Auto-adjusting selected status message box
+Feature: Added an option to switch to a mini status view
+
+7 January 2009: (Version 0.4):
+Bug fixed: Fixed the problem with receiving updates while the status is filtered
+Feature: Growl notification support
+Feature: Ability to clear error logs from the status box
+Feature: Ability to filter the view to only see the error logs
+
+6 January 2009: (Version 0.3.3):
+Bug fixed: Problem with not receiving some updates.
+Improvement: Disabled the update button while an update is in progress.
+
+6 January 2009: (Version 0.3.2):
+Feature: Option to receive a reply from non-followers
+Bug fixed: Error message font issue
+Improvement: Revised the reply button behavior
+
+4 January 2009: (Version 0.3.1):
+Feature: Reply link support in status messages
+Improvement: User name label behavior improvement
+Improvement: Revised direct message input method
+Bug fixed: Update after failed initial update now tried to run the initial update again
+
+3 January 2009: (Version 0.3.0) Implemented searching and message filtering
+2 January 2009: (Version 0.2.2) Support for Sparkle software update framework
+2 January 2009: (Version 0.2.1) Several bug fixes and menu bar additions
+2 January 2009: (Version 0.2.0) Initial version
