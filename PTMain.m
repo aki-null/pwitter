@@ -286,7 +286,9 @@
 				PTStatusBox *lBoxToAdd = nil;
 				lBoxToAdd = [fStatusBoxGenerator constructStatusBox:lCurrentStatus 
 															isReply:lDecision == 1];
-				if (lDecision == 1 && lUpdateType != @"INIT_REPLY_UPDATE")
+				if (lDecision == 1 && 
+					lUpdateType != @"INIT_REPLY_UPDATE" && 
+					lUpdateType != @"INIT_UPDATE")
 					[fNotificationMan postReplyNotification:lBoxToAdd];
 				[lTempBoxes addObject:lBoxToAdd];
 				[lBoxToAdd release];
