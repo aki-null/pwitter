@@ -19,7 +19,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>0.5</string>
+	<string>0.6</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
@@ -27,6 +27,6 @@
 	<key>SUPublicDSAKeyFile</key>
 	<string>dsa_pub.pem</string>
 	<key>SUFeedURL</key>
-	<string>http://aki.geekstemplar.org.au/pwitter/appcast.xml</string>
+	<string>http://github.com/koroshiya1/pwitter/raw/master/SparkleData/appcast.xml</string>
 </dict>
 </plist>

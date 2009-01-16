@@ -380,7 +380,7 @@
 		[self updateIndicatorAnimation];
 		[fRequestDetails setObject:@"UPDATE" 
 							forKey:[fTwitterEngine getFollowedTimelineFor:[fTwitterEngine username] 
-																  sinceID:fLastUpdateID startingAtPage:0 count:100]];
+																  sinceID:fLastUpdateID startingAtPage:0 count:50]];
 		if ([[PTPreferenceManager getInstance] receiveFromNonFollowers])
 			[fRequestDetails setObject:@"REPLY_UPDATE" 
 								forKey:[fTwitterEngine getRepliesSinceID:0 sinceID:fLastReplyID]];
