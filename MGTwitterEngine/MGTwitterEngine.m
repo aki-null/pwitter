@@ -1083,6 +1083,22 @@
                            responseType:MGTwitterStatuses];
 }
 
+- (NSString *)getRepliesSinceID:(int)pageNum sinceID:(NSString *)updateID
+{
+    NSString *path = @"statuses/replies.xml";
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:0];
+    if (pageNum > 0) {
+        [params setObject:[NSString stringWithFormat:@"%d", pageNum] forKey:@"page"];
+    }
+	if (updateID) {
+		[params setObject:updateID forKey:@"since_id"];
+	}
+    
+    return [self _sendRequestWithMethod:nil path:path queryParameters:params body:nil 
+                            requestType:MGTwitterRepliesRequest 
+                           responseType:MGTwitterStatuses];
+}
 
 - (NSString *)getFavoriteUpdatesFor:(NSString *)username startingAtPage:(int)pageNum
 {

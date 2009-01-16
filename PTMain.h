@@ -31,7 +31,7 @@
 	MGTwitterEngine *fTwitterEngine;
 	NSString *fLastUpdateID;
 	NSString *fLastMessageID;
-	long long int fLastReplyID;
+	NSString *fLastReplyID;
 	NSImage *fDefaultImage;
 	NSMutableDictionary *fRequestDetails;
 	NSMutableDictionary *fImageLocationForReq;

@@ -181,18 +181,21 @@
 	[super dealloc];
 }
 
+- (void)postComplete {
+	[fStatusUpdateField setEnabled:YES];
+	[fQuickPostField setEnabled:YES];
+	[fQuickPostButton setEnabled:YES];
+	[fStatusUpdateField setStringValue:@""];
+	[fQuickPostField setStringValue:@""];
+	[fQuickPostPanel close];
+	[fTextLevelIndicator setIntValue:140];
+	[fQuickTextLevelIndicator setIntValue:140];
+}
+
 - (void)requestSucceeded:(NSString *)requestIdentifier
 {
 	if ([fRequestDetails objectForKey:requestIdentifier] == @"MESSAGE") {
-		[fStatusUpdateField setEnabled:YES];
-		[fQuickPostField setEnabled:YES];
-		[fQuickPostButton setEnabled:YES];
-		[fStatusUpdateField setStringValue:@""];
-		[fQuickPostField setStringValue:@""];
-		[fQuickPostPanel close];
-		[fMessageButton setState:NSOffState];
-		[fTextLevelIndicator setIntValue:140];
-		[fQuickTextLevelIndicator setIntValue:140];
+		[self postComplete];
 	}
 }
 
@@ -238,6 +241,24 @@
 	}
 }
 
+- (void)updateLastUpdateID:(NSString *)aLastUpdateID {
+	if (fLastUpdateID) {
+		if ([fLastUpdateID longLongValue] < [aLastUpdateID longLongValue]) {
+			[fLastUpdateID release];
+			fLastUpdateID = [[NSString alloc] initWithString:aLastUpdateID];
+		}
+	} else fLastUpdateID = [[NSString alloc] initWithString:aLastUpdateID];
+}
+
+- (void)updateLastReplyID:(NSString *)aLastReplyID {
+	if (fLastReplyID) {
+		if ([fLastReplyID longLongValue] < [aLastReplyID longLongValue]) {
+			[fLastReplyID release];
+			fLastReplyID = [[NSString alloc] initWithString:aLastReplyID];
+		}
+	} else fLastReplyID = [[NSString alloc] initWithString:aLastReplyID];
+}
+
 - (void)statusesReceived:(NSArray *)aStatuses forRequest:(NSString *)aIdentifier
 {
 	if ([aStatuses count] == 0) {
@@ -249,22 +270,17 @@
 	NSDictionary *lCurrentStatus;
 	NSDictionary *lLastStatus = nil;
 	NSMutableArray *lTempBoxes = [[NSMutableArray alloc] init];
-	long long int lLastReplyID = 0;
+	NSString *lUpdateType = [fRequestDetails objectForKey:aIdentifier];
 	for (lCurrentStatus in aStatuses) {
 		if ([fIgnoreUpdate objectForKey:[lCurrentStatus objectForKey:@"id"]] != @"IGNORE") {
 			int lDecision = 0;
-			NSString *lUpdateType = [fRequestDetails objectForKey:aIdentifier];
 			if ([[lCurrentStatus objectForKey:@"in_reply_to_screen_name"] isEqualToString:[fTwitterEngine username]]) {
 				if (lUpdateType == @"REPLY_UPDATE" || 
 					lUpdateType == @"INIT_REPLY_UPDATE" || 
-					lUpdateType == @"POST") {
-					long long int lCurrentUpdateID = [[lCurrentStatus objectForKey:@"id"] longLongValue];
-					if (fLastReplyID != 0 && lCurrentUpdateID > fLastReplyID || fLastReplyID == 0) {
-						lDecision = 1;
-						if (lLastReplyID < lCurrentUpdateID) lLastReplyID = lCurrentUpdateID;
-					}
-				} else if (![[PTPreferenceManager getInstance] receiveFromNonFollowers])
+					lUpdateType == @"POST" || 
+					![[PTPreferenceManager getInstance] receiveFromNonFollowers]) {
 					lDecision = 1;
+				}
 			} else lDecision = 2;
 			if (lDecision != 0) {
 				PTStatusBox *lBoxToAdd = nil;
@@ -280,26 +296,15 @@
 		}
 		if (!lLastStatus) lLastStatus = lCurrentStatus;
 	}
-	if (lLastReplyID != 0) fLastReplyID = lLastReplyID;
 	[fStatusController addObjects:lTempBoxes];
 	[lTempBoxes release];
-	if ([fRequestDetails objectForKey:aIdentifier] == @"POST") {
+	if (lUpdateType == @"POST") {
 		[fIgnoreUpdate setObject:@"IGNORE" forKey:[[aStatuses lastObject] objectForKey:@"id"]];
-		[fStatusUpdateField setEnabled:YES];
-		[fQuickPostField setEnabled:YES];
-		[fQuickPostButton setEnabled:YES];
-		[fStatusUpdateField setStringValue:@""];
-		[fQuickPostField setStringValue:@""];
-		[fQuickPostPanel close];
-		[fTextLevelIndicator setIntValue:140];
-		[fQuickTextLevelIndicator setIntValue:140];
+		[self postComplete];
+	} else if (lUpdateType == @"REPLY_UPDATE" || lUpdateType == @"INIT_REPLY_UPDATE") {
+		[self updateLastReplyID:[lLastStatus objectForKey:@"id"]];
 	} else {
-		if (fLastUpdateID) {
-			if ([fLastUpdateID longLongValue] < [[lLastStatus objectForKey:@"id"] longLongValue]) {
-				[fLastUpdateID release];
-				fLastUpdateID = [[NSString alloc] initWithString:[lLastStatus objectForKey:@"id"]];
-			}
-		} else fLastUpdateID = [[NSString alloc] initWithString:[lLastStatus objectForKey:@"id"]];
+		[self updateLastUpdateID:[lLastStatus objectForKey:@"id"]];
 	}
 	[fRequestDetails removeObjectForKey:aIdentifier];
 	[self updateIndicatorAnimation];
@@ -376,7 +381,7 @@
 																  sinceID:fLastUpdateID startingAtPage:0 count:100]];
 		if ([[PTPreferenceManager getInstance] receiveFromNonFollowers])
 			[fRequestDetails setObject:@"REPLY_UPDATE" 
-								forKey:[fTwitterEngine getRepliesStartingAtPage:0]];
+								forKey:[fTwitterEngine getRepliesSinceID:0 sinceID:fLastReplyID]];
 		if (sender != self)
 			[fRequestDetails setObject:@"MESSAGE_UPDATE" 
 								forKey:[fTwitterEngine getDirectMessagesSinceID:fLastMessageID 
