@@ -93,7 +93,7 @@
 - (void)runMessageUpdateFromTimer:(NSTimer *)aTimer {
 	[self updateIndicatorAnimation];
 	[fRequestDetails setObject:@"MESSAGE_UPDATE" 
-						forKey:[fTwitterEngine getDirectMessagesSinceID:fLastMessageID 
+						forKey:[fTwitterEngine getDirectMessagesSinceID:[fLastMessageID  stringValue] 
 														 startingAtPage:0]];
 }
 
@@ -128,6 +128,24 @@
 	[self setupMessageUpdateTimer];
 }
 
+- (void)initTransaction {
+	fRequestDetails = [[NSMutableDictionary alloc] init];
+	fImageLocationForReq = [[NSMutableDictionary alloc] init];
+	fImageReqForLocation = [[NSMutableDictionary alloc] init];
+	fStatusBoxesForReq = [[NSMutableDictionary alloc] init];
+	fUserImageCache = [[NSMutableDictionary alloc] init];
+	fIgnoreUpdate = [[NSMutableDictionary alloc] init];
+}
+
+- (void)deallocTransaction {
+	if (fRequestDetails) [fRequestDetails release];
+	if (fImageLocationForReq) [fImageLocationForReq release];
+	if (fImageReqForLocation) [fImageReqForLocation release];
+	if (fStatusBoxesForReq) [fStatusBoxesForReq release];
+	if (fUserImageCache) [fUserImageCache release];
+	if (fIgnoreUpdate) [fIgnoreUpdate release];
+}
+
 - (IBAction)changeAccount:(id)sender {
 	fLastReplyID = 0;
 	if (fLastUpdateID) {
@@ -142,34 +160,27 @@
 	[fStatusController rearrangeObjects];
 	[fTwitterEngine setUsername:[[PTPreferenceManager getInstance] userName] 
 					   password:[[PTPreferenceManager getInstance] password]];
-	[self runInitialUpdates];
 	[self setupUpdateTimer];
 	[self setupMessageUpdateTimer];
+	[fTwitterEngine closeAllConnections];
+	[self deallocTransaction];
+	[self initTransaction];
+	[fProgressBar stopAnimation:self];
+	[fProgressBar setHidden:YES];
+	[fUpdateButton setEnabled:YES];
+	[self runInitialUpdates];
 }
 
 - (void)awakeFromNib
 {
-	fUpdateTimer = nil;
-	fRequestDetails = [[NSMutableDictionary alloc] init];
-	fImageLocationForReq = [[NSMutableDictionary alloc] init];
-	fImageReqForLocation = [[NSMutableDictionary alloc] init];
-	fStatusBoxesForReq = [[NSMutableDictionary alloc] init];
-	fUserImageCache = [[NSMutableDictionary alloc] init];
-	fIgnoreUpdate = [[NSMutableDictionary alloc] init];
+	[self initTransaction];
 	fDefaultImage = [NSImage imageNamed:@"default.png"];
 }
 
 - (void)dealloc
 {
-	if (fRequestDetails) [fRequestDetails release];
-	if (fImageLocationForReq) [fImageLocationForReq release];
-	if (fImageReqForLocation) [fImageReqForLocation release];
-	if (fStatusBoxesForReq) [fStatusBoxesForReq release];
-	if (fUserImageCache) [fUserImageCache release];
+	[self deallocTransaction];
 	if (fTwitterEngine) [fTwitterEngine release];
-	if (fLastUpdateID) [fLastUpdateID release];
-	if (fLastMessageID) [fLastMessageID release];
-	if (fIgnoreUpdate) [fIgnoreUpdate release];
 	if (fUpdateTimer) {
 		[fUpdateTimer invalidate];
 		[fUpdateTimer release];
@@ -218,7 +229,6 @@
 	if (!lIgnoreError) {
 		PTStatusBox *lErrorBox = [fStatusBoxGenerator constructErrorBox:aError];
 		[fStatusController addObject:lErrorBox];
-		[lErrorBox release];
 	}
 }
 
@@ -241,28 +251,28 @@
 	}
 }
 
-- (void)updateLastUpdateID:(NSString *)aLastUpdateID {
+- (void)updateLastUpdateID:(NSNumber *)aLastUpdateID {
 	if (fLastUpdateID) {
 		if ([fLastUpdateID longLongValue] < [aLastUpdateID longLongValue]) {
 			[fLastUpdateID release];
-			fLastUpdateID = [[NSString alloc] initWithString:aLastUpdateID];
+			fLastUpdateID = [aLastUpdateID copy];
 		}
-	} else fLastUpdateID = [[NSString alloc] initWithString:aLastUpdateID];
+	} else fLastUpdateID = [aLastUpdateID copy];
 }
 
 - (void)updateLastReplyID:(NSString *)aLastReplyID {
 	if (fLastReplyID) {
 		if ([fLastReplyID longLongValue] < [aLastReplyID longLongValue]) {
 			[fLastReplyID release];
-			fLastReplyID = [[NSString alloc] initWithString:aLastReplyID];
+			fLastReplyID = [aLastReplyID copy];
 		}
-	} else fLastReplyID = [[NSString alloc] initWithString:aLastReplyID];
+	} else fLastReplyID = [aLastReplyID copy];
 }
 
 - (void)statusesReceived:(NSArray *)aStatuses forRequest:(NSString *)aIdentifier
 {
 	if ([aStatuses count] == 0) {
-		if (!fLastUpdateID) fLastUpdateID = [[NSString alloc] initWithString:@"0"];
+		if (!fLastUpdateID) fLastUpdateID = [[NSNumber alloc] initWithLongLong:0];
 		[fRequestDetails removeObjectForKey:aIdentifier];
 		[self updateIndicatorAnimation];
 		return;
@@ -291,7 +301,6 @@
 					lUpdateType != @"INIT_UPDATE")
 					[fNotificationMan postReplyNotification:lBoxToAdd];
 				[lTempBoxes addObject:lBoxToAdd];
-				[lBoxToAdd release];
 			}
 		} else {
 			[fIgnoreUpdate removeObjectForKey:[lCurrentStatus objectForKey:@"id"]];
@@ -299,7 +308,6 @@
 		if (!lLastStatus) lLastStatus = lCurrentStatus;
 	}
 	[fStatusController addObjects:lTempBoxes];
-	[lTempBoxes release];
 	if (lUpdateType == @"POST") {
 		[fIgnoreUpdate setObject:@"IGNORE" forKey:[[aStatuses lastObject] objectForKey:@"id"]];
 		[self postComplete];
@@ -319,7 +327,7 @@
 		[self updateIndicatorAnimation];
 		return;
 	}
-	if ([[[aMessages objectAtIndex:0] objectForKey:@"id"] isEqual:@""]) {
+	if ([[[aMessages objectAtIndex:0] objectForKey:@"id"] longLongValue] == 0) {
 		[fRequestDetails removeObjectForKey:aIdentifier];
 		[self updateIndicatorAnimation];
 		return;
@@ -332,13 +340,12 @@
 		if ([fRequestDetails objectForKey:aIdentifier] != @"INIT_MESSAGE_UPDATE")
 			[fNotificationMan postMessageNotification:lBoxToAdd];
 		[lTempArray addObject:lBoxToAdd];
-		[lBoxToAdd release];
 		if (!lLastDic) lLastDic = lCurrentDic;
 	}
 	[fStatusController addObjects:lTempArray];
 	[lTempArray release];
 	if (fLastMessageID) [fLastMessageID release];
-	fLastMessageID = [[NSString alloc] initWithString:[lLastDic objectForKey:@"id"]];
+	fLastMessageID = [[lLastDic objectForKey:@"id"] copy];
 	[fRequestDetails removeObjectForKey:aIdentifier];
 	[self updateIndicatorAnimation];
 }
@@ -380,13 +387,13 @@
 		[self updateIndicatorAnimation];
 		[fRequestDetails setObject:@"UPDATE" 
 							forKey:[fTwitterEngine getFollowedTimelineFor:[fTwitterEngine username] 
-																  sinceID:fLastUpdateID startingAtPage:0 count:50]];
+																  sinceID:[fLastUpdateID stringValue] startingAtPage:0 count:50]];
 		if ([[PTPreferenceManager getInstance] receiveFromNonFollowers])
 			[fRequestDetails setObject:@"REPLY_UPDATE" 
-								forKey:[fTwitterEngine getRepliesSinceID:0 sinceID:fLastReplyID]];
+								forKey:[fTwitterEngine getRepliesSinceID:0 sinceID:[fLastReplyID stringValue]]];
 		if (sender != self)
 			[fRequestDetails setObject:@"MESSAGE_UPDATE" 
-								forKey:[fTwitterEngine getDirectMessagesSinceID:fLastMessageID 
+								forKey:[fTwitterEngine getDirectMessagesSinceID:[fLastMessageID  stringValue]
 																 startingAtPage:0]];
 	}
 }

@@ -47,7 +47,7 @@
 							[[aStatusInfo objectForKey:@"user"] objectForKey:@"screen_name"], 
 							[[aStatusInfo objectForKey:@"user"] objectForKey:@"name"], 
 							[aStatusInfo objectForKey:@"text"]];
-	return lNewBox;
+	return [lNewBox autorelease];
 }
 
 - (PTStatusBox *)constructErrorBox:(NSError *)aError {
@@ -65,7 +65,7 @@
 	lNewBox.sType = ErrorMessage;
 	lNewBox.searchString = [NSString stringWithFormat:@"Twitter Error: %@", 
 							[aError localizedDescription]];
-	return lNewBox;
+	return [lNewBox autorelease];
 }
 
 - (PTStatusBox *)constructMessageBox:(NSDictionary *)aStatusInfo {
@@ -92,7 +92,7 @@
 							[[aStatusInfo objectForKey:@"sender"] objectForKey:@"screen_name"], 
 							[[aStatusInfo objectForKey:@"sender"] objectForKey:@"name"], 
 							[aStatusInfo objectForKey:@"text"]];
-	return lNewBox;
+	return [lNewBox autorelease];
 }
 
 @end

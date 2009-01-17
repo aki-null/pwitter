@@ -11,7 +11,7 @@
 
 #import "NSData+Base64.h"
 
-#define USE_LIBXML 0
+#define USE_LIBXML 1
 
 #if USE_LIBXML
 	#import "MGTwitterStatusesLibXMLParser.h"

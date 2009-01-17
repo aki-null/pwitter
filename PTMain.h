@@ -29,9 +29,9 @@
     IBOutlet id fQuickPostPanel;
     IBOutlet id fQuickTextLevelIndicator;
 	MGTwitterEngine *fTwitterEngine;
-	NSString *fLastUpdateID;
-	NSString *fLastMessageID;
-	NSString *fLastReplyID;
+	NSNumber *fLastUpdateID;
+	NSNumber *fLastMessageID;
+	NSNumber *fLastReplyID;
 	NSImage *fDefaultImage;
 	NSMutableDictionary *fRequestDetails;
 	NSMutableDictionary *fImageLocationForReq;
