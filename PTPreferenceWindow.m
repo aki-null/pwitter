@@ -124,8 +124,10 @@
 }
 
 - (void)hitKey:(PTHotKey *)aHotKey {
-	[fQuickPostWindow orderFront:self];
-	[fQuickPostWindow makeKeyWindow];
+	[NSApp activateIgnoringOtherApps:YES];
+	[fMainWindow orderFront:self];
+	[fMainWindow makeKeyWindow];
+	[fPostTextField selectText:self];
 }
 
 - (IBAction)quickPostChanged:(id)sender {

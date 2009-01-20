@@ -6,13 +6,17 @@
 	<array>
 		<string>PTReplyReceived</string>
 		<string>PTMessageReceived</string>
+		<string>PTStatusReceived</string>
+		<string>PTMiscReceived</string>
 	</array>
 	<key>DefaultNotifications</key>
 	<array>
 		<string>PTReplyReceived</string>
 		<string>PTMessageReceived</string>
+		<string>PTStatusReceived</string>
+		<string>PTMiscReceived</string>
 	</array>
 	<key>TicketVersion</key>
-	<integer>1</integer>
+	<integer>2</integer>
 </dict>
 </plist>

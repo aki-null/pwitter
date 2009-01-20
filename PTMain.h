@@ -12,6 +12,13 @@
 #import "PTStatusBox.h"
 #import "PTPreferenceWindow.h"
 
+typedef enum soundEventType {
+	NoneReceived = 0,
+	StatusReceived = 1,
+	ReplyOrMessageReceived = 2,
+	ErrorReceived = 3
+}SoundEventType;
+
 @interface PTMain : NSObject <MGTwitterEngineDelegate> {
     IBOutlet id fStatusUpdateField;
     IBOutlet id fStatusController;
@@ -24,15 +31,14 @@
     IBOutlet id fUpdateButton;
     IBOutlet id fNotificationMan;
     IBOutlet id fSelectedTextView;
-    IBOutlet id fQuickPostButton;
-    IBOutlet id fQuickPostField;
-    IBOutlet id fQuickPostPanel;
-    IBOutlet id fQuickTextLevelIndicator;
+    IBOutlet id fMainWindow;
 	MGTwitterEngine *fTwitterEngine;
 	NSNumber *fLastUpdateID;
 	NSNumber *fLastMessageID;
 	NSNumber *fLastReplyID;
 	NSImage *fDefaultImage;
+	NSSound *fStatusReceived;
+	NSSound *fReplyReceived;
 	NSMutableDictionary *fRequestDetails;
 	NSMutableDictionary *fImageLocationForReq;
 	NSMutableDictionary *fImageReqForLocation;
@@ -41,6 +47,10 @@
 	NSMutableDictionary *fIgnoreUpdate;
 	NSTimer *fUpdateTimer;
 	NSTimer *fMessageUpdateTimer;
+	SoundEventType fCurrentSoundStatus;
+	// array of boxes that has been received for the current session
+	NSMutableArray *fBoxesToNotify;
+	NSMutableArray *fBoxesToAdd;
 }
 - (IBAction)updateTimeline:(id)sender;
 - (IBAction)postStatus:(id)sender;

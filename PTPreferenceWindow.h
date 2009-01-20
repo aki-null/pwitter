@@ -24,9 +24,14 @@
     IBOutlet id fUseMiniView;
     IBOutlet id fActivateGlobalKey;
     IBOutlet id fShortcutRecorder;
-    IBOutlet id fQuickPostWindow;
     IBOutlet id fIgnoreErrors;
     IBOutlet id fMainActionHandler;
+    IBOutlet id fDisableGrowl;
+    IBOutlet id fDisableMessageNotification;
+    IBOutlet id fDisableReplyNotification;
+    IBOutlet id fDisableSoundNotification;
+    IBOutlet id fDisableStatusNotification;
+    IBOutlet id fPostTextField;
 	PTHotKey *fHotKey;
 }
 - (void)loadPreferences;

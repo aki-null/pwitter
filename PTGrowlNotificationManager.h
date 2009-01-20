@@ -15,5 +15,10 @@
 }
 - (void)postReplyNotification:(PTStatusBox *)aReplyInfo;
 - (void)postMessageNotification:(PTStatusBox *)aReplyInfo;
+- (void)postNormalNotification:(PTStatusBox *)aStatusInfo;
+- (void)postGeneralNotification:(NSString *)aTitle 
+						message:(NSString *)aMessage 
+					  userImage:(NSImage *)aImage;
+- (void)postNotifications:(NSArray *)aBoxes defaultImage:(NSImage *)aImage;
 
 @end

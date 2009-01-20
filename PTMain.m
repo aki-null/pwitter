@@ -11,7 +11,7 @@
 #import "PTGrowlNotificationManager.h"
 
 #define STATUS_LIMIT 200
-
+	
 
 @implementation PTMain
 
@@ -32,6 +32,9 @@
 			break;
 		case 3:
 			lIntervalTime = 120;
+			break;
+		case 4:
+			lIntervalTime = 60;
 			break;
 	}
 	// create new timer
@@ -69,7 +72,40 @@
 														   repeats:YES] retain];
 }
 
-- (void)updateIndicatorAnimation {
+- (void)playSoundEffect {
+	switch (fCurrentSoundStatus) {
+		case StatusReceived:
+			[fStatusReceived play];
+			break;
+		case ReplyOrMessageReceived:
+			[fReplyReceived play];
+			break;
+	}
+	fCurrentSoundStatus = NoneReceived;
+}
+
+- (void)sortArray:(NSMutableArray *)aArray {
+	NSSortDescriptor *lSortDesc = [[NSSortDescriptor alloc] initWithKey:@"time" ascending:NO];
+	NSMutableArray *lTempDescArray = [NSMutableArray array];
+	[lTempDescArray addObject:lSortDesc];
+	[lSortDesc release];
+	[aArray sortUsingDescriptors:lTempDescArray];
+}
+
+- (void)postGrowlNotifications {
+	[self sortArray:fBoxesToNotify];
+	[fNotificationMan postNotifications:fBoxesToNotify 
+						   defaultImage:fDefaultImage];
+	[fBoxesToNotify removeAllObjects];
+}
+
+- (void)addNewStatusBoxes {
+	[self sortArray:fBoxesToAdd];
+	[fStatusController addObjects:fBoxesToAdd];
+	[fBoxesToAdd removeAllObjects];
+}
+
+- (void)updateSessionStatus {
 	if ([fRequestDetails count] == 0) {
 		if ([fProgressBar isHidden]) {
 			[fProgressBar startAnimation:self];
@@ -79,6 +115,7 @@
 			[fProgressBar stopAnimation:self];
 			[fProgressBar setHidden:YES];
 			[fUpdateButton setEnabled:YES];
+			[self addNewStatusBoxes];
 			// limit the number of status boxes
 			int lStatusCount = [[fStatusController content] count] + 1;
 			if (lStatusCount > STATUS_LIMIT) {
@@ -86,12 +123,14 @@
 				NSIndexSet *lToDelete = [NSIndexSet indexSetWithIndexesInRange:lDeletionRange];
 				[fStatusController removeObjectsAtArrangedObjectIndexes:lToDelete];
 			}
+			[self postGrowlNotifications];
+			[self playSoundEffect];
 		}
 	}
 }
 
 - (void)runMessageUpdateFromTimer:(NSTimer *)aTimer {
-	[self updateIndicatorAnimation];
+	[self updateSessionStatus];
 	[fRequestDetails setObject:@"MESSAGE_UPDATE" 
 						forKey:[fTwitterEngine getDirectMessagesSinceID:[fLastMessageID  stringValue] 
 														 startingAtPage:0]];
@@ -102,7 +141,7 @@
 }
 
 - (void)runInitialUpdates {
-	[self updateIndicatorAnimation];
+	[self updateSessionStatus];
 	[fRequestDetails setObject:@"INIT_MESSAGE_UPDATE" 
 						forKey:[fTwitterEngine getDirectMessagesSince:nil
 													   startingAtPage:0]];
@@ -135,6 +174,8 @@
 	fStatusBoxesForReq = [[NSMutableDictionary alloc] init];
 	fUserImageCache = [[NSMutableDictionary alloc] init];
 	fIgnoreUpdate = [[NSMutableDictionary alloc] init];
+	fBoxesToNotify = [[NSMutableArray alloc] init];
+	fBoxesToAdd = [[NSMutableArray alloc] init];
 }
 
 - (void)deallocTransaction {
@@ -144,6 +185,8 @@
 	if (fStatusBoxesForReq) [fStatusBoxesForReq release];
 	if (fUserImageCache) [fUserImageCache release];
 	if (fIgnoreUpdate) [fIgnoreUpdate release];
+	if (fBoxesToNotify) [fBoxesToNotify release];
+	if (fBoxesToAdd) [fBoxesToAdd release];
 }
 
 - (IBAction)changeAccount:(id)sender {
@@ -175,6 +218,8 @@
 {
 	[self initTransaction];
 	fDefaultImage = [NSImage imageNamed:@"default.png"];
+	fStatusReceived = [NSSound soundNamed:@"statusReceived"];
+	fReplyReceived = [NSSound soundNamed:@"replyReceived"];
 }
 
 - (void)dealloc
@@ -194,13 +239,8 @@
 
 - (void)postComplete {
 	[fStatusUpdateField setEnabled:YES];
-	[fQuickPostField setEnabled:YES];
-	[fQuickPostButton setEnabled:YES];
 	[fStatusUpdateField setStringValue:@""];
-	[fQuickPostField setStringValue:@""];
-	[fQuickPostPanel close];
 	[fTextLevelIndicator setIntValue:140];
-	[fQuickTextLevelIndicator setIntValue:140];
 }
 
 - (void)requestSucceeded:(NSString *)requestIdentifier
@@ -216,8 +256,6 @@
 	NSString *lRequestType = [fRequestDetails objectForKey:aRequestIdentifier];
 	if (lRequestType == @"POST" || lRequestType == @"MESSAGE") {
 		[fStatusUpdateField setEnabled:YES];
-		[fQuickPostField setEnabled:YES];
-		[fQuickPostButton setEnabled:YES];
 	} else if (lRequestType == @"IMAGE") {
 		[fStatusBoxesForReq removeObjectForKey:aRequestIdentifier];
 		[fImageReqForLocation removeObjectForKey:[fImageLocationForReq objectForKey:aRequestIdentifier]];
@@ -225,10 +263,10 @@
 		lIgnoreError = YES;
 	}
 	[fRequestDetails removeObjectForKey:aRequestIdentifier];
-	[self updateIndicatorAnimation];
+	[self updateSessionStatus];
 	if (!lIgnoreError) {
 		PTStatusBox *lErrorBox = [fStatusBoxGenerator constructErrorBox:aError];
-		[fStatusController addObject:lErrorBox];
+		[fBoxesToAdd addObject:lErrorBox];
 	}
 }
 
@@ -236,7 +274,7 @@
 	NSImage *lImageData = [fUserImageCache objectForKey:aImageLocation];
 	if (!lImageData) {
 		if (![fImageReqForLocation objectForKey:aImageLocation]) {
-			[self updateIndicatorAnimation];
+			[self updateSessionStatus];
 			NSString *lImageReq = [fTwitterEngine getImageAtURL:aImageLocation];
 			[fRequestDetails setObject:@"IMAGE" forKey:lImageReq];
 			[fImageReqForLocation setObject:lImageReq forKey:aImageLocation];
@@ -274,7 +312,7 @@
 	if ([aStatuses count] == 0) {
 		if (!fLastUpdateID) fLastUpdateID = [[NSNumber alloc] initWithLongLong:0];
 		[fRequestDetails removeObjectForKey:aIdentifier];
-		[self updateIndicatorAnimation];
+		[self updateSessionStatus];
 		return;
 	}
 	NSDictionary *lCurrentStatus;
@@ -296,18 +334,22 @@
 				PTStatusBox *lBoxToAdd = nil;
 				lBoxToAdd = [fStatusBoxGenerator constructStatusBox:lCurrentStatus 
 															isReply:lDecision == 1];
-				if (lDecision == 1 && 
-					lUpdateType != @"INIT_REPLY_UPDATE" && 
-					lUpdateType != @"INIT_UPDATE")
-					[fNotificationMan postReplyNotification:lBoxToAdd];
+				if (lDecision == 1 && fCurrentSoundStatus != ErrorReceived)
+					fCurrentSoundStatus = ReplyOrMessageReceived;
 				[lTempBoxes addObject:lBoxToAdd];
 			}
-		} else {
-			[fIgnoreUpdate removeObjectForKey:[lCurrentStatus objectForKey:@"id"]];
 		}
 		if (!lLastStatus) lLastStatus = lCurrentStatus;
 	}
-	[fStatusController addObjects:lTempBoxes];
+	if (fCurrentSoundStatus == NoneReceived && 
+		[lTempBoxes count] != 0)
+		fCurrentSoundStatus = StatusReceived;
+	if (![NSApp isActive] && 
+		(lUpdateType == @"UPDATE" || lUpdateType == @"REPLY_UPDATE")) {
+		[fBoxesToNotify addObjectsFromArray:lTempBoxes];
+	}
+	[fBoxesToAdd addObjectsFromArray:lTempBoxes];
+	[lTempBoxes release];
 	if (lUpdateType == @"POST") {
 		[fIgnoreUpdate setObject:@"IGNORE" forKey:[[aStatuses lastObject] objectForKey:@"id"]];
 		[self postComplete];
@@ -317,19 +359,19 @@
 		[self updateLastUpdateID:[lLastStatus objectForKey:@"id"]];
 	}
 	[fRequestDetails removeObjectForKey:aIdentifier];
-	[self updateIndicatorAnimation];
+	[self updateSessionStatus];
 }
 
 - (void)directMessagesReceived:(NSArray *)aMessages forRequest:(NSString *)aIdentifier
 {
 	if ([aMessages count] == 0) {
 		[fRequestDetails removeObjectForKey:aIdentifier];
-		[self updateIndicatorAnimation];
+		[self updateSessionStatus];
 		return;
 	}
 	if ([[[aMessages objectAtIndex:0] objectForKey:@"id"] longLongValue] == 0) {
 		[fRequestDetails removeObjectForKey:aIdentifier];
-		[self updateIndicatorAnimation];
+		[self updateSessionStatus];
 		return;
 	}
 	NSDictionary *lCurrentDic;
@@ -337,17 +379,20 @@
 	NSMutableArray *lTempArray = [[NSMutableArray alloc] init];
 	for (lCurrentDic in aMessages) {
 		PTStatusBox *lBoxToAdd = [fStatusBoxGenerator constructMessageBox:lCurrentDic];
-		if ([fRequestDetails objectForKey:aIdentifier] != @"INIT_MESSAGE_UPDATE")
-			[fNotificationMan postMessageNotification:lBoxToAdd];
 		[lTempArray addObject:lBoxToAdd];
 		if (!lLastDic) lLastDic = lCurrentDic;
 	}
-	[fStatusController addObjects:lTempArray];
+	if ([fRequestDetails objectForKey:aIdentifier] != @"INIT_MESSAGE_UPDATE" &&
+		![NSApp isActive]) {
+		[fBoxesToNotify addObjectsFromArray:lTempArray];
+	}
+	[fBoxesToAdd addObjectsFromArray:lTempArray];
 	[lTempArray release];
 	if (fLastMessageID) [fLastMessageID release];
 	fLastMessageID = [[lLastDic objectForKey:@"id"] copy];
 	[fRequestDetails removeObjectForKey:aIdentifier];
-	[self updateIndicatorAnimation];
+	fCurrentSoundStatus = ReplyOrMessageReceived;
+	[self updateSessionStatus];
 }
 
 - (void)userInfoReceived:(NSArray *)aUserInfo forRequest:(NSString *)aIdentifier
@@ -372,7 +417,7 @@
 	[fImageReqForLocation removeObjectForKey:lImageLocation];
 	[fImageLocationForReq removeObjectForKey:aIdentifier];
 	[fRequestDetails removeObjectForKey:aIdentifier];
-	[self updateIndicatorAnimation];
+	[self updateSessionStatus];
 }
 
 - (IBAction)updateTimeline:(id)sender {
@@ -384,7 +429,7 @@
 	if (!fLastUpdateID) {
 		[self runInitialUpdates];
 	} else {
-		[self updateIndicatorAnimation];
+		[self updateSessionStatus];
 		[fRequestDetails setObject:@"UPDATE" 
 							forKey:[fTwitterEngine getFollowedTimelineFor:[fTwitterEngine username] 
 																  sinceID:[fLastUpdateID stringValue] startingAtPage:0 count:50]];
@@ -399,7 +444,7 @@
 }
 
 - (void)makePost:(NSString *)aMessage {
-	[self updateIndicatorAnimation];
+	[self updateSessionStatus];
 	NSArray *lSeparated = [aMessage componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 	if ([lSeparated count] >= 2 && [[lSeparated objectAtIndex:0] isEqual:@"d"]) {
 		NSString *lMessageTarget;
@@ -422,8 +467,6 @@
 							forKey:[fTwitterEngine sendUpdate:aMessage]];
 	}
 	[fStatusUpdateField setEnabled:NO];
-	[fQuickPostField setEnabled:NO];
-	[fQuickPostButton setEnabled:NO];
 }
 
 - (IBAction)postStatus:(id)sender {

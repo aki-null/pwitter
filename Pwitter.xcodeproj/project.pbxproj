@@ -10,8 +10,9 @@
 		610332F10F1873B000BFB060 /* PTSelectedStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 610332F00F1873B000BFB060 /* PTSelectedStatusView.m */; };
 		610333FA0F18C0C500BFB060 /* PTStatusScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 610333F90F18C0C500BFB060 /* PTStatusScrollView.m */; };
 		610BF8AB0F030DFA008D9A3B /* PTStatusBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 610BF8AA0F030DFA008D9A3B /* PTStatusBox.m */; };
-		611937630F0A47270065B9ED /* PTStatusTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 611937620F0A47270065B9ED /* PTStatusTextField.m */; };
 		612BD6900F076F8500EF064D /* Pwitter.icns in Resources */ = {isa = PBXBuildFile; fileRef = 612BD68F0F076F8500EF064D /* Pwitter.icns */; };
+		6131F7A10F21CF3A00420E6A /* statusReceived.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6131F7A00F21CF3A00420E6A /* statusReceived.wav */; };
+		6131F8060F21DB0600420E6A /* replyReceived.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6131F8050F21DB0600420E6A /* replyReceived.wav */; };
 		6131FD4A0F0E28C7004CA960 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6131FD490F0E28C7004CA960 /* Sparkle.framework */; };
 		6131FD5B0F0E297D004CA960 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6131FD490F0E28C7004CA960 /* Sparkle.framework */; };
 		6131FD600F0E2B5A004CA960 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 6131FD5F0F0E2B5A004CA960 /* dsa_pub.pem */; };
@@ -27,7 +28,6 @@
 		6190A0CB0F0AE55000E4F12E /* BGHUDAppKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6190A0990F0AE46100E4F12E /* BGHUDAppKit.framework */; };
 		61A50F520F063ADB009050CC /* console.png in Resources */ = {isa = PBXBuildFile; fileRef = 61A50F510F063ADB009050CC /* console.png */; };
 		61BAFB0F0F1C89B400428121 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61BAFB0E0F1C89B400428121 /* Carbon.framework */; };
-		61BAFCE30F1C98F800428121 /* PTQuickPostPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 61BAFCE20F1C98F800428121 /* PTQuickPostPanel.m */; };
 		61BD916F0F0B7C7E00F1CA33 /* default.png in Resources */ = {isa = PBXBuildFile; fileRef = 61BD916E0F0B7C7E00F1CA33 /* default.png */; };
 		61C773BD0F0509F100258650 /* PTStatusEntityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C773BC0F0509F100258650 /* PTStatusEntityView.m */; };
 		61C773F80F050BBB00258650 /* PTStatusCollectionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C773F70F050BBB00258650 /* PTStatusCollectionItem.m */; };
@@ -63,6 +63,7 @@
 		61F2CF510F10A3DA00CE073B /* PTStatusFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 61F2CF500F10A3DA00CE073B /* PTStatusFormatter.m */; };
 		61F2CF5C0F10A52400CE073B /* PTStatusBoxGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 61F2CF5B0F10A52400CE073B /* PTStatusBoxGenerator.m */; };
 		61FCE2520F11956B00496A23 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61FCE2510F11956B00496A23 /* MainMenu.xib */; };
+		61FE03D70F2368A300E20A0C /* PTStatusTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 61FE03D60F2368A300E20A0C /* PTStatusTextField.m */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
@@ -98,9 +99,9 @@
 		610333F90F18C0C500BFB060 /* PTStatusScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTStatusScrollView.m; sourceTree = "<group>"; };
 		610BF8A90F030DFA008D9A3B /* PTStatusBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTStatusBox.h; sourceTree = "<group>"; };
 		610BF8AA0F030DFA008D9A3B /* PTStatusBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTStatusBox.m; sourceTree = "<group>"; };
-		611937610F0A47270065B9ED /* PTStatusTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTStatusTextField.h; sourceTree = "<group>"; };
-		611937620F0A47270065B9ED /* PTStatusTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTStatusTextField.m; sourceTree = "<group>"; };
 		612BD68F0F076F8500EF064D /* Pwitter.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Pwitter.icns; sourceTree = "<group>"; };
+		6131F7A00F21CF3A00420E6A /* statusReceived.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = statusReceived.wav; sourceTree = "<group>"; };
+		6131F8050F21DB0600420E6A /* replyReceived.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = replyReceived.wav; sourceTree = "<group>"; };
 		6131FD490F0E28C7004CA960 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		6131FD5F0F0E2B5A004CA960 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 		613460180F0602AB00B422A6 /* PTArrayObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTArrayObserver.h; sourceTree = "<group>"; };
@@ -118,8 +119,6 @@
 		6190A0990F0AE46100E4F12E /* BGHUDAppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BGHUDAppKit.framework; sourceTree = "<group>"; };
 		61A50F510F063ADB009050CC /* console.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = console.png; sourceTree = "<group>"; };
 		61BAFB0E0F1C89B400428121 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
-		61BAFCE10F1C98F800428121 /* PTQuickPostPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTQuickPostPanel.h; sourceTree = "<group>"; };
-		61BAFCE20F1C98F800428121 /* PTQuickPostPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTQuickPostPanel.m; sourceTree = "<group>"; };
 		61BD916E0F0B7C7E00F1CA33 /* default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default.png; sourceTree = "<group>"; };
 		61C773BB0F0509F100258650 /* PTStatusEntityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTStatusEntityView.h; sourceTree = "<group>"; };
 		61C773BC0F0509F100258650 /* PTStatusEntityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTStatusEntityView.m; sourceTree = "<group>"; };
@@ -187,6 +186,8 @@
 		61F2CF500F10A3DA00CE073B /* PTStatusFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTStatusFormatter.m; sourceTree = "<group>"; };
 		61F2CF5A0F10A52400CE073B /* PTStatusBoxGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTStatusBoxGenerator.h; sourceTree = "<group>"; };
 		61F2CF5B0F10A52400CE073B /* PTStatusBoxGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTStatusBoxGenerator.m; sourceTree = "<group>"; };
+		61FE03D50F2368A300E20A0C /* PTStatusTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTStatusTextField.h; sourceTree = "<group>"; };
+		61FE03D60F2368A300E20A0C /* PTStatusTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTStatusTextField.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* Pwitter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pwitter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -278,6 +279,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				6131F8050F21DB0600420E6A /* replyReceived.wav */,
+				6131F7A00F21CF3A00420E6A /* statusReceived.wav */,
 				61FCE2510F11956B00496A23 /* MainMenu.xib */,
 				6131FD5F0F0E2B5A004CA960 /* dsa_pub.pem */,
 				61BD916E0F0B7C7E00F1CA33 /* default.png */,
@@ -374,10 +377,10 @@
 				614393A80F09D23400971122 /* PTEntityBackground.m */,
 				615D39750F0B016F0086E57F /* PTCharacterCounter.h */,
 				615D39760F0B016F0086E57F /* PTCharacterCounter.m */,
-				611937610F0A47270065B9ED /* PTStatusTextField.h */,
-				611937620F0A47270065B9ED /* PTStatusTextField.m */,
 				613B64F50F0A45B500B67438 /* PTStatusImageView.h */,
 				613B64F60F0A45B500B67438 /* PTStatusImageView.m */,
+				61FE03D50F2368A300E20A0C /* PTStatusTextField.h */,
+				61FE03D60F2368A300E20A0C /* PTStatusTextField.m */,
 				61DF44B10F0F027C00B8BD2A /* PTStatusFilterController.h */,
 				61DF44B20F0F027C00B8BD2A /* PTStatusFilterController.m */,
 				61F2CF4F0F10A3DA00CE073B /* PTStatusFormatter.h */,
@@ -390,8 +393,6 @@
 				610332F00F1873B000BFB060 /* PTSelectedStatusView.m */,
 				610333F80F18C0C500BFB060 /* PTStatusScrollView.h */,
 				610333F90F18C0C500BFB060 /* PTStatusScrollView.m */,
-				61BAFCE10F1C98F800428121 /* PTQuickPostPanel.h */,
-				61BAFCE20F1C98F800428121 /* PTQuickPostPanel.m */,
 			);
 			name = Pwitter;
 			sourceTree = "<group>";
@@ -461,6 +462,8 @@
 				6131FD600F0E2B5A004CA960 /* dsa_pub.pem in Resources */,
 				61FCE2520F11956B00496A23 /* MainMenu.xib in Resources */,
 				615B85920F1366DC0005E38F /* Growl Registration Ticket.growlRegDict in Resources */,
+				6131F7A10F21CF3A00420E6A /* statusReceived.wav in Resources */,
+				6131F8060F21DB0600420E6A /* replyReceived.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -513,7 +516,6 @@
 				61D6BE450F077DF300C6B98D /* NSString+UUID.m in Sources */,
 				614393A90F09D23400971122 /* PTEntityBackground.m in Sources */,
 				613B64F70F0A45B500B67438 /* PTStatusImageView.m in Sources */,
-				611937630F0A47270065B9ED /* PTStatusTextField.m in Sources */,
 				615D39770F0B016F0086E57F /* PTCharacterCounter.m in Sources */,
 				61E9997A0F0D88C800509EE8 /* PTMainWindowDelegate.m in Sources */,
 				61DF44B30F0F027C00B8BD2A /* PTStatusFilterController.m in Sources */,
@@ -526,7 +528,7 @@
 				61F177DB0F1C833200C04938 /* PTHotKeyCenter.m in Sources */,
 				61F177DC0F1C833200C04938 /* PTHotKey.m in Sources */,
 				61F177DD0F1C833200C04938 /* PTKeyCombo.m in Sources */,
-				61BAFCE30F1C98F800428121 /* PTQuickPostPanel.m in Sources */,
+				61FE03D70F2368A300E20A0C /* PTStatusTextField.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
