@@ -35,5 +35,15 @@
 - (BOOL)quickPost;
 - (void)setIgnoreErrors:(BOOL)aFlag;
 - (BOOL)ignoreErrors;
+- (void)setDisableGrowl:(BOOL)aFlag;
+- (BOOL)disableGrowl;
+- (void)setDisableMessageNotification:(BOOL)aFlag;
+- (BOOL)disableMessageNotification;
+- (void)setDisableReplyNotification:(BOOL)aFlag;
+- (BOOL)disableReplyNotification;
+- (void)setDisableStatusNotification:(BOOL)aFlag;
+- (BOOL)disableStatusNotification;
+- (void)setDisableSoundNotification:(BOOL)aFlag;
+- (BOOL)disableSoundNotification;	
 
 @end

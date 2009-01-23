@@ -11,6 +11,7 @@
 #import "PTHotKeyCenter.h"
 #import "PTMain.h"
 #import "PTMainActionHandler.h"
+#import <Growl/GrowlApplicationBridge.h>
 
 
 @implementation PTPreferenceWindow
@@ -29,6 +30,24 @@
 	[[PTPreferenceManager getInstance] useMiniView] ? [fUseMiniView setState:NSOnState] : [fUseMiniView setState:NSOffState];
 	[[PTPreferenceManager getInstance] quickPost] ? [fActivateGlobalKey setState:NSOnState] : [fActivateGlobalKey setState:NSOffState];
 	[[PTPreferenceManager getInstance] ignoreErrors] ? [fIgnoreErrors setState:NSOnState] : [fIgnoreErrors setState:NSOffState];
+	// Notification preferences
+	[[PTPreferenceManager getInstance] disableGrowl] ? [fDisableGrowl setState:NSOnState] : [fDisableGrowl setState:NSOffState];
+	[[PTPreferenceManager getInstance] disableMessageNotification] ? [fDisableMessageNotification setState:NSOnState] : [fDisableMessageNotification setState:NSOffState];
+	[[PTPreferenceManager getInstance] disableReplyNotification] ? [fDisableReplyNotification setState:NSOnState] : [fDisableReplyNotification setState:NSOffState];
+	[[PTPreferenceManager getInstance] disableStatusNotification] ? [fDisableStatusNotification setState:NSOnState] : [fDisableStatusNotification setState:NSOffState];
+	[[PTPreferenceManager getInstance] disableSoundNotification] ? [fDisableSoundNotification setState:NSOnState] : [fDisableSoundNotification setState:NSOffState];
+	if ([[PTPreferenceManager getInstance] disableGrowl]) {
+		[fDisableMessageNotification setEnabled:NO];
+		[fDisableStatusNotification setEnabled:NO];
+		[fDisableReplyNotification setEnabled:NO];
+	}
+	if (![GrowlApplicationBridge isGrowlRunning]) {
+		[fDisableGrowl setEnabled:NO];
+		[fDisableMessageNotification setEnabled:NO];
+		[fDisableStatusNotification setEnabled:NO];
+		[fDisableReplyNotification setEnabled:NO];
+	}
+	// load key combination
 	[self loadKeyCombo];
 	[self turnOffHotKey];
 	[fShortcutRecorder setEnabled:NO];
@@ -45,6 +64,12 @@
 	[[PTPreferenceManager getInstance] setUseMiniView:[fUseMiniView state] == NSOnState];
 	[[PTPreferenceManager getInstance] setQuickPost:[fActivateGlobalKey state] == NSOnState];
 	[[PTPreferenceManager getInstance] setIgnoreErrors:[fIgnoreErrors state] == NSOnState];
+	// Notification preferences
+	[[PTPreferenceManager getInstance] setDisableGrowl:[fDisableGrowl state] == NSOnState];
+	[[PTPreferenceManager getInstance] setDisableMessageNotification:[fDisableMessageNotification state] == NSOnState];
+	[[PTPreferenceManager getInstance] setDisableReplyNotification:[fDisableReplyNotification state] == NSOnState];
+	[[PTPreferenceManager getInstance] setDisableStatusNotification:[fDisableStatusNotification state] == NSOnState];
+	[[PTPreferenceManager getInstance] setDisableSoundNotification:[fDisableSoundNotification state] == NSOnState];
 	if ([fIgnoreErrors state] == NSOnState)
 		[fMainActionHandler clearErrors:sender];
 	BOOL lNonFollower = [fReceiveFromNonFollowers state] == NSOnState;
@@ -132,6 +157,18 @@
 
 - (IBAction)quickPostChanged:(id)sender {
 	[fShortcutRecorder setEnabled:[sender state] == NSOnState];
+}
+
+- (IBAction)growlDisabled:(id)sender {
+    if ([fDisableGrowl state] == NSOnState) {
+		[fDisableMessageNotification setEnabled:NO];
+		[fDisableStatusNotification setEnabled:NO];
+		[fDisableReplyNotification setEnabled:NO];
+	} else {
+		[fDisableMessageNotification setEnabled:YES];
+		[fDisableStatusNotification setEnabled:YES];
+		[fDisableReplyNotification setEnabled:YES];
+	}
 }
 
 @end

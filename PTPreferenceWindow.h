@@ -38,6 +38,7 @@
 - (IBAction)pressOK:(id)sender;
 - (IBAction)pressCancel:(id)sender;
 - (IBAction)quickPostChanged:(id)sender;
+- (IBAction)growlDisabled:(id)sender;
 - (void)turnOnHotKey;
 - (void)turnOffHotKey;
 - (void)saveKeyCombo;

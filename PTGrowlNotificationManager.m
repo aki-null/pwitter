@@ -7,6 +7,7 @@
 //
 
 #import "PTGrowlNotificationManager.h"
+#import "PTPreferenceManager.h"
 #import <Growl/GrowlApplicationBridge.h>
 
 
@@ -58,12 +59,40 @@
 							   clickContext:nil];
 }
 
+- (NSArray *)filterNotifications:(NSArray *)aBoxes {
+	if ([[PTPreferenceManager getInstance] disableGrowl])
+		return nil;
+	PTStatusBox *lCurrentBox;
+	NSMutableArray *lFilteredBoxes = [[NSMutableArray alloc] init];
+	for (lCurrentBox in aBoxes) {
+		switch (lCurrentBox.sType) {
+			case DirectMessage:
+				if (![[PTPreferenceManager getInstance] disableMessageNotification])
+					[lFilteredBoxes addObject:lCurrentBox];
+				break;
+			case ReplyMessage:
+				if (![[PTPreferenceManager getInstance] disableReplyNotification])
+					[lFilteredBoxes addObject:lCurrentBox];
+				break;
+			case NormalMessage:
+				if (![[PTPreferenceManager getInstance] disableStatusNotification])
+					[lFilteredBoxes addObject:lCurrentBox];
+				break;
+			default:
+				break;
+		}
+	}
+	return [lFilteredBoxes autorelease];
+}
+
 - (void)postNotifications:(NSArray *)aBoxes defaultImage:(NSImage *)aImage {
+	NSArray *lFilteredBoxes = [self filterNotifications:aBoxes];
+	if (!lFilteredBoxes) return;
 	PTStatusBox *lCurrentBox;
 	int i = 0;
 	NSMutableArray *lSenderList = [NSMutableArray array];
 	BOOL lOverLimit = NO;
-	for (lCurrentBox in aBoxes) {
+	for (lCurrentBox in lFilteredBoxes) {
 		i++;
 		if (i > 10) {
 			lOverLimit = YES;
@@ -94,7 +123,7 @@
 			[lFromList appendString:[NSString stringWithFormat:@"%@", lCurrentString]];
 	}
 	if (lOverLimit) {
-		[self postGeneralNotification:[NSString stringWithFormat:@"%d more tweets from", [aBoxes count] - 10] 
+		[self postGeneralNotification:[NSString stringWithFormat:@"%d more tweets from", [lFilteredBoxes count] - 10] 
 							  message:lFromList 
 							userImage:aImage];
 	}

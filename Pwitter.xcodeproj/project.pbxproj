@@ -24,6 +24,8 @@
 		615B85B90F136A4A0005E38F /* Growl.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 615B85A20F136A2A0005E38F /* Growl.framework */; };
 		615B85CF0F136BB30005E38F /* PTGrowlNotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 615B85CE0F136BB30005E38F /* PTGrowlNotificationManager.m */; };
 		615D39770F0B016F0086E57F /* PTCharacterCounter.m in Sources */ = {isa = PBXBuildFile; fileRef = 615D39760F0B016F0086E57F /* PTCharacterCounter.m */; };
+		616C1F210F28A35500314953 /* AutoHyperlinks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 616C1F200F28A35500314953 /* AutoHyperlinks.framework */; };
+		616C1F340F28A35C00314953 /* AutoHyperlinks.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 616C1F200F28A35500314953 /* AutoHyperlinks.framework */; };
 		6190A09A0F0AE46100E4F12E /* BGHUDAppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6190A0990F0AE46100E4F12E /* BGHUDAppKit.framework */; };
 		6190A0CB0F0AE55000E4F12E /* BGHUDAppKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6190A0990F0AE46100E4F12E /* BGHUDAppKit.framework */; };
 		61A50F520F063ADB009050CC /* console.png in Resources */ = {isa = PBXBuildFile; fileRef = 61A50F510F063ADB009050CC /* console.png */; };
@@ -76,6 +78,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				616C1F340F28A35C00314953 /* AutoHyperlinks.framework in CopyFiles */,
 				61F177C10F1C5CE100C04938 /* ShortcutRecorder.framework in CopyFiles */,
 				615B85B90F136A4A0005E38F /* Growl.framework in CopyFiles */,
 				6131FD5B0F0E297D004CA960 /* Sparkle.framework in CopyFiles */,
@@ -116,6 +119,7 @@
 		615B85CE0F136BB30005E38F /* PTGrowlNotificationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTGrowlNotificationManager.m; sourceTree = "<group>"; };
 		615D39750F0B016F0086E57F /* PTCharacterCounter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTCharacterCounter.h; sourceTree = "<group>"; };
 		615D39760F0B016F0086E57F /* PTCharacterCounter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTCharacterCounter.m; sourceTree = "<group>"; };
+		616C1F200F28A35500314953 /* AutoHyperlinks.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AutoHyperlinks.framework; sourceTree = "<group>"; };
 		6190A0990F0AE46100E4F12E /* BGHUDAppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BGHUDAppKit.framework; sourceTree = "<group>"; };
 		61A50F510F063ADB009050CC /* console.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = console.png; sourceTree = "<group>"; };
 		61BAFB0E0F1C89B400428121 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
@@ -205,6 +209,7 @@
 				615B85A30F136A2A0005E38F /* Growl.framework in Frameworks */,
 				61F177A90F1C5A6B00C04938 /* ShortcutRecorder.framework in Frameworks */,
 				61BAFB0F0F1C89B400428121 /* Carbon.framework in Frameworks */,
+				616C1F210F28A35500314953 /* AutoHyperlinks.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -225,6 +230,7 @@
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				616C1F200F28A35500314953 /* AutoHyperlinks.framework */,
 				61F177A80F1C5A6B00C04938 /* ShortcutRecorder.framework */,
 				615B85A20F136A2A0005E38F /* Growl.framework */,
 				6131FD490F0E28C7004CA960 /* Sparkle.framework */,
@@ -570,6 +576,10 @@
 				GCC_PREFIX_HEADER = Pwitter_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				PRODUCT_NAME = Pwitter;
 				WRAPPER_EXTENSION = app;
 				ZERO_LINK = YES;
@@ -589,6 +599,10 @@
 				GCC_PREFIX_HEADER = Pwitter_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				PRODUCT_NAME = Pwitter;
 				WRAPPER_EXTENSION = app;
 			};
@@ -601,7 +615,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
 				SDKROOT = macosx10.5;
-				USER_HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				USER_HEADER_SEARCH_PATHS = "/opt/local/include /usr/include/libxml2";
 			};
 			name = Debug;
 		};

@@ -7,32 +7,44 @@
 //
 
 #import "PTStatusFormatter.h"
+#import <AutoHyperlinks/AHHyperlinkScanner.h>
+#import <AutoHyperlinks/AHMarkedHyperlink.h>
 
 
 @implementation PTStatusFormatter
 
 + (void)processLinks:(NSMutableAttributedString *)aTargetString {
-	NSString *lString = [aTargetString string];
-	NSRange lSearchRange = NSMakeRange(0, [lString length]);
-	NSRange lFoundRange;
-	lFoundRange = [lString rangeOfString:@"http://" options:0 range:lSearchRange];
-	if (lFoundRange.length > 0) {
-		NSURL* lUrl;
-		NSDictionary* lLinkAttributes;
-		NSRange lEndOfURLRange;
-		lSearchRange.location = lFoundRange.location + lFoundRange.length;
-		lSearchRange.length = [lString length] - lSearchRange.location;
-		lEndOfURLRange = [lString rangeOfCharacterFromSet:[NSCharacterSet whitespaceAndNewlineCharacterSet] 
-												  options:0 range:lSearchRange];
-		if (lEndOfURLRange.length == 0)
-			lEndOfURLRange.location = [lString length] - 1;
-		lFoundRange.length = lEndOfURLRange.location - lFoundRange.location + 1;
-		lUrl = [NSURL URLWithString:[lString substringWithRange:lFoundRange]];
-		lLinkAttributes = [NSDictionary dictionaryWithObjectsAndKeys:lUrl, NSLinkAttributeName,
-						   [NSNumber numberWithInt:NSSingleUnderlineStyle], NSUnderlineStyleAttributeName,
-						   [NSColor cyanColor], NSForegroundColorAttributeName,
-						   nil];
-		[aTargetString addAttributes:lLinkAttributes range:lFoundRange];
+//	NSString *lString = [aTargetString string];
+//	NSRange lSearchRange = NSMakeRange(0, [lString length]);
+//	NSRange lFoundRange;
+//	lFoundRange = [lString rangeOfString:@"http://" options:0 range:lSearchRange];
+//	if (lFoundRange.length > 0) {
+//		NSURL* lUrl;
+//		NSDictionary* lLinkAttributes;
+//		NSRange lEndOfURLRange;
+//		lSearchRange.location = lFoundRange.location + lFoundRange.length;
+//		lSearchRange.length = [lString length] - lSearchRange.location;
+//		lEndOfURLRange = [lString rangeOfCharacterFromSet:[NSCharacterSet whitespaceAndNewlineCharacterSet] 
+//												  options:0 range:lSearchRange];
+//		if (lEndOfURLRange.length == 0)
+//			lEndOfURLRange.location = [lString length] - 1;
+//		lFoundRange.length = lEndOfURLRange.location - lFoundRange.location + 1;
+//		lUrl = [NSURL URLWithString:[lString substringWithRange:lFoundRange]];
+//		lLinkAttributes = [NSDictionary dictionaryWithObjectsAndKeys:lUrl, NSLinkAttributeName,
+//						   [NSNumber numberWithInt:NSSingleUnderlineStyle], NSUnderlineStyleAttributeName,
+//						   [NSColor cyanColor], NSForegroundColorAttributeName,
+//						   nil];
+//		[aTargetString addAttributes:lLinkAttributes range:lFoundRange];
+//	}
+	AHHyperlinkScanner *lScanner = [AHHyperlinkScanner hyperlinkScannerWithAttributedString:aTargetString];
+	[aTargetString setAttributedString:[lScanner linkifiedString]];
+	AHMarkedHyperlink *lCurrentURI = [lScanner nextURI];
+	while (lCurrentURI != nil) {
+		NSDictionary *lLinkAttributes = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:NSSingleUnderlineStyle], NSUnderlineStyleAttributeName,
+										 [NSColor cyanColor], NSForegroundColorAttributeName,
+										 nil];
+		[aTargetString addAttributes:lLinkAttributes range:[lCurrentURI range]];
+		lCurrentURI = [lScanner nextURI];
 	}
 }
 
@@ -59,6 +71,7 @@
 + (NSMutableAttributedString *)formatStatusMessage:(NSString *)aMessage {
 	NSString *lUnescaped = (NSString *)CFXMLCreateStringByUnescapingEntities(nil, (CFStringRef)aMessage, nil);
 	NSMutableAttributedString *lNewMessage = [[NSMutableAttributedString alloc] initWithString:lUnescaped];
+	[lUnescaped release];
 	[lNewMessage beginEditing];
 	NSDictionary *lMessageAttributes = [NSDictionary dictionaryWithObjectsAndKeys:[NSColor whiteColor], NSForegroundColorAttributeName, 
 										[NSFont fontWithName:@"Helvetica" size:10.0], NSFontAttributeName, 

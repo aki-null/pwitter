@@ -129,4 +129,44 @@
 	return [fPrefData boolForKey:@"ignore_errors"];
 }
 
+- (void)setDisableGrowl:(BOOL)aFlag {
+	[fPrefData setBool:aFlag forKey:@"disable_growl"];
+}
+
+- (BOOL)disableGrowl {
+	return [fPrefData boolForKey:@"disable_growl"];
+}
+
+- (void)setDisableMessageNotification:(BOOL)aFlag {
+	[fPrefData setBool:aFlag forKey:@"disable_message_notification"];
+}
+
+- (BOOL)disableMessageNotification {
+	return [fPrefData boolForKey:@"disable_message_notification"];
+}
+
+- (void)setDisableReplyNotification:(BOOL)aFlag {
+	[fPrefData setBool:aFlag forKey:@"disable_reply_notification"];
+}
+
+- (BOOL)disableReplyNotification {
+	return [fPrefData boolForKey:@"disable_reply_notification"];
+}
+
+- (void)setDisableStatusNotification:(BOOL)aFlag {
+	[fPrefData setBool:aFlag forKey:@"disable_status_notification"];
+}
+
+- (BOOL)disableStatusNotification {
+	return [fPrefData boolForKey:@"disable_status_notification"];
+}
+
+- (void)setDisableSoundNotification:(BOOL)aFlag {
+	[fPrefData setBool:aFlag forKey:@"disable_sound_notification"];
+}
+
+- (BOOL)disableSoundNotification {
+	return [fPrefData boolForKey:@"disable_sound_notification"];
+}
+
 @end

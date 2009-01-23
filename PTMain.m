@@ -53,7 +53,7 @@
 	}
 	// determine the timer delay
 	int lIntervalTime;
-	switch ([[PTPreferenceManager getInstance] timeInterval]) {
+	switch ([[PTPreferenceManager getInstance] messageInterval]) {
 		case 1:
 			lIntervalTime = 900;
 			break;
@@ -73,13 +73,15 @@
 }
 
 - (void)playSoundEffect {
-	switch (fCurrentSoundStatus) {
-		case StatusReceived:
-			[fStatusReceived play];
-			break;
-		case ReplyOrMessageReceived:
-			[fReplyReceived play];
-			break;
+	if (![[PTPreferenceManager getInstance] disableSoundNotification]) {
+		switch (fCurrentSoundStatus) {
+			case StatusReceived:
+				[fStatusReceived play];
+				break;
+			case ReplyOrMessageReceived:
+				[fReplyReceived play];
+				break;
+		}
 	}
 	fCurrentSoundStatus = NoneReceived;
 }
@@ -132,7 +134,7 @@
 - (void)runMessageUpdateFromTimer:(NSTimer *)aTimer {
 	[self updateSessionStatus];
 	[fRequestDetails setObject:@"MESSAGE_UPDATE" 
-						forKey:[fTwitterEngine getDirectMessagesSinceID:[fLastMessageID  stringValue] 
+						forKey:[fTwitterEngine getDirectMessagesSinceID:fLastMessageID 
 														 startingAtPage:0]];
 }
 
@@ -173,9 +175,11 @@
 	fImageReqForLocation = [[NSMutableDictionary alloc] init];
 	fStatusBoxesForReq = [[NSMutableDictionary alloc] init];
 	fUserImageCache = [[NSMutableDictionary alloc] init];
-	fIgnoreUpdate = [[NSMutableDictionary alloc] init];
 	fBoxesToNotify = [[NSMutableArray alloc] init];
 	fBoxesToAdd = [[NSMutableArray alloc] init];
+	fLastReplyID = 0;
+	fLastUpdateID = 0;
+	fLastMessageID = 0;
 }
 
 - (void)deallocTransaction {
@@ -184,21 +188,14 @@
 	if (fImageReqForLocation) [fImageReqForLocation release];
 	if (fStatusBoxesForReq) [fStatusBoxesForReq release];
 	if (fUserImageCache) [fUserImageCache release];
-	if (fIgnoreUpdate) [fIgnoreUpdate release];
 	if (fBoxesToNotify) [fBoxesToNotify release];
 	if (fBoxesToAdd) [fBoxesToAdd release];
+	fLastReplyID = 0;
+	fLastUpdateID = 0;
+	fLastMessageID = 0;
 }
 
 - (IBAction)changeAccount:(id)sender {
-	fLastReplyID = 0;
-	if (fLastUpdateID) {
-		[fLastUpdateID release];
-		fLastUpdateID = nil;
-	}
-	if (fLastMessageID) {
-		[fLastMessageID release];
-		fLastMessageID = nil;
-	}
 	[[fStatusController content] removeAllObjects];
 	[fStatusController rearrangeObjects];
 	[fTwitterEngine setUsername:[[PTPreferenceManager getInstance] userName] 
@@ -241,6 +238,9 @@
 	[fStatusUpdateField setEnabled:YES];
 	[fStatusUpdateField setStringValue:@""];
 	[fTextLevelIndicator setIntValue:140];
+}
+
+- (void)connectionFinished {
 }
 
 - (void)requestSucceeded:(NSString *)requestIdentifier
@@ -289,28 +289,16 @@
 	}
 }
 
-- (void)updateLastUpdateID:(NSNumber *)aLastUpdateID {
-	if (fLastUpdateID) {
-		if ([fLastUpdateID longLongValue] < [aLastUpdateID longLongValue]) {
-			[fLastUpdateID release];
-			fLastUpdateID = [aLastUpdateID copy];
-		}
-	} else fLastUpdateID = [aLastUpdateID copy];
-}
-
-- (void)updateLastReplyID:(NSString *)aLastReplyID {
-	if (fLastReplyID) {
-		if ([fLastReplyID longLongValue] < [aLastReplyID longLongValue]) {
-			[fLastReplyID release];
-			fLastReplyID = [aLastReplyID copy];
-		}
-	} else fLastReplyID = [aLastReplyID copy];
-}
-
 - (void)statusesReceived:(NSArray *)aStatuses forRequest:(NSString *)aIdentifier
 {
 	if ([aStatuses count] == 0) {
-		if (!fLastUpdateID) fLastUpdateID = [[NSNumber alloc] initWithLongLong:0];
+		[fRequestDetails removeObjectForKey:aIdentifier];
+		[self updateSessionStatus];
+		return;
+	}
+	NSString *lUpdateType = [fRequestDetails objectForKey:aIdentifier];
+	if (lUpdateType == @"POST") {
+		[self postComplete];
 		[fRequestDetails removeObjectForKey:aIdentifier];
 		[self updateSessionStatus];
 		return;
@@ -318,26 +306,22 @@
 	NSDictionary *lCurrentStatus;
 	NSDictionary *lLastStatus = nil;
 	NSMutableArray *lTempBoxes = [[NSMutableArray alloc] init];
-	NSString *lUpdateType = [fRequestDetails objectForKey:aIdentifier];
 	for (lCurrentStatus in aStatuses) {
-		if ([fIgnoreUpdate objectForKey:[lCurrentStatus objectForKey:@"id"]] != @"IGNORE") {
-			int lDecision = 0;
-			if ([[lCurrentStatus objectForKey:@"in_reply_to_screen_name"] isEqualToString:[fTwitterEngine username]]) {
-				if (lUpdateType == @"REPLY_UPDATE" || 
-					lUpdateType == @"INIT_REPLY_UPDATE" || 
-					lUpdateType == @"POST" || 
-					![[PTPreferenceManager getInstance] receiveFromNonFollowers]) {
-					lDecision = 1;
-				}
-			} else lDecision = 2;
-			if (lDecision != 0) {
-				PTStatusBox *lBoxToAdd = nil;
-				lBoxToAdd = [fStatusBoxGenerator constructStatusBox:lCurrentStatus 
-															isReply:lDecision == 1];
-				if (lDecision == 1 && fCurrentSoundStatus != ErrorReceived)
-					fCurrentSoundStatus = ReplyOrMessageReceived;
-				[lTempBoxes addObject:lBoxToAdd];
+		int lDecision = 0;
+		if ([[lCurrentStatus objectForKey:@"in_reply_to_screen_name"] isEqualToString:[fTwitterEngine username]]) {
+			if (lUpdateType == @"REPLY_UPDATE" || 
+				lUpdateType == @"INIT_REPLY_UPDATE" || 
+				![[PTPreferenceManager getInstance] receiveFromNonFollowers]) {
+				lDecision = 1;
 			}
+		} else lDecision = 2;
+		if (lDecision != 0) {
+			PTStatusBox *lBoxToAdd = nil;
+			lBoxToAdd = [fStatusBoxGenerator constructStatusBox:lCurrentStatus 
+														isReply:lDecision == 1];
+			if (lDecision == 1 && fCurrentSoundStatus != ErrorReceived)
+				fCurrentSoundStatus = ReplyOrMessageReceived;
+			[lTempBoxes addObject:lBoxToAdd];
 		}
 		if (!lLastStatus) lLastStatus = lCurrentStatus;
 	}
@@ -350,13 +334,12 @@
 	}
 	[fBoxesToAdd addObjectsFromArray:lTempBoxes];
 	[lTempBoxes release];
-	if (lUpdateType == @"POST") {
-		[fIgnoreUpdate setObject:@"IGNORE" forKey:[[aStatuses lastObject] objectForKey:@"id"]];
-		[self postComplete];
-	} else if (lUpdateType == @"REPLY_UPDATE" || lUpdateType == @"INIT_REPLY_UPDATE") {
-		[self updateLastReplyID:[lLastStatus objectForKey:@"id"]];
-	} else {
-		[self updateLastUpdateID:[lLastStatus objectForKey:@"id"]];
+	int lNewId = [[lLastStatus objectForKey:@"id"] intValue];
+	if ((lUpdateType == @"REPLY_UPDATE" || lUpdateType == @"INIT_REPLY_UPDATE") && 
+		fLastReplyID < lNewId) {
+		fLastReplyID = lNewId;
+	} else if (fLastUpdateID < lNewId) {
+		fLastUpdateID = lNewId;
 	}
 	[fRequestDetails removeObjectForKey:aIdentifier];
 	[self updateSessionStatus];
@@ -388,8 +371,7 @@
 	}
 	[fBoxesToAdd addObjectsFromArray:lTempArray];
 	[lTempArray release];
-	if (fLastMessageID) [fLastMessageID release];
-	fLastMessageID = [[lLastDic objectForKey:@"id"] copy];
+	fLastMessageID = [[lLastDic objectForKey:@"id"] intValue];
 	[fRequestDetails removeObjectForKey:aIdentifier];
 	fCurrentSoundStatus = ReplyOrMessageReceived;
 	[self updateSessionStatus];
@@ -432,13 +414,13 @@
 		[self updateSessionStatus];
 		[fRequestDetails setObject:@"UPDATE" 
 							forKey:[fTwitterEngine getFollowedTimelineFor:[fTwitterEngine username] 
-																  sinceID:[fLastUpdateID stringValue] startingAtPage:0 count:50]];
+																  sinceID:fLastUpdateID startingAtPage:0 count:50]];
 		if ([[PTPreferenceManager getInstance] receiveFromNonFollowers])
 			[fRequestDetails setObject:@"REPLY_UPDATE" 
-								forKey:[fTwitterEngine getRepliesSinceID:0 sinceID:[fLastReplyID stringValue]]];
+								forKey:[fTwitterEngine getRepliesSinceID:fLastReplyID startingAtPage:0 count:100]];
 		if (sender != self)
 			[fRequestDetails setObject:@"MESSAGE_UPDATE" 
-								forKey:[fTwitterEngine getDirectMessagesSinceID:[fLastMessageID  stringValue]
+								forKey:[fTwitterEngine getDirectMessagesSinceID:fLastMessageID 
 																 startingAtPage:0]];
 	}
 }
