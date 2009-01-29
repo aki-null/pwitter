@@ -15,17 +15,6 @@
 #import <Carbon/Carbon.h>
 #import <CoreServices/CoreServices.h>
 
-
-#pragma mark Define magic
-/*
-#ifdef	DEPRECATED_ATTRIBUTE
-#	define	SR_DEPRECATED_ATTRIBUTE		DEPRECATED_ATTRIBUTE
-#else
-#	define	SR_DEPRECATED_ATTRIBUTE		
-#endif*/
-// uncomment when this won't cause build errors
-#define	SR_DEPRECATED_ATTRIBUTE		
-
 #pragma mark Dummy class 
 
 @interface SRDummyClass : NSObject {} @end
@@ -85,10 +74,9 @@ enum {
 	kSRKeysF14 = 107,
 	kSRKeysF15 = 113,
 	kSRKeysF16 = 106,
-	kSRKeysF17 = 0x40, /* kVK_F17, */
-	kSRKeysF18 = 0x4F, /* kVK_F18 */
-	kSRKeysF19 = 0x50, /* kVK_F19 */
-	kSRKeysF20 = 0x5A, /* kVK_F20 */
+	kSRKeysF17 = 64,
+	kSRKeysF18 = 79,
+	kSRKeysF19 = 80,
 	kSRKeysSpace = 49,
 	kSRKeysDeleteLeft = 51,
 	kSRKeysDeleteRight = 117,
@@ -148,13 +136,13 @@ enum {
 // SRReadableString... X - X -
 // SRCharacter...      - X - -
 //
-NSString *SRStringForKeyCode( signed short keyCode );
-NSString *SRStringForCarbonModifierFlags( unsigned int flags );
-NSString *SRStringForCarbonModifierFlagsAndKeyCode( unsigned int flags, signed short keyCode );
-NSString *SRStringForCocoaModifierFlags( unsigned int flags );
-NSString *SRStringForCocoaModifierFlagsAndKeyCode( unsigned int flags, signed short keyCode );
-NSString *SRReadableStringForCarbonModifierFlagsAndKeyCode( unsigned int flags, signed short keyCode );
-NSString *SRReadableStringForCocoaModifierFlagsAndKeyCode( unsigned int flags, signed short keyCode );
+NSString * SRStringForKeyCode( signed short keyCode );
+NSString * SRStringForCarbonModifierFlags( unsigned int flags );
+NSString * SRStringForCarbonModifierFlagsAndKeyCode( unsigned int flags, signed short keyCode );
+NSString * SRStringForCocoaModifierFlags( unsigned int flags );
+NSString * SRStringForCocoaModifierFlagsAndKeyCode( unsigned int flags, signed short keyCode );
+NSString * SRReadableStringForCarbonModifierFlagsAndKeyCode( unsigned int flags, signed short keyCode );
+NSString * SRReadableStringForCocoaModifierFlagsAndKeyCode( unsigned int flags, signed short keyCode );
 NSString *SRCharacterForKeyCodeAndCarbonFlags(signed short keyCode, unsigned int carbonFlags);
 NSString *SRCharacterForKeyCodeAndCocoaFlags(signed short keyCode, unsigned int cocoaFlags);
 
@@ -179,7 +167,7 @@ FOUNDATION_STATIC_INLINE KeyCombo SRMakeKeyCombo(signed short code, unsigned int
 }
 
 FOUNDATION_STATIC_INLINE BOOL SRIsSpecialKey(signed short keyCode) {
-	return (keyCode == kSRKeysF1 || keyCode == kSRKeysF2 || keyCode == kSRKeysF3 || keyCode == kSRKeysF4 || keyCode == kSRKeysF5 || keyCode == kSRKeysF6 || keyCode == kSRKeysF7 || keyCode == kSRKeysF8 || keyCode == kSRKeysF9 || keyCode == kSRKeysF10 || keyCode == kSRKeysF11 || keyCode == kSRKeysF12 || keyCode == kSRKeysF13 || keyCode == kSRKeysF14 || keyCode == kSRKeysF15 || keyCode == kSRKeysF16 || keyCode == kSRKeysF17 || keyCode == kSRKeysF18 || keyCode == kSRKeysF19 || keyCode == kSRKeysF20 || keyCode == kSRKeysSpace || keyCode == kSRKeysDeleteLeft || keyCode == kSRKeysDeleteRight || keyCode == kSRKeysPadClear || keyCode == kSRKeysLeftArrow || keyCode == kSRKeysRightArrow || keyCode == kSRKeysUpArrow || keyCode == kSRKeysDownArrow || keyCode == kSRKeysSoutheastArrow || keyCode == kSRKeysNorthwestArrow || keyCode == kSRKeysEscape || keyCode == kSRKeysPageDown || keyCode == kSRKeysPageUp || keyCode == kSRKeysReturnR2L || keyCode == kSRKeysReturn || keyCode == kSRKeysTabRight || keyCode == kSRKeysHelp);
+	return (keyCode == kSRKeysF1 || keyCode == kSRKeysF2 || keyCode == kSRKeysF3 || keyCode == kSRKeysF4 || keyCode == kSRKeysF5 || keyCode == kSRKeysF6 || keyCode == kSRKeysF7 || keyCode == kSRKeysF8 || keyCode == kSRKeysF9 || keyCode == kSRKeysF10 || keyCode == kSRKeysF11 || keyCode == kSRKeysF12 || keyCode == kSRKeysF13 || keyCode == kSRKeysF14 || keyCode == kSRKeysF15 || keyCode == kSRKeysF16 || keyCode == kSRKeysSpace || keyCode == kSRKeysDeleteLeft || keyCode == kSRKeysDeleteRight || keyCode == kSRKeysPadClear || keyCode == kSRKeysLeftArrow || keyCode == kSRKeysRightArrow || keyCode == kSRKeysUpArrow || keyCode == kSRKeysDownArrow || keyCode == kSRKeysSoutheastArrow || keyCode == kSRKeysNorthwestArrow || keyCode == kSRKeysEscape || keyCode == kSRKeysPageDown || keyCode == kSRKeysPageUp || keyCode == kSRKeysReturnR2L || keyCode == kSRKeysReturn || keyCode == kSRKeysTabRight || keyCode == kSRKeysHelp);
 }
 
 #pragma mark -

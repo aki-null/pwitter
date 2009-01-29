@@ -78,6 +78,10 @@
 				if (![[PTPreferenceManager getInstance] disableStatusNotification])
 					[lFilteredBoxes addObject:lCurrentBox];
 				break;
+			case ErrorMessage:
+				if (![[PTPreferenceManager getInstance] disableErrorNotification])
+					[lFilteredBoxes addObject:lCurrentBox];
+				break;
 			default:
 				break;
 		}
@@ -107,6 +111,9 @@
 					[self postReplyNotification:lCurrentBox];
 					break;
 				case NormalMessage:
+					[self postNormalNotification:lCurrentBox];
+					break;
+				case ErrorMessage:
 					[self postNormalNotification:lCurrentBox];
 					break;
 				default:

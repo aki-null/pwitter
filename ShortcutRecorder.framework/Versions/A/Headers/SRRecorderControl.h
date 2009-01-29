@@ -46,22 +46,14 @@
 
 - (KeyCombo)keyCombo;
 - (void)setKeyCombo:(KeyCombo)aKeyCombo;
-- (void)clearKeyCombo;
 
 - (NSString *)keyChars;
 - (NSString *)keyCharsIgnoringModifiers;
 
-#pragma mark *** Deprecated ***
+#pragma mark *** Autosave Control ***
 
-- (NSString *)autosaveName SR_DEPRECATED_ATTRIBUTE;
-- (void)setAutosaveName:(NSString *)aName SR_DEPRECATED_ATTRIBUTE;
-
-#pragma mark -
-
-#pragma mark IB3 tomfoolery
-
-- (void)forIBuse__nilOutDeprecatedAutosaveName:(id)sender;
-- (BOOL)forIBuse__hasDeprecatedAutosaveName;
+- (NSString *)autosaveName;
+- (void)setAutosaveName:(NSString *)aName;
 
 #pragma mark -
 

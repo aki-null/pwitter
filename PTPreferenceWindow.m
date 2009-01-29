@@ -23,6 +23,12 @@
 	[[PTPreferenceManager getInstance] alwaysOnTop] ? [fAlwaysOnTop setState:NSOnState] : [fAlwaysOnTop setState:NSOffState];
 	[fTimeInterval selectItemAtIndex:[[PTPreferenceManager getInstance] timeInterval] - 1];
 	[fMessageUpdateInterval selectItemAtIndex:[[PTPreferenceManager getInstance] messageInterval] - 1];
+	[fBehaviorAfterUpdate selectItemAtIndex:[[PTPreferenceManager getInstance] statusUpdateBehavior] - 1];
+	if ([[PTPreferenceManager getInstance] statusUpdateBehavior] == 1) {
+		[fStatusController setSelectsInsertedObjects:YES];
+	} else {
+		[fStatusController setSelectsInsertedObjects:NO];
+	}
 	[fPassword setStringValue:@""];
 	[fMainWindow setFloatingPanel:[[PTPreferenceManager getInstance] alwaysOnTop]];
 	[[PTPreferenceManager getInstance] autoLogin] ? [fAutoLogin setState:NSOnState] : [fAutoLogin setState:NSOffState];
@@ -35,24 +41,26 @@
 	[[PTPreferenceManager getInstance] disableMessageNotification] ? [fDisableMessageNotification setState:NSOnState] : [fDisableMessageNotification setState:NSOffState];
 	[[PTPreferenceManager getInstance] disableReplyNotification] ? [fDisableReplyNotification setState:NSOnState] : [fDisableReplyNotification setState:NSOffState];
 	[[PTPreferenceManager getInstance] disableStatusNotification] ? [fDisableStatusNotification setState:NSOnState] : [fDisableStatusNotification setState:NSOffState];
+	[[PTPreferenceManager getInstance] disableErrorNotification] ? [fDisableErrorNotification setState:NSOnState] : [fDisableErrorNotification setState:NSOffState];
 	[[PTPreferenceManager getInstance] disableSoundNotification] ? [fDisableSoundNotification setState:NSOnState] : [fDisableSoundNotification setState:NSOffState];
 	if ([[PTPreferenceManager getInstance] disableGrowl]) {
 		[fDisableMessageNotification setEnabled:NO];
 		[fDisableStatusNotification setEnabled:NO];
 		[fDisableReplyNotification setEnabled:NO];
+		[fDisableErrorNotification setEnabled:NO];
 	}
 	if (![GrowlApplicationBridge isGrowlRunning]) {
 		[fDisableGrowl setEnabled:NO];
 		[fDisableMessageNotification setEnabled:NO];
 		[fDisableStatusNotification setEnabled:NO];
 		[fDisableReplyNotification setEnabled:NO];
+		[fDisableErrorNotification setEnabled:NO];
 	}
 	// load key combination
 	[self loadKeyCombo];
 	[self turnOffHotKey];
 	[fShortcutRecorder setEnabled:NO];
-	if ([[PTPreferenceManager getInstance] quickPost])
-	{
+	if ([[PTPreferenceManager getInstance] quickPost]) {
 		[fShortcutRecorder setEnabled:YES];
 		[self turnOnHotKey];
 	}
@@ -69,6 +77,7 @@
 	[[PTPreferenceManager getInstance] setDisableMessageNotification:[fDisableMessageNotification state] == NSOnState];
 	[[PTPreferenceManager getInstance] setDisableReplyNotification:[fDisableReplyNotification state] == NSOnState];
 	[[PTPreferenceManager getInstance] setDisableStatusNotification:[fDisableStatusNotification state] == NSOnState];
+	[[PTPreferenceManager getInstance] setDisableErrorNotification:[fDisableErrorNotification state] == NSOnState];
 	[[PTPreferenceManager getInstance] setDisableSoundNotification:[fDisableSoundNotification state] == NSOnState];
 	if ([fIgnoreErrors state] == NSOnState)
 		[fMainActionHandler clearErrors:sender];
@@ -86,10 +95,18 @@
 		[[PTPreferenceManager getInstance] setMessageInterval:[fMessageUpdateInterval indexOfSelectedItem] + 1];
 		[fMainController setupMessageUpdateTimer];
 	}
+	if ([[PTPreferenceManager getInstance] statusUpdateBehavior] != [fBehaviorAfterUpdate indexOfSelectedItem] + 1) {
+		[[PTPreferenceManager getInstance] setStatusUpdateBehavior:[fBehaviorAfterUpdate indexOfSelectedItem] + 1];
+	}
 	if ([[fPassword stringValue] length] != 0) {
 		[[PTPreferenceManager getInstance] setUserName:[fUserName stringValue] 
 											  password:[fPassword stringValue]];
 		fShouldReset = YES;
+	}
+	if ([[PTPreferenceManager getInstance] statusUpdateBehavior] == 1) {
+		[fStatusController setSelectsInsertedObjects:YES];
+	} else {
+		[fStatusController setSelectsInsertedObjects:NO];
 	}
 	if (fShouldReset) [fMainController changeAccount:self];
 	[fMainWindow setFloatingPanel:[[PTPreferenceManager getInstance] alwaysOnTop]];

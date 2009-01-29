@@ -16,7 +16,8 @@ typedef enum soundEventType {
 	NoneReceived = 0,
 	StatusReceived = 1,
 	ReplyOrMessageReceived = 2,
-	ErrorReceived = 3
+	ErrorReceived = 3,
+	StatusSent = 4
 }SoundEventType;
 
 @interface PTMain : NSObject <MGTwitterEngineDelegate> {
@@ -39,6 +40,8 @@ typedef enum soundEventType {
 	NSImage *fDefaultImage;
 	NSSound *fStatusReceived;
 	NSSound *fReplyReceived;
+	NSSound *fErrorReceived;
+	NSSound *fStatusSent;
 	NSMutableDictionary *fRequestDetails;
 	NSMutableDictionary *fImageLocationForReq;
 	NSMutableDictionary *fImageReqForLocation;

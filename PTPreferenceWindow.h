@@ -32,6 +32,9 @@
     IBOutlet id fDisableSoundNotification;
     IBOutlet id fDisableStatusNotification;
     IBOutlet id fPostTextField;
+    IBOutlet id fBehaviorAfterUpdate;
+    IBOutlet id fStatusController;
+    IBOutlet id fDisableErrorNotification;
 	PTHotKey *fHotKey;
 }
 - (void)loadPreferences;

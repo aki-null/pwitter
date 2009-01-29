@@ -34,6 +34,8 @@
 		[fPrefData setInteger:2 forKey:@"time_interval"];
 	if ([fPrefData integerForKey:@"message_interval"] == 0)
 		[fPrefData setInteger:3 forKey:@"message_interval"];
+	if ([fPrefData integerForKey:@"status_update_behavior"] == 0)
+		[fPrefData setInteger:1 forKey:@"status_update_behavior"];
 }
 
 - (void)setUserName:(NSString *)aUserName password:(NSString *)aPassword {
@@ -47,6 +49,7 @@
 															   password:aPassword];
 	} else {
 		[tempItem setPassword:aPassword];
+		[tempItem release];
 	}
 }
 
@@ -161,12 +164,28 @@
 	return [fPrefData boolForKey:@"disable_status_notification"];
 }
 
+- (void)setDisableErrorNotification:(BOOL)aFlag {
+	[fPrefData setBool:aFlag forKey:@"disable_error_notification"];
+}
+
+- (BOOL)disableErrorNotification {
+	return [fPrefData boolForKey:@"disable_error_notification"];
+}
+
 - (void)setDisableSoundNotification:(BOOL)aFlag {
 	[fPrefData setBool:aFlag forKey:@"disable_sound_notification"];
 }
 
 - (BOOL)disableSoundNotification {
 	return [fPrefData boolForKey:@"disable_sound_notification"];
+}
+
+- (void)setStatusUpdateBehavior:(int)aBehavior {
+	[fPrefData setInteger:aBehavior forKey:@"status_update_behavior"];
+}
+
+- (int)statusUpdateBehavior {
+	return [fPrefData integerForKey:@"status_update_behavior"];
 }
 
 @end

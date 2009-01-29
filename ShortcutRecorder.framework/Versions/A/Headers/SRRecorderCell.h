@@ -116,7 +116,6 @@ typedef enum SRRecorderStyle SRRecorderStyle;
 
 - (KeyCombo)keyCombo;
 - (void)setKeyCombo:(KeyCombo)aKeyCombo;
-- (void)clearKeyCombo;
 
 #pragma mark *** Autosave Control ***
 

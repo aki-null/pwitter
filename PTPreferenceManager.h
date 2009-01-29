@@ -43,7 +43,11 @@
 - (BOOL)disableReplyNotification;
 - (void)setDisableStatusNotification:(BOOL)aFlag;
 - (BOOL)disableStatusNotification;
+- (void)setDisableErrorNotification:(BOOL)aFlag;
+- (BOOL)disableErrorNotification;
 - (void)setDisableSoundNotification:(BOOL)aFlag;
-- (BOOL)disableSoundNotification;	
+- (BOOL)disableSoundNotification;
+- (void)setStatusUpdateBehavior:(int)aBehavior;
+- (int)statusUpdateBehavior;
 
 @end

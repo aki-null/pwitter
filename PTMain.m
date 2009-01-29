@@ -81,6 +81,12 @@
 			case ReplyOrMessageReceived:
 				[fReplyReceived play];
 				break;
+			case ErrorReceived:
+				[fErrorReceived play];
+				break;
+			case StatusSent:
+				[fStatusSent play];
+				break;
 		}
 	}
 	fCurrentSoundStatus = NoneReceived;
@@ -95,9 +101,11 @@
 }
 
 - (void)postGrowlNotifications {
-	[self sortArray:fBoxesToNotify];
-	[fNotificationMan postNotifications:fBoxesToNotify 
-						   defaultImage:fDefaultImage];
+	if (![NSApp isActive]) {
+		[self sortArray:fBoxesToNotify];
+		[fNotificationMan postNotifications:fBoxesToNotify 
+							   defaultImage:fDefaultImage];
+	}
 	[fBoxesToNotify removeAllObjects];
 }
 
@@ -217,6 +225,8 @@
 	fDefaultImage = [NSImage imageNamed:@"default.png"];
 	fStatusReceived = [NSSound soundNamed:@"statusReceived"];
 	fReplyReceived = [NSSound soundNamed:@"replyReceived"];
+	fStatusSent = [NSSound soundNamed:@"statusPosted"];
+	[[NSSound soundNamed:@"startUp"] play];
 }
 
 - (void)dealloc
@@ -267,6 +277,7 @@
 	if (!lIgnoreError) {
 		PTStatusBox *lErrorBox = [fStatusBoxGenerator constructErrorBox:aError];
 		[fBoxesToAdd addObject:lErrorBox];
+		[fBoxesToNotify addObject:lErrorBox];
 	}
 }
 
@@ -298,6 +309,7 @@
 	}
 	NSString *lUpdateType = [fRequestDetails objectForKey:aIdentifier];
 	if (lUpdateType == @"POST") {
+		fCurrentSoundStatus = StatusSent;
 		[self postComplete];
 		[fRequestDetails removeObjectForKey:aIdentifier];
 		[self updateSessionStatus];
@@ -328,8 +340,7 @@
 	if (fCurrentSoundStatus == NoneReceived && 
 		[lTempBoxes count] != 0)
 		fCurrentSoundStatus = StatusReceived;
-	if (![NSApp isActive] && 
-		(lUpdateType == @"UPDATE" || lUpdateType == @"REPLY_UPDATE")) {
+	if (lUpdateType == @"UPDATE" || lUpdateType == @"REPLY_UPDATE") {
 		[fBoxesToNotify addObjectsFromArray:lTempBoxes];
 	}
 	[fBoxesToAdd addObjectsFromArray:lTempBoxes];
@@ -347,12 +358,9 @@
 
 - (void)directMessagesReceived:(NSArray *)aMessages forRequest:(NSString *)aIdentifier
 {
-	if ([aMessages count] == 0) {
-		[fRequestDetails removeObjectForKey:aIdentifier];
-		[self updateSessionStatus];
-		return;
-	}
-	if ([[[aMessages objectAtIndex:0] objectForKey:@"id"] longLongValue] == 0) {
+	if ([aMessages count] == 0 || 
+		[[[aMessages objectAtIndex:0] objectForKey:@"id"] intValue] == 0 || 
+		[fRequestDetails objectForKey:aIdentifier] == @"MESSAGE") {
 		[fRequestDetails removeObjectForKey:aIdentifier];
 		[self updateSessionStatus];
 		return;
@@ -365,14 +373,15 @@
 		[lTempArray addObject:lBoxToAdd];
 		if (!lLastDic) lLastDic = lCurrentDic;
 	}
-	if ([fRequestDetails objectForKey:aIdentifier] != @"INIT_MESSAGE_UPDATE" &&
-		![NSApp isActive]) {
+	if ([fRequestDetails objectForKey:aIdentifier] != @"INIT_MESSAGE_UPDATE") {
 		[fBoxesToNotify addObjectsFromArray:lTempArray];
 	}
 	[fBoxesToAdd addObjectsFromArray:lTempArray];
 	[lTempArray release];
 	fLastMessageID = [[lLastDic objectForKey:@"id"] intValue];
 	[fRequestDetails removeObjectForKey:aIdentifier];
+	if (fCurrentSoundStatus != ErrorReceived)
+		fCurrentSoundStatus = ReplyOrMessageReceived;
 	fCurrentSoundStatus = ReplyOrMessageReceived;
 	[self updateSessionStatus];
 }
@@ -417,7 +426,7 @@
 																  sinceID:fLastUpdateID startingAtPage:0 count:50]];
 		if ([[PTPreferenceManager getInstance] receiveFromNonFollowers])
 			[fRequestDetails setObject:@"REPLY_UPDATE" 
-								forKey:[fTwitterEngine getRepliesSinceID:fLastReplyID startingAtPage:0 count:100]];
+								forKey:[fTwitterEngine getRepliesSinceID:fLastReplyID startingAtPage:0 count:20]];
 		if (sender != self)
 			[fRequestDetails setObject:@"MESSAGE_UPDATE" 
 								forKey:[fTwitterEngine getDirectMessagesSinceID:fLastMessageID 
