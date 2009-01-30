@@ -232,7 +232,7 @@ static id _sharedHotKeyCenter = nil;
 	
 
 	NSAssert( hotKeyID.signature == 'HCHk', @"Invalid hot key id" );
-	NSAssert( hotKeyID.id != nil, @"Invalid hot key id" );
+	NSAssert( hotKeyID.id != 0, @"Invalid hot key id" );
 
 	hotKey = (PTHotKey*)hotKeyID.id;
 

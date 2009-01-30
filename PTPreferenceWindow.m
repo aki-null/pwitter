@@ -108,13 +108,13 @@
 	} else {
 		[fStatusController setSelectsInsertedObjects:NO];
 	}
-	if (fShouldReset) [fMainController changeAccount:self];
 	[fMainWindow setFloatingPanel:[[PTPreferenceManager getInstance] alwaysOnTop]];
 	[self saveKeyCombo];
 	[self turnOffHotKey];
 	if ([fActivateGlobalKey state] == NSOnState)
 		[self turnOnHotKey];
 	[NSApp endSheet:self];
+	if (fShouldReset) [fMainController changeAccount:self];
 }
 
 - (IBAction)pressCancel:(id)sender {

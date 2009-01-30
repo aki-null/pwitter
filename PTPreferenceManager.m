@@ -40,16 +40,15 @@
 
 - (void)setUserName:(NSString *)aUserName password:(NSString *)aPassword {
 	[fPrefData setObject:aUserName forKey:@"user_name"];
-	EMGenericKeychainItem *tempItem = 
+	EMGenericKeychainItem *lTempItem = 
 	[[EMKeychainProxy sharedProxy] genericKeychainItemForService:@"Pwitter" 
 													withUsername:aUserName];
-	if (!tempItem) {
+	if (!lTempItem) {
 		[[EMKeychainProxy sharedProxy] addGenericKeychainItemForService:@"Pwitter" 
 														   withUsername:aUserName 
 															   password:aPassword];
 	} else {
-		[tempItem setPassword:aPassword];
-		[tempItem release];
+		[lTempItem setPassword:aPassword];
 	}
 }
 
