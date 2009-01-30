@@ -38,6 +38,7 @@ typedef enum soundEventType {
 	int fLastMessageID;
 	int fLastReplyID;
 	NSImage *fDefaultImage;
+	NSImage *fMaskImage;
 	NSSound *fStatusReceived;
 	NSSound *fReplyReceived;
 	NSSound *fErrorReceived;

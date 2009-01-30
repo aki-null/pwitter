@@ -22,4 +22,17 @@
 @synthesize searchString;
 @synthesize sType;
 
+- (void)dealloc {
+	if (userImage) [userImage release];
+	if (userName) [userName release];
+	if (statusMessage) [statusMessage release];
+	if (userHome) [userHome release];
+	if (userID) [userID release];
+	if (entityColor) [entityColor release];
+	if (time) [time release];
+	if (strTime) [strTime release];
+	if (searchString) [searchString release];
+	[super dealloc];
+}
+
 @end

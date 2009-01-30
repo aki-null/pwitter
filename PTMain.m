@@ -223,6 +223,7 @@
 {
 	[self initTransaction];
 	fDefaultImage = [NSImage imageNamed:@"default.png"];
+	fMaskImage = [NSImage imageNamed:@"icon_mask"];
 	fStatusReceived = [NSSound soundNamed:@"statusReceived"];
 	fReplyReceived = [NSSound soundNamed:@"replyReceived"];
 	fStatusSent = [NSSound soundNamed:@"statusPosted"];
@@ -396,14 +397,26 @@
 	// not implemented
 }
 
+- (NSImage *)maskImage:(NSImage *)aImage {
+	NSImage *lNewImage = [fMaskImage copy];
+	[lNewImage lockFocus];
+	[aImage drawInRect: NSMakeRect(0, 0, 48, 48) 
+			  fromRect: NSMakeRect(0, 0, [aImage size].width, [aImage size].height) 
+			 operation: NSCompositeSourceIn 
+			  fraction: 1.0];
+	[lNewImage unlockFocus];
+	return [lNewImage autorelease];
+}
+
 - (void)imageReceived:(NSImage *)aImage forRequest:(NSString *)aIdentifier
 {
+	NSImage *lNewImage = [self maskImage:aImage];
 	PTStatusBox *lCurrentBox;
 	for (lCurrentBox in [fStatusBoxesForReq objectForKey:aIdentifier]) {
-		lCurrentBox.userImage = aImage;
+		lCurrentBox.userImage = lNewImage;
 	}
 	NSString *lImageLocation = [fImageLocationForReq objectForKey:aIdentifier];
-	[fUserImageCache setObject:aImage forKey:lImageLocation];
+	[fUserImageCache setObject:lNewImage forKey:lImageLocation];
 	[fStatusBoxesForReq removeObjectForKey:aIdentifier];
 	[fImageReqForLocation removeObjectForKey:lImageLocation];
 	[fImageLocationForReq removeObjectForKey:aIdentifier];
