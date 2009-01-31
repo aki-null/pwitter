@@ -119,8 +119,11 @@
 		fReplyViewIsOpen = YES;
 		NSRect lReplyFrame = [fPostView frame];
 		NSRect lBottomFrame = [fBottomView frame];
+		[NSAnimationContext beginGrouping];
+		[[NSAnimationContext currentContext] setDuration:0.2f];
 		[[fPostView animator] setFrame:NSMakeRect(lReplyFrame.origin.x, lReplyFrame.origin.y, lReplyFrame.size.width, 45)];
 		[[fBottomView animator] setFrame:NSMakeRect(0, lBottomFrame.origin.y + 23, lBottomFrame.size.width, lBottomFrame.size.height - 23)];
+		[NSAnimationContext endGrouping];
 	}
 }
 
@@ -130,8 +133,11 @@
 		fReplyViewIsOpen = NO;
 		NSRect lReplyFrame = [fPostView frame];
 		NSRect lBottomFrame = [fBottomView frame];
+		[NSAnimationContext beginGrouping];
+		[[NSAnimationContext currentContext] setDuration:0.2f];
 		[[fPostView animator] setFrame:NSMakeRect(lReplyFrame.origin.x, lReplyFrame.origin.y, lReplyFrame.size.width, 22)];
 		[[fBottomView animator] setFrame:NSMakeRect(0, lBottomFrame.origin.y - 23, lBottomFrame.size.width, lBottomFrame.size.height + 23)];
+		[NSAnimationContext endGrouping];
 		[fStatusUpdateField setStringValue:@""];
 	}
 }

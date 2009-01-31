@@ -1,3 +1,20 @@
+31 January 2009: (Version 0.7):
+Improved: Revised timeline reset method
+Improved: Revised Growl notification method
+Improved: Quick post design change
+Improved: Status collection view behavior change
+Improved: Preference window design
+Improved: Updated Twitter engine
+Improved: Hyperlink detection improvement (now recognizes many protocols such as AIM, Email, MSN, etc)
+Improved: Status posting behavior change
+Improved: Reply behavior change (you can now post in reply to specific tweet ID)
+Bug Fixed: Many major and minor memory leaks
+Feature: Detailed notification preferences
+Feature: Sound notification
+Feature: Rounded user icons
+Feature: Menubar icon (click to activate the application) - the color of the icon changes when there are new tweets to read
+Feature: Ability to hide or unhide the dock icon (requires application restart)
+
 16 January 2009: (Version 0.6):
 Improved: Revised reply status handling - more friendly to the Twitter server
 Feature: Option to ignore error messages (available from the preference window)
