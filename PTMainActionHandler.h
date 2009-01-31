@@ -33,7 +33,10 @@
     IBOutlet id fMiniItemPrototype;
     IBOutlet id fNormalItemPrototype;
     IBOutlet id fStatusCollectionView;
+    IBOutlet id fPostView;
+    IBOutlet id fReplyToBox;
 	BOOL fSearchBoxIsOpen;
+	BOOL fReplyViewIsOpen;
 	BOOL fShouldExit;
 }
 - (IBAction)closeAuthSheet:(id)sender;
@@ -46,9 +49,12 @@
 - (IBAction)openSearchBox:(id)sender;
 - (IBAction)closeSearchBox:(id)sender;
 - (IBAction)clearErrors:(id)sender;
+- (IBAction)closeReplyViewFromButton:(id)sender;
 - (void)startAuthentication;
 - (void)updateSelectedMessage:(PTStatusBox *)aBox;
 - (void)updateViewSizes:(float)aHeightReq withAnim:(BOOL)aAnim;
 - (void)setCollectionViewPrototype:(BOOL)aIsMini;
+- (void)openReplyView;
+- (void)closeReplyView;
 
 @end

@@ -33,10 +33,12 @@ typedef enum soundEventType {
     IBOutlet id fNotificationMan;
     IBOutlet id fSelectedTextView;
     IBOutlet id fMainWindow;
+    IBOutlet id fMainActionHandler;
 	MGTwitterEngine *fTwitterEngine;
 	int fLastUpdateID;
 	int fLastMessageID;
 	int fLastReplyID;
+	int fReplyUpdateId;
 	NSImage *fDefaultImage;
 	NSImage *fMaskImage;
 	NSSound *fStatusReceived;
@@ -66,6 +68,7 @@ typedef enum soundEventType {
 - (void)runInitialUpdates;
 - (void)setUpTwitterEngine;
 - (void)makePost:(NSString *)aMessage;
+- (void)setReplyID:(int)aId;
 
 @property(readonly) NSStatusItem *fMenuItem;
 

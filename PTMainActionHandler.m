@@ -114,12 +114,39 @@
 	[[NSWorkspace sharedWorkspace] openURL:lCurrentSelection.userHome];
 }
 
+- (void)openReplyView {
+	if (!fReplyViewIsOpen) {
+		fReplyViewIsOpen = YES;
+		NSRect lReplyFrame = [fPostView frame];
+		NSRect lBottomFrame = [fBottomView frame];
+		[[fPostView animator] setFrame:NSMakeRect(lReplyFrame.origin.x, lReplyFrame.origin.y, lReplyFrame.size.width, 45)];
+		[[fBottomView animator] setFrame:NSMakeRect(0, lBottomFrame.origin.y + 23, lBottomFrame.size.width, lBottomFrame.size.height - 23)];
+	}
+}
+
+- (void)closeReplyView {
+	if (fReplyViewIsOpen) {
+		[fMainController setReplyID:0];
+		fReplyViewIsOpen = NO;
+		NSRect lReplyFrame = [fPostView frame];
+		NSRect lBottomFrame = [fBottomView frame];
+		[[fPostView animator] setFrame:NSMakeRect(lReplyFrame.origin.x, lReplyFrame.origin.y, lReplyFrame.size.width, 22)];
+		[[fBottomView animator] setFrame:NSMakeRect(0, lBottomFrame.origin.y - 23, lBottomFrame.size.width, lBottomFrame.size.height + 23)];
+		[fStatusUpdateField setStringValue:@""];
+	}
+}
+
 - (IBAction)replyToSelected:(id)sender {
 	PTStatusBox *lCurrentSelection = [[fStatusController selectedObjects] lastObject];
-	NSString *replyTarget = [NSString stringWithFormat:@"@%@ %@", lCurrentSelection.userID, [fStatusUpdateField stringValue]];
-	[fStatusUpdateField setStringValue:replyTarget];
-	[fMainWindow makeFirstResponder:fStatusUpdateField];
-	[(NSText *)[fMainWindow firstResponder] setSelectedRange:NSMakeRange([[fStatusUpdateField stringValue] length], 0)];
+	if (lCurrentSelection.sType == NormalMessage || lCurrentSelection.sType == ReplyMessage || lCurrentSelection.sType == DirectMessage) {
+		NSString *replyTarget = [NSString stringWithFormat:@"@%@ %@", lCurrentSelection.userID, [fStatusUpdateField stringValue]];
+		[fStatusUpdateField setStringValue:replyTarget];
+		[fMainWindow makeFirstResponder:fStatusUpdateField];
+		[(NSText *)[fMainWindow firstResponder] setSelectedRange:NSMakeRange([[fStatusUpdateField stringValue] length], 0)];
+		[fMainController setReplyID:lCurrentSelection.updateId];
+		[fReplyToBox setStringValue:[@"@" stringByAppendingString:lCurrentSelection.userID]];
+		[self openReplyView];
+	}
 }
 
 - (IBAction)openPref:(id)sender {
@@ -166,13 +193,14 @@
 	float lTopHeight = 79;
 	if (aHeightReq > 51) lTopHeight += aHeightReq - 51;
 	NSRect lTopFrame = [fTopView frame];
+	NSRect lBottomFrame = [fBottomView frame];
 	float lTopDiff = lTopFrame.size.height - lTopHeight;
 	if (aAnim) {
 		[[fTopView animator] setFrame:NSMakeRect(0, lTopFrame.origin.y + lTopDiff, [fTopView frame].size.width, lTopHeight)];
-		[[fBottomView animator] setFrame:NSMakeRect(0, 43, [fBottomView frame].size.width, [fBottomView frame].size.height + lTopDiff)];
+		[[fBottomView animator] setFrame:NSMakeRect(0, lBottomFrame.origin.y, lBottomFrame.size.width, lBottomFrame.size.height + lTopDiff)];
 	} else {
 		[fTopView setFrame:NSMakeRect(0, lTopFrame.origin.y + lTopDiff, [fTopView frame].size.width, lTopHeight)];
-		[fBottomView setFrame:NSMakeRect(0, 43, [fBottomView frame].size.width, [fBottomView frame].size.height + lTopDiff)];
+		[fBottomView setFrame:NSMakeRect(0, lBottomFrame.origin.y, lBottomFrame.size.width, lBottomFrame.size.height + lTopDiff)];
 	}
 }
 
@@ -203,6 +231,10 @@
 	float lHeightReq = [lTempTextView frame].size.height;
 	[lTempTextView release];
 	[self updateViewSizes:lHeightReq withAnim:YES];
+}
+
+- (IBAction)closeReplyViewFromButton:(id)sender {
+	[self closeReplyView];
 }
 
 @end

@@ -27,6 +27,7 @@ typedef enum statusType {
 	NSString *strTime;
 	NSString *searchString;
 	StatusType sType;
+	int updateId;
 }
 
 @property(copy, readwrite) NSAttributedString *userName;
@@ -39,5 +40,6 @@ typedef enum statusType {
 @property(copy, readwrite) NSString *strTime;
 @property(copy, readwrite) NSString *searchString;
 @property(readwrite) StatusType sType;
+@property(readwrite) int updateId;
 
 @end

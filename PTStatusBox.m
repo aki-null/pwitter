@@ -21,6 +21,7 @@
 @synthesize strTime;
 @synthesize searchString;
 @synthesize sType;
+@synthesize updateId;
 
 - (void)dealloc {
 	if (userImage) [userImage release];

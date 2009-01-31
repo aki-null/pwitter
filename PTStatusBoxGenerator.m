@@ -47,6 +47,7 @@
 							[[aStatusInfo objectForKey:@"user"] objectForKey:@"screen_name"], 
 							[[aStatusInfo objectForKey:@"user"] objectForKey:@"name"], 
 							[aStatusInfo objectForKey:@"text"]];
+	lNewBox.updateId = [[aStatusInfo objectForKey:@"id"] intValue];
 	return [lNewBox autorelease];
 }
 

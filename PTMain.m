@@ -9,6 +9,7 @@
 #import "PTMain.h"
 #import "PTStatusBoxGenerator.h"
 #import "PTGrowlNotificationManager.h"
+#import "PTMainActionHandler.h"
 
 #define STATUS_LIMIT 200
 	
@@ -486,9 +487,12 @@
 																  to:lMessageTarget]];
 	} else {
 		[fRequestDetails setObject:@"POST" 
-							forKey:[fTwitterEngine sendUpdate:aMessage]];
+							forKey:[fTwitterEngine sendUpdate:aMessage 
+													inReplyTo:fReplyUpdateId]];
 	}
 	[fStatusUpdateField setEnabled:NO];
+	fReplyUpdateId = 0;
+	[fMainActionHandler closeReplyView];
 }
 
 - (IBAction)postStatus:(id)sender {
@@ -499,6 +503,10 @@
 	PTStatusBox *lCurrentSelection = [[fStatusController selectedObjects] lastObject];
 	if (lCurrentSelection && lCurrentSelection.sType != ErrorMessage)
 		[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://twitter.com/%@", lCurrentSelection.userID]]];
+}
+
+- (void)setReplyID:(int)aId {
+	fReplyUpdateId = aId;
 }
 
 @synthesize fMenuItem;
