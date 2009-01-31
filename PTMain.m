@@ -231,6 +231,8 @@
 
 - (void)awakeFromNib
 {
+	[NSApp activateIgnoringOtherApps:YES];
+	[fMainWindow makeKeyAndOrderFront:self];
 	NSStatusBar *lBar = [NSStatusBar systemStatusBar];
 	fMenuItem = [[lBar statusItemWithLength:NSVariableStatusItemLength] retain];
 	[fMenuItem setImage:[NSImage imageNamed:@"menu_icon_off"]];
