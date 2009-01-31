@@ -54,6 +54,7 @@ typedef enum soundEventType {
 	// array of boxes that has been received for the current session
 	NSMutableArray *fBoxesToNotify;
 	NSMutableArray *fBoxesToAdd;
+	NSStatusItem *fMenuItem;
 }
 - (IBAction)updateTimeline:(id)sender;
 - (IBAction)postStatus:(id)sender;
@@ -65,5 +66,7 @@ typedef enum soundEventType {
 - (void)runInitialUpdates;
 - (void)setUpTwitterEngine;
 - (void)makePost:(NSString *)aMessage;
+
+@property(readonly) NSStatusItem *fMenuItem;
 
 @end

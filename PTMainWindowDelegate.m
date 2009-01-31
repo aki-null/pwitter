@@ -24,6 +24,11 @@
 	return YES;
 }
 
+- (BOOL)applicationDidBecomeActive:(NSNotification *)aNotification {
+	[[fMainController fMenuItem] setImage:[NSImage imageNamed:@"menu_icon_off"]];
+	return YES;
+}
+
 - (BOOL)windowShouldClose:(id)sender
 {
 	BOOL lResult = YES;

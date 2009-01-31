@@ -110,6 +110,8 @@
 }
 
 - (void)addNewStatusBoxes {
+	if (![NSApp isActive] && [fBoxesToAdd count])
+		[fMenuItem setImage:[NSImage imageNamed:@"menu_icon_on"]];
 	[self sortArray:fBoxesToAdd];
 	[fStatusController addObjects:fBoxesToAdd];
 	[fBoxesToAdd removeAllObjects];
@@ -221,8 +223,20 @@
 	[self runInitialUpdates];
 }
 
+- (void)activateApp {
+	[fMenuItem setImage:[NSImage imageNamed:@"menu_icon_off"]];
+	[NSApp activateIgnoringOtherApps:YES];
+	[fMainWindow makeKeyAndOrderFront:self];
+}
+
 - (void)awakeFromNib
 {
+	NSStatusBar *lBar = [NSStatusBar systemStatusBar];
+	fMenuItem = [[lBar statusItemWithLength:NSVariableStatusItemLength] retain];
+	[fMenuItem setImage:[NSImage imageNamed:@"menu_icon_off"]];
+	[fMenuItem setHighlightMode:YES];
+	[fMenuItem setTarget:self];
+	[fMenuItem setAction:@selector(activateApp)];
 	[self initTransaction];
 	fDefaultImage = [NSImage imageNamed:@"default.png"];
 	fMaskImage = [NSImage imageNamed:@"icon_mask"];
@@ -484,5 +498,7 @@
 	if (lCurrentSelection && lCurrentSelection.sType != ErrorMessage)
 		[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://twitter.com/%@", lCurrentSelection.userID]]];
 }
+
+@synthesize fMenuItem;
 
 @end

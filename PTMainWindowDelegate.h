@@ -12,6 +12,7 @@
 @interface PTMainWindowDelegate : NSObject {
     IBOutlet id fMainWindow;
     IBOutlet id fMainActionHandler;
+    IBOutlet id fMainController;
 }
 
 @end

@@ -167,8 +167,7 @@
 
 - (void)hitKey:(PTHotKey *)aHotKey {
 	[NSApp activateIgnoringOtherApps:YES];
-	[fMainWindow orderFront:self];
-	[fMainWindow makeKeyWindow];
+	[fMainWindow makeKeyAndOrderFront:self];
 	[fPostTextField selectText:self];
 }
 

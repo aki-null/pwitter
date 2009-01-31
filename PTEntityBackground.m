@@ -21,7 +21,7 @@
 	[lPath fill];
 	// render the selection border
 	if([(PTStatusEntityView *)[self superview] selected]) {
-		[[NSColor colorWithCalibratedRed:0.7 green:0.7 blue:0.7 alpha:1.0] set];
+		[[NSColor colorWithCalibratedRed:0.8 green:0.8 blue:0.8 alpha:1.0] set];
 		[lPath setLineWidth:2.5];
 		[lPath stroke];
 	}
