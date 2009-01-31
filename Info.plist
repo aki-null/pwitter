@@ -28,5 +28,7 @@
 	<string>dsa_pub.pem</string>
 	<key>SUFeedURL</key>
 	<string>http://github.com/koroshiya1/pwitter/raw/master/SparkleData/appcast.xml</string>
+	<key>LSUIElement</key>
+	<false/>
 </dict>
 </plist>

@@ -35,6 +35,7 @@
     IBOutlet id fBehaviorAfterUpdate;
     IBOutlet id fStatusController;
     IBOutlet id fDisableErrorNotification;
+    IBOutlet id fHideDockIcon;
 	PTHotKey *fHotKey;
 }
 - (void)loadPreferences;

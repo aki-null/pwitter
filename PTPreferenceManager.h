@@ -49,5 +49,7 @@
 - (BOOL)disableSoundNotification;
 - (void)setStatusUpdateBehavior:(int)aBehavior;
 - (int)statusUpdateBehavior;
+- (void)setHideDockIcon:(BOOL)aFlag;
+- (BOOL)hideDockIcon;
 
 @end

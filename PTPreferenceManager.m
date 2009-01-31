@@ -187,4 +187,24 @@
 	return [fPrefData integerForKey:@"status_update_behavior"];
 }
 
+- (void)setHideDockIcon:(BOOL)aFlag {
+	NSString * lFilePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/../Info.plist"];
+	if (lFilePath) {
+		if ([[NSFileManager defaultManager] isWritableFileAtPath:lFilePath]) {
+			NSMutableDictionary* lPlistDict = [[NSMutableDictionary alloc] initWithContentsOfFile:lFilePath];
+			[lPlistDict setValue:[NSNumber numberWithBool:aFlag] forKey:@"LSUIElement"];
+			[lPlistDict writeToFile:lFilePath atomically: YES];
+			[lPlistDict release];
+		}
+	}
+}
+
+- (BOOL)hideDockIcon {
+	NSString *lFilePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/../Info.plist"];
+	NSMutableDictionary* lPlistDict = [[NSMutableDictionary alloc] initWithContentsOfFile:lFilePath];
+	BOOL lShouldHide = [[lPlistDict objectForKey:@"LSUIElement"] boolValue];
+	[lPlistDict release];
+	return lShouldHide;
+}
+
 @end
