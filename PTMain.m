@@ -224,7 +224,7 @@
 	[self runInitialUpdates];
 }
 
-- (void)activateApp {
+- (IBAction)activateApp:(id)sender {
 	[fMenuItem setImage:[NSImage imageNamed:@"menu_icon_off"]];
 	[NSApp activateIgnoringOtherApps:YES];
 	[fMainWindow makeKeyAndOrderFront:self];
@@ -239,7 +239,7 @@
 	[fMenuItem setImage:[NSImage imageNamed:@"menu_icon_off"]];
 	[fMenuItem setHighlightMode:YES];
 	[fMenuItem setTarget:self];
-	[fMenuItem setAction:@selector(activateApp)];
+	[fMenuItem setMenu:fIconMenu];
 	[self initTransaction];
 	fDefaultImage = [NSImage imageNamed:@"default.png"];
 	fMaskImage = [NSImage imageNamed:@"icon_mask"];

@@ -34,6 +34,7 @@ typedef enum soundEventType {
     IBOutlet id fSelectedTextView;
     IBOutlet id fMainWindow;
     IBOutlet id fMainActionHandler;
+    IBOutlet id fIconMenu;
 	MGTwitterEngine *fTwitterEngine;
 	int fLastUpdateID;
 	int fLastMessageID;
@@ -61,6 +62,7 @@ typedef enum soundEventType {
 - (IBAction)updateTimeline:(id)sender;
 - (IBAction)postStatus:(id)sender;
 - (IBAction)changeAccount:(id)sender;
+- (IBAction)activateApp:(id)sender;
 - (NSImage *)requestUserImage:(NSString *)aImageLocation forBox:(PTStatusBox *)aNewBox;
 - (void)setupUpdateTimer;
 - (void)setupMessageUpdateTimer;
