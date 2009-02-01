@@ -7,9 +7,10 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import <BGHUDAppKit/BGHUDScrollView.h>
 
 
-@interface PTStatusScrollView : NSScrollView {
+@interface PTStatusScrollView : BGHUDScrollView {
 	float fOldPosition;
 	float fLastPosition;
 	BOOL fViewChanged;

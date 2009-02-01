@@ -37,7 +37,7 @@
 		lNewBox.userHome = nil;
 	}
 	if (aIsReply) {
-		lNewBox.entityColor = [NSColor colorWithCalibratedRed:1.0 green:0.3 blue:0.3 alpha:0.7];
+		lNewBox.entityColor = [NSColor colorWithCalibratedRed:0.8 green:0.28 blue:0.28 alpha:0.7];
 		lNewBox.sType = ReplyMessage;
 	} else {
 		lNewBox.entityColor = [NSColor colorWithCalibratedRed:0.4 green:0.4 blue:0.4 alpha:0.7];
@@ -87,7 +87,7 @@
 	} else {
 		lNewBox.userHome = nil;
 	}
-	lNewBox.entityColor = [NSColor colorWithCalibratedRed:0.4 green:0.5 blue:1.0 alpha:0.8];
+	lNewBox.entityColor = [NSColor colorWithCalibratedRed:0.4 green:0.5 blue:0.7 alpha:0.8];
 	lNewBox.sType = DirectMessage;
 	lNewBox.searchString = [NSString stringWithFormat:@"%@ %@ %@",
 							[[aStatusInfo objectForKey:@"sender"] objectForKey:@"screen_name"], 
