@@ -399,6 +399,7 @@
 	if ([aMessages count] == 0 || 
 		[[[aMessages objectAtIndex:0] objectForKey:@"id"] intValue] == 0 || 
 		[fRequestDetails objectForKey:aIdentifier] == @"MESSAGE") {
+		fCurrentSoundStatus = StatusSent;
 		[fRequestDetails removeObjectForKey:aIdentifier];
 		[self endingTransaction];
 		return;
