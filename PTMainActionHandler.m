@@ -200,7 +200,7 @@
 }
 
 - (void)updateViewSizes:(float)aHeightReq withAnim:(BOOL)aAnim {
-	float lTopHeight = 79;
+	float lTopHeight = 84;
 	if (aHeightReq > 51) lTopHeight += aHeightReq - 51;
 	NSRect lTopFrame = [fTopView frame];
 	NSRect lBottomFrame = [fBottomView frame];
