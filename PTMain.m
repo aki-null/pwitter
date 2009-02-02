@@ -266,7 +266,8 @@
 	fStatusReceived = [NSSound soundNamed:@"statusReceived"];
 	fReplyReceived = [NSSound soundNamed:@"replyReceived"];
 	fStatusSent = [NSSound soundNamed:@"statusPosted"];
-	[[NSSound soundNamed:@"startUp"] play];
+	if (![[PTPreferenceManager getInstance] disableSoundNotification])
+		[[NSSound soundNamed:@"startUp"] play];
 }
 
 - (void)dealloc
