@@ -8,7 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="372"/>
+			<integer value="1472"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1113,6 +1113,7 @@
 											<reference key="NSSuperview" ref="413286659"/>
 											<reference key="NSTarget" ref="413286659"/>
 											<string key="NSAction">_doScroller:</string>
+											<double key="NSPercent">9.900000e-01</double>
 											<string key="themeKey">gradientTheme</string>
 										</object>
 										<object class="BGHUDScroller" id="725085451">

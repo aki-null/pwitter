@@ -13,6 +13,7 @@
 
 @synthesize userName;
 @synthesize statusMessage;
+@synthesize statusMessageLarge;
 @synthesize userImage;
 @synthesize userHome;
 @synthesize userID;
@@ -27,6 +28,7 @@
 	if (userImage) [userImage release];
 	if (userName) [userName release];
 	if (statusMessage) [statusMessage release];
+	if (statusMessageLarge) [statusMessageLarge release];
 	if (userHome) [userHome release];
 	if (userID) [userID release];
 	if (entityColor) [entityColor release];

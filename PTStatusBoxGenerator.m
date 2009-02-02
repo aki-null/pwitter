@@ -28,6 +28,7 @@
 														  timeZone:[NSTimeZone systemTimeZone] 
 															locale:nil];
 	lNewBox.statusMessage = [PTStatusFormatter formatStatusMessage:[aStatusInfo objectForKey:@"text"]];
+	lNewBox.statusMessageLarge = [PTStatusFormatter enlargeStatusMessage:lNewBox];
 	lNewBox.userImage = [fMainController requestUserImage:[[aStatusInfo objectForKey:@"user"] objectForKey:@"profile_image_url"]
 												   forBox:lNewBox];
 	NSString *lUrlStr = [[aStatusInfo objectForKey:@"user"] objectForKey:@"url"];
@@ -55,7 +56,8 @@
 	PTStatusBox *lNewBox = [[PTStatusBox alloc] init];
 	lNewBox.userName = [PTStatusFormatter createErrorLabel];
 	lNewBox.userID = [NSString stringWithString:@"Twitter Error:"];
-	lNewBox.statusMessage = [PTStatusFormatter createErrorMessage:aError];;
+	lNewBox.statusMessage = [PTStatusFormatter createErrorMessage:aError];
+	lNewBox.statusMessageLarge = [PTStatusFormatter enlargeStatusMessage:lNewBox];
 	lNewBox.userImage = fWarningImage;
 	lNewBox.entityColor = [NSColor colorWithCalibratedRed:0.4 green:0.4 blue:0.4 alpha:0.7];
 	lNewBox.time = [NSDate date];
@@ -79,6 +81,7 @@
 					   timeZone:[NSTimeZone systemTimeZone] 
 					   locale:nil];
 	lNewBox.statusMessage = [PTStatusFormatter formatStatusMessage:[aStatusInfo objectForKey:@"text"]];
+	lNewBox.statusMessageLarge = [PTStatusFormatter enlargeStatusMessage:lNewBox];
 	lNewBox.userImage = [fMainController requestUserImage:[[aStatusInfo objectForKey:@"sender"] objectForKey:@"profile_image_url"]
 												   forBox:lNewBox];
 	NSString *lUrlStr = [[aStatusInfo objectForKey:@"sender"] objectForKey:@"url"];

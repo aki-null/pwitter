@@ -33,7 +33,7 @@
 	[[lTempTextView textStorage] setAttributedString:[fSelectedTextView textStorage]];
 	[lTempTextView setHorizontallyResizable:NO];
 	[lTempTextView sizeToFit];
-	float lHeightReq = [lTempTextView frame].size.height;
+	float lHeightReq = [lTempTextView frame].size.height + 3;
 	[lTempTextView release];
 	[fActionHandler updateViewSizes:lHeightReq withAnim:NO];
 }

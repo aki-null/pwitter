@@ -7,6 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "PTStatusBox.h"
 
 
 @interface PTStatusFormatter : NSObject {
@@ -14,6 +15,7 @@
 }
 + (void)processLinks:(NSMutableAttributedString *)aTargetString;
 + (void)detectReplyLinks:(NSMutableAttributedString *)aMessage;
++ (NSMutableAttributedString *)enlargeStatusMessage:(PTStatusBox *)aBox;
 + (NSMutableAttributedString *)formatStatusMessage:(NSString *)aMessage;
 + (NSMutableAttributedString *)createUserLabel:(NSString *)aScreenName name:(NSString *)aName;
 + (NSMutableAttributedString *)createErrorLabel;

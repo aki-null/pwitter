@@ -68,6 +68,17 @@
 	}
 }
 
++ (NSMutableAttributedString *)enlargeStatusMessage:(PTStatusBox *)aBox {
+	NSMutableAttributedString *lEnlarged = [[NSMutableAttributedString alloc] initWithAttributedString:aBox.statusMessage];
+	[lEnlarged beginEditing];
+	NSDictionary *lMessageAttributes = [NSDictionary dictionaryWithObjectsAndKeys:[NSColor whiteColor], NSForegroundColorAttributeName, 
+										[NSFont fontWithName:@"Helvetica" size:12.0], NSFontAttributeName, 
+										nil];
+	[lEnlarged addAttributes:lMessageAttributes range:NSMakeRange(0, [lEnlarged length])];
+	[lEnlarged endEditing];
+	return [lEnlarged autorelease];
+}
+
 + (NSMutableAttributedString *)formatStatusMessage:(NSString *)aMessage {
 	NSString *lUnescaped = (NSString *)CFXMLCreateStringByUnescapingEntities(nil, (CFStringRef)aMessage, nil);
 	NSMutableAttributedString *lNewMessage = [[NSMutableAttributedString alloc] initWithString:lUnescaped];
