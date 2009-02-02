@@ -1,3 +1,7 @@
+2 February 2009: (Version 0.7.6):
+Bug fixed: Shortcut recorder framework was not compiled as UB
+Improved: Selected tweet text view now has bigger font size, making it easier to read
+
 2 February 2009: (Version 0.7.5):
 Feature: Added a button to mark a tweet as favourite
 Improved: It now downloads 100 tweets per timeline update
