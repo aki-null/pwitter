@@ -35,6 +35,7 @@
     IBOutlet id fStatusCollectionView;
     IBOutlet id fPostView;
     IBOutlet id fReplyToBox;
+    IBOutlet id fFavButton;
 	BOOL fSearchBoxIsOpen;
 	BOOL fReplyViewIsOpen;
 	BOOL fShouldExit;
@@ -50,6 +51,7 @@
 - (IBAction)closeSearchBox:(id)sender;
 - (IBAction)clearErrors:(id)sender;
 - (IBAction)closeReplyViewFromButton:(id)sender;
+- (IBAction)favSelected:(id)sender;
 - (void)startAuthentication;
 - (void)updateSelectedMessage:(PTStatusBox *)aBox;
 - (void)updateViewSizes:(float)aHeightReq withAnim:(BOOL)aAnim;

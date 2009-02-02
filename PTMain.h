@@ -73,6 +73,7 @@ typedef enum soundEventType {
 - (void)setReplyID:(int)aId;
 - (void)disableIconMenu;
 - (void)enableIconMenu;
+- (void)favStatus:(PTStatusBox *)aBox;
 
 @property(readonly) NSStatusItem *fMenuItem;
 

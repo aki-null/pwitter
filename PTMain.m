@@ -293,7 +293,10 @@
 
 - (void)requestSucceeded:(NSString *)requestIdentifier
 {
-	if ([fRequestDetails objectForKey:requestIdentifier] == @"MESSAGE") {
+	NSString *lReqType = [fRequestDetails objectForKey:requestIdentifier];
+	if (lReqType == @"FAV") {
+		[fRequestDetails removeObjectForKey:lReqType];
+	} else if (lReqType == @"MESSAGE") {
 		[self postComplete];
 	}
 }
@@ -396,10 +399,12 @@
 
 - (void)directMessagesReceived:(NSArray *)aMessages forRequest:(NSString *)aIdentifier
 {
+	if ([fRequestDetails objectForKey:aIdentifier] == @"MESSAGE") {
+		fCurrentSoundStatus = StatusSent;
+	}
 	if ([aMessages count] == 0 || 
 		[[[aMessages objectAtIndex:0] objectForKey:@"id"] intValue] == 0 || 
 		[fRequestDetails objectForKey:aIdentifier] == @"MESSAGE") {
-		fCurrentSoundStatus = StatusSent;
 		[fRequestDetails removeObjectForKey:aIdentifier];
 		[self endingTransaction];
 		return;
@@ -526,6 +531,13 @@
 
 - (void)setReplyID:(int)aId {
 	fReplyUpdateId = aId;
+}
+
+- (void)favStatus:(PTStatusBox *)aBox {
+	[self startingTransaction];
+	[fRequestDetails setObject:@"FAV" 
+						forKey:[fTwitterEngine markUpdate:aBox.updateId 
+											   asFavorite:YES]];
 }
 
 @synthesize fMenuItem;

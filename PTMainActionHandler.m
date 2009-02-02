@@ -195,6 +195,10 @@
 	[fStatusController setFilterPredicate:nil];
 }
 
+- (IBAction)favSelected:(id)sender {
+	[fMainController favStatus:[[fStatusController selectedObjects] lastObject]];
+}
+
 - (void)updateViewSizes:(float)aHeightReq withAnim:(BOOL)aAnim {
 	float lTopHeight = 79;
 	if (aHeightReq > 51) lTopHeight += aHeightReq - 51;
@@ -216,6 +220,7 @@
 		[fWebButton setEnabled:NO];
 		[fReplyButton setEnabled:NO];
 		[fMessageButton setEnabled:NO];
+		[fFavButton setEnabled:NO];
 		return;
 	}
 	[fReplyButton setState:NSOffState];
@@ -228,7 +233,7 @@
 		[fReplyButton setEnabled:YES];
 		[fMessageButton setEnabled:YES];
 	}
-	
+	[fFavButton setEnabled:aBox.sType == NormalMessage || aBox.sType == ReplyMessage];
 	NSRect lFrame = NSMakeRect(0, 0, [fSelectedTextView frame].size.width, MAXFLOAT);
 	NSTextView *lTempTextView = [[NSTextView alloc] initWithFrame:lFrame];
 	[[lTempTextView textStorage] setAttributedString:aBox.statusMessage];
