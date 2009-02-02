@@ -343,7 +343,8 @@
 
 - (void)statusesReceived:(NSArray *)aStatuses forRequest:(NSString *)aIdentifier
 {
-	if ([aStatuses count] == 0) {
+	if ([aStatuses count] == 0 || 
+		[fRequestDetails objectForKey:aIdentifier] == @"FAV") {
 		[fRequestDetails removeObjectForKey:aIdentifier];
 		[self endingTransaction];
 		return;
