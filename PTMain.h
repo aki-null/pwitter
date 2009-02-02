@@ -71,6 +71,8 @@ typedef enum soundEventType {
 - (void)setUpTwitterEngine;
 - (void)makePost:(NSString *)aMessage;
 - (void)setReplyID:(int)aId;
+- (void)disableIconMenu;
+- (void)enableIconMenu;
 
 @property(readonly) NSStatusItem *fMenuItem;
 

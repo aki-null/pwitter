@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle"  xmlns:dc="http://purl.org/dc/elements/1.1/">
 	<channel>
 		<title>Pwitter's Changelog</title>
-		<link>http://aki.geekstemplar.org.au/pwitter/appcast.xml</link>
+		<link>http://github.com/koroshiya1/pwitter/raw/master/SparkleData/appcast.xml</link>
 		<description>Most recent changes with links to updates.</description>
 		<language>en</language>
 		<item>
-			<title>version 0.7.2 (0 bug fix; 0 new features; 1 improvements)</title>
+			<title>version 0.7.3 (1 bug fix; 0 new features; 1 improvements)</title>
 			<sparkle:releaseNotesLink>
 				http://github.com/koroshiya1/pwitter/raw/master/SparkleData/release_note.txt
 			</sparkle:releaseNotesLink>
-			<pubDate>Sunday, 01 February 2009 23:36:34 +0000</pubDate>
-			<enclosure url="http://github.com/koroshiya1/pwitter/raw/master/DistributableApplication/Pwitter_0.7.2.zip" sparkle:version="0.7.2" length="1360933" type="application/octet-stream" sparkle:dsaSignature="MC4CFQCbkbFXZa9chnnF/oCzVP5ccU3DcAIVAKUTSjPq2nX4yfLi7tMgQ45WPBNR" />
+			<pubDate>Monday, 02 February 2009 03:33:56 +0000</pubDate>
+			<enclosure url="http://github.com/koroshiya1/pwitter/raw/master/DistributableApplication/Pwitter_0.7.3.zip" sparkle:version="0.7.3" length="1361722" type="application/octet-stream" sparkle:dsaSignature="MC0CFD+D6oCamE74sMlpTFbmPa4xRLSIAhUA4n2kwG9CyVpLi5jSGxejIt7Vcl8=" />
 		</item>
 	</channel>
 </rss>

@@ -37,6 +37,7 @@
 	[[PTPreferenceManager getInstance] useMiniView] ? [fUseMiniView setState:NSOnState] : [fUseMiniView setState:NSOffState];
 	[[PTPreferenceManager getInstance] quickPost] ? [fActivateGlobalKey setState:NSOnState] : [fActivateGlobalKey setState:NSOffState];
 	[[PTPreferenceManager getInstance] ignoreErrors] ? [fIgnoreErrors setState:NSOnState] : [fIgnoreErrors setState:NSOffState];
+	[[PTPreferenceManager getInstance] disableMenuBarIconMenu] ? [fDisableIconMenu setState:NSOnState] : [fDisableIconMenu setState:NSOffState];
 	// Notification preferences
 	[[PTPreferenceManager getInstance] disableGrowl] ? [fDisableGrowl setState:NSOnState] : [fDisableGrowl setState:NSOffState];
 	[[PTPreferenceManager getInstance] disableMessageNotification] ? [fDisableMessageNotification setState:NSOnState] : [fDisableMessageNotification setState:NSOffState];
@@ -74,6 +75,12 @@
 	[[PTPreferenceManager getInstance] setUseMiniView:[fUseMiniView state] == NSOnState];
 	[[PTPreferenceManager getInstance] setQuickPost:[fActivateGlobalKey state] == NSOnState];
 	[[PTPreferenceManager getInstance] setIgnoreErrors:[fIgnoreErrors state] == NSOnState];
+	[[PTPreferenceManager getInstance] setDisableMenuBarIconMenu:[fDisableIconMenu state] == NSOnState];
+	if ([[PTPreferenceManager getInstance] disableMenuBarIconMenu]) {
+		[fMainController disableIconMenu];
+	} else {
+		[fMainController enableIconMenu];
+	}
 	// Notification preferences
 	[[PTPreferenceManager getInstance] setDisableGrowl:[fDisableGrowl state] == NSOnState];
 	[[PTPreferenceManager getInstance] setDisableMessageNotification:[fDisableMessageNotification state] == NSOnState];

@@ -187,6 +187,14 @@
 	return [fPrefData integerForKey:@"status_update_behavior"];
 }
 
+- (void)setDisableMenuBarIconMenu:(BOOL)aFlag {
+	[fPrefData setBool:aFlag forKey:@"disable_menubar_icon_menu"];
+}
+
+- (BOOL)disableMenuBarIconMenu {
+	return [fPrefData boolForKey:@"disable_menubar_icon_menu"];
+}
+
 - (void)setHideDockIcon:(BOOL)aFlag {
 	NSString * lFilePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/../Info.plist"];
 	if (lFilePath) {

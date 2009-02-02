@@ -10,6 +10,7 @@
 #import "PTStatusBoxGenerator.h"
 #import "PTGrowlNotificationManager.h"
 #import "PTMainActionHandler.h"
+#import "PTPreferenceManager.h"
 
 #define STATUS_LIMIT 200
 	
@@ -230,6 +231,18 @@
 	[fMainWindow makeKeyAndOrderFront:self];
 }
 
+- (void)activateAppFromIcon {
+	[self activateApp:self];
+}
+
+- (void)disableIconMenu {
+	[fMenuItem setMenu:nil];
+}
+
+- (void)enableIconMenu {
+	[fMenuItem setMenu:fIconMenu];
+}
+
 - (void)awakeFromNib
 {
 	[NSApp activateIgnoringOtherApps:YES];
@@ -239,7 +252,12 @@
 	[fMenuItem setImage:[NSImage imageNamed:@"menu_icon_off"]];
 	[fMenuItem setHighlightMode:YES];
 	[fMenuItem setTarget:self];
-	[fMenuItem setMenu:fIconMenu];
+	[fMenuItem setAction:@selector(activateAppFromIcon)];
+	if ([[PTPreferenceManager getInstance] disableMenuBarIconMenu]) {
+		[self disableIconMenu];
+	} else {
+		[self enableIconMenu];
+	}
 	[self initTransaction];
 	fDefaultImage = [NSImage imageNamed:@"default.png"];
 	fMaskImage = [NSImage imageNamed:@"icon_mask"];
