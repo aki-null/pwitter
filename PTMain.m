@@ -163,10 +163,12 @@
 													   startingAtPage:0]];
 	[fRequestDetails setObject:@"INIT_UPDATE" 
 						forKey:[fTwitterEngine getFollowedTimelineFor:[[PTPreferenceManager getInstance] userName] 
-																since:nil startingAtPage:0 count:50]];
+																since:nil startingAtPage:0 count:100]];
 	if ([[PTPreferenceManager getInstance] receiveFromNonFollowers]) {
 		[fRequestDetails setObject:@"INIT_REPLY_UPDATE" 
-							forKey:[fTwitterEngine getRepliesStartingAtPage:0]];
+							forKey:[fTwitterEngine getRepliesStartingAtPage:1]];
+		[fRequestDetails setObject:@"INIT_REPLY_UPDATE" 
+							forKey:[fTwitterEngine getRepliesStartingAtPage:2]];
 	}
 }
 
@@ -480,7 +482,7 @@
 		[self startingTransaction];
 		[fRequestDetails setObject:@"UPDATE" 
 							forKey:[fTwitterEngine getFollowedTimelineFor:[fTwitterEngine username] 
-																  sinceID:fLastUpdateID startingAtPage:0 count:50]];
+																  sinceID:fLastUpdateID startingAtPage:0 count:100]];
 		if ([[PTPreferenceManager getInstance] receiveFromNonFollowers])
 			[fRequestDetails setObject:@"REPLY_UPDATE" 
 								forKey:[fTwitterEngine getRepliesSinceID:fLastReplyID startingAtPage:0 count:20]];
