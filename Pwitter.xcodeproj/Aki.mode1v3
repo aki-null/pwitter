@@ -277,7 +277,7 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>6</integer>
+									<integer>4</integer>
 									<integer>2</integer>
 									<integer>1</integer>
 									<integer>0</integer>
@@ -321,7 +321,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>PTMainActionHandler.m</string>
+								<string>PTMain.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -329,11 +329,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>PTMainActionHandler.m</string>
+										<string>PTMain.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>61407FC50F38FF2E0057A1DE</string>
+										<string>617768D10F3900F70004FB22</string>
 										<key>history</key>
 										<array>
 											<string>6126C17B0F1A20A5001A0CD3</string>
@@ -420,12 +420,12 @@
 											<string>61A24B010F38933F0065E94D</string>
 											<string>61A24B030F38933F0065E94D</string>
 											<string>61A24B130F3894B00065E94D</string>
-											<string>61407FA30F38FD930057A1DE</string>
 											<string>61407FA40F38FD930057A1DE</string>
 											<string>61407FA50F38FD930057A1DE</string>
 											<string>61407FA60F38FD930057A1DE</string>
-											<string>61407FBF0F38FEE90057A1DE</string>
-											<string>61407FC00F38FEE90057A1DE</string>
+											<string>617768CC0F3900F70004FB22</string>
+											<string>617768CD0F3900F70004FB22</string>
+											<string>617768CE0F3900F70004FB22</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -519,13 +519,8 @@
 											<string>610C301F0F37FE9E00A31533</string>
 											<string>610C30210F37FE9E00A31533</string>
 											<string>610C31F90F388D5F00A31533</string>
-											<string>61407FA80F38FD930057A1DE</string>
-											<string>61407FA90F38FD930057A1DE</string>
-											<string>61407FAA0F38FD930057A1DE</string>
-											<string>61407FAB0F38FD930057A1DE</string>
-											<string>61407FAC0F38FD930057A1DE</string>
-											<string>61407FC10F38FEE90057A1DE</string>
-											<string>61407FC20F38FEE90057A1DE</string>
+											<string>617768CF0F3900F70004FB22</string>
+											<string>617768D00F3900F70004FB22</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -583,9 +578,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>61407F9B0F38FB2F0057A1DE</string>
+				<string>617768C90F38FF930004FB22</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>61407F9C0F38FB2F0057A1DE</string>
+				<string>617768CA0F38FF930004FB22</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -719,10 +714,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>1C78EAAD065D492600B07095</string>
-		<string>1CD10A99069EF8BA00B06720</string>
 		<string>61EE71270F02179E005C42F5</string>
-		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>/Users/Aki/Documents/GitRepos/Pwitter/Pwitter.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
@@ -803,7 +795,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>61EE71270F02179E005C42F5</string>
-				<string>61407FB10F38FDD80057A1DE</string>
+				<string>617768D20F3900F70004FB22</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>

@@ -1,3 +1,7 @@
+3 February 2009: (Version 0.7.8):
+Bug Fixed: The application was not activated when the application was hidden and preference menu was opened from the menu bar icon
+Bug Fixed: Size of the status item view was not correct.
+
 3 February 2009: (Version 0.7.7):
 Feature: Right click contextual menu for tweets to open the tweet in a browser, open a reply target tweet in browser, etc.
 Improved: Menu bar icon behavior change - Left click causes the application to activate, and right click opens the menu
