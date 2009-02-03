@@ -11,6 +11,7 @@
 #import "PTPreferenceManager.h"
 #import "PTStatusBox.h"
 #import "PTPreferenceWindow.h"
+#import "PTMenuBarIcon.h"
 
 typedef enum soundEventType {
 	NoneReceived = 0,
@@ -57,7 +58,7 @@ typedef enum soundEventType {
 	// array of boxes that has been received for the current session
 	NSMutableArray *fBoxesToNotify;
 	NSMutableArray *fBoxesToAdd;
-	NSStatusItem *fMenuItem;
+	PTMenuBarIcon *fMenuItem;
 }
 - (IBAction)updateTimeline:(id)sender;
 - (IBAction)postStatus:(id)sender;
@@ -71,10 +72,8 @@ typedef enum soundEventType {
 - (void)setUpTwitterEngine;
 - (void)makePost:(NSString *)aMessage;
 - (void)setReplyID:(int)aId;
-- (void)disableIconMenu;
-- (void)enableIconMenu;
 - (void)favStatus:(PTStatusBox *)aBox;
 
-@property(readonly) NSStatusItem *fMenuItem;
+@property(readonly) PTMenuBarIcon *fMenuItem;
 
 @end

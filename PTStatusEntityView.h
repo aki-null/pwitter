@@ -18,5 +18,11 @@
 - (BOOL)selected;
 - (void)forceSelect:(BOOL)aFlag;
 - (void)setColItem:(PTStatusCollectionItem *)aParentCol;
+- (PTStatusCollectionItem *)colItem;
+- (void)openInBrowser:(id)sender;
+- (void)openUserPage:(id)sender;
+- (void)openUserWeb:(id)sender;
+- (void)openReply:(id)sender;
+- (void)openContextMenu:(NSEvent *)aEvent;
 
 @end

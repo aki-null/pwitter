@@ -1,3 +1,10 @@
+3 February 2009: (Version 0.7.7):
+Feature: Right click contextual menu for tweets to open the tweet in a browser, open a reply target tweet in browser, etc.
+Improved: Menu bar icon behavior change - Left click causes the application to activate, and right click opens the menu
+Improved: 12 points font for all tweets to improve readability
+Bug Fixed: Some glyphs were slightly misaligned
+Known Issue: Switching the view to the normal view causes the view to be slightly smaller than expected. This can be fixed by simply restarting the application (this is NSCollectionView bug, not my code).
+
 2 February 2009: (Version 0.7.6):
 Bug fixed: Shortcut recorder framework was not compiled as UB
 Improved: Selected tweet text view now has bigger font size, making it easier to read

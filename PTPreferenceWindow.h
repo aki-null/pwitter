@@ -36,7 +36,6 @@
     IBOutlet id fStatusController;
     IBOutlet id fDisableErrorNotification;
     IBOutlet id fHideDockIcon;
-    IBOutlet id fDisableIconMenu;
 	PTHotKey *fHotKey;
 }
 - (void)loadPreferences;

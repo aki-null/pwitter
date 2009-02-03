@@ -233,33 +233,17 @@
 	[fMainWindow makeKeyAndOrderFront:self];
 }
 
-- (void)activateAppFromIcon {
-	[self activateApp:self];
-}
-
-- (void)disableIconMenu {
-	[fMenuItem setMenu:nil];
-}
-
-- (void)enableIconMenu {
-	[fMenuItem setMenu:fIconMenu];
-}
-
 - (void)awakeFromNib
 {
 	[NSApp activateIgnoringOtherApps:YES];
 	[fMainWindow makeKeyAndOrderFront:self];
-	NSStatusBar *lBar = [NSStatusBar systemStatusBar];
-	fMenuItem = [[lBar statusItemWithLength:NSVariableStatusItemLength] retain];
+	NSStatusItem *lItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:25] retain];
+	fMenuItem = [[PTMenuBarIcon alloc] initWithFrame:NSMakeRect(0, 0, 18, 25)];
+	[fMenuItem setStatusItem:lItem];
+	[lItem setView:fMenuItem];
 	[fMenuItem setImage:[NSImage imageNamed:@"menu_icon_off"]];
-	[fMenuItem setHighlightMode:YES];
-	[fMenuItem setTarget:self];
-	[fMenuItem setAction:@selector(activateAppFromIcon)];
-	if ([[PTPreferenceManager getInstance] disableMenuBarIconMenu]) {
-		[self disableIconMenu];
-	} else {
-		[self enableIconMenu];
-	}
+	[fMenuItem setMenu:fIconMenu];
+	[fMenuItem setMainController:self];
 	[self initTransaction];
 	fDefaultImage = [NSImage imageNamed:@"default.png"];
 	fMaskImage = [NSImage imageNamed:@"icon_mask"];

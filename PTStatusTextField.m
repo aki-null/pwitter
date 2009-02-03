@@ -7,6 +7,7 @@
 //
 
 #import "PTStatusTextField.h"
+#import "PTStatusBox.h"
 
 
 @implementation PTStatusTextField
@@ -18,4 +19,9 @@
 	[(PTStatusEntityView *)[self superview] forceSelect:YES];
 }
 
+- (void)rightMouseDown:(NSEvent *)aEvent {
+	[super rightMouseDown:aEvent];
+	[(PTStatusEntityView *)[self superview] forceSelect:YES];
+	[(PTStatusEntityView *)[self superview] openContextMenu:aEvent];
+}
 @end

@@ -19,7 +19,6 @@ typedef enum statusType {
 @interface PTStatusBox : NSObject {
 	NSAttributedString *userName;
 	NSAttributedString *statusMessage;
-	NSAttributedString *statusMessageLarge;
 	NSImage *userImage;
 	NSURL *userHome;
 	NSString *userID;
@@ -29,11 +28,12 @@ typedef enum statusType {
 	NSString *searchString;
 	StatusType sType;
 	int updateId;
+	int replyId;
+	NSString *replyUserId;
 }
 
 @property(copy, readwrite) NSAttributedString *userName;
 @property(copy, readwrite) NSAttributedString *statusMessage;
-@property(copy, readwrite) NSAttributedString *statusMessageLarge;
 @property(copy, readwrite) NSImage *userImage;
 @property(copy, readwrite) NSURL *userHome;
 @property(copy, readwrite) NSString *userID;
@@ -43,5 +43,7 @@ typedef enum statusType {
 @property(copy, readwrite) NSString *searchString;
 @property(readwrite) StatusType sType;
 @property(readwrite) int updateId;
+@property(readwrite) int replyId;
+@property(copy, readwrite) NSString *replyUserId;
 
 @end

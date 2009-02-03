@@ -48,8 +48,6 @@
 - (void)setDisableSoundNotification:(BOOL)aFlag;
 - (BOOL)disableSoundNotification;
 - (void)setStatusUpdateBehavior:(int)aBehavior;
-- (void)setDisableMenuBarIconMenu:(BOOL)aFlag;
-- (BOOL)disableMenuBarIconMenu;
 - (int)statusUpdateBehavior;
 - (void)setHideDockIcon:(BOOL)aFlag;
 - (BOOL)hideDockIcon;

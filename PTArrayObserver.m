@@ -38,7 +38,7 @@
 	// get the status entry that is currently selected
 	PTStatusBox *lSelectedBox = [[lArrController selectedObjects] lastObject];
 	if (lSelectedBox) {
-		[[fStatusText textStorage] setAttributedString:lSelectedBox.statusMessageLarge];
+		[[fStatusText textStorage] setAttributedString:lSelectedBox.statusMessage];
 	} else
 		[[fStatusText textStorage] setAttributedString:[[[NSAttributedString alloc] init] autorelease]];
 	[fActionHandler updateSelectedMessage:lSelectedBox];

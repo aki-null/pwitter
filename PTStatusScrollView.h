@@ -16,6 +16,6 @@
 	BOOL fViewChanged;
 	float fLastWidth;
 	float fLastHeight;
+	BOOL fShouldReset;
 }
-
 @end

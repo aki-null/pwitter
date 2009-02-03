@@ -68,24 +68,13 @@
 	}
 }
 
-+ (NSMutableAttributedString *)enlargeStatusMessage:(PTStatusBox *)aBox {
-	NSMutableAttributedString *lEnlarged = [[NSMutableAttributedString alloc] initWithAttributedString:aBox.statusMessage];
-	[lEnlarged beginEditing];
-	NSDictionary *lMessageAttributes = [NSDictionary dictionaryWithObjectsAndKeys:[NSColor whiteColor], NSForegroundColorAttributeName, 
-										[NSFont fontWithName:@"Helvetica" size:12.0], NSFontAttributeName, 
-										nil];
-	[lEnlarged addAttributes:lMessageAttributes range:NSMakeRange(0, [lEnlarged length])];
-	[lEnlarged endEditing];
-	return [lEnlarged autorelease];
-}
-
 + (NSMutableAttributedString *)formatStatusMessage:(NSString *)aMessage {
 	NSString *lUnescaped = (NSString *)CFXMLCreateStringByUnescapingEntities(nil, (CFStringRef)aMessage, nil);
 	NSMutableAttributedString *lNewMessage = [[NSMutableAttributedString alloc] initWithString:lUnescaped];
 	[lUnescaped release];
 	[lNewMessage beginEditing];
 	NSDictionary *lMessageAttributes = [NSDictionary dictionaryWithObjectsAndKeys:[NSColor whiteColor], NSForegroundColorAttributeName, 
-										[NSFont fontWithName:@"Helvetica" size:10.0], NSFontAttributeName, 
+										[NSFont fontWithName:@"Helvetica" size:12.0], NSFontAttributeName, 
 										nil];
 	[lNewMessage addAttributes:lMessageAttributes range:NSMakeRange(0, [lNewMessage length])];
 	[PTStatusFormatter processLinks:lNewMessage];
@@ -123,7 +112,7 @@
 	NSMutableAttributedString *lFinalString = [[NSMutableAttributedString alloc] initWithString:[aError localizedDescription]];
 	[lFinalString beginEditing];
 	NSDictionary *lMessageAttributes = [NSDictionary dictionaryWithObjectsAndKeys:[NSColor whiteColor], NSForegroundColorAttributeName, 
-										[NSFont fontWithName:@"Helvetica" size:10.0], NSFontAttributeName, 
+										[NSFont fontWithName:@"Helvetica" size:12.0], NSFontAttributeName, 
 										nil];
 	[lFinalString addAttributes:lMessageAttributes range:NSMakeRange(0, [lFinalString length])];
 	[lFinalString endEditing];

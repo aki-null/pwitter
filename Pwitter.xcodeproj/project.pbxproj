@@ -10,6 +10,7 @@
 		610332F10F1873B000BFB060 /* PTSelectedStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 610332F00F1873B000BFB060 /* PTSelectedStatusView.m */; };
 		610333FA0F18C0C500BFB060 /* PTStatusScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 610333F90F18C0C500BFB060 /* PTStatusScrollView.m */; };
 		610BF8AB0F030DFA008D9A3B /* PTStatusBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 610BF8AA0F030DFA008D9A3B /* PTStatusBox.m */; };
+		610C2E8E0F37F0E300A31533 /* PTMenuBarIcon.m in Sources */ = {isa = PBXBuildFile; fileRef = 610C2E8D0F37F0E300A31533 /* PTMenuBarIcon.m */; };
 		612BD6900F076F8500EF064D /* Pwitter.icns in Resources */ = {isa = PBXBuildFile; fileRef = 612BD68F0F076F8500EF064D /* Pwitter.icns */; };
 		6131FD4A0F0E28C7004CA960 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6131FD490F0E28C7004CA960 /* Sparkle.framework */; };
 		6131FD5B0F0E297D004CA960 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6131FD490F0E28C7004CA960 /* Sparkle.framework */; };
@@ -111,6 +112,8 @@
 		610333F90F18C0C500BFB060 /* PTStatusScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTStatusScrollView.m; sourceTree = "<group>"; };
 		610BF8A90F030DFA008D9A3B /* PTStatusBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTStatusBox.h; sourceTree = "<group>"; };
 		610BF8AA0F030DFA008D9A3B /* PTStatusBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTStatusBox.m; sourceTree = "<group>"; };
+		610C2E8C0F37F0E300A31533 /* PTMenuBarIcon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTMenuBarIcon.h; sourceTree = "<group>"; };
+		610C2E8D0F37F0E300A31533 /* PTMenuBarIcon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTMenuBarIcon.m; sourceTree = "<group>"; };
 		612BD68F0F076F8500EF064D /* Pwitter.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Pwitter.icns; sourceTree = "<group>"; };
 		6131FD490F0E28C7004CA960 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		6131FD5F0F0E2B5A004CA960 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
@@ -426,6 +429,8 @@
 				610332F00F1873B000BFB060 /* PTSelectedStatusView.m */,
 				610333F80F18C0C500BFB060 /* PTStatusScrollView.h */,
 				610333F90F18C0C500BFB060 /* PTStatusScrollView.m */,
+				610C2E8C0F37F0E300A31533 /* PTMenuBarIcon.h */,
+				610C2E8D0F37F0E300A31533 /* PTMenuBarIcon.m */,
 			);
 			name = Pwitter;
 			sourceTree = "<group>";
@@ -571,6 +576,7 @@
 				61F177DC0F1C833200C04938 /* PTHotKey.m in Sources */,
 				61F177DD0F1C833200C04938 /* PTKeyCombo.m in Sources */,
 				61FE03D70F2368A300E20A0C /* PTStatusTextField.m in Sources */,
+				610C2E8E0F37F0E300A31533 /* PTMenuBarIcon.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

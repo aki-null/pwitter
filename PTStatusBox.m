@@ -13,7 +13,6 @@
 
 @synthesize userName;
 @synthesize statusMessage;
-@synthesize statusMessageLarge;
 @synthesize userImage;
 @synthesize userHome;
 @synthesize userID;
@@ -23,18 +22,20 @@
 @synthesize searchString;
 @synthesize sType;
 @synthesize updateId;
+@synthesize replyId;
+@synthesize replyUserId;
 
 - (void)dealloc {
 	if (userImage) [userImage release];
 	if (userName) [userName release];
 	if (statusMessage) [statusMessage release];
-	if (statusMessageLarge) [statusMessageLarge release];
 	if (userHome) [userHome release];
 	if (userID) [userID release];
 	if (entityColor) [entityColor release];
 	if (time) [time release];
 	if (strTime) [strTime release];
 	if (searchString) [searchString release];
+	if (replyUserId) [replyUserId release];
 	[super dealloc];
 }
 
