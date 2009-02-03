@@ -8,9 +8,10 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="487"/>
-			<integer value="1541"/>
 			<integer value="29"/>
+			<integer value="1541"/>
+			<integer value="487"/>
+			<integer value="1279"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -2760,7 +2761,7 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 								<string>NeXT TIFF v4.0 pasteboard type</string>
 							</object>
 						</object>
-						<string key="NSFrame">{{12, 12}, {48, 51}}</string>
+						<string key="NSFrame">{{12, 11}, {48, 51}}</string>
 						<reference key="NSSuperview" ref="657751282"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSImageCell" key="NSCell" id="599613060">
@@ -2816,14 +2817,14 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 				<reference key="NSSuperview"/>
 			</object>
 			<object class="NSView" id="266288238">
-				<nil key="NSNextResponder"/>
+				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">258</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<object class="NSTextField" id="747837725">
 						<reference key="NSNextResponder" ref="266288238"/>
 						<int key="NSvFlags">274</int>
-						<string key="NSFrame">{{-3, 0}, {196, 38}}</string>
+						<string key="NSFrame">{{-3, 0}, {196, 36}}</string>
 						<reference key="NSSuperview" ref="266288238"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="310485998">
@@ -2842,7 +2843,7 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 					<object class="NSTextField" id="237971442">
 						<reference key="NSNextResponder" ref="266288238"/>
 						<int key="NSvFlags">266</int>
-						<string key="NSFrame">{{42, 21}, {66, 13}}</string>
+						<string key="NSFrame">{{42, 19}, {66, 13}}</string>
 						<reference key="NSSuperview" ref="266288238"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="167822170">
@@ -2871,7 +2872,7 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 								<string>NeXT TIFF v4.0 pasteboard type</string>
 							</object>
 						</object>
-						<string key="NSFrame">{{17, 8}, {24, 24}}</string>
+						<string key="NSFrame">{{17, 6}, {24, 24}}</string>
 						<reference key="NSSuperview" ref="266288238"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSImageCell" key="NSCell" id="795988745">
@@ -2887,7 +2888,7 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 					<object class="NSTextField" id="920628828">
 						<reference key="NSNextResponder" ref="266288238"/>
 						<int key="NSvFlags">266</int>
-						<string key="NSFrame">{{42, 4}, {136, 17}}</string>
+						<string key="NSFrame">{{42, 4}, {136, 15}}</string>
 						<reference key="NSSuperview" ref="266288238"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="562530154">
@@ -2904,7 +2905,7 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 					<object class="NSTextField" id="231290132">
 						<reference key="NSNextResponder" ref="266288238"/>
 						<int key="NSvFlags">265</int>
-						<string key="NSFrame">{{129, 21}, {49, 13}}</string>
+						<string key="NSFrame">{{129, 19}, {49, 13}}</string>
 						<reference key="NSSuperview" ref="266288238"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="429055718">
@@ -2919,7 +2920,8 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 						</object>
 					</object>
 				</object>
-				<string key="NSFrameSize">{190, 38}</string>
+				<string key="NSFrameSize">{190, 36}</string>
+				<reference key="NSSuperview"/>
 			</object>
 			<object class="NSCustomObject" id="186084955">
 				<string key="NSClassName">PTMain</string>
@@ -6937,7 +6939,7 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 					<string>PTStatusCollectionItem</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>PTStatusEntityView</string>
-					<string>{{542, 722}, {190, 38}}</string>
+					<string>{{542, 724}, {190, 36}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>{{558, 594}, {190, 65}}</string>
 					<string>PTStatusTextField</string>
@@ -7156,7 +7158,7 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 					<string>PTStatusCollectionItem</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>PTStatusEntityView</string>
-					<string>{{357, 547}, {190, 73}}</string>
+					<string>{{139, 414}, {190, 73}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>{{558, 594}, {190, 65}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>

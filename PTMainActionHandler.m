@@ -42,19 +42,19 @@
 		if ([fStatusCollectionView itemPrototype] != fMiniItemPrototype) {
 			[fStatusCollectionView setItemPrototype:fMiniItemPrototype];
 			NSSize lTempSize = [fStatusCollectionView minItemSize];
-			lTempSize.height = 35;
+			lTempSize.height = 36;
 			[fStatusCollectionView setMinItemSize:lTempSize];
 			lTempSize = [fStatusCollectionView maxItemSize];
-			lTempSize.height = 35;
+			lTempSize.height = 36;
 			[fStatusCollectionView setMaxItemSize:lTempSize];
 		}
 	} else if ([fStatusCollectionView itemPrototype] != fNormalItemPrototype) {
 		[fStatusCollectionView setItemPrototype:fNormalItemPrototype];
 		NSSize lTempSize = [fStatusCollectionView minItemSize];
-		lTempSize.height = 65;
+		lTempSize.height = 73;
 		[fStatusCollectionView setMinItemSize:lTempSize];
 		lTempSize = [fStatusCollectionView maxItemSize];
-		lTempSize.height = 65;
+		lTempSize.height = 73;
 		[fStatusCollectionView setMaxItemSize:lTempSize];
 	}
 }
@@ -156,6 +156,7 @@
 }
 
 - (IBAction)openPref:(id)sender {
+	[fMainController activateApp:sender];
 	[fPreferenceWindow loadPreferences];
 	[NSApp beginSheet:fPreferenceWindow
 	   modalForWindow:fMainWindow
