@@ -290,6 +290,7 @@
 	[fRequestDetails removeObjectForKey:aRequestIdentifier];
 	[self endingTransaction];
 	if (!lIgnoreError) {
+		fCurrentSoundStatus = ErrorReceived;
 		PTStatusBox *lErrorBox = [fStatusBoxGenerator constructErrorBox:aError];
 		[fBoxesToAdd addObject:lErrorBox];
 		[fBoxesToNotify addObject:lErrorBox];
