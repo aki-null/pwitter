@@ -333,7 +333,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>6196D6560F39960F001EF389</string>
+										<string>614B3A890F39C03A0088E185</string>
 										<key>history</key>
 										<array>
 											<string>61BFB24C0F1C884D00CF3367</string>
@@ -384,7 +384,6 @@
 											<string>61D953250F37A4D000B2E3F0</string>
 											<string>61547A610F37B90000C9A5D9</string>
 											<string>610C2D920F37DD1C00A31533</string>
-											<string>610C2E750F37E8B300A31533</string>
 											<string>610C311A0F3808FA00A31533</string>
 											<string>610C31580F380E6D00A31533</string>
 											<string>610C31F50F388D5F00A31533</string>
@@ -408,28 +407,29 @@
 											<string>611385DD0F3987700065B59B</string>
 											<string>611385E00F3987700065B59B</string>
 											<string>611385E10F3987700065B59B</string>
-											<string>611385E20F3987700065B59B</string>
 											<string>6113860B0F3987B10065B59B</string>
 											<string>6113860C0F3987B10065B59B</string>
 											<string>6113860D0F3987B10065B59B</string>
 											<string>6113860E0F3987B10065B59B</string>
 											<string>6113862B0F398A8B0065B59B</string>
-											<string>6113862C0F398A8B0065B59B</string>
-											<string>6113862D0F398A8B0065B59B</string>
-											<string>6113862E0F398A8B0065B59B</string>
 											<string>611386310F398A8B0065B59B</string>
-											<string>611386320F398A8B0065B59B</string>
-											<string>6113868C0F398E620065B59B</string>
 											<string>611386C90F3990580065B59B</string>
-											<string>611386CA0F3990580065B59B</string>
-											<string>611386CB0F3990580065B59B</string>
-											<string>611386CC0F3990580065B59B</string>
 											<string>611386E40F3991D10065B59B</string>
-											<string>611386E50F3991D10065B59B</string>
 											<string>611386E60F3991D10065B59B</string>
 											<string>611386E70F3991D10065B59B</string>
 											<string>6163F1A60F399245003117D8</string>
-											<string>6163F1AB0F399245003117D8</string>
+											<string>614B3A640F39C03A0088E185</string>
+											<string>614B3A650F39C03A0088E185</string>
+											<string>614B3A660F39C03A0088E185</string>
+											<string>614B3A670F39C03A0088E185</string>
+											<string>614B3A680F39C03A0088E185</string>
+											<string>614B3A690F39C03A0088E185</string>
+											<string>614B3A6A0F39C03A0088E185</string>
+											<string>614B3A6B0F39C03A0088E185</string>
+											<string>614B3A6C0F39C03A0088E185</string>
+											<string>614B3A6D0F39C03A0088E185</string>
+											<string>614B3A6E0F39C03A0088E185</string>
+											<string>614B3A6F0F39C03A0088E185</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -527,6 +527,31 @@
 											<string>611385130F39826E0065B59B</string>
 											<string>611386480F398A8B0065B59B</string>
 											<string>6113864A0F398A8B0065B59B</string>
+											<string>614B3A700F39C03A0088E185</string>
+											<string>614B3A710F39C03A0088E185</string>
+											<string>614B3A720F39C03A0088E185</string>
+											<string>614B3A730F39C03A0088E185</string>
+											<string>614B3A740F39C03A0088E185</string>
+											<string>614B3A750F39C03A0088E185</string>
+											<string>614B3A760F39C03A0088E185</string>
+											<string>614B3A770F39C03A0088E185</string>
+											<string>614B3A780F39C03A0088E185</string>
+											<string>614B3A790F39C03A0088E185</string>
+											<string>614B3A7A0F39C03A0088E185</string>
+											<string>614B3A7B0F39C03A0088E185</string>
+											<string>614B3A7C0F39C03A0088E185</string>
+											<string>614B3A7D0F39C03A0088E185</string>
+											<string>614B3A7E0F39C03A0088E185</string>
+											<string>614B3A7F0F39C03A0088E185</string>
+											<string>614B3A800F39C03A0088E185</string>
+											<string>614B3A810F39C03A0088E185</string>
+											<string>614B3A820F39C03A0088E185</string>
+											<string>614B3A830F39C03A0088E185</string>
+											<string>614B3A840F39C03A0088E185</string>
+											<string>614B3A850F39C03A0088E185</string>
+											<string>614B3A860F39C03A0088E185</string>
+											<string>614B3A870F39C03A0088E185</string>
+											<string>614B3A880F39C03A0088E185</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -584,9 +609,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>6196D6490F39958A001EF389</string>
+				<string>614B3A8A0F39C03A0088E185</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>6196D64A0F39958A001EF389</string>
+				<string>614B3A8B0F39C03A0088E185</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -721,8 +746,9 @@
 	<key>WindowOrderList</key>
 	<array>
 		<string>1C78EAAD065D492600B07095</string>
-		<string>1CD10A99069EF8BA00B06720</string>
 		<string>61EE71270F02179E005C42F5</string>
+		<string>6184523A0F0B52790002773F</string>
+		<string>1CD10A99069EF8BA00B06720</string>
 		<string>/Users/Aki/Documents/GitRepos/Pwitter/Pwitter.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
@@ -803,7 +829,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>61EE71270F02179E005C42F5</string>
-				<string>6196D64E0F3995F8001EF389</string>
+				<string>614B3A4A0F39A5430088E185</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -923,13 +949,13 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1CD10A99069EF8BA00B06720</string>
-				<string>6196D64F0F3995F8001EF389</string>
+				<string>614B3A4B0F39A5430088E185</string>
 				<string>1C162984064C10D400B95A72</string>
-				<string>6196D6500F3995F8001EF389</string>
-				<string>6196D6510F3995F8001EF389</string>
-				<string>6196D6520F3995F8001EF389</string>
-				<string>6196D6530F3995F8001EF389</string>
-				<string>6196D6540F3995F8001EF389</string>
+				<string>614B3A4C0F39A5430088E185</string>
+				<string>614B3A4D0F39A5430088E185</string>
+				<string>614B3A4E0F39A5430088E185</string>
+				<string>614B3A4F0F39A5430088E185</string>
+				<string>614B3A500F39A5430088E185</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debugV3</string>
@@ -1048,6 +1074,8 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -1083,7 +1111,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C78EAAD065D492600B07095</string>
-				<string>6196D6550F3995F8001EF389</string>
+				<string>614B3A510F39A5430088E185</string>
 				<string>1C78EAAC065D492600B07095</string>
 			</array>
 			<key>ToolbarConfiguration</key>
@@ -1559,9 +1587,9 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {566, 358}}</string>
+								<string>{{0, 0}, {715, 538}}</string>
 								<key>RubberWindowFrame</key>
-								<string>697 214 566 399 0 0 1440 878 </string>
+								<string>242 120 715 579 0 0 1440 878 </string>
 								<key>XCRefactoringSplitViewLowerHeight</key>
 								<real>133</real>
 								<key>XCRefactoringSplitViewTotalHeight</key>
@@ -1570,11 +1598,11 @@
 							<key>Module</key>
 							<string>XCRefactoringModule</string>
 							<key>Proportion</key>
-							<string>358pt</string>
+							<string>538pt</string>
 						</dict>
 					</array>
 					<key>Proportion</key>
-					<string>358pt</string>
+					<string>538pt</string>
 				</dict>
 			</array>
 			<key>Name</key>
@@ -1588,11 +1616,11 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>6184523A0F0B52790002773F</string>
-				<string>611385CB0F3986390065B59B</string>
+				<string>614B3A520F39A5430088E185</string>
 				<string>618452390F0B52790002773F</string>
 			</array>
 			<key>WindowString</key>
-			<string>697 214 566 399 0 0 1440 878 </string>
+			<string>242 120 715 579 0 0 1440 878 </string>
 			<key>WindowToolGUID</key>
 			<string>6184523A0F0B52790002773F</string>
 			<key>WindowToolIsVisible</key>

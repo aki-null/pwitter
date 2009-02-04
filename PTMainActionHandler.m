@@ -101,6 +101,7 @@
 	PTStatusBox *lCurrentSelection = [[fStatusController selectedObjects] lastObject];
 	NSString *lMessageTarget = [NSString stringWithFormat:@"d %@ %@", lCurrentSelection.userId, [fStatusUpdateField stringValue]];
 	[fStatusUpdateField setStringValue:lMessageTarget];
+	[fCharacterCounter setIntValue:140 - [[fStatusUpdateField stringValue] length]];
 	[fMainWindow makeFirstResponder:fStatusUpdateField];
 	[(NSText *)[fMainWindow firstResponder] setSelectedRange:NSMakeRange([[fStatusUpdateField stringValue] length], 0)];
 }
@@ -139,6 +140,7 @@
 		[[fBottomView animator] setFrame:NSMakeRect(0, lBottomFrame.origin.y - 23, lBottomFrame.size.width, lBottomFrame.size.height + 23)];
 		[NSAnimationContext endGrouping];
 		[fStatusUpdateField setStringValue:@""];
+		[fCharacterCounter setIntValue:140 - [[fStatusUpdateField stringValue] length]];
 	}
 }
 
@@ -147,6 +149,7 @@
 	if (lCurrentSelection.sType == NormalMessage || lCurrentSelection.sType == ReplyMessage || lCurrentSelection.sType == DirectMessage) {
 		NSString *replyTarget = [NSString stringWithFormat:@"@%@ %@", lCurrentSelection.userId, [fStatusUpdateField stringValue]];
 		[fStatusUpdateField setStringValue:replyTarget];
+		[fCharacterCounter setIntValue:140 - [[fStatusUpdateField stringValue] length]];
 		[fMainWindow makeFirstResponder:fStatusUpdateField];
 		[(NSText *)[fMainWindow firstResponder] setSelectedRange:NSMakeRange([[fStatusUpdateField stringValue] length], 0)];
 		[fMainController setReplyID:lCurrentSelection.updateId];
@@ -196,10 +199,6 @@
 	[fStatusController setFilterPredicate:nil];
 }
 
-- (IBAction)favSelected:(id)sender {
-	[fMainController favStatus:[[fStatusController selectedObjects] lastObject]];
-}
-
 - (void)updateViewSizes:(float)aHeightReq withAnim:(BOOL)aAnim {
 	float lTopHeight = 84;
 	if (aHeightReq > 51) lTopHeight += aHeightReq - 51;
@@ -247,6 +246,19 @@
 
 - (IBAction)closeReplyViewFromButton:(id)sender {
 	[self closeReplyView];
+}
+
+- (IBAction)retweetSelection:(id)sender {
+	PTStatusBox *lCurrentSelection = [[fStatusController selectedObjects] lastObject];
+	NSString *lMessageTarget = [NSString stringWithFormat:@"RT @%@ %@", lCurrentSelection.userId, [lCurrentSelection.statusMessage string]];
+	[fStatusUpdateField setStringValue:lMessageTarget];
+	[fCharacterCounter setIntValue:140 - [[fStatusUpdateField stringValue] length]];
+	[fMainWindow makeFirstResponder:fStatusUpdateField];
+	[(NSText *)[fMainWindow firstResponder] setSelectedRange:NSMakeRange([[fStatusUpdateField stringValue] length], 0)];
+}
+
+- (IBAction)favSelected:(id)sender {
+	[fMainController favStatus:[[fStatusController selectedObjects] lastObject]];
 }
 
 @end

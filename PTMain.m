@@ -12,7 +12,7 @@
 #import "PTMainActionHandler.h"
 
 #define STATUS_LIMIT 200
-	
+
 
 @implementation PTMain
 
@@ -186,6 +186,7 @@
 
 - (void)initTransaction {
 	fRequestDetails = [[NSMutableDictionary alloc] init];
+	fIgnoreList = [[NSMutableDictionary alloc] init];
 	[fImageMan initResource];
 	fBoxesToNotify = [[NSMutableArray alloc] init];
 	fBoxesToAdd = [[NSMutableArray alloc] init];
@@ -196,6 +197,7 @@
 
 - (void)deallocTransaction {
 	if (fRequestDetails) [fRequestDetails release];
+	if (fIgnoreList) [fIgnoreList release];
 	[fImageMan clearResource];
 	if (fBoxesToNotify) [fBoxesToNotify release];
 	if (fBoxesToAdd) [fBoxesToAdd release];
@@ -306,34 +308,30 @@
 		return;
 	}
 	NSString *lUpdateType = [fRequestDetails objectForKey:aIdentifier];
-	if (lUpdateType == @"POST") {
-		fCurrentSoundStatus = StatusSent;
-		[self postComplete];
-		[fRequestDetails removeObjectForKey:aIdentifier];
-		[self endingTransaction];
-		return;
-	}
 	NSDictionary *lCurrentStatus;
 	NSDictionary *lLastStatus = nil;
 	NSMutableArray *lTempBoxes = [[NSMutableArray alloc] init];
 	for (lCurrentStatus in aStatuses) {
-		int lDecision = 0;
-		if ([[lCurrentStatus objectForKey:@"in_reply_to_screen_name"] isEqualToString:[fTwitterEngine username]]) {
-			if (lUpdateType == @"REPLY_UPDATE" || 
-				lUpdateType == @"INIT_REPLY_UPDATE" || 
-				![[PTPreferenceManager getInstance] receiveFromNonFollowers]) {
-				lDecision = 1;
+		if (![fIgnoreList objectForKey:[lCurrentStatus objectForKey:@"id"]]) {
+			int lDecision = 0;
+			if ([[lCurrentStatus objectForKey:@"in_reply_to_screen_name"] isEqualToString:[fTwitterEngine username]]) {
+				if (lUpdateType == @"REPLY_UPDATE" || 
+					lUpdateType == @"INIT_REPLY_UPDATE" || 
+					lUpdateType == @"POST" ||
+					![[PTPreferenceManager getInstance] receiveFromNonFollowers]) {
+					lDecision = 1;
+				}
+			} else lDecision = 2;
+			if (lDecision != 0) {
+				PTStatusBox *lBoxToAdd = nil;
+				lBoxToAdd = [fStatusBoxGenerator constructStatusBox:lCurrentStatus 
+															isReply:lDecision == 1];
+				if (lDecision == 1 && fCurrentSoundStatus != ErrorReceived)
+					fCurrentSoundStatus = ReplyOrMessageReceived;
+				[lTempBoxes addObject:lBoxToAdd];
 			}
-		} else lDecision = 2;
-		if (lDecision != 0) {
-			PTStatusBox *lBoxToAdd = nil;
-			lBoxToAdd = [fStatusBoxGenerator constructStatusBox:lCurrentStatus 
-														isReply:lDecision == 1];
-			if (lDecision == 1 && fCurrentSoundStatus != ErrorReceived)
-				fCurrentSoundStatus = ReplyOrMessageReceived;
-			[lTempBoxes addObject:lBoxToAdd];
+			if (!lLastStatus) lLastStatus = lCurrentStatus;
 		}
-		if (!lLastStatus) lLastStatus = lCurrentStatus;
 	}
 	if (fCurrentSoundStatus == NoneReceived && 
 		[lTempBoxes count] != 0)
@@ -342,6 +340,11 @@
 		[fBoxesToNotify addObjectsFromArray:lTempBoxes];
 	}
 	[fBoxesToAdd addObjectsFromArray:lTempBoxes];
+	if (lUpdateType == @"POST") {
+		[fIgnoreList setObject:@"" forKey:[[aStatuses lastObject] objectForKey:@"id"]];
+		fCurrentSoundStatus = StatusSent;
+		[self postComplete];
+	}
 	[lTempBoxes release];
 	int lNewId = [[lLastStatus objectForKey:@"id"] intValue];
 	if ((lUpdateType == @"REPLY_UPDATE" || lUpdateType == @"INIT_REPLY_UPDATE") && 

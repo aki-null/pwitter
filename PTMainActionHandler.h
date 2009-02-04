@@ -36,6 +36,7 @@
     IBOutlet id fPostView;
     IBOutlet id fReplyToBox;
     IBOutlet id fFavButton;
+    IBOutlet id fCharacterCounter;
 	BOOL fSearchBoxIsOpen;
 	BOOL fReplyViewIsOpen;
 	BOOL fShouldExit;
@@ -52,6 +53,7 @@
 - (IBAction)clearErrors:(id)sender;
 - (IBAction)closeReplyViewFromButton:(id)sender;
 - (IBAction)favSelected:(id)sender;
+- (IBAction)retweetSelection:(id)sender;
 - (void)startAuthentication;
 - (void)updateSelectedMessage:(PTStatusBox *)aBox;
 - (void)updateViewSizes:(float)aHeightReq withAnim:(BOOL)aAnim;

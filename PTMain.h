@@ -43,6 +43,7 @@ typedef enum soundEventType {
 	int fLastReplyID;
 	int fReplyUpdateId;
 	NSMutableDictionary *fRequestDetails;
+	NSMutableDictionary *fIgnoreList;
 	PTImageManager *fImageMan;
 	NSTimer *fUpdateTimer;
 	NSTimer *fMessageUpdateTimer;
