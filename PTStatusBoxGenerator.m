@@ -9,24 +9,23 @@
 #import "PTStatusBoxGenerator.h"
 #import "PTStatusFormatter.h"
 #import "PTMain.h"
+#import "PTDateToStringTransformer.h"
 
 
 @implementation PTStatusBoxGenerator
 
-- (void)awakeFromNib {
-	fWarningImage = [NSImage imageNamed:@"console.png"];
++ (void)initialize {
+	PTDateToStringTransformer *lTransformer = [[[PTDateToStringTransformer alloc] init] autorelease];
+	[NSValueTransformer setValueTransformer:lTransformer forName:@"DateToStringTransformer"];
 }
 
 - (PTStatusBox *)constructStatusBox:(NSDictionary *)aStatusInfo isReply:(BOOL)aIsReply {
 	PTStatusBox *lNewBox = [[PTStatusBox alloc] init];
-	lNewBox.userID = [[aStatusInfo objectForKey:@"user"] objectForKey:@"screen_name"];
+	lNewBox.userId = [[aStatusInfo objectForKey:@"user"] objectForKey:@"screen_name"];
 	lNewBox.userName = [PTStatusFormatter createUserLabel:[[aStatusInfo objectForKey:@"user"] objectForKey:@"screen_name"] 
 													 name:[[aStatusInfo objectForKey:@"user"] objectForKey:@"name"]];
 	NSDate *lReceivedTime = [aStatusInfo objectForKey:@"created_at"];
 	lNewBox.time = lReceivedTime;
-	lNewBox.strTime = [lReceivedTime descriptionWithCalendarFormat:@"%H:%M:%S" 
-														  timeZone:[NSTimeZone systemTimeZone] 
-															locale:nil];
 	lNewBox.statusMessage = [PTStatusFormatter formatStatusMessage:[aStatusInfo objectForKey:@"text"]];
 	lNewBox.userImage = [fMainController requestUserImage:[[aStatusInfo objectForKey:@"user"] objectForKey:@"profile_image_url"]
 												   forBox:lNewBox];
@@ -56,14 +55,11 @@
 - (PTStatusBox *)constructErrorBox:(NSError *)aError {
 	PTStatusBox *lNewBox = [[PTStatusBox alloc] init];
 	lNewBox.userName = [PTStatusFormatter createErrorLabel];
-	lNewBox.userID = [NSString stringWithString:@"Twitter Error:"];
+	lNewBox.userId = [NSString stringWithString:@"Twitter Error:"];
 	lNewBox.statusMessage = [PTStatusFormatter createErrorMessage:aError];
-	lNewBox.userImage = fWarningImage;
+	lNewBox.userImage = [NSImage imageNamed:@"console.png"];
 	lNewBox.entityColor = [NSColor colorWithCalibratedRed:0.4 green:0.4 blue:0.4 alpha:0.7];
 	lNewBox.time = [NSDate date];
-	lNewBox.strTime = [lNewBox.time descriptionWithCalendarFormat:@"%H:%M:%S" 
-					   timeZone:[NSTimeZone systemTimeZone] 
-					   locale:nil];
 	lNewBox.userHome = nil;
 	lNewBox.sType = ErrorMessage;
 	lNewBox.searchString = [NSString stringWithFormat:@"Twitter Error: %@", 
@@ -75,11 +71,8 @@
 	PTStatusBox *lNewBox = [[PTStatusBox alloc] init];
 	lNewBox.userName = [PTStatusFormatter createUserLabel:[[aStatusInfo objectForKey:@"sender"] objectForKey:@"screen_name"] 
 													 name:[[aStatusInfo objectForKey:@"sender"] objectForKey:@"name"]];
-	lNewBox.userID = [[aStatusInfo objectForKey:@"sender"] objectForKey:@"screen_name"];
+	lNewBox.userId = [[aStatusInfo objectForKey:@"sender"] objectForKey:@"screen_name"];
 	lNewBox.time = [aStatusInfo objectForKey:@"created_at"];
-	lNewBox.strTime = [lNewBox.time descriptionWithCalendarFormat:@"%H:%M:%S" 
-					   timeZone:[NSTimeZone systemTimeZone] 
-					   locale:nil];
 	lNewBox.statusMessage = [PTStatusFormatter formatStatusMessage:[aStatusInfo objectForKey:@"text"]];
 	lNewBox.userImage = [fMainController requestUserImage:[[aStatusInfo objectForKey:@"sender"] objectForKey:@"profile_image_url"]
 												   forBox:lNewBox];

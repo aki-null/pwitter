@@ -24,4 +24,5 @@
 	[(PTStatusEntityView *)[self superview] forceSelect:YES];
 	[(PTStatusEntityView *)[self superview] openContextMenu:aEvent];
 }
+
 @end

@@ -10,7 +10,6 @@
 #import "PTStatusBoxGenerator.h"
 #import "PTGrowlNotificationManager.h"
 #import "PTMainActionHandler.h"
-#import "PTPreferenceManager.h"
 
 #define STATUS_LIMIT 200
 	
@@ -78,16 +77,16 @@
 	if (![[PTPreferenceManager getInstance] disableSoundNotification]) {
 		switch (fCurrentSoundStatus) {
 			case StatusReceived:
-				[fStatusReceived play];
+				[[NSSound soundNamed:@"statusReceived"] play];
 				break;
 			case ReplyOrMessageReceived:
-				[fReplyReceived play];
+				[[NSSound soundNamed:@"replyReceived"] play];
 				break;
 			case ErrorReceived:
-				[fErrorReceived play];
+				[[NSSound soundNamed:@"error"] play];
 				break;
 			case StatusSent:
-				[fStatusSent play];
+				[[NSSound soundNamed:@"statusPosted"] play];
 				break;
 		}
 	}
@@ -106,7 +105,7 @@
 	if (![NSApp isActive]) {
 		[self sortArray:fBoxesToNotify];
 		[fNotificationMan postNotifications:fBoxesToNotify 
-							   defaultImage:fDefaultImage];
+							   defaultImage:[NSImage imageNamed:@"default.png"]];
 	}
 	[fBoxesToNotify removeAllObjects];
 }
@@ -187,10 +186,7 @@
 
 - (void)initTransaction {
 	fRequestDetails = [[NSMutableDictionary alloc] init];
-	fImageLocationForReq = [[NSMutableDictionary alloc] init];
-	fImageReqForLocation = [[NSMutableDictionary alloc] init];
-	fStatusBoxesForReq = [[NSMutableDictionary alloc] init];
-	fUserImageCache = [[NSMutableDictionary alloc] init];
+	[fImageMan initResource];
 	fBoxesToNotify = [[NSMutableArray alloc] init];
 	fBoxesToAdd = [[NSMutableArray alloc] init];
 	fLastReplyID = 0;
@@ -200,10 +196,7 @@
 
 - (void)deallocTransaction {
 	if (fRequestDetails) [fRequestDetails release];
-	if (fImageLocationForReq) [fImageLocationForReq release];
-	if (fImageReqForLocation) [fImageReqForLocation release];
-	if (fStatusBoxesForReq) [fStatusBoxesForReq release];
-	if (fUserImageCache) [fUserImageCache release];
+	[fImageMan clearResource];
 	if (fBoxesToNotify) [fBoxesToNotify release];
 	if (fBoxesToAdd) [fBoxesToAdd release];
 	fLastReplyID = 0;
@@ -244,12 +237,8 @@
 	[fMenuItem setImage:[NSImage imageNamed:@"menu_icon_off"]];
 	[fMenuItem setMenu:fIconMenu];
 	[fMenuItem setMainController:self];
+	fImageMan = [[PTImageManager alloc] init];
 	[self initTransaction];
-	fDefaultImage = [NSImage imageNamed:@"default.png"];
-	fMaskImage = [NSImage imageNamed:@"icon_mask"];
-	fStatusReceived = [NSSound soundNamed:@"statusReceived"];
-	fReplyReceived = [NSSound soundNamed:@"replyReceived"];
-	fStatusSent = [NSSound soundNamed:@"statusPosted"];
 	if (![[PTPreferenceManager getInstance] disableSoundNotification])
 		[[NSSound soundNamed:@"startUp"] play];
 }
@@ -295,9 +284,7 @@
 	if (lRequestType == @"POST" || lRequestType == @"MESSAGE") {
 		[fStatusUpdateField setEnabled:YES];
 	} else if (lRequestType == @"IMAGE") {
-		[fStatusBoxesForReq removeObjectForKey:aRequestIdentifier];
-		[fImageReqForLocation removeObjectForKey:[fImageLocationForReq objectForKey:aRequestIdentifier]];
-		[fImageLocationForReq removeObjectForKey:aRequestIdentifier];
+		[fImageMan requestFailed:aRequestIdentifier];
 		lIgnoreError = YES;
 	}
 	[fRequestDetails removeObjectForKey:aRequestIdentifier];
@@ -306,25 +293,6 @@
 		PTStatusBox *lErrorBox = [fStatusBoxGenerator constructErrorBox:aError];
 		[fBoxesToAdd addObject:lErrorBox];
 		[fBoxesToNotify addObject:lErrorBox];
-	}
-}
-
-- (NSImage *)requestUserImage:(NSString *)aImageLocation forBox:(PTStatusBox *)aNewBox {
-	NSImage *lImageData = [fUserImageCache objectForKey:aImageLocation];
-	if (!lImageData) {
-		if (![fImageReqForLocation objectForKey:aImageLocation]) {
-			[self startingTransaction];
-			NSString *lImageReq = [fTwitterEngine getImageAtURL:aImageLocation];
-			[fRequestDetails setObject:@"IMAGE" forKey:lImageReq];
-			[fImageReqForLocation setObject:lImageReq forKey:aImageLocation];
-			[fImageLocationForReq setObject:aImageLocation forKey:lImageReq];
-			[fStatusBoxesForReq setObject:[[[NSMutableArray alloc] init] autorelease] forKey:lImageReq];
-		}
-		NSMutableArray *lRequestedBoxes = [fStatusBoxesForReq objectForKey:[fImageReqForLocation objectForKey:aImageLocation]];
-		[lRequestedBoxes addObject:aNewBox];
-		return fDefaultImage;
-	} else {
-		return lImageData;
 	}
 }
 
@@ -428,31 +396,27 @@
 	// not implemented
 }
 
-- (NSImage *)maskImage:(NSImage *)aImage {
-	NSImage *lNewImage = [fMaskImage copy];
-	[lNewImage lockFocus];
-	[aImage drawInRect: NSMakeRect(0, 0, 48, 48) 
-			  fromRect: NSMakeRect(0, 0, [aImage size].width, [aImage size].height) 
-			 operation: NSCompositeSourceIn 
-			  fraction: 1.0];
-	[lNewImage unlockFocus];
-	return [lNewImage autorelease];
-}
-
 - (void)imageReceived:(NSImage *)aImage forRequest:(NSString *)aIdentifier
 {
-	NSImage *lNewImage = [self maskImage:aImage];
-	PTStatusBox *lCurrentBox;
-	for (lCurrentBox in [fStatusBoxesForReq objectForKey:aIdentifier]) {
-		lCurrentBox.userImage = lNewImage;
-	}
-	NSString *lImageLocation = [fImageLocationForReq objectForKey:aIdentifier];
-	[fUserImageCache setObject:lNewImage forKey:lImageLocation];
-	[fStatusBoxesForReq removeObjectForKey:aIdentifier];
-	[fImageReqForLocation removeObjectForKey:lImageLocation];
-	[fImageLocationForReq removeObjectForKey:aIdentifier];
+	[fImageMan addImage:aImage forRequest:aIdentifier];
 	[fRequestDetails removeObjectForKey:aIdentifier];
 	[self endingTransaction];
+}
+
+- (NSImage *)requestUserImage:(NSString *)aImageLocation forBox:(PTStatusBox *)aNewBox {
+	NSImage *lImageData = [fImageMan fetchImage:aImageLocation];
+	if (!lImageData) {
+		if (![fImageMan isRequestedImage:aImageLocation]) {
+			[self startingTransaction];
+			NSString *lImageReq = [fTwitterEngine getImageAtURL:aImageLocation];
+			[fRequestDetails setObject:@"IMAGE" forKey:lImageReq];
+			[fImageMan requestUserImage:aImageLocation forRequest:lImageReq];
+		}
+		[fImageMan registerStatusBox:aNewBox forLocation:aImageLocation];
+		return [NSImage imageNamed:@"default.png"];
+	} else {
+		return lImageData;
+	}
 }
 
 - (IBAction)updateTimeline:(id)sender {
@@ -514,7 +478,7 @@
 - (void)openTwitterWeb {
 	PTStatusBox *lCurrentSelection = [[fStatusController selectedObjects] lastObject];
 	if (lCurrentSelection && lCurrentSelection.sType != ErrorMessage)
-		[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://twitter.com/%@", lCurrentSelection.userID]]];
+		[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://twitter.com/%@", lCurrentSelection.userId]]];
 }
 
 - (void)setReplyID:(int)aId {

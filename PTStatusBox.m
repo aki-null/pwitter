@@ -15,10 +15,9 @@
 @synthesize statusMessage;
 @synthesize userImage;
 @synthesize userHome;
-@synthesize userID;
+@synthesize userId;
 @synthesize entityColor;
 @synthesize time;
-@synthesize strTime;
 @synthesize searchString;
 @synthesize sType;
 @synthesize updateId;
@@ -30,10 +29,9 @@
 	if (userName) [userName release];
 	if (statusMessage) [statusMessage release];
 	if (userHome) [userHome release];
-	if (userID) [userID release];
+	if (userId) [userId release];
 	if (entityColor) [entityColor release];
 	if (time) [time release];
-	if (strTime) [strTime release];
 	if (searchString) [searchString release];
 	if (replyUserId) [replyUserId release];
 	[super dealloc];

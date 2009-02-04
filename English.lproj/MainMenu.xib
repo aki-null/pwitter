@@ -8,10 +8,6 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="29"/>
-			<integer value="1541"/>
-			<integer value="487"/>
-			<integer value="1279"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -870,7 +866,7 @@
 				<string key="NSWindowContentMaxSize">{3.40282e+38, 3.40282e+38}</string>
 				<string key="NSWindowContentMinSize">{205, 300}</string>
 				<object class="NSView" key="NSWindowView" id="439893737">
-					<reference key="NSNextResponder"/>
+					<nil key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
 					<object class="NSMutableArray" key="NSSubviews">
 						<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1588,7 +1584,6 @@
 						</object>
 					</object>
 					<string key="NSFrameSize">{245, 420}</string>
-					<reference key="NSSuperview"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>
 				<string key="NSMinSize">{205, 319}</string>
@@ -2702,7 +2697,7 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 				<string key="NSMaxSize">{307, 195}</string>
 			</object>
 			<object class="NSView" id="657751282">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">258</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -2814,10 +2809,9 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 					</object>
 				</object>
 				<string key="NSFrameSize">{190, 73}</string>
-				<reference key="NSSuperview"/>
 			</object>
 			<object class="NSView" id="266288238">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">258</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -2921,7 +2915,6 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 					</object>
 				</object>
 				<string key="NSFrameSize">{190, 36}</string>
-				<reference key="NSSuperview"/>
 			</object>
 			<object class="NSCustomObject" id="186084955">
 				<string key="NSClassName">PTMain</string>
@@ -2957,7 +2950,7 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 					<string>userImage</string>
 					<string>entityColor</string>
 					<string>time</string>
-					<string>userID</string>
+					<string>userId</string>
 					<string>sType</string>
 					<string>searchString</string>
 				</object>
@@ -3322,35 +3315,19 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: representedObject.userID</string>
+						<string key="label">value: representedObject.userId</string>
 						<reference key="source" ref="793022626"/>
 						<reference key="destination" ref="141845275"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="793022626"/>
 							<reference key="NSDestination" ref="141845275"/>
-							<string key="NSLabel">value: representedObject.userID</string>
+							<string key="NSLabel">value: representedObject.userId</string>
 							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">representedObject.userID</string>
+							<string key="NSKeyPath">representedObject.userId</string>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
 					<int key="connectionID">977</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: representedObject.strTime</string>
-						<reference key="source" ref="72093793"/>
-						<reference key="destination" ref="141845275"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="72093793"/>
-							<reference key="NSDestination" ref="141845275"/>
-							<string key="NSLabel">value: representedObject.strTime</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">representedObject.strTime</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">990</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -3940,35 +3917,19 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: representedObject.userID</string>
+						<string key="label">value: representedObject.userId</string>
 						<reference key="source" ref="237971442"/>
 						<reference key="destination" ref="534239779"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="237971442"/>
 							<reference key="NSDestination" ref="534239779"/>
-							<string key="NSLabel">value: representedObject.userID</string>
+							<string key="NSLabel">value: representedObject.userId</string>
 							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">representedObject.userID</string>
+							<string key="NSKeyPath">representedObject.userId</string>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
 					<int key="connectionID">1309</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: representedObject.strTime</string>
-						<reference key="source" ref="231290132"/>
-						<reference key="destination" ref="534239779"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="231290132"/>
-							<reference key="NSDestination" ref="534239779"/>
-							<string key="NSLabel">value: representedObject.strTime</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">representedObject.strTime</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">1310</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -4485,6 +4446,46 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 						</object>
 					</object>
 					<int key="connectionID">1596</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: representedObject.time</string>
+						<reference key="source" ref="72093793"/>
+						<reference key="destination" ref="141845275"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="72093793"/>
+							<reference key="NSDestination" ref="141845275"/>
+							<string key="NSLabel">value: representedObject.time</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">representedObject.time</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSValueTransformerName</string>
+								<string key="NS.object.0">DateToStringTransformer</string>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">1600</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: representedObject.time</string>
+						<reference key="source" ref="231290132"/>
+						<reference key="destination" ref="534239779"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="231290132"/>
+							<reference key="NSDestination" ref="534239779"/>
+							<string key="NSLabel">value: representedObject.time</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">representedObject.time</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSValueTransformerName</string>
+								<string key="NS.object.0">DateToStringTransformer</string>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">1602</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -7158,7 +7159,7 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 					<string>PTStatusCollectionItem</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>PTStatusEntityView</string>
-					<string>{{139, 414}, {190, 73}}</string>
+					<string>{{42, 265}, {190, 73}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>{{558, 594}, {190, 65}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -7310,7 +7311,7 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">1598</int>
+			<int key="maxID">1602</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">

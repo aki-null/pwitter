@@ -18,7 +18,7 @@
 }
 
 - (void)postReplyNotification:(PTStatusBox *)aReplyInfo {
-	[GrowlApplicationBridge notifyWithTitle:[NSString stringWithFormat:@"Reply from %@", aReplyInfo.userID] 
+	[GrowlApplicationBridge notifyWithTitle:[NSString stringWithFormat:@"Reply from %@", aReplyInfo.userId] 
 								description:[aReplyInfo.statusMessage string] 
 						   notificationName:@"PTReplyReceived" 
 								   iconData:[aReplyInfo.userImage TIFFRepresentation] 
@@ -28,7 +28,7 @@
 }
 
 - (void)postMessageNotification:(PTStatusBox *)aReplyInfo {
-	[GrowlApplicationBridge notifyWithTitle:[NSString stringWithFormat:@"Message from %@", aReplyInfo.userID] 
+	[GrowlApplicationBridge notifyWithTitle:[NSString stringWithFormat:@"Message from %@", aReplyInfo.userId] 
 								description:[aReplyInfo.statusMessage string] 
 						   notificationName:@"PTMessageReceived" 
 								   iconData:[aReplyInfo.userImage TIFFRepresentation] 
@@ -38,7 +38,7 @@
 }
 
 - (void)postNormalNotification:(PTStatusBox *)aStatusInfo {
-	[GrowlApplicationBridge notifyWithTitle:[NSString stringWithFormat:@"%@", aStatusInfo.userID] 
+	[GrowlApplicationBridge notifyWithTitle:[NSString stringWithFormat:@"%@", aStatusInfo.userId] 
 								description:[aStatusInfo.statusMessage string] 
 						   notificationName:@"PTStatusReceived" 
 								   iconData:[aStatusInfo.userImage TIFFRepresentation] 
@@ -100,8 +100,8 @@
 		i++;
 		if (i > 10) {
 			lOverLimit = YES;
-			if (![lSenderList containsObject:lCurrentBox.userID])
-				[lSenderList addObject:lCurrentBox.userID];
+			if (![lSenderList containsObject:lCurrentBox.userId])
+				[lSenderList addObject:lCurrentBox.userId];
 		} else {
 			switch (lCurrentBox.sType) {
 				case DirectMessage:

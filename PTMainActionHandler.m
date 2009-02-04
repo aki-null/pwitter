@@ -99,7 +99,7 @@
 
 - (IBAction)messageToSelected:(id)sender {
 	PTStatusBox *lCurrentSelection = [[fStatusController selectedObjects] lastObject];
-	NSString *lMessageTarget = [NSString stringWithFormat:@"d %@ %@", lCurrentSelection.userID, [fStatusUpdateField stringValue]];
+	NSString *lMessageTarget = [NSString stringWithFormat:@"d %@ %@", lCurrentSelection.userId, [fStatusUpdateField stringValue]];
 	[fStatusUpdateField setStringValue:lMessageTarget];
 	[fMainWindow makeFirstResponder:fStatusUpdateField];
 	[(NSText *)[fMainWindow firstResponder] setSelectedRange:NSMakeRange([[fStatusUpdateField stringValue] length], 0)];
@@ -145,12 +145,12 @@
 - (IBAction)replyToSelected:(id)sender {
 	PTStatusBox *lCurrentSelection = [[fStatusController selectedObjects] lastObject];
 	if (lCurrentSelection.sType == NormalMessage || lCurrentSelection.sType == ReplyMessage || lCurrentSelection.sType == DirectMessage) {
-		NSString *replyTarget = [NSString stringWithFormat:@"@%@ %@", lCurrentSelection.userID, [fStatusUpdateField stringValue]];
+		NSString *replyTarget = [NSString stringWithFormat:@"@%@ %@", lCurrentSelection.userId, [fStatusUpdateField stringValue]];
 		[fStatusUpdateField setStringValue:replyTarget];
 		[fMainWindow makeFirstResponder:fStatusUpdateField];
 		[(NSText *)[fMainWindow firstResponder] setSelectedRange:NSMakeRange([[fStatusUpdateField stringValue] length], 0)];
 		[fMainController setReplyID:lCurrentSelection.updateId];
-		[fReplyToBox setStringValue:[@"@" stringByAppendingString:lCurrentSelection.userID]];
+		[fReplyToBox setStringValue:[@"@" stringByAppendingString:lCurrentSelection.userId]];
 		[self openReplyView];
 	}
 }

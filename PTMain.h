@@ -12,6 +12,7 @@
 #import "PTStatusBox.h"
 #import "PTPreferenceWindow.h"
 #import "PTMenuBarIcon.h"
+#import "PTImageManager.h"
 
 typedef enum soundEventType {
 	NoneReceived = 0,
@@ -41,17 +42,8 @@ typedef enum soundEventType {
 	int fLastMessageID;
 	int fLastReplyID;
 	int fReplyUpdateId;
-	NSImage *fDefaultImage;
-	NSImage *fMaskImage;
-	NSSound *fStatusReceived;
-	NSSound *fReplyReceived;
-	NSSound *fErrorReceived;
-	NSSound *fStatusSent;
 	NSMutableDictionary *fRequestDetails;
-	NSMutableDictionary *fImageLocationForReq;
-	NSMutableDictionary *fImageReqForLocation;
-	NSMutableDictionary *fStatusBoxesForReq;
-	NSMutableDictionary *fUserImageCache;
+	PTImageManager *fImageMan;
 	NSTimer *fUpdateTimer;
 	NSTimer *fMessageUpdateTimer;
 	SoundEventType fCurrentSoundStatus;

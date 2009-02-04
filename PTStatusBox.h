@@ -21,10 +21,9 @@ typedef enum statusType {
 	NSAttributedString *statusMessage;
 	NSImage *userImage;
 	NSURL *userHome;
-	NSString *userID;
+	NSString *userId;
 	NSColor *entityColor;
 	NSDate *time;
-	NSString *strTime;
 	NSString *searchString;
 	StatusType sType;
 	int updateId;
@@ -36,10 +35,9 @@ typedef enum statusType {
 @property(copy, readwrite) NSAttributedString *statusMessage;
 @property(copy, readwrite) NSImage *userImage;
 @property(copy, readwrite) NSURL *userHome;
-@property(copy, readwrite) NSString *userID;
+@property(copy, readwrite) NSString *userId;
 @property(copy, readwrite) NSColor *entityColor;
 @property(copy, readwrite) NSDate *time;
-@property(copy, readwrite) NSString *strTime;
 @property(copy, readwrite) NSString *searchString;
 @property(readwrite) StatusType sType;
 @property(readwrite) int updateId;

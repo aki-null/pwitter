@@ -11,6 +11,9 @@
 		610333FA0F18C0C500BFB060 /* PTStatusScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 610333F90F18C0C500BFB060 /* PTStatusScrollView.m */; };
 		610BF8AB0F030DFA008D9A3B /* PTStatusBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 610BF8AA0F030DFA008D9A3B /* PTStatusBox.m */; };
 		610C2E8E0F37F0E300A31533 /* PTMenuBarIcon.m in Sources */ = {isa = PBXBuildFile; fileRef = 610C2E8D0F37F0E300A31533 /* PTMenuBarIcon.m */; };
+		611384ED0F3980740065B59B /* PTDateToStringTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 611384EC0F3980740065B59B /* PTDateToStringTransformer.m */; };
+		6113861A0F3988DD0065B59B /* error.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 611386190F3988DD0065B59B /* error.m4a */; };
+		611386250F3989D60065B59B /* PTImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 611386240F3989D60065B59B /* PTImageManager.m */; };
 		612BD6900F076F8500EF064D /* Pwitter.icns in Resources */ = {isa = PBXBuildFile; fileRef = 612BD68F0F076F8500EF064D /* Pwitter.icns */; };
 		6131FD4A0F0E28C7004CA960 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6131FD490F0E28C7004CA960 /* Sparkle.framework */; };
 		6131FD5B0F0E297D004CA960 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6131FD490F0E28C7004CA960 /* Sparkle.framework */; };
@@ -114,6 +117,11 @@
 		610BF8AA0F030DFA008D9A3B /* PTStatusBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTStatusBox.m; sourceTree = "<group>"; };
 		610C2E8C0F37F0E300A31533 /* PTMenuBarIcon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTMenuBarIcon.h; sourceTree = "<group>"; };
 		610C2E8D0F37F0E300A31533 /* PTMenuBarIcon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTMenuBarIcon.m; sourceTree = "<group>"; };
+		611384EB0F3980740065B59B /* PTDateToStringTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTDateToStringTransformer.h; sourceTree = "<group>"; };
+		611384EC0F3980740065B59B /* PTDateToStringTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTDateToStringTransformer.m; sourceTree = "<group>"; };
+		611386190F3988DD0065B59B /* error.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = error.m4a; sourceTree = "<group>"; };
+		611386230F3989D60065B59B /* PTImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTImageManager.h; sourceTree = "<group>"; };
+		611386240F3989D60065B59B /* PTImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTImageManager.m; sourceTree = "<group>"; };
 		612BD68F0F076F8500EF064D /* Pwitter.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Pwitter.icns; sourceTree = "<group>"; };
 		6131FD490F0E28C7004CA960 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		6131FD5F0F0E2B5A004CA960 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
@@ -313,6 +321,7 @@
 				617A69BD0F334BC70002D105 /* menu_icon_on.png */,
 				617A69AC0F33318D0002D105 /* menu_icon_off.png */,
 				61B8EBE10F334A6900AF8540 /* icon_mask.tif */,
+				611386190F3988DD0065B59B /* error.m4a */,
 				6156BB060F29F4D000338FCD /* startUp.m4a */,
 				6156BB070F29F4D000338FCD /* statusReceived.m4a */,
 				6156BB080F29F4D000338FCD /* statusPosted.m4a */,
@@ -336,6 +345,49 @@
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		611384EE0F3981C80065B59B /* Preferences */ = {
+			isa = PBXGroup;
+			children = (
+				61C786F20F046622007CBC1A /* PTPreferenceWindow.h */,
+				61C786F30F046622007CBC1A /* PTPreferenceWindow.m */,
+				61D9FE1A0F04B6DA003CC890 /* PTPreferenceManager.h */,
+				61D9FE1B0F04B6DA003CC890 /* PTPreferenceManager.m */,
+			);
+			name = Preferences;
+			sourceTree = "<group>";
+		};
+		611384F00F3981DC0065B59B /* StatusItem */ = {
+			isa = PBXGroup;
+			children = (
+				610BF8A90F030DFA008D9A3B /* PTStatusBox.h */,
+				610BF8AA0F030DFA008D9A3B /* PTStatusBox.m */,
+				61C773BB0F0509F100258650 /* PTStatusEntityView.h */,
+				61C773BC0F0509F100258650 /* PTStatusEntityView.m */,
+				61C773F60F050BBB00258650 /* PTStatusCollectionItem.h */,
+				61C773F70F050BBB00258650 /* PTStatusCollectionItem.m */,
+				614393A70F09D23400971122 /* PTEntityBackground.h */,
+				614393A80F09D23400971122 /* PTEntityBackground.m */,
+				613B64F50F0A45B500B67438 /* PTStatusImageView.h */,
+				613B64F60F0A45B500B67438 /* PTStatusImageView.m */,
+				61FE03D50F2368A300E20A0C /* PTStatusTextField.h */,
+				61FE03D60F2368A300E20A0C /* PTStatusTextField.m */,
+			);
+			name = StatusItem;
+			sourceTree = "<group>";
+		};
+		611384F10F39822F0065B59B /* StatusMaker */ = {
+			isa = PBXGroup;
+			children = (
+				61F2CF4F0F10A3DA00CE073B /* PTStatusFormatter.h */,
+				61F2CF500F10A3DA00CE073B /* PTStatusFormatter.m */,
+				61F2CF5A0F10A52400CE073B /* PTStatusBoxGenerator.h */,
+				61F2CF5B0F10A52400CE073B /* PTStatusBoxGenerator.m */,
+				611384EB0F3980740065B59B /* PTDateToStringTransformer.h */,
+				611384EC0F3980740065B59B /* PTDateToStringTransformer.m */,
+			);
+			name = StatusMaker;
 			sourceTree = "<group>";
 		};
 		61D6BE170F077DDE00C6B98D /* MGTwitterEngine */ = {
@@ -391,38 +443,21 @@
 		61EE70620F02107B005C42F5 /* Pwitter */ = {
 			isa = PBXGroup;
 			children = (
+				611384F10F39822F0065B59B /* StatusMaker */,
+				611384F00F3981DC0065B59B /* StatusItem */,
+				611384EE0F3981C80065B59B /* Preferences */,
 				61EE713E0F021802005C42F5 /* PTMain.h */,
 				61EE713F0F021802005C42F5 /* PTMain.m */,
 				61E70AEE0F10BA17002526FA /* PTMainActionHandler.h */,
 				61E70AEF0F10BA17002526FA /* PTMainActionHandler.m */,
 				61E999780F0D88C800509EE8 /* PTMainWindowDelegate.h */,
 				61E999790F0D88C800509EE8 /* PTMainWindowDelegate.m */,
-				610BF8A90F030DFA008D9A3B /* PTStatusBox.h */,
-				610BF8AA0F030DFA008D9A3B /* PTStatusBox.m */,
-				61C786F20F046622007CBC1A /* PTPreferenceWindow.h */,
-				61C786F30F046622007CBC1A /* PTPreferenceWindow.m */,
-				61D9FE1A0F04B6DA003CC890 /* PTPreferenceManager.h */,
-				61D9FE1B0F04B6DA003CC890 /* PTPreferenceManager.m */,
-				61C773BB0F0509F100258650 /* PTStatusEntityView.h */,
-				61C773BC0F0509F100258650 /* PTStatusEntityView.m */,
-				61C773F60F050BBB00258650 /* PTStatusCollectionItem.h */,
-				61C773F70F050BBB00258650 /* PTStatusCollectionItem.m */,
 				613460180F0602AB00B422A6 /* PTArrayObserver.h */,
 				613460190F0602AB00B422A6 /* PTArrayObserver.m */,
-				614393A70F09D23400971122 /* PTEntityBackground.h */,
-				614393A80F09D23400971122 /* PTEntityBackground.m */,
 				615D39750F0B016F0086E57F /* PTCharacterCounter.h */,
 				615D39760F0B016F0086E57F /* PTCharacterCounter.m */,
-				613B64F50F0A45B500B67438 /* PTStatusImageView.h */,
-				613B64F60F0A45B500B67438 /* PTStatusImageView.m */,
-				61FE03D50F2368A300E20A0C /* PTStatusTextField.h */,
-				61FE03D60F2368A300E20A0C /* PTStatusTextField.m */,
 				61DF44B10F0F027C00B8BD2A /* PTStatusFilterController.h */,
 				61DF44B20F0F027C00B8BD2A /* PTStatusFilterController.m */,
-				61F2CF4F0F10A3DA00CE073B /* PTStatusFormatter.h */,
-				61F2CF500F10A3DA00CE073B /* PTStatusFormatter.m */,
-				61F2CF5A0F10A52400CE073B /* PTStatusBoxGenerator.h */,
-				61F2CF5B0F10A52400CE073B /* PTStatusBoxGenerator.m */,
 				615B85CD0F136BB30005E38F /* PTGrowlNotificationManager.h */,
 				615B85CE0F136BB30005E38F /* PTGrowlNotificationManager.m */,
 				610332EF0F1873B000BFB060 /* PTSelectedStatusView.h */,
@@ -431,6 +466,8 @@
 				610333F90F18C0C500BFB060 /* PTStatusScrollView.m */,
 				610C2E8C0F37F0E300A31533 /* PTMenuBarIcon.h */,
 				610C2E8D0F37F0E300A31533 /* PTMenuBarIcon.m */,
+				611386230F3989D60065B59B /* PTImageManager.h */,
+				611386240F3989D60065B59B /* PTImageManager.m */,
 			);
 			name = Pwitter;
 			sourceTree = "<group>";
@@ -511,6 +548,7 @@
 				6161AA330F36C22B00141B8B /* web.png in Resources */,
 				6161AA3D0F36C76F00141B8B /* dm.png in Resources */,
 				61A66AAA0F36DB8100E4D335 /* fav.png in Resources */,
+				6113861A0F3988DD0065B59B /* error.m4a in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -577,6 +615,8 @@
 				61F177DD0F1C833200C04938 /* PTKeyCombo.m in Sources */,
 				61FE03D70F2368A300E20A0C /* PTStatusTextField.m in Sources */,
 				610C2E8E0F37F0E300A31533 /* PTMenuBarIcon.m in Sources */,
+				611384ED0F3980740065B59B /* PTDateToStringTransformer.m in Sources */,
+				611386250F3989D60065B59B /* PTImageManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

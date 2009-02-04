@@ -12,7 +12,6 @@
 
 @interface PTStatusBoxGenerator : NSObject {
     IBOutlet id fMainController;
-	NSImage *fWarningImage;
 }
 - (PTStatusBox *)constructStatusBox:(NSDictionary *)aStatusInfo isReply:(BOOL)aIsReply;
 - (PTStatusBox *)constructErrorBox:(NSError *)aError;
