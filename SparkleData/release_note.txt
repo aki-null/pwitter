@@ -1,3 +1,8 @@
+4 February 2009: (Version 0.7.9):
+Bug Fixed: Forgot to implement error sound notification
+Feature: Ability to Retweet (Available from Status -> Retweet)
+Improvement: The tweet you post will appear in the status item list immediately)
+
 3 February 2009: (Version 0.7.8):
 Bug Fixed: The application was not activated when the application was hidden and preference menu was opened from the menu bar icon
 Bug Fixed: Size of the status item view was not correct.

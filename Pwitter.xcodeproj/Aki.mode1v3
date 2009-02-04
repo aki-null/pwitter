@@ -333,7 +333,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>614B3A890F39C03A0088E185</string>
+										<string>6155271A0F39C19F00EBE8B2</string>
 										<key>history</key>
 										<array>
 											<string>61BFB24C0F1C884D00CF3367</string>
@@ -391,7 +391,6 @@
 											<string>610C321E0F388EBE00A31533</string>
 											<string>61407FA50F38FD930057A1DE</string>
 											<string>61407FA60F38FD930057A1DE</string>
-											<string>617768CD0F3900F70004FB22</string>
 											<string>611384F50F39826E0065B59B</string>
 											<string>611384F70F39826E0065B59B</string>
 											<string>611385CE0F3987700065B59B</string>
@@ -429,7 +428,8 @@
 											<string>614B3A6C0F39C03A0088E185</string>
 											<string>614B3A6D0F39C03A0088E185</string>
 											<string>614B3A6E0F39C03A0088E185</string>
-											<string>614B3A6F0F39C03A0088E185</string>
+											<string>615527170F39C19F00EBE8B2</string>
+											<string>615527180F39C19F00EBE8B2</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -527,31 +527,7 @@
 											<string>611385130F39826E0065B59B</string>
 											<string>611386480F398A8B0065B59B</string>
 											<string>6113864A0F398A8B0065B59B</string>
-											<string>614B3A700F39C03A0088E185</string>
-											<string>614B3A710F39C03A0088E185</string>
-											<string>614B3A720F39C03A0088E185</string>
-											<string>614B3A730F39C03A0088E185</string>
-											<string>614B3A740F39C03A0088E185</string>
-											<string>614B3A750F39C03A0088E185</string>
-											<string>614B3A760F39C03A0088E185</string>
-											<string>614B3A770F39C03A0088E185</string>
-											<string>614B3A780F39C03A0088E185</string>
-											<string>614B3A790F39C03A0088E185</string>
-											<string>614B3A7A0F39C03A0088E185</string>
-											<string>614B3A7B0F39C03A0088E185</string>
-											<string>614B3A7C0F39C03A0088E185</string>
-											<string>614B3A7D0F39C03A0088E185</string>
-											<string>614B3A7E0F39C03A0088E185</string>
-											<string>614B3A7F0F39C03A0088E185</string>
-											<string>614B3A800F39C03A0088E185</string>
-											<string>614B3A810F39C03A0088E185</string>
-											<string>614B3A820F39C03A0088E185</string>
-											<string>614B3A830F39C03A0088E185</string>
-											<string>614B3A840F39C03A0088E185</string>
-											<string>614B3A850F39C03A0088E185</string>
-											<string>614B3A860F39C03A0088E185</string>
-											<string>614B3A870F39C03A0088E185</string>
-											<string>614B3A880F39C03A0088E185</string>
+											<string>615527190F39C19F00EBE8B2</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -609,9 +585,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>614B3A8A0F39C03A0088E185</string>
+				<string>615527130F39C0F100EBE8B2</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>614B3A8B0F39C03A0088E185</string>
+				<string>615527140F39C0F100EBE8B2</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -745,9 +721,6 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>1C78EAAD065D492600B07095</string>
-		<string>61EE71270F02179E005C42F5</string>
-		<string>6184523A0F0B52790002773F</string>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>/Users/Aki/Documents/GitRepos/Pwitter/Pwitter.xcodeproj</string>
 	</array>
@@ -829,7 +802,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>61EE71270F02179E005C42F5</string>
-				<string>614B3A4A0F39A5430088E185</string>
+				<string>612E6CB20F39C0A200830F30</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -949,13 +922,13 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1CD10A99069EF8BA00B06720</string>
-				<string>614B3A4B0F39A5430088E185</string>
+				<string>6155271B0F39C19F00EBE8B2</string>
 				<string>1C162984064C10D400B95A72</string>
-				<string>614B3A4C0F39A5430088E185</string>
-				<string>614B3A4D0F39A5430088E185</string>
-				<string>614B3A4E0F39A5430088E185</string>
-				<string>614B3A4F0F39A5430088E185</string>
-				<string>614B3A500F39A5430088E185</string>
+				<string>6155271C0F39C19F00EBE8B2</string>
+				<string>6155271D0F39C19F00EBE8B2</string>
+				<string>6155271E0F39C19F00EBE8B2</string>
+				<string>6155271F0F39C19F00EBE8B2</string>
+				<string>615527200F39C19F00EBE8B2</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debugV3</string>
