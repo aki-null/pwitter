@@ -10,6 +10,7 @@
 #import "PTStatusBoxGenerator.h"
 #import "PTGrowlNotificationManager.h"
 #import "PTMainActionHandler.h"
+#import "PTReadManager.h"
 
 #define STATUS_LIMIT 200
 
@@ -87,6 +88,8 @@
 				break;
 			case StatusSent:
 				[[NSSound soundNamed:@"statusPosted"] play];
+				break;
+			default:
 				break;
 		}
 	}
@@ -179,6 +182,7 @@
 							token:@"pwitter"];
 	[fTwitterEngine setUsername:[[PTPreferenceManager getInstance] userName] 
 					   password:[[PTPreferenceManager getInstance] password]];
+	[self loadUnread];
 	[self runInitialUpdates];
 	[self setupUpdateTimer];
 	[self setupMessageUpdateTimer];
@@ -207,6 +211,7 @@
 }
 
 - (IBAction)changeAccount:(id)sender {
+	[self saveUnread];
 	[[fStatusController content] removeAllObjects];
 	[fStatusController rearrangeObjects];
 	[fTwitterEngine setUsername:[[PTPreferenceManager getInstance] userName] 
@@ -219,6 +224,7 @@
 	[fProgressBar stopAnimation:self];
 	[fProgressBar setHidden:YES];
 	[fUpdateButton setEnabled:YES];
+	[self loadUnread];
 	[self runInitialUpdates];
 }
 
@@ -239,6 +245,7 @@
 	[fMenuItem setImage:[NSImage imageNamed:@"menu_icon_off"]];
 	[fMenuItem setMenu:fIconMenu];
 	[fMenuItem setMainController:self];
+	[fMenuItem setSwapped:[[PTPreferenceManager getInstance] swapMenuItemBehavior]];
 	fImageMan = [[PTImageManager alloc] init];
 	[self initTransaction];
 	if (![[PTPreferenceManager getInstance] disableSoundNotification])
@@ -340,19 +347,18 @@
 		[fBoxesToNotify addObjectsFromArray:lTempBoxes];
 	}
 	[fBoxesToAdd addObjectsFromArray:lTempBoxes];
+	int lNewId = [[lLastStatus objectForKey:@"id"] intValue];
 	if (lUpdateType == @"POST") {
 		[fIgnoreList setObject:@"" forKey:[[aStatuses lastObject] objectForKey:@"id"]];
 		fCurrentSoundStatus = StatusSent;
 		[self postComplete];
-	}
-	[lTempBoxes release];
-	int lNewId = [[lLastStatus objectForKey:@"id"] intValue];
-	if ((lUpdateType == @"REPLY_UPDATE" || lUpdateType == @"INIT_REPLY_UPDATE") && 
-		fLastReplyID < lNewId) {
+	} else if ((lUpdateType == @"REPLY_UPDATE" || lUpdateType == @"INIT_REPLY_UPDATE") && 
+			   fLastReplyID < lNewId) {
 		fLastReplyID = lNewId;
 	} else if (fLastUpdateID < lNewId) {
 		fLastUpdateID = lNewId;
 	}
+	[lTempBoxes release];
 	[fRequestDetails removeObjectForKey:aIdentifier];
 	[self endingTransaction];
 }
@@ -386,7 +392,6 @@
 	[fRequestDetails removeObjectForKey:aIdentifier];
 	if (fCurrentSoundStatus != ErrorReceived)
 		fCurrentSoundStatus = ReplyOrMessageReceived;
-	fCurrentSoundStatus = ReplyOrMessageReceived;
 	[self endingTransaction];
 }
 
@@ -482,7 +487,7 @@
 - (void)openTwitterWeb {
 	PTStatusBox *lCurrentSelection = [[fStatusController selectedObjects] lastObject];
 	if (lCurrentSelection && lCurrentSelection.sType != ErrorMessage)
-		[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://twitter.com/%@", lCurrentSelection.userId]]];
+		[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://twitter.com/%@", lCurrentSelection.userId]]];
 }
 
 - (void)setReplyID:(int)aId {
@@ -494,6 +499,42 @@
 	[fRequestDetails setObject:@"FAV" 
 						forKey:[fTwitterEngine markUpdate:aBox.updateId 
 											   asFavorite:YES]];
+}
+
+- (NSString *)pathForDataFile
+{
+	NSFileManager *lFileManager = [NSFileManager defaultManager];
+	NSString *lFolder = @"~/Library/Application Support/Pwitter/";
+	lFolder = [lFolder stringByExpandingTildeInPath];
+	if ([lFileManager fileExistsAtPath: lFolder] == NO)
+	{
+		[lFileManager createDirectoryAtPath: lFolder attributes: nil];
+	}
+	NSString *lFileName = [[fTwitterEngine username] stringByAppendingString:@".unread"];
+	return [lFolder stringByAppendingPathComponent: lFileName];
+}
+
+- (void)loadUnread {
+	NSString *lPath = [self pathForDataFile];
+	NSDictionary *lRootObj;
+	lRootObj = [NSKeyedUnarchiver unarchiveObjectWithFile:lPath];
+	[[PTReadManager getInstance] setUnreadDict:[lRootObj valueForKey:@"unreads"]];
+}
+
+- (void)saveUnread {
+	NSMutableDictionary *lUnreadDict = [NSMutableDictionary dictionary];
+	PTStatusBox *lCurrentBox;
+	for (lCurrentBox in [fStatusController arrangedObjects]) {
+		if (lCurrentBox.sType != ErrorMessage) {
+			[lUnreadDict setObject:[NSNumber numberWithBool:lCurrentBox.readFlag] 
+							forKey:[NSNumber numberWithInt:lCurrentBox.updateId]];
+		}
+	}
+	NSString * lPath = [self pathForDataFile];
+	NSMutableDictionary * lRootObj;
+	lRootObj = [NSMutableDictionary dictionary];
+	[lRootObj setValue:lUnreadDict forKey:@"unreads"];
+	[NSKeyedArchiver archiveRootObject:lRootObj toFile:lPath];
 }
 
 @synthesize fMenuItem;

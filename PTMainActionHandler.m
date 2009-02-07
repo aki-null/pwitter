@@ -10,6 +10,7 @@
 #import "PTPreferenceManager.h"
 #import "PTPreferenceWindow.h"
 #import "PTMain.h"
+#import "PTReadManager.h"
 
 
 @implementation PTMainActionHandler
@@ -107,7 +108,7 @@
 }
 
 - (IBAction)openHome:(id)sender {
-	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://twitter.com/home"]];
+	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"https://twitter.com/home"]];
 }
 
 - (IBAction)openWebSelected:(id)sender {
@@ -223,6 +224,7 @@
 		[fFavButton setEnabled:NO];
 		return;
 	}
+	aBox.readFlag = YES;
 	[fReplyButton setState:NSOffState];
 	[fMessageButton setState:NSOffState];
 	!aBox.userHome ? [fWebButton setEnabled:NO] : [fWebButton setEnabled:YES];
@@ -248,8 +250,13 @@
 	[self closeReplyView];
 }
 
+- (IBAction)favSelected:(id)sender {
+	[fMainController favStatus:[[fStatusController selectedObjects] lastObject]];
+}
+
 - (IBAction)retweetSelection:(id)sender {
 	PTStatusBox *lCurrentSelection = [[fStatusController selectedObjects] lastObject];
+	if (lCurrentSelection.sType == ErrorMessage) return;
 	NSString *lMessageTarget = [NSString stringWithFormat:@"RT @%@ %@", lCurrentSelection.userId, [lCurrentSelection.statusMessage string]];
 	[fStatusUpdateField setStringValue:lMessageTarget];
 	[fCharacterCounter setIntValue:140 - [[fStatusUpdateField stringValue] length]];
@@ -257,8 +264,24 @@
 	[(NSText *)[fMainWindow firstResponder] setSelectedRange:NSMakeRange([[fStatusUpdateField stringValue] length], 0)];
 }
 
-- (IBAction)favSelected:(id)sender {
-	[fMainController favStatus:[[fStatusController selectedObjects] lastObject]];
+- (IBAction)markAllAsRead:(id)sender {
+	PTStatusBox *lCurrentBox;
+	for (lCurrentBox in [fStatusController arrangedObjects]) {
+		lCurrentBox.readFlag = YES;
+	}
+	[[PTReadManager getInstance] setUnreadDict:nil];
+}
+
+- (IBAction)openSelectedLink:(id)sender {
+	PTStatusBox *lCurrentSelection = [[fStatusController selectedObjects] lastObject];
+	if (lCurrentSelection.statusLink) {
+		[[NSWorkspace sharedWorkspace] openURL:lCurrentSelection.statusLink];
+	}
+}
+
+- (IBAction)openSelectedUser:(id)sender {
+    PTStatusBox *lCurrentSelection = [[fStatusController selectedObjects] lastObject];
+	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[@"https://twitter.com/" stringByAppendingString:lCurrentSelection.userId]]];
 }
 
 @end

@@ -15,6 +15,7 @@
 @synthesize statusMessage;
 @synthesize userImage;
 @synthesize userHome;
+@synthesize statusLink;
 @synthesize userId;
 @synthesize entityColor;
 @synthesize time;
@@ -23,12 +24,14 @@
 @synthesize updateId;
 @synthesize replyId;
 @synthesize replyUserId;
+@synthesize readFlag;
 
 - (void)dealloc {
 	if (userImage) [userImage release];
 	if (userName) [userName release];
 	if (statusMessage) [statusMessage release];
 	if (userHome) [userHome release];
+	if (statusLink) [statusLink release];
 	if (userId) [userId release];
 	if (entityColor) [entityColor release];
 	if (time) [time release];

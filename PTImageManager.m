@@ -45,7 +45,7 @@
 }
 
 - (NSImage *)maskImage:(NSImage *)aImage {
-	NSImage *lNewImage = [[NSImage imageNamed:@"default.png"] copy];
+	NSImage *lNewImage = [[NSImage imageNamed:@"icon_mask"] copy];
 	[lNewImage lockFocus];
 	[aImage drawInRect: NSMakeRect(0, 0, 48, 48) 
 			  fromRect: NSMakeRect(0, 0, [aImage size].width, [aImage size].height) 

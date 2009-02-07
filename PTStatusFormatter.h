@@ -13,9 +13,7 @@
 @interface PTStatusFormatter : NSObject {
 
 }
-+ (void)processLinks:(NSMutableAttributedString *)aTargetString;
-+ (void)detectReplyLinks:(NSMutableAttributedString *)aMessage;
-+ (NSMutableAttributedString *)formatStatusMessage:(NSString *)aMessage;
++ (NSMutableAttributedString *)formatStatusMessage:(NSString *)aMessage forBox:(PTStatusBox *)aBox;
 + (NSMutableAttributedString *)createUserLabel:(NSString *)aScreenName name:(NSString *)aName;
 + (NSMutableAttributedString *)createErrorLabel;
 + (NSMutableAttributedString *)createErrorMessage:(NSError *)aError;

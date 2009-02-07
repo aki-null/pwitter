@@ -187,6 +187,14 @@
 	return [fPrefData integerForKey:@"status_update_behavior"];
 }
 
+- (void)setSwapMenuItemBehavior:(BOOL)aFlag {
+	[fPrefData setBool:aFlag forKey:@"swap_menu_item_behavior"];
+}
+
+- (BOOL)swapMenuItemBehavior {
+	return [fPrefData boolForKey:@"swap_menu_item_behavior"];
+}
+
 - (void)setHideDockIcon:(BOOL)aFlag {
 	NSString * lFilePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/../Info.plist"];
 	if (lFilePath) {

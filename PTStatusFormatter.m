@@ -13,7 +13,7 @@
 
 @implementation PTStatusFormatter
 
-+ (void)processLinks:(NSMutableAttributedString *)aTargetString {
++ (void)processLinks:(NSMutableAttributedString *)aTargetString forBox:(PTStatusBox *)aBox {
 //	NSString *lString = [aTargetString string];
 //	NSRange lSearchRange = NSMakeRange(0, [lString length]);
 //	NSRange lFoundRange;
@@ -44,6 +44,9 @@
 										 [NSColor cyanColor], NSForegroundColorAttributeName,
 										 nil];
 		[aTargetString addAttributes:lLinkAttributes range:[lCurrentURI range]];
+		if (!aBox.statusLink) {
+			aBox.statusLink = [lCurrentURI URL];
+		}
 		lCurrentURI = [lScanner nextURI];
 	}
 }
@@ -57,7 +60,7 @@
 		if ([lCurrentString length] > 0 && [lCurrentString characterAtIndex:0] == '@') {
 			lReplyCount++;
 			NSString *lReplyTarget = [lCurrentString substringFromIndex:1];
-			NSURL *lUrl = [NSURL URLWithString:[NSString stringWithFormat:@"http://twitter.com/%@", lReplyTarget]];
+			NSURL *lUrl = [NSURL URLWithString:[NSString stringWithFormat:@"https://twitter.com/%@", lReplyTarget]];
 			NSDictionary *lLinkAttributes = [NSDictionary dictionaryWithObjectsAndKeys:lUrl, NSLinkAttributeName,
 											 [NSNumber numberWithInt:NSSingleUnderlineStyle], NSUnderlineStyleAttributeName,
 											 [NSColor cyanColor], NSForegroundColorAttributeName,
@@ -68,7 +71,7 @@
 	}
 }
 
-+ (NSMutableAttributedString *)formatStatusMessage:(NSString *)aMessage {
++ (NSMutableAttributedString *)formatStatusMessage:(NSString *)aMessage forBox:(PTStatusBox *)aBox {
 	NSString *lUnescaped = (NSString *)CFXMLCreateStringByUnescapingEntities(nil, (CFStringRef)aMessage, nil);
 	NSMutableAttributedString *lNewMessage = [[NSMutableAttributedString alloc] initWithString:lUnescaped];
 	[lUnescaped release];
@@ -77,7 +80,7 @@
 										[NSFont fontWithName:@"Helvetica" size:12.0], NSFontAttributeName, 
 										nil];
 	[lNewMessage addAttributes:lMessageAttributes range:NSMakeRange(0, [lNewMessage length])];
-	[PTStatusFormatter processLinks:lNewMessage];
+	[PTStatusFormatter processLinks:lNewMessage forBox:aBox];
 	[PTStatusFormatter detectReplyLinks:lNewMessage];
 	[lNewMessage endEditing];
 	return [lNewMessage autorelease];
@@ -87,7 +90,7 @@
 	NSString *lTempUserLabel = [NSString stringWithFormat:@"%@ / %@", aScreenName, aName];
 	NSMutableAttributedString *lUserLabel = [[NSMutableAttributedString alloc] initWithString:lTempUserLabel];
 	[lUserLabel beginEditing];
-	NSURL *lUrl = [NSURL URLWithString:[NSString stringWithFormat:@"http://twitter.com/%@", aScreenName]];
+	NSURL *lUrl = [NSURL URLWithString:[NSString stringWithFormat:@"https://twitter.com/%@", aScreenName]];
 	NSDictionary *lLinkAttributes = [NSDictionary dictionaryWithObjectsAndKeys:lUrl, NSLinkAttributeName,
 									 [NSNumber numberWithInt:NSSingleUnderlineStyle], NSUnderlineStyleAttributeName,
 									 [NSColor whiteColor], NSForegroundColorAttributeName,
@@ -109,7 +112,9 @@
 }
 
 + (NSMutableAttributedString *)createErrorMessage:(NSError *)aError {
-	NSMutableAttributedString *lFinalString = [[NSMutableAttributedString alloc] initWithString:[aError localizedDescription]];
+	NSString *lErrorMessage = [aError localizedDescription];
+	if (!lErrorMessage) lErrorMessage = @"unknown error";
+	NSMutableAttributedString *lFinalString = [[NSMutableAttributedString alloc] initWithString:lErrorMessage];
 	[lFinalString beginEditing];
 	NSDictionary *lMessageAttributes = [NSDictionary dictionaryWithObjectsAndKeys:[NSColor whiteColor], NSForegroundColorAttributeName, 
 										[NSFont fontWithName:@"Helvetica" size:12.0], NSFontAttributeName, 

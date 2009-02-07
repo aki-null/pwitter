@@ -29,6 +29,10 @@
 	return YES;
 }
 
+- (void)applicationWillTerminate:(NSNotification *)aNotification {
+	[fMainController saveUnread];
+}
+
 - (BOOL)windowShouldClose:(id)sender
 {
 	BOOL lResult = YES;

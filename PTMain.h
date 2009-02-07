@@ -66,6 +66,8 @@ typedef enum soundEventType {
 - (void)makePost:(NSString *)aMessage;
 - (void)setReplyID:(int)aId;
 - (void)favStatus:(PTStatusBox *)aBox;
+- (void)saveUnread;
+- (void)loadUnread;
 
 @property(readonly) PTMenuBarIcon *fMenuItem;
 

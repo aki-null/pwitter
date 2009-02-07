@@ -6,7 +6,7 @@
 //  Copyright 2009 Aki. All rights reserved.
 //
 
-// FROM ADIUM
+// derived from Adium
 
 #import "PTMenuBarIcon.h"
 #import "PTMain.h"
@@ -51,17 +51,28 @@
 
 - (void)mouseDown:(NSEvent *)aEvent
 {
-	fMouseDown = YES;
-	[self display];
-	fMouseDown = NO;
-	[self setNeedsDisplay:YES];
-	[fMainController activateApp:self];
+	if (fIsSwapped) {
+		[self displayMenu:fMainMenu];
+	} else {
+		fMouseDown = YES;
+		[self display];
+		fMouseDown = NO;
+		[self setNeedsDisplay:YES];
+		[fMainController activateApp:self];
+	}
 }
 
 - (void)rightMouseDown:(NSEvent *)aEvent
 {
-	[self displayMenu:fMainMenu];
-}
+	if (!fIsSwapped) {
+		[self displayMenu:fMainMenu];
+	} else {
+		fMouseDown = YES;
+		[self display];
+		fMouseDown = NO;
+		[self setNeedsDisplay:YES];
+		[fMainController activateApp:self];
+	}}
 
 - (void)setImage:(NSImage *)aImage
 {
@@ -102,6 +113,10 @@
 
 - (void)setMainController:(id)aMainController {
 	fMainController = aMainController;
+}
+
+- (void)setSwapped:(BOOL)aFlag {
+	fIsSwapped = aFlag;
 }
 
 @end

@@ -10,6 +10,8 @@
 #import "PTStatusFormatter.h"
 #import "PTMain.h"
 #import "PTDateToStringTransformer.h"
+#import "PTReadStatusTransformer.h"
+#import "PTReadManager.h"
 
 
 @implementation PTStatusBoxGenerator
@@ -17,6 +19,8 @@
 + (void)initialize {
 	PTDateToStringTransformer *lTransformer = [[[PTDateToStringTransformer alloc] init] autorelease];
 	[NSValueTransformer setValueTransformer:lTransformer forName:@"DateToStringTransformer"];
+	PTReadStatusTransformer *lReadTrans = [[[PTReadStatusTransformer alloc] init] autorelease];
+	[NSValueTransformer setValueTransformer:lReadTrans forName:@"ReadImageTransformer"];
 }
 
 - (PTStatusBox *)constructStatusBox:(NSDictionary *)aStatusInfo isReply:(BOOL)aIsReply {
@@ -26,7 +30,7 @@
 													 name:[[aStatusInfo objectForKey:@"user"] objectForKey:@"name"]];
 	NSDate *lReceivedTime = [aStatusInfo objectForKey:@"created_at"];
 	lNewBox.time = lReceivedTime;
-	lNewBox.statusMessage = [PTStatusFormatter formatStatusMessage:[aStatusInfo objectForKey:@"text"]];
+	lNewBox.statusMessage = [PTStatusFormatter formatStatusMessage:[aStatusInfo objectForKey:@"text"] forBox:lNewBox];
 	lNewBox.userImage = [fMainController requestUserImage:[[aStatusInfo objectForKey:@"user"] objectForKey:@"profile_image_url"]
 												   forBox:lNewBox];
 	NSString *lUrlStr = [[aStatusInfo objectForKey:@"user"] objectForKey:@"url"];
@@ -49,6 +53,7 @@
 	lNewBox.updateId = [[aStatusInfo objectForKey:@"id"] intValue];
 	lNewBox.replyId = [[aStatusInfo objectForKey:@"in_reply_to_status_id"] intValue];
 	lNewBox.replyUserId = [aStatusInfo objectForKey:@"in_reply_to_screen_name"];
+	lNewBox.readFlag = [[PTReadManager getInstance] isUpdateRead:lNewBox.updateId];
 	return [lNewBox autorelease];
 }
 
@@ -64,6 +69,7 @@
 	lNewBox.sType = ErrorMessage;
 	lNewBox.searchString = [NSString stringWithFormat:@"Twitter Error: %@", 
 							[aError localizedDescription]];
+	lNewBox.readFlag = YES;
 	return [lNewBox autorelease];
 }
 
@@ -73,7 +79,7 @@
 													 name:[[aStatusInfo objectForKey:@"sender"] objectForKey:@"name"]];
 	lNewBox.userId = [[aStatusInfo objectForKey:@"sender"] objectForKey:@"screen_name"];
 	lNewBox.time = [aStatusInfo objectForKey:@"created_at"];
-	lNewBox.statusMessage = [PTStatusFormatter formatStatusMessage:[aStatusInfo objectForKey:@"text"]];
+	lNewBox.statusMessage = [PTStatusFormatter formatStatusMessage:[aStatusInfo objectForKey:@"text"] forBox:lNewBox];
 	lNewBox.userImage = [fMainController requestUserImage:[[aStatusInfo objectForKey:@"sender"] objectForKey:@"profile_image_url"]
 												   forBox:lNewBox];
 	NSString *lUrlStr = [[aStatusInfo objectForKey:@"sender"] objectForKey:@"url"];
@@ -88,6 +94,8 @@
 							[[aStatusInfo objectForKey:@"sender"] objectForKey:@"screen_name"], 
 							[[aStatusInfo objectForKey:@"sender"] objectForKey:@"name"], 
 							[aStatusInfo objectForKey:@"text"]];
+	lNewBox.updateId = [[aStatusInfo objectForKey:@"id"] intValue];
+	lNewBox.readFlag = [[PTReadManager getInstance] isUpdateRead:lNewBox.updateId];
 	return [lNewBox autorelease];
 }
 

@@ -6,12 +6,12 @@
 		<description>Most recent changes with links to updates.</description>
 		<language>en</language>
 		<item>
-			<title>version 0.7.9 (1 bug fix; 1 new feature; 1 improvement)</title>
+			<title>version 0.8 (1 bug fix; 2 new features; 4 improvements)</title>
 			<sparkle:releaseNotesLink>
 				http://github.com/koroshiya1/pwitter/raw/master/SparkleData/release_note.txt
 			</sparkle:releaseNotesLink>
-			<pubDate>Wednesday, 04 February 2009 12:32:26 +0000</pubDate>
-			<enclosure url="http://github.com/koroshiya1/pwitter/raw/master/DistributableApplication/Pwitter_0.7.9.zip" sparkle:version="0.7.9" length="1357729" type="application/octet-stream" sparkle:dsaSignature="MC0CFQDvdDMUFq6IHizKNkfIQLu+bHKZIgIUPBLaGyUJqp+B4ykOtw1w2auLd1o=" />
+			<pubDate>Saturday, 07 February 2009 05:00:32 +0000</pubDate>
+			<enclosure url="http://github.com/koroshiya1/pwitter/raw/master/DistributableApplication/Pwitter_0.8.zip" sparkle:version="0.8" length="1366915" type="application/octet-stream" sparkle:dsaSignature="MC0CFB1FkMXatpd6xcRMmgj3QwCOshk1AhUAxQGrFprfDwlJk73A0turzV9AHlA=" />
 		</item>
 	</channel>
 </rss>

@@ -37,6 +37,7 @@
 	[[PTPreferenceManager getInstance] useMiniView] ? [fUseMiniView setState:NSOnState] : [fUseMiniView setState:NSOffState];
 	[[PTPreferenceManager getInstance] quickPost] ? [fActivateGlobalKey setState:NSOnState] : [fActivateGlobalKey setState:NSOffState];
 	[[PTPreferenceManager getInstance] ignoreErrors] ? [fIgnoreErrors setState:NSOnState] : [fIgnoreErrors setState:NSOffState];
+	[[PTPreferenceManager getInstance] swapMenuItemBehavior] ? [fSwapMenuItem setState:NSOnState] : [fSwapMenuItem setState:NSOffState];
 	// Notification preferences
 	[[PTPreferenceManager getInstance] disableGrowl] ? [fDisableGrowl setState:NSOnState] : [fDisableGrowl setState:NSOffState];
 	[[PTPreferenceManager getInstance] disableMessageNotification] ? [fDisableMessageNotification setState:NSOnState] : [fDisableMessageNotification setState:NSOffState];
@@ -57,6 +58,7 @@
 		[fDisableReplyNotification setEnabled:NO];
 		[fDisableErrorNotification setEnabled:NO];
 	}
+	[[fMainController fMenuItem] setSwapped:[[PTPreferenceManager getInstance] swapMenuItemBehavior]];
 	// load key combination
 	[self loadKeyCombo];
 	[self turnOffHotKey];
@@ -74,6 +76,7 @@
 	[[PTPreferenceManager getInstance] setUseMiniView:[fUseMiniView state] == NSOnState];
 	[[PTPreferenceManager getInstance] setQuickPost:[fActivateGlobalKey state] == NSOnState];
 	[[PTPreferenceManager getInstance] setIgnoreErrors:[fIgnoreErrors state] == NSOnState];
+	[[PTPreferenceManager getInstance] setSwapMenuItemBehavior:[fSwapMenuItem state] == NSOnState];
 	// Notification preferences
 	[[PTPreferenceManager getInstance] setDisableGrowl:[fDisableGrowl state] == NSOnState];
 	[[PTPreferenceManager getInstance] setDisableMessageNotification:[fDisableMessageNotification state] == NSOnState];
@@ -111,6 +114,7 @@
 		[fStatusController setSelectsInsertedObjects:NO];
 	}
 	[fMainWindow setFloatingPanel:[[PTPreferenceManager getInstance] alwaysOnTop]];
+	[[fMainController fMenuItem] setSwapped:[[PTPreferenceManager getInstance] swapMenuItemBehavior]];
 	[self saveKeyCombo];
 	[self turnOffHotKey];
 	if ([fActivateGlobalKey state] == NSOnState)

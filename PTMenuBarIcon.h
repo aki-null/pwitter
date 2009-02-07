@@ -18,6 +18,7 @@
 	NSImage *fAlternateImage;
 	NSMenu *fMainMenu;
 	id fMainController;
+	BOOL fIsSwapped;
 }
 
 - (void)setImage:(NSImage *)aImage;
@@ -27,5 +28,6 @@
 - (void)setStatusItem:(NSStatusItem *)aStatusItem;
 - (NSStatusItem *)statusItem;
 - (void)setMainController:(id)aMainController;
+- (void)setSwapped:(BOOL)aFlag;
 
 @end

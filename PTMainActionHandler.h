@@ -54,6 +54,9 @@
 - (IBAction)closeReplyViewFromButton:(id)sender;
 - (IBAction)favSelected:(id)sender;
 - (IBAction)retweetSelection:(id)sender;
+- (IBAction)markAllAsRead:(id)sender;
+- (IBAction)openSelectedLink:(id)sender;
+- (IBAction)openSelectedUser:(id)sender;
 - (void)startAuthentication;
 - (void)updateSelectedMessage:(PTStatusBox *)aBox;
 - (void)updateViewSizes:(float)aHeightReq withAnim:(BOOL)aAnim;

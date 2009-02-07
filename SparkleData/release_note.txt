@@ -1,3 +1,12 @@
+7 February 2009: (Version 0.8):
+Bug Fixed: Invalid error messages
+Improvement: Glyphs have been replaced with the better one provided by susumu
+Improvement: Menu bar icon has been replaced with the better one provided by susumu
+Improvement: Added a preference option to swap menu bar icon behavior
+Improvement: Rounded rectangle post field
+Feature: Ability to open a link in a tweet
+Feature: Read / Unread flag management
+
 4 February 2009: (Version 0.7.9):
 Bug Fixed: Forgot to implement error sound notification
 Feature: Ability to Retweet (Available from Status -> Retweet)
