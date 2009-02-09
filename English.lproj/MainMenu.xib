@@ -9,7 +9,7 @@
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<integer value="29"/>
-			<integer value="1240"/>
+			<integer value="372"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1069,7 +1069,7 @@
 												<object class="NSCollectionView" id="475175288">
 													<reference key="NSNextResponder" ref="86864741"/>
 													<int key="NSvFlags">274</int>
-													<string key="NSFrameSize">{234, 272}</string>
+													<string key="NSFrameSize">{234, 269}</string>
 													<reference key="NSSuperview" ref="86864741"/>
 													<string key="NSMinGridSize">{0, 0}</string>
 													<string key="NSMaxGridSize">{0, 0}</string>
@@ -1087,7 +1087,7 @@
 													<bool key="NSSelectable">YES</bool>
 												</object>
 											</object>
-											<string key="NSFrameSize">{234, 272}</string>
+											<string key="NSFrameSize">{234, 269}</string>
 											<reference key="NSSuperview" ref="413286659"/>
 											<reference key="NSNextKeyView" ref="475175288"/>
 											<reference key="NSDocView" ref="475175288"/>
@@ -1105,7 +1105,7 @@
 										<object class="BGHUDScroller" id="382642619">
 											<reference key="NSNextResponder" ref="413286659"/>
 											<int key="NSvFlags">256</int>
-											<string key="NSFrame">{{234, 0}, {11, 272}}</string>
+											<string key="NSFrame">{{234, 0}, {11, 269}}</string>
 											<reference key="NSSuperview" ref="413286659"/>
 											<int key="NSsFlags">256</int>
 											<reference key="NSTarget" ref="413286659"/>
@@ -1124,7 +1124,7 @@
 											<string key="themeKey">gradientTheme</string>
 										</object>
 									</object>
-									<string key="NSFrameSize">{245, 272}</string>
+									<string key="NSFrameSize">{245, 269}</string>
 									<reference key="NSSuperview" ref="137448738"/>
 									<reference key="NSNextKeyView" ref="86864741"/>
 									<int key="NSsFlags">16</int>
@@ -1226,12 +1226,12 @@
 											</object>
 										</object>
 									</object>
-									<string key="NSFrame">{{0, 271}, {245, 1}}</string>
+									<string key="NSFrame">{{0, 268}, {245, 1}}</string>
 									<reference key="NSSuperview" ref="137448738"/>
 									<string key="NSClassName">NSView</string>
 								</object>
 							</object>
-							<string key="NSFrame">{{0, 71}, {245, 272}}</string>
+							<string key="NSFrame">{{0, 73}, {245, 269}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
 							<string key="NSClassName">NSView</string>
 						</object>

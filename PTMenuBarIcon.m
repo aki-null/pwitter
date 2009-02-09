@@ -37,7 +37,11 @@
 - (void)drawRect:(NSRect)aRect
 {
 	[fStatusItem drawStatusBarBackgroundInRect:[self frame] withHighlight:fMouseDown];
-	[fImage compositeToPoint:NSMakePoint(3, 3) operation: NSCompositeSourceOver];
+	if (fMouseDown) {
+		[[NSImage imageNamed:@"menu_icon_inv"] compositeToPoint:NSMakePoint(3, 3) operation: NSCompositeSourceOver];
+	} else {
+		[fImage compositeToPoint:NSMakePoint(3, 3) operation: NSCompositeSourceOver];
+	}
 }
 
 - (void)displayMenu:(NSMenu *)aMenu
