@@ -1,3 +1,11 @@
+9 February 2009: (Version 0.8.1):
+Improvement: New post field with white colored cursor
+Improvement: Larger post field
+Improvement: Clicking Growl notification now causes the application to activate
+Improvement: Favourite tweets are now colored
+Improvement: Tweets posted by you are darker than others
+Feature: User icon image for tweet fullview
+
 7 February 2009: (Version 0.8):
 Bug Fixed: Invalid error messages
 Improvement: Glyphs have been replaced with the better one provided by susumu
