@@ -43,8 +43,15 @@
 		lNewBox.entityColor = [NSColor colorWithCalibratedRed:0.8 green:0.28 blue:0.28 alpha:0.7];
 		lNewBox.sType = ReplyMessage;
 	} else {
-		lNewBox.entityColor = [NSColor colorWithCalibratedRed:0.4 green:0.4 blue:0.4 alpha:0.7];
+		if ([[[PTPreferenceManager getInstance] userName] isEqualToString:[[aStatusInfo objectForKey:@"user"] objectForKey:@"screen_name"]]) {
+			lNewBox.entityColor = [NSColor colorWithCalibratedRed:0.6 green:0.6 blue:0.6 alpha:0.7];
+		} else {
+			lNewBox.entityColor = [NSColor colorWithCalibratedRed:0.4 green:0.4 blue:0.4 alpha:0.7];
+		}
 		lNewBox.sType = NormalMessage;
+	}
+	if ([[aStatusInfo objectForKey:@"favorited"] boolValue]) {
+		lNewBox.entityColor = [NSColor colorWithCalibratedRed:1.0 green:0.6 blue:0.0 alpha:0.7];
 	}
 	lNewBox.searchString = [NSString stringWithFormat:@"%@ %@ %@",
 							[[aStatusInfo objectForKey:@"user"] objectForKey:@"screen_name"], 

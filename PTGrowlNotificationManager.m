@@ -13,10 +13,6 @@
 
 @implementation PTGrowlNotificationManager
 
-- (void)awakeFromNib {
-	[GrowlApplicationBridge setGrowlDelegate:@""];
-}
-
 - (void)postReplyNotification:(PTStatusBox *)aReplyInfo {
 	[GrowlApplicationBridge notifyWithTitle:[NSString stringWithFormat:@"Reply from %@", aReplyInfo.userId] 
 								description:[aReplyInfo.statusMessage string] 
@@ -24,7 +20,7 @@
 								   iconData:[aReplyInfo.userImage TIFFRepresentation] 
 								   priority:1 
 								   isSticky:NO 
-							   clickContext:nil];
+							   clickContext:@""];
 }
 
 - (void)postMessageNotification:(PTStatusBox *)aReplyInfo {
@@ -34,7 +30,7 @@
 								   iconData:[aReplyInfo.userImage TIFFRepresentation] 
 								   priority:1 
 								   isSticky:NO 
-							   clickContext:nil];
+							   clickContext:@""];
 }
 
 - (void)postNormalNotification:(PTStatusBox *)aStatusInfo {
@@ -44,7 +40,7 @@
 								   iconData:[aStatusInfo.userImage TIFFRepresentation] 
 								   priority:0
 								   isSticky:NO 
-							   clickContext:nil];
+							   clickContext:@""];
 }
 
 - (void)postGeneralNotification:(NSString *)aTitle 
@@ -56,7 +52,7 @@
 								   iconData:[aImage TIFFRepresentation] 
 								   priority:0
 								   isSticky:NO 
-							   clickContext:nil];
+							   clickContext:@""];
 }
 
 - (NSArray *)filterNotifications:(NSArray *)aBoxes {

@@ -46,9 +46,11 @@
 		61AA24E30F3C6D8B00988678 /* PTReadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 61AA24E20F3C6D8B00988678 /* PTReadManager.m */; };
 		61BAFB0F0F1C89B400428121 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61BAFB0E0F1C89B400428121 /* Carbon.framework */; };
 		61BD916F0F0B7C7E00F1CA33 /* default.png in Resources */ = {isa = PBXBuildFile; fileRef = 61BD916E0F0B7C7E00F1CA33 /* default.png */; };
+		61C388EA0F4025F1001E018B /* PTGrowlDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C388E90F4025F1001E018B /* PTGrowlDelegate.m */; };
 		61C773BD0F0509F100258650 /* PTStatusEntityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C773BC0F0509F100258650 /* PTStatusEntityView.m */; };
 		61C773F80F050BBB00258650 /* PTStatusCollectionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C773F70F050BBB00258650 /* PTStatusCollectionItem.m */; };
 		61C786F40F046622007CBC1A /* PTPreferenceWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C786F30F046622007CBC1A /* PTPreferenceWindow.m */; };
+		61CBB1180F3D80C2000EC13D /* PTPostField.m in Sources */ = {isa = PBXBuildFile; fileRef = 61CBB1170F3D80C2000EC13D /* PTPostField.m */; };
 		61D6BE380F077DF300C6B98D /* MGTwitterEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 61D6BE190F077DF300C6B98D /* MGTwitterEngine.m */; };
 		61D6BE390F077DF300C6B98D /* MGTwitterHTTPURLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 61D6BE1D0F077DF300C6B98D /* MGTwitterHTTPURLConnection.m */; };
 		61D6BE3A0F077DF300C6B98D /* MGTwitterLibXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 61D6BE1F0F077DF300C6B98D /* MGTwitterLibXMLParser.m */; };
@@ -160,12 +162,16 @@
 		61AA24E20F3C6D8B00988678 /* PTReadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTReadManager.m; sourceTree = "<group>"; };
 		61BAFB0E0F1C89B400428121 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
 		61BD916E0F0B7C7E00F1CA33 /* default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default.png; sourceTree = "<group>"; };
+		61C388E80F4025F1001E018B /* PTGrowlDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTGrowlDelegate.h; sourceTree = "<group>"; };
+		61C388E90F4025F1001E018B /* PTGrowlDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTGrowlDelegate.m; sourceTree = "<group>"; };
 		61C773BB0F0509F100258650 /* PTStatusEntityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTStatusEntityView.h; sourceTree = "<group>"; };
 		61C773BC0F0509F100258650 /* PTStatusEntityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTStatusEntityView.m; sourceTree = "<group>"; };
 		61C773F60F050BBB00258650 /* PTStatusCollectionItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTStatusCollectionItem.h; sourceTree = "<group>"; };
 		61C773F70F050BBB00258650 /* PTStatusCollectionItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTStatusCollectionItem.m; sourceTree = "<group>"; };
 		61C786F20F046622007CBC1A /* PTPreferenceWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTPreferenceWindow.h; sourceTree = "<group>"; };
 		61C786F30F046622007CBC1A /* PTPreferenceWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTPreferenceWindow.m; sourceTree = "<group>"; };
+		61CBB1160F3D80C2000EC13D /* PTPostField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTPostField.h; sourceTree = "<group>"; };
+		61CBB1170F3D80C2000EC13D /* PTPostField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTPostField.m; sourceTree = "<group>"; };
 		61D6BE180F077DF300C6B98D /* MGTwitterEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MGTwitterEngine.h; path = MGTwitterEngine/MGTwitterEngine.h; sourceTree = "<group>"; };
 		61D6BE190F077DF300C6B98D /* MGTwitterEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MGTwitterEngine.m; path = MGTwitterEngine/MGTwitterEngine.m; sourceTree = "<group>"; };
 		61D6BE1A0F077DF300C6B98D /* MGTwitterEngineDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MGTwitterEngineDelegate.h; path = MGTwitterEngine/MGTwitterEngineDelegate.h; sourceTree = "<group>"; };
@@ -401,6 +407,17 @@
 			name = StatusMaker;
 			sourceTree = "<group>";
 		};
+		61C388DF0F4025C6001E018B /* GrowNotification */ = {
+			isa = PBXGroup;
+			children = (
+				615B85CD0F136BB30005E38F /* PTGrowlNotificationManager.h */,
+				615B85CE0F136BB30005E38F /* PTGrowlNotificationManager.m */,
+				61C388E80F4025F1001E018B /* PTGrowlDelegate.h */,
+				61C388E90F4025F1001E018B /* PTGrowlDelegate.m */,
+			);
+			name = GrowNotification;
+			sourceTree = "<group>";
+		};
 		61D6BE170F077DDE00C6B98D /* MGTwitterEngine */ = {
 			isa = PBXGroup;
 			children = (
@@ -454,6 +471,7 @@
 		61EE70620F02107B005C42F5 /* Pwitter */ = {
 			isa = PBXGroup;
 			children = (
+				61C388DF0F4025C6001E018B /* GrowNotification */,
 				611384F10F39822F0065B59B /* StatusMaker */,
 				611384F00F3981DC0065B59B /* StatusItem */,
 				611384EE0F3981C80065B59B /* Preferences */,
@@ -469,8 +487,6 @@
 				615D39760F0B016F0086E57F /* PTCharacterCounter.m */,
 				61DF44B10F0F027C00B8BD2A /* PTStatusFilterController.h */,
 				61DF44B20F0F027C00B8BD2A /* PTStatusFilterController.m */,
-				615B85CD0F136BB30005E38F /* PTGrowlNotificationManager.h */,
-				615B85CE0F136BB30005E38F /* PTGrowlNotificationManager.m */,
 				610332EF0F1873B000BFB060 /* PTSelectedStatusView.h */,
 				610332F00F1873B000BFB060 /* PTSelectedStatusView.m */,
 				610333F80F18C0C500BFB060 /* PTStatusScrollView.h */,
@@ -481,6 +497,8 @@
 				611386240F3989D60065B59B /* PTImageManager.m */,
 				61AA24E10F3C6D8B00988678 /* PTReadManager.h */,
 				61AA24E20F3C6D8B00988678 /* PTReadManager.m */,
+				61CBB1160F3D80C2000EC13D /* PTPostField.h */,
+				61CBB1170F3D80C2000EC13D /* PTPostField.m */,
 			);
 			name = Pwitter;
 			sourceTree = "<group>";
@@ -633,6 +651,8 @@
 				611386250F3989D60065B59B /* PTImageManager.m in Sources */,
 				61AA247E0F3C659000988678 /* PTReadStatusTransformer.m in Sources */,
 				61AA24E30F3C6D8B00988678 /* PTReadManager.m in Sources */,
+				61CBB1180F3D80C2000EC13D /* PTPostField.m in Sources */,
+				61C388EA0F4025F1001E018B /* PTGrowlDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

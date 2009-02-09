@@ -102,9 +102,9 @@
 	PTStatusBox *lCurrentSelection = [[fStatusController selectedObjects] lastObject];
 	NSString *lMessageTarget = [NSString stringWithFormat:@"d %@ %@", lCurrentSelection.userId, [fStatusUpdateField stringValue]];
 	[fStatusUpdateField setStringValue:lMessageTarget];
-	[fCharacterCounter setIntValue:140 - [[fStatusUpdateField stringValue] length]];
 	[fMainWindow makeFirstResponder:fStatusUpdateField];
 	[(NSText *)[fMainWindow firstResponder] setSelectedRange:NSMakeRange([[fStatusUpdateField stringValue] length], 0)];
+	[fCharacterCounter setIntValue:140 - [[fStatusUpdateField stringValue] length]];
 }
 
 - (IBAction)openHome:(id)sender {
@@ -121,9 +121,11 @@
 		fReplyViewIsOpen = YES;
 		NSRect lReplyFrame = [fPostView frame];
 		NSRect lBottomFrame = [fBottomView frame];
+		NSRect lInfoFrame = [fReplyInfoView frame];
+		[fReplyInfoView setFrame:NSMakeRect(0, lReplyFrame.size.height, lInfoFrame.size.width, lInfoFrame.size.height)];
 		[NSAnimationContext beginGrouping];
-		[[NSAnimationContext currentContext] setDuration:0.2f];
-		[[fPostView animator] setFrame:NSMakeRect(lReplyFrame.origin.x, lReplyFrame.origin.y, lReplyFrame.size.width, 45)];
+		[[NSAnimationContext currentContext] setDuration:0.1f];
+		[[fPostView animator] setFrame:NSMakeRect(lReplyFrame.origin.x, lReplyFrame.origin.y, lReplyFrame.size.width, lReplyFrame.size.height + 23)];
 		[[fBottomView animator] setFrame:NSMakeRect(0, lBottomFrame.origin.y + 23, lBottomFrame.size.width, lBottomFrame.size.height - 23)];
 		[NSAnimationContext endGrouping];
 	}
@@ -136,8 +138,8 @@
 		NSRect lReplyFrame = [fPostView frame];
 		NSRect lBottomFrame = [fBottomView frame];
 		[NSAnimationContext beginGrouping];
-		[[NSAnimationContext currentContext] setDuration:0.2f];
-		[[fPostView animator] setFrame:NSMakeRect(lReplyFrame.origin.x, lReplyFrame.origin.y, lReplyFrame.size.width, 22)];
+		[[NSAnimationContext currentContext] setDuration:0.1f];
+		[[fPostView animator] setFrame:NSMakeRect(lReplyFrame.origin.x, lReplyFrame.origin.y, lReplyFrame.size.width, 44)];
 		[[fBottomView animator] setFrame:NSMakeRect(0, lBottomFrame.origin.y - 23, lBottomFrame.size.width, lBottomFrame.size.height + 23)];
 		[NSAnimationContext endGrouping];
 		[fStatusUpdateField setStringValue:@""];
@@ -151,10 +153,10 @@
 		NSString *replyTarget = [NSString stringWithFormat:@"@%@ %@", lCurrentSelection.userId, [fStatusUpdateField stringValue]];
 		[fStatusUpdateField setStringValue:replyTarget];
 		[fCharacterCounter setIntValue:140 - [[fStatusUpdateField stringValue] length]];
-		[fMainWindow makeFirstResponder:fStatusUpdateField];
-		[(NSText *)[fMainWindow firstResponder] setSelectedRange:NSMakeRange([[fStatusUpdateField stringValue] length], 0)];
 		[fMainController setReplyID:lCurrentSelection.updateId];
 		[fReplyToBox setStringValue:[@"@" stringByAppendingString:lCurrentSelection.userId]];
+		[fMainWindow makeFirstResponder:fStatusUpdateField];
+		[(NSText *)[fMainWindow firstResponder] setSelectedRange:NSMakeRange([[fStatusUpdateField stringValue] length], 0)];
 		[self openReplyView];
 	}
 }
@@ -206,9 +208,13 @@
 	NSRect lTopFrame = [fTopView frame];
 	NSRect lBottomFrame = [fBottomView frame];
 	float lTopDiff = lTopFrame.size.height - lTopHeight;
+	if (!lTopDiff) return;
 	if (aAnim) {
+		[NSAnimationContext beginGrouping];
+		[[NSAnimationContext currentContext] setDuration:0.1f];
 		[[fTopView animator] setFrame:NSMakeRect(0, lTopFrame.origin.y + lTopDiff, [fTopView frame].size.width, lTopHeight)];
 		[[fBottomView animator] setFrame:NSMakeRect(0, lBottomFrame.origin.y, lBottomFrame.size.width, lBottomFrame.size.height + lTopDiff)];
+		[NSAnimationContext endGrouping];
 	} else {
 		[fTopView setFrame:NSMakeRect(0, lTopFrame.origin.y + lTopDiff, [fTopView frame].size.width, lTopHeight)];
 		[fBottomView setFrame:NSMakeRect(0, lBottomFrame.origin.y, lBottomFrame.size.width, lBottomFrame.size.height + lTopDiff)];
@@ -259,9 +265,9 @@
 	if (lCurrentSelection.sType == ErrorMessage) return;
 	NSString *lMessageTarget = [NSString stringWithFormat:@"RT @%@ %@", lCurrentSelection.userId, [lCurrentSelection.statusMessage string]];
 	[fStatusUpdateField setStringValue:lMessageTarget];
-	[fCharacterCounter setIntValue:140 - [[fStatusUpdateField stringValue] length]];
 	[fMainWindow makeFirstResponder:fStatusUpdateField];
 	[(NSText *)[fMainWindow firstResponder] setSelectedRange:NSMakeRange([[fStatusUpdateField stringValue] length], 0)];
+	[fCharacterCounter setIntValue:140 - [[fStatusUpdateField stringValue] length]];
 }
 
 - (IBAction)markAllAsRead:(id)sender {

@@ -191,6 +191,7 @@
 - (void)initTransaction {
 	fRequestDetails = [[NSMutableDictionary alloc] init];
 	fIgnoreList = [[NSMutableDictionary alloc] init];
+	fFavRecord = [[NSMutableDictionary alloc] init];
 	[fImageMan initResource];
 	fBoxesToNotify = [[NSMutableArray alloc] init];
 	fBoxesToAdd = [[NSMutableArray alloc] init];
@@ -202,6 +203,7 @@
 - (void)deallocTransaction {
 	if (fRequestDetails) [fRequestDetails release];
 	if (fIgnoreList) [fIgnoreList release];
+	if (fFavRecord) [fFavRecord release];
 	[fImageMan clearResource];
 	if (fBoxesToNotify) [fBoxesToNotify release];
 	if (fBoxesToAdd) [fBoxesToAdd release];
@@ -280,7 +282,10 @@
 {
 	NSString *lReqType = [fRequestDetails objectForKey:requestIdentifier];
 	if (lReqType == @"FAV") {
+		PTStatusBox *lBoxToFav = [fFavRecord objectForKey:requestIdentifier];
+		lBoxToFav.entityColor = [NSColor colorWithCalibratedRed:1.0 green:0.6 blue:0.0 alpha:0.7];
 		[fRequestDetails removeObjectForKey:lReqType];
+		[fFavRecord removeObjectForKey:requestIdentifier];
 	} else if (lReqType == @"MESSAGE") {
 		[self postComplete];
 	}
@@ -496,9 +501,11 @@
 
 - (void)favStatus:(PTStatusBox *)aBox {
 	[self startingTransaction];
+	NSString *lReqStr = [fTwitterEngine markUpdate:aBox.updateId 
+										asFavorite:YES];
 	[fRequestDetails setObject:@"FAV" 
-						forKey:[fTwitterEngine markUpdate:aBox.updateId 
-											   asFavorite:YES]];
+						forKey:lReqStr];
+	[fFavRecord setObject:aBox forKey:lReqStr];
 }
 
 - (NSString *)pathForDataFile
@@ -535,6 +542,14 @@
 	lRootObj = [NSMutableDictionary dictionary];
 	[lRootObj setValue:lUnreadDict forKey:@"unreads"];
 	[NSKeyedArchiver archiveRootObject:lRootObj toFile:lPath];
+}
+
+- (void)setCurrentBottomFrame:(NSRect)aRect {
+	fCurrentTarget = aRect;
+}
+
+- (NSRect)currentBottomFrame {
+	return fCurrentTarget;
 }
 
 @synthesize fMenuItem;

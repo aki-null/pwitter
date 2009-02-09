@@ -37,6 +37,7 @@
     IBOutlet id fReplyToBox;
     IBOutlet id fFavButton;
     IBOutlet id fCharacterCounter;
+    IBOutlet id fReplyInfoView;
 	BOOL fSearchBoxIsOpen;
 	BOOL fReplyViewIsOpen;
 	BOOL fShouldExit;
