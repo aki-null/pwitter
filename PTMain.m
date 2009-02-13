@@ -459,7 +459,7 @@
 - (void)makePost:(NSString *)aMessage {
 	[self startingTransaction];
 	NSArray *lSeparated = [aMessage componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-	if ([lSeparated count] >= 2 && [[lSeparated objectAtIndex:0] isEqual:@"d"]) {
+	if ([lSeparated count] >= 2 && [[lSeparated objectAtIndex:0] isEqual:@"D"]) {
 		NSString *lMessageTarget;
 		NSString *lMessageToSend;
 		lMessageTarget = [lSeparated objectAtIndex:1];

@@ -58,11 +58,14 @@
 - (IBAction)markAllAsRead:(id)sender;
 - (IBAction)openSelectedLink:(id)sender;
 - (IBAction)openSelectedUser:(id)sender;
+- (IBAction)openPwitterHome:(id)sender;
 - (void)startAuthentication;
 - (void)updateSelectedMessage:(PTStatusBox *)aBox;
 - (void)updateViewSizes:(float)aHeightReq withAnim:(BOOL)aAnim;
 - (void)setCollectionViewPrototype:(BOOL)aIsMini;
 - (void)openReplyView;
 - (void)closeReplyView;
+- (void)replyToStatus:(PTStatusBox *)aBox;
+- (void)messageToStatus:(PTStatusBox *)aBox;
 
 @end

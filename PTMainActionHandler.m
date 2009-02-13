@@ -98,13 +98,19 @@
 	[NSApp endSheet:fAuthPanel];
 }
 
-- (IBAction)messageToSelected:(id)sender {
-	PTStatusBox *lCurrentSelection = [[fStatusController selectedObjects] lastObject];
-	NSString *lMessageTarget = [NSString stringWithFormat:@"d %@ %@", lCurrentSelection.userId, [fStatusUpdateField stringValue]];
+- (void)messageToStatus:(PTStatusBox *)aBox {
+	NSString *lMessageTarget = [NSString stringWithFormat:@"D %@ %@", aBox.userId, [fStatusUpdateField stringValue]];
 	[fStatusUpdateField setStringValue:lMessageTarget];
 	[fMainWindow makeFirstResponder:fStatusUpdateField];
 	[(NSText *)[fMainWindow firstResponder] setSelectedRange:NSMakeRange([[fStatusUpdateField stringValue] length], 0)];
 	[fCharacterCounter setIntValue:140 - [[fStatusUpdateField stringValue] length]];
+}
+
+- (IBAction)messageToSelected:(id)sender {
+	PTStatusBox *lCurrentSelection = [[fStatusController selectedObjects] lastObject];
+	if (lCurrentSelection.sType != ErrorMessage) {
+		[self messageToStatus:lCurrentSelection];
+	}
 }
 
 - (IBAction)openHome:(id)sender {
@@ -147,17 +153,22 @@
 	}
 }
 
+- (void)replyToStatus:(PTStatusBox *)aBox {
+	NSString *replyTarget = [NSString stringWithFormat:@"@%@ %@", aBox.userId, [fStatusUpdateField stringValue]];
+	[fStatusUpdateField setStringValue:replyTarget];
+	[fCharacterCounter setIntValue:140 - [[fStatusUpdateField stringValue] length]];
+	[fMainController setReplyID:aBox.updateId];
+	[fReplyToBox setStringValue:[@"@" stringByAppendingString:aBox.userId]];
+	[fMainWindow makeFirstResponder:fStatusUpdateField];
+	[(NSText *)[fMainWindow firstResponder] setSelectedRange:NSMakeRange([[fStatusUpdateField stringValue] length], 0)];
+	[self openReplyView];
+}
+
 - (IBAction)replyToSelected:(id)sender {
 	PTStatusBox *lCurrentSelection = [[fStatusController selectedObjects] lastObject];
+	if (!lCurrentSelection) return;
 	if (lCurrentSelection.sType == NormalMessage || lCurrentSelection.sType == ReplyMessage || lCurrentSelection.sType == DirectMessage) {
-		NSString *replyTarget = [NSString stringWithFormat:@"@%@ %@", lCurrentSelection.userId, [fStatusUpdateField stringValue]];
-		[fStatusUpdateField setStringValue:replyTarget];
-		[fCharacterCounter setIntValue:140 - [[fStatusUpdateField stringValue] length]];
-		[fMainController setReplyID:lCurrentSelection.updateId];
-		[fReplyToBox setStringValue:[@"@" stringByAppendingString:lCurrentSelection.userId]];
-		[fMainWindow makeFirstResponder:fStatusUpdateField];
-		[(NSText *)[fMainWindow firstResponder] setSelectedRange:NSMakeRange([[fStatusUpdateField stringValue] length], 0)];
-		[self openReplyView];
+		[self replyToStatus:lCurrentSelection];
 	}
 }
 
@@ -288,6 +299,10 @@
 - (IBAction)openSelectedUser:(id)sender {
     PTStatusBox *lCurrentSelection = [[fStatusController selectedObjects] lastObject];
 	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[@"https://twitter.com/" stringByAppendingString:lCurrentSelection.userId]]];
+}
+
+- (IBAction)openPwitterHome:(id)sender {
+	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://wiki.github.com/koroshiya1/pwitter"]];
 }
 
 @end

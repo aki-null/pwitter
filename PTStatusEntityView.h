@@ -23,6 +23,7 @@
 - (void)openUserWeb:(id)sender;
 - (void)openReply:(id)sender;
 - (void)openLink:(id)sender;
+- (void)sendReply:(id)sender;
 - (void)openContextMenu:(NSEvent *)aEvent;
 
 @end

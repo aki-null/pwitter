@@ -6,12 +6,12 @@
 		<description>Most recent changes with links to updates.</description>
 		<language>en</language>
 		<item>
-			<title>version 0.8.1 (0 bug fix; 1 new feature; 5 improvements)</title>
+			<title>version 0.8.2 (0 bug fix; 1 new feature; 2 improvements)</title>
 			<sparkle:releaseNotesLink>
 				http://github.com/koroshiya1/pwitter/raw/master/SparkleData/release_note.txt
 			</sparkle:releaseNotesLink>
-			<pubDate>Monday, 09 February 2009 10:22:35 +0000</pubDate>
-			<enclosure url="http://github.com/koroshiya1/pwitter/raw/master/DistributableApplication/Pwitter_0.8.1.zip" sparkle:version="0.8.1" length="1373639" type="application/octet-stream" sparkle:dsaSignature="MC4CFQC+47yLj3c122hsvMofYSGuxzW27wIVAMhmtxHXhg6Si2xU6HYiSQF/1oTv" />
+			<pubDate>Friday, 13 February 2009 12:28:44 +0000</pubDate>
+			<enclosure url="http://github.com/koroshiya1/pwitter/raw/master/DistributableApplication/Pwitter_0.8.2.zip" sparkle:version="0.8.2" length="1374988" type="application/octet-stream" sparkle:dsaSignature="MCwCFFmad+PAVHO0JvA57yPQ6UmpP3XnAhRhVIeBiV+hzOM1dYsivfiQ5hy4/g==" />
 		</item>
 	</channel>
 </rss>

@@ -30,7 +30,7 @@
 	[fStatusItem release];
 	[fImage release];
 	[fAlternateImage release];
-	[fMainMenu release];	
+	[fMainMenu release];
 	[super dealloc];
 }
 

@@ -17,6 +17,7 @@
 	[super mouseDown:aEvent];
 	// send a message to the owner of the status view to select this entity
 	[(PTStatusEntityView *)[self superview] forceSelect:YES];
+	[(PTStatusEntityView *)[self superview] sendReply:self];
 }
 
 - (void)rightMouseDown:(NSEvent *)aEvent {
