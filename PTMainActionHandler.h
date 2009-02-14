@@ -41,6 +41,7 @@
 	BOOL fSearchBoxIsOpen;
 	BOOL fReplyViewIsOpen;
 	BOOL fShouldExit;
+	BOOL fNoAnim;
 }
 - (IBAction)closeAuthSheet:(id)sender;
 - (IBAction)quitApp:(id)sender;
@@ -63,9 +64,10 @@
 - (void)updateSelectedMessage:(PTStatusBox *)aBox;
 - (void)updateViewSizes:(float)aHeightReq withAnim:(BOOL)aAnim;
 - (void)setCollectionViewPrototype:(BOOL)aIsMini;
-- (void)openReplyView;
+- (void)openReplyView:(BOOL)aAnimate;
 - (void)closeReplyView;
-- (void)replyToStatus:(PTStatusBox *)aBox;
+- (void)replyToStatus:(PTStatusBox *)aBox shouldAnimate:(BOOL)aAnimate;
 - (void)messageToStatus:(PTStatusBox *)aBox;
+- (void)disableAnimation;
 
 @end

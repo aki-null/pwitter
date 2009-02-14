@@ -27,14 +27,14 @@
 - (void)openInBrowser:(id)sender {
 	PTStatusBox *lBox = [fColItem representedObject];
 	if (lBox.updateId != 0) {
-		NSString *lUrlString = [NSString stringWithFormat:@"https://twitter.com/%@/status/%d", lBox.userId, lBox.updateId];
+		NSString *lUrlString = [NSString stringWithFormat:@"http://twitter.com/%@/status/%d", lBox.userId, lBox.updateId];
 		[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:lUrlString]];
 	}
 }
 
 - (void)openUserPage:(id)sender {
 	PTStatusBox *lBox = [fColItem representedObject];
-	NSString *lUrlString = [NSString stringWithFormat:@"https://twitter.com/%@", lBox.userId];
+	NSString *lUrlString = [NSString stringWithFormat:@"http://twitter.com/%@", lBox.userId];
 	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:lUrlString]];
 }
 
@@ -45,7 +45,7 @@
 
 - (void)openReply:(id)sender {
 	PTStatusBox *lBox = [fColItem representedObject];
-	NSString *lUrlString = [NSString stringWithFormat:@"https://twitter.com/%@/status/%d", lBox.replyUserId, lBox.replyId];
+	NSString *lUrlString = [NSString stringWithFormat:@"http://twitter.com/%@/status/%d", lBox.replyUserId, lBox.replyId];
 	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:lUrlString]];
 }
 
@@ -65,6 +65,7 @@
 }
 
 - (void)openContextMenu:(NSEvent *)aEvent {
+	[(PTCollectionView *)[self superview] disableAnimation];
 	PTStatusBox *lBox = [fColItem representedObject];
 	NSMenu *lMenu = [[[NSMenu alloc] initWithTitle:@"Contextual Menu"] autorelease];
 	[lMenu insertItemWithTitle:@"Send Reply" action:@selector(sendReply:) keyEquivalent:@"r" atIndex:0];

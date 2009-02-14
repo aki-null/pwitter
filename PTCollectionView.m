@@ -13,11 +13,16 @@
 @implementation PTCollectionView
 
 - (void)sendReplyForStatus:(PTStatusBox *)aBox {
-	[fMainActionHandler replyToStatus:aBox];
+	[fMainActionHandler disableAnimation];
+	[fMainActionHandler replyToStatus:aBox shouldAnimate:NO];
 }
 
 - (void)sendMessageForStatus:(PTStatusBox *)aBox {
 	[fMainActionHandler messageToStatus:aBox];
+}
+
+- (void)disableAnimation {
+	[fMainActionHandler disableAnimation];
 }
 
 @end

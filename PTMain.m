@@ -457,6 +457,7 @@
 }
 
 - (void)makePost:(NSString *)aMessage {
+	if ([aMessage length] == 0) return;
 	[self startingTransaction];
 	NSArray *lSeparated = [aMessage componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 	if ([lSeparated count] >= 2 && [[lSeparated objectAtIndex:0] isEqual:@"D"]) {
@@ -492,7 +493,7 @@
 - (void)openTwitterWeb {
 	PTStatusBox *lCurrentSelection = [[fStatusController selectedObjects] lastObject];
 	if (lCurrentSelection && lCurrentSelection.sType != ErrorMessage)
-		[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://twitter.com/%@", lCurrentSelection.userId]]];
+		[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://twitter.com/%@", lCurrentSelection.userId]]];
 }
 
 - (void)setReplyID:(int)aId {

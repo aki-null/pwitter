@@ -114,7 +114,7 @@
 }
 
 - (IBAction)openHome:(id)sender {
-	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"https://twitter.com/home"]];
+	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://twitter.com/home"]];
 }
 
 - (IBAction)openWebSelected:(id)sender {
@@ -122,18 +122,23 @@
 	[[NSWorkspace sharedWorkspace] openURL:lCurrentSelection.userHome];
 }
 
-- (void)openReplyView {
+- (void)openReplyView:(BOOL)aAnimate {
 	if (!fReplyViewIsOpen) {
 		fReplyViewIsOpen = YES;
 		NSRect lReplyFrame = [fPostView frame];
 		NSRect lBottomFrame = [fBottomView frame];
 		NSRect lInfoFrame = [fReplyInfoView frame];
 		[fReplyInfoView setFrame:NSMakeRect(0, lReplyFrame.size.height, lInfoFrame.size.width, lInfoFrame.size.height)];
-		[NSAnimationContext beginGrouping];
-		[[NSAnimationContext currentContext] setDuration:0.1f];
-		[[fPostView animator] setFrame:NSMakeRect(lReplyFrame.origin.x, lReplyFrame.origin.y, lReplyFrame.size.width, lReplyFrame.size.height + 23)];
-		[[fBottomView animator] setFrame:NSMakeRect(0, lBottomFrame.origin.y + 23, lBottomFrame.size.width, lBottomFrame.size.height - 23)];
-		[NSAnimationContext endGrouping];
+		if (aAnimate) {
+			[NSAnimationContext beginGrouping];
+			[[NSAnimationContext currentContext] setDuration:0.1f];
+			[[fPostView animator] setFrame:NSMakeRect(lReplyFrame.origin.x, lReplyFrame.origin.y, lReplyFrame.size.width, lReplyFrame.size.height + 23)];
+			[[fBottomView animator] setFrame:NSMakeRect(0, lBottomFrame.origin.y + 23, lBottomFrame.size.width, lBottomFrame.size.height - 23)];
+			[NSAnimationContext endGrouping];
+		} else {
+			[fPostView setFrame:NSMakeRect(lReplyFrame.origin.x, lReplyFrame.origin.y, lReplyFrame.size.width, lReplyFrame.size.height + 23)];
+			[fBottomView setFrame:NSMakeRect(0, lBottomFrame.origin.y + 23, lBottomFrame.size.width, lBottomFrame.size.height - 23)];
+		}
 	}
 }
 
@@ -153,7 +158,7 @@
 	}
 }
 
-- (void)replyToStatus:(PTStatusBox *)aBox {
+- (void)replyToStatus:(PTStatusBox *)aBox shouldAnimate:(BOOL)aAnimate {
 	NSString *replyTarget = [NSString stringWithFormat:@"@%@ %@", aBox.userId, [fStatusUpdateField stringValue]];
 	[fStatusUpdateField setStringValue:replyTarget];
 	[fCharacterCounter setIntValue:140 - [[fStatusUpdateField stringValue] length]];
@@ -161,14 +166,14 @@
 	[fReplyToBox setStringValue:[@"@" stringByAppendingString:aBox.userId]];
 	[fMainWindow makeFirstResponder:fStatusUpdateField];
 	[(NSText *)[fMainWindow firstResponder] setSelectedRange:NSMakeRange([[fStatusUpdateField stringValue] length], 0)];
-	[self openReplyView];
+	[self openReplyView:aAnimate];
 }
 
 - (IBAction)replyToSelected:(id)sender {
 	PTStatusBox *lCurrentSelection = [[fStatusController selectedObjects] lastObject];
 	if (!lCurrentSelection) return;
 	if (lCurrentSelection.sType == NormalMessage || lCurrentSelection.sType == ReplyMessage || lCurrentSelection.sType == DirectMessage) {
-		[self replyToStatus:lCurrentSelection];
+		[self replyToStatus:lCurrentSelection shouldAnimate:YES];
 	}
 }
 
@@ -260,7 +265,13 @@
 	[lTempTextView sizeToFit];
 	float lHeightReq = [lTempTextView frame].size.height + 3;
 	[lTempTextView release];
-	[self updateViewSizes:lHeightReq withAnim:YES];
+	[self updateViewSizes:lHeightReq withAnim:!fNoAnim];
+	fNoAnim = NO;
+}
+
+- (void)disableAnimation {
+	if (!fReplyViewIsOpen)
+		fNoAnim = YES;
 }
 
 - (IBAction)closeReplyViewFromButton:(id)sender {
@@ -298,7 +309,7 @@
 
 - (IBAction)openSelectedUser:(id)sender {
     PTStatusBox *lCurrentSelection = [[fStatusController selectedObjects] lastObject];
-	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[@"https://twitter.com/" stringByAppendingString:lCurrentSelection.userId]]];
+	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[@"http://twitter.com/" stringByAppendingString:lCurrentSelection.userId]]];
 }
 
 - (IBAction)openPwitterHome:(id)sender {

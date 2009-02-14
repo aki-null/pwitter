@@ -60,7 +60,7 @@
 		if ([lCurrentString length] > 0 && [lCurrentString characterAtIndex:0] == '@') {
 			lReplyCount++;
 			NSString *lReplyTarget = [lCurrentString substringFromIndex:1];
-			NSURL *lUrl = [NSURL URLWithString:[NSString stringWithFormat:@"https://twitter.com/%@", lReplyTarget]];
+			NSURL *lUrl = [NSURL URLWithString:[NSString stringWithFormat:@"http://twitter.com/%@", lReplyTarget]];
 			NSDictionary *lLinkAttributes = [NSDictionary dictionaryWithObjectsAndKeys:lUrl, NSLinkAttributeName,
 											 [NSNumber numberWithInt:NSSingleUnderlineStyle], NSUnderlineStyleAttributeName,
 											 [NSColor cyanColor], NSForegroundColorAttributeName,
@@ -90,7 +90,7 @@
 	NSString *lTempUserLabel = [NSString stringWithFormat:@"%@ / %@", aScreenName, aName];
 	NSMutableAttributedString *lUserLabel = [[NSMutableAttributedString alloc] initWithString:lTempUserLabel];
 	[lUserLabel beginEditing];
-	NSURL *lUrl = [NSURL URLWithString:[NSString stringWithFormat:@"https://twitter.com/%@", aScreenName]];
+	NSURL *lUrl = [NSURL URLWithString:[NSString stringWithFormat:@"http://twitter.com/%@", aScreenName]];
 	NSDictionary *lLinkAttributes = [NSDictionary dictionaryWithObjectsAndKeys:lUrl, NSLinkAttributeName,
 									 [NSNumber numberWithInt:NSSingleUnderlineStyle], NSUnderlineStyleAttributeName,
 									 [NSColor whiteColor], NSForegroundColorAttributeName,
@@ -112,7 +112,30 @@
 }
 
 + (NSMutableAttributedString *)createErrorMessage:(NSError *)aError {
-	NSString *lErrorMessage = [aError localizedDescription];
+	NSString *lErrorMessage;
+	switch ([aError code]) {
+		case 400:
+			lErrorMessage = @"You have exceeded your rate limit.";
+			break;
+		case 401:
+			lErrorMessage = @"Either you need to provide authentication credentials, or the credentials provided aren't valid.";
+			break;
+		case 404:
+			lErrorMessage = @"Invalid resource requested.";
+			break;
+		case 500:
+			lErrorMessage = @"Twitter server error.";
+			break;
+		case 502:
+			lErrorMessage = @"Twitter servers are down or being upgraded";
+			break;
+		case 503:
+			lErrorMessage = @"Twitter servers are up, but are overloaded with requests.";
+			break;
+		default:
+			lErrorMessage = [aError localizedDescription];
+			break;
+	}
 	if (!lErrorMessage) lErrorMessage = @"unknown error";
 	NSMutableAttributedString *lFinalString = [[NSMutableAttributedString alloc] initWithString:lErrorMessage];
 	[lFinalString beginEditing];
