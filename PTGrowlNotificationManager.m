@@ -56,26 +56,26 @@
 }
 
 - (NSArray *)filterNotifications:(NSArray *)aBoxes {
-	if ([[PTPreferenceManager getInstance] disableGrowl])
+	if ([[PTPreferenceManager sharedInstance] disableGrowl])
 		return nil;
 	PTStatusBox *lCurrentBox;
 	NSMutableArray *lFilteredBoxes = [[NSMutableArray alloc] init];
 	for (lCurrentBox in aBoxes) {
 		switch (lCurrentBox.sType) {
 			case DirectMessage:
-				if (![[PTPreferenceManager getInstance] disableMessageNotification])
+				if (![[PTPreferenceManager sharedInstance] disableMessageNotification])
 					[lFilteredBoxes addObject:lCurrentBox];
 				break;
 			case ReplyMessage:
-				if (![[PTPreferenceManager getInstance] disableReplyNotification])
+				if (![[PTPreferenceManager sharedInstance] disableReplyNotification])
 					[lFilteredBoxes addObject:lCurrentBox];
 				break;
 			case NormalMessage:
-				if (![[PTPreferenceManager getInstance] disableStatusNotification])
+				if (![[PTPreferenceManager sharedInstance] disableStatusNotification])
 					[lFilteredBoxes addObject:lCurrentBox];
 				break;
 			case ErrorMessage:
-				if (![[PTPreferenceManager getInstance] disableErrorNotification])
+				if (![[PTPreferenceManager sharedInstance] disableErrorNotification])
 					[lFilteredBoxes addObject:lCurrentBox];
 				break;
 			default:

@@ -35,7 +35,9 @@
 	[fStatusController setSortDescriptors:[NSArray arrayWithObject:sortDesc]];
 	[sortDesc release];
 	[fPreferenceWindow loadPreferences];
-	[self setCollectionViewPrototype:[[PTPreferenceManager getInstance] useMiniView]];
+	[self setCollectionViewPrototype:[[PTPreferenceManager sharedInstance] useMiniView]];
+	if ([[PTPreferenceManager sharedInstance] disableTopView])
+		[self disableTopView];
 }
 
 - (void)setCollectionViewPrototype:(BOOL)aIsMini {
@@ -61,7 +63,7 @@
 }
 
 - (void)startAuthentication {
-	if ([[PTPreferenceManager getInstance] autoLogin]) {
+	if ([[PTPreferenceManager sharedInstance] autoLogin]) {
 		[fMainController setUpTwitterEngine];
 		return;
 	}
@@ -70,8 +72,8 @@
 		modalDelegate:self
 	   didEndSelector:@selector(didEndSheet:returnCode:contextInfo:)
 		  contextInfo:nil];
-	NSString *lTempName = [[PTPreferenceManager getInstance] userName];
-	NSString *lTempPass = [[PTPreferenceManager getInstance] password];
+	NSString *lTempName = [[PTPreferenceManager sharedInstance] userName];
+	NSString *lTempPass = [[PTPreferenceManager sharedInstance] password];
 	if (lTempName)
 		[fAuthUserName setStringValue:lTempName];
 	if (lTempPass)
@@ -81,14 +83,14 @@
 - (void)didEndSheet:(NSWindow *)aSheet returnCode:(int)aReturnCode contextInfo:(void *)aContextInfo
 {
 	[aSheet orderOut:self];
-	[self setCollectionViewPrototype:[[PTPreferenceManager getInstance] useMiniView]];
+	[self setCollectionViewPrototype:[[PTPreferenceManager sharedInstance] useMiniView]];
 	if (fShouldExit) [NSApp terminate:self];
 	if (aSheet == fAuthPanel) [fMainController setUpTwitterEngine];
 }
 
 - (IBAction)closeAuthSheet:(id)sender
 {
-	[[PTPreferenceManager getInstance] setUserName:[fAuthUserName stringValue] 
+	[[PTPreferenceManager sharedInstance] setUserName:[fAuthUserName stringValue] 
 										  password:[fAuthPassword stringValue]];
     [NSApp endSheet:fAuthPanel];
 }
@@ -239,7 +241,8 @@
 
 - (void)updateSelectedMessage:(PTStatusBox *)aBox {
 	if (!aBox) {
-		[self updateViewSizes:0 withAnim:YES];
+		if (![[PTPreferenceManager sharedInstance] disableTopView])
+			[self updateViewSizes:0 withAnim:YES];
 		[fWebButton setEnabled:NO];
 		[fReplyButton setEnabled:NO];
 		[fMessageButton setEnabled:NO];
@@ -258,14 +261,16 @@
 		[fMessageButton setEnabled:YES];
 	}
 	[fFavButton setEnabled:aBox.sType == NormalMessage || aBox.sType == ReplyMessage];
-	NSRect lFrame = NSMakeRect(0, 0, [fSelectedTextView frame].size.width, MAXFLOAT);
-	NSTextView *lTempTextView = [[NSTextView alloc] initWithFrame:lFrame];
-	[[lTempTextView textStorage] setAttributedString:aBox.statusMessage];
-	[lTempTextView setHorizontallyResizable:NO];
-	[lTempTextView sizeToFit];
-	float lHeightReq = [lTempTextView frame].size.height + 3;
-	[lTempTextView release];
-	[self updateViewSizes:lHeightReq withAnim:!fNoAnim];
+	if (![[PTPreferenceManager sharedInstance] disableTopView]) {
+		NSRect lFrame = NSMakeRect(0, 0, [fSelectedTextView frame].size.width, MAXFLOAT);
+		NSTextView *lTempTextView = [[NSTextView alloc] initWithFrame:lFrame];
+		[[lTempTextView textStorage] setAttributedString:aBox.statusMessage];
+		[lTempTextView setHorizontallyResizable:NO];
+		[lTempTextView sizeToFit];
+		float lHeightReq = [lTempTextView frame].size.height + 3;
+		[lTempTextView release];
+		[self updateViewSizes:lHeightReq withAnim:!fNoAnim];
+	}
 	fNoAnim = NO;
 }
 
@@ -314,6 +319,35 @@
 
 - (IBAction)openPwitterHome:(id)sender {
 	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://wiki.github.com/koroshiya1/pwitter"]];
+}
+
+- (void)disableTopView {
+	NSRect lTopFrame = [fTopView frame];
+	NSRect lBottomFrame = [fBottomView frame];
+	[fBottomView setFrame:NSMakeRect(0, lBottomFrame.origin.y, lBottomFrame.size.width, lBottomFrame.size.height + lTopFrame.size.height - 7)];
+	int lHeightDif = [fSelectedStatusView frame].size.height - 51;
+	[fTopView setFrame:NSMakeRect(0, lTopFrame.origin.y + lHeightDif, [fTopView frame].size.width, 1)];
+}
+
+- (void)enableTopView {
+	NSRect lTopFrame = [fTopView frame];
+	NSRect lBottomFrame = [fBottomView frame];
+	[fTopView setFrame:NSMakeRect(0, lTopFrame.origin.y, [fTopView frame].size.width, 84)];
+	[fBottomView setFrame:NSMakeRect(0, lBottomFrame.origin.y, lBottomFrame.size.width, lBottomFrame.size.height - 77)];
+	PTStatusBox *lBox = [[fStatusController selectedObjects] lastObject];
+	NSRect lSelectedView = [fSelectedStatusView frame];
+	lSelectedView.size.height = 51;
+	[fSelectedStatusView setFrame:lSelectedView];
+	if (lBox) {
+		NSRect lFrame = NSMakeRect(0, 0, [fSelectedTextView frame].size.width, MAXFLOAT);
+		NSTextView *lTempTextView = [[NSTextView alloc] initWithFrame:lFrame];
+		[[lTempTextView textStorage] setAttributedString:lBox.statusMessage];
+		[lTempTextView setHorizontallyResizable:NO];
+		[lTempTextView sizeToFit];
+		float lHeightReq = [lTempTextView frame].size.height + 3;
+		[lTempTextView release];
+		[self updateViewSizes:lHeightReq withAnim:NO];
+	}
 }
 
 @end

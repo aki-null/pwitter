@@ -12,7 +12,7 @@
 
 @implementation PTPreferenceManager
 
-+ (PTPreferenceManager *)getInstance
++ (PTPreferenceManager *)sharedInstance
 {
 	static PTPreferenceManager *instance;
 	
@@ -201,6 +201,14 @@
 
 - (BOOL)useTwelveHour {
 	return [fPrefData boolForKey:@"use_twelve_hour"];
+}
+
+- (void)setDisableTopView:(BOOL)aFlag {
+	[fPrefData setBool:aFlag forKey:@"disable_top_view"];
+}
+
+- (BOOL)disableTopView {
+	return [fPrefData boolForKey:@"disable_top_view"];
 }
 
 - (void)setHideDockIcon:(BOOL)aFlag {

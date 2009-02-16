@@ -25,7 +25,7 @@
 	}
 	// determine the timer delay
 	int lIntervalTime;
-	switch ([[PTPreferenceManager getInstance] timeInterval]) {
+	switch ([[PTPreferenceManager sharedInstance] timeInterval]) {
 		case 1:
 			lIntervalTime = 300;
 			break;
@@ -55,7 +55,7 @@
 	}
 	// determine the timer delay
 	int lIntervalTime;
-	switch ([[PTPreferenceManager getInstance] messageInterval]) {
+	switch ([[PTPreferenceManager sharedInstance] messageInterval]) {
 		case 1:
 			lIntervalTime = 900;
 			break;
@@ -75,7 +75,7 @@
 }
 
 - (void)playSoundEffect {
-	if (![[PTPreferenceManager getInstance] disableSoundNotification]) {
+	if (![[PTPreferenceManager sharedInstance] disableSoundNotification]) {
 		switch (fCurrentSoundStatus) {
 			case StatusReceived:
 				[[NSSound soundNamed:@"statusReceived"] play];
@@ -164,9 +164,9 @@
 						forKey:[fTwitterEngine getDirectMessagesSince:nil
 													   startingAtPage:0]];
 	[fRequestDetails setObject:@"INIT_UPDATE" 
-						forKey:[fTwitterEngine getFollowedTimelineFor:[[PTPreferenceManager getInstance] userName] 
+						forKey:[fTwitterEngine getFollowedTimelineFor:[[PTPreferenceManager sharedInstance] userName] 
 																since:nil startingAtPage:0 count:100]];
-	if ([[PTPreferenceManager getInstance] receiveFromNonFollowers]) {
+	if ([[PTPreferenceManager sharedInstance] receiveFromNonFollowers]) {
 		[fRequestDetails setObject:@"INIT_REPLY_UPDATE" 
 							forKey:[fTwitterEngine getRepliesStartingAtPage:1]];
 		[fRequestDetails setObject:@"INIT_REPLY_UPDATE" 
@@ -180,8 +180,8 @@
 						  version:[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"]
 							  URL:@"http://github.com/koroshiya1/pwitter/wikis/home" 
 							token:@"pwitter"];
-	[fTwitterEngine setUsername:[[PTPreferenceManager getInstance] userName] 
-					   password:[[PTPreferenceManager getInstance] password]];
+	[fTwitterEngine setUsername:[[PTPreferenceManager sharedInstance] userName] 
+					   password:[[PTPreferenceManager sharedInstance] password]];
 	[self loadUnread];
 	[self runInitialUpdates];
 	[self setupUpdateTimer];
@@ -216,8 +216,8 @@
 	[self saveUnread];
 	[[fStatusController content] removeAllObjects];
 	[fStatusController rearrangeObjects];
-	[fTwitterEngine setUsername:[[PTPreferenceManager getInstance] userName] 
-					   password:[[PTPreferenceManager getInstance] password]];
+	[fTwitterEngine setUsername:[[PTPreferenceManager sharedInstance] userName] 
+					   password:[[PTPreferenceManager sharedInstance] password]];
 	[self setupUpdateTimer];
 	[self setupMessageUpdateTimer];
 	[fTwitterEngine closeAllConnections];
@@ -247,10 +247,10 @@
 	[fMenuItem setImage:[NSImage imageNamed:@"menu_icon_off"]];
 	[fMenuItem setMenu:fIconMenu];
 	[fMenuItem setMainController:self];
-	[fMenuItem setSwapped:[[PTPreferenceManager getInstance] swapMenuItemBehavior]];
+	[fMenuItem setSwapped:[[PTPreferenceManager sharedInstance] swapMenuItemBehavior]];
 	fImageMan = [[PTImageManager alloc] init];
 	[self initTransaction];
-	if (![[PTPreferenceManager getInstance] disableSoundNotification])
+	if (![[PTPreferenceManager sharedInstance] disableSoundNotification])
 		[[NSSound soundNamed:@"startUp"] play];
 }
 
@@ -293,7 +293,7 @@
 
 - (void)requestFailed:(NSString *)aRequestIdentifier withError:(NSError *)aError
 {
-	BOOL lIgnoreError = [[PTPreferenceManager getInstance] ignoreErrors];
+	BOOL lIgnoreError = [[PTPreferenceManager sharedInstance] ignoreErrors];
 	NSString *lRequestType = [fRequestDetails objectForKey:aRequestIdentifier];
 	if (lRequestType == @"POST" || lRequestType == @"MESSAGE") {
 		[fStatusUpdateField setEnabled:YES];
@@ -330,7 +330,7 @@
 				if (lUpdateType == @"REPLY_UPDATE" || 
 					lUpdateType == @"INIT_REPLY_UPDATE" || 
 					lUpdateType == @"POST" ||
-					![[PTPreferenceManager getInstance] receiveFromNonFollowers]) {
+					![[PTPreferenceManager sharedInstance] receiveFromNonFollowers]) {
 					lDecision = 1;
 				}
 			} else lDecision = 2;
@@ -445,7 +445,7 @@
 		[fRequestDetails setObject:@"UPDATE" 
 							forKey:[fTwitterEngine getFollowedTimelineFor:[fTwitterEngine username] 
 																  sinceID:fLastUpdateID startingAtPage:0 count:100]];
-		if ([[PTPreferenceManager getInstance] receiveFromNonFollowers])
+		if ([[PTPreferenceManager sharedInstance] receiveFromNonFollowers])
 			[fRequestDetails setObject:@"REPLY_UPDATE" 
 								forKey:[fTwitterEngine getRepliesSinceID:fLastReplyID startingAtPage:0 count:20]];
 	}

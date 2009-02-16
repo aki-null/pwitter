@@ -8,6 +8,7 @@
 
 #import "PTCollectionView.h"
 #import "PTMainActionHandler.h"
+#import "PTMain.h"
 
 
 @implementation PTCollectionView
@@ -19,6 +20,10 @@
 
 - (void)sendMessageForStatus:(PTStatusBox *)aBox {
 	[fMainActionHandler messageToStatus:aBox];
+}
+
+- (void)addToFav:(PTStatusBox *)aBox {
+	[fMainController favStatus:aBox];
 }
 
 - (void)disableAnimation {

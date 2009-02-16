@@ -23,7 +23,7 @@
 }
 
 - (id)transformedValue:(id)aValue {
-	if (![[PTPreferenceManager getInstance] useTwelveHour]) {
+	if (![[PTPreferenceManager sharedInstance] useTwelveHour]) {
 		return [aValue descriptionWithCalendarFormat:@"%H:%M:%S" 
 											timeZone:[NSTimeZone systemTimeZone] 
 											  locale:nil];

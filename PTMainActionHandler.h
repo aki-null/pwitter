@@ -69,5 +69,7 @@
 - (void)replyToStatus:(PTStatusBox *)aBox shouldAnimate:(BOOL)aAnimate;
 - (void)messageToStatus:(PTStatusBox *)aBox;
 - (void)disableAnimation;
+- (void)disableTopView;
+- (void)enableTopView;
 
 @end

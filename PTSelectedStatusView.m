@@ -8,6 +8,7 @@
 
 #import "PTSelectedStatusView.h"
 #import "PTMainActionHandler.h"
+#import "PTPreferenceManager.h"
 
 
 @implementation PTSelectedStatusView
@@ -28,14 +29,16 @@
 
 - (void)windowResized:(NSNotification *)aNotification;
 {
-	NSRect lFrame = NSMakeRect(0, 0, [fSelectedTextView frame].size.width, MAXFLOAT);
-	NSTextView *lTempTextView = [[NSTextView alloc] initWithFrame:lFrame];
-	[[lTempTextView textStorage] setAttributedString:[fSelectedTextView textStorage]];
-	[lTempTextView setHorizontallyResizable:NO];
-	[lTempTextView sizeToFit];
-	float lHeightReq = [lTempTextView frame].size.height + 3;
-	[lTempTextView release];
-	[fActionHandler updateViewSizes:lHeightReq withAnim:NO];
+	if (![[PTPreferenceManager sharedInstance] disableTopView]) {
+		NSRect lFrame = NSMakeRect(0, 0, [fSelectedTextView frame].size.width, MAXFLOAT);
+		NSTextView *lTempTextView = [[NSTextView alloc] initWithFrame:lFrame];
+		[[lTempTextView textStorage] setAttributedString:[fSelectedTextView textStorage]];
+		[lTempTextView setHorizontallyResizable:NO];
+		[lTempTextView sizeToFit];
+		float lHeightReq = [lTempTextView frame].size.height + 3;
+		[lTempTextView release];
+		[fActionHandler updateViewSizes:lHeightReq withAnim:NO];
+	}
 }
 
 @end

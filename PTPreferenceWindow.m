@@ -17,36 +17,37 @@
 @implementation PTPreferenceWindow
 
 - (void)loadPreferences {
-	NSString *lTempUserName = [[PTPreferenceManager getInstance] userName];
+	NSString *lTempUserName = [[PTPreferenceManager sharedInstance] userName];
 	if (lTempUserName == nil) lTempUserName = @"";
 	[fUserName setStringValue:lTempUserName];
-	[[PTPreferenceManager getInstance] alwaysOnTop] ? [fAlwaysOnTop setState:NSOnState] : [fAlwaysOnTop setState:NSOffState];
-	[fTimeInterval selectItemAtIndex:[[PTPreferenceManager getInstance] timeInterval] - 1];
-	[fMessageUpdateInterval selectItemAtIndex:[[PTPreferenceManager getInstance] messageInterval] - 1];
-	[fBehaviorAfterUpdate selectItemAtIndex:[[PTPreferenceManager getInstance] statusUpdateBehavior] - 1];
-	if ([[PTPreferenceManager getInstance] statusUpdateBehavior] == 1) {
+	[[PTPreferenceManager sharedInstance] alwaysOnTop] ? [fAlwaysOnTop setState:NSOnState] : [fAlwaysOnTop setState:NSOffState];
+	[fTimeInterval selectItemAtIndex:[[PTPreferenceManager sharedInstance] timeInterval] - 1];
+	[fMessageUpdateInterval selectItemAtIndex:[[PTPreferenceManager sharedInstance] messageInterval] - 1];
+	[fBehaviorAfterUpdate selectItemAtIndex:[[PTPreferenceManager sharedInstance] statusUpdateBehavior] - 1];
+	if ([[PTPreferenceManager sharedInstance] statusUpdateBehavior] == 1) {
 		[fStatusController setSelectsInsertedObjects:YES];
 	} else {
 		[fStatusController setSelectsInsertedObjects:NO];
 	}
 	[fPassword setStringValue:@""];
-	[fMainWindow setFloatingPanel:[[PTPreferenceManager getInstance] alwaysOnTop]];
-	[[PTPreferenceManager getInstance] hideDockIcon] ? [fHideDockIcon setState:NSOnState] : [fHideDockIcon setState:NSOffState];
-	[[PTPreferenceManager getInstance] autoLogin] ? [fAutoLogin setState:NSOnState] : [fAutoLogin setState:NSOffState];
-	[[PTPreferenceManager getInstance] receiveFromNonFollowers] ? [fReceiveFromNonFollowers setState:NSOnState] : [fReceiveFromNonFollowers setState:NSOffState];
-	[[PTPreferenceManager getInstance] useMiniView] ? [fUseMiniView setState:NSOnState] : [fUseMiniView setState:NSOffState];
-	[[PTPreferenceManager getInstance] quickPost] ? [fActivateGlobalKey setState:NSOnState] : [fActivateGlobalKey setState:NSOffState];
-	[[PTPreferenceManager getInstance] ignoreErrors] ? [fIgnoreErrors setState:NSOnState] : [fIgnoreErrors setState:NSOffState];
-	[[PTPreferenceManager getInstance] swapMenuItemBehavior] ? [fSwapMenuItem setState:NSOnState] : [fSwapMenuItem setState:NSOffState];
-	[[PTPreferenceManager getInstance] useTwelveHour] ? [fUseTwelveHour setState:NSOnState] : [fUseTwelveHour setState:NSOffState];
+	[fMainWindow setFloatingPanel:[[PTPreferenceManager sharedInstance] alwaysOnTop]];
+	[[PTPreferenceManager sharedInstance] hideDockIcon] ? [fHideDockIcon setState:NSOnState] : [fHideDockIcon setState:NSOffState];
+	[[PTPreferenceManager sharedInstance] autoLogin] ? [fAutoLogin setState:NSOnState] : [fAutoLogin setState:NSOffState];
+	[[PTPreferenceManager sharedInstance] receiveFromNonFollowers] ? [fReceiveFromNonFollowers setState:NSOnState] : [fReceiveFromNonFollowers setState:NSOffState];
+	[[PTPreferenceManager sharedInstance] useMiniView] ? [fUseMiniView setState:NSOnState] : [fUseMiniView setState:NSOffState];
+	[[PTPreferenceManager sharedInstance] quickPost] ? [fActivateGlobalKey setState:NSOnState] : [fActivateGlobalKey setState:NSOffState];
+	[[PTPreferenceManager sharedInstance] ignoreErrors] ? [fIgnoreErrors setState:NSOnState] : [fIgnoreErrors setState:NSOffState];
+	[[PTPreferenceManager sharedInstance] swapMenuItemBehavior] ? [fSwapMenuItem setState:NSOnState] : [fSwapMenuItem setState:NSOffState];
+	[[PTPreferenceManager sharedInstance] useTwelveHour] ? [fUseTwelveHour setState:NSOnState] : [fUseTwelveHour setState:NSOffState];
+	[[PTPreferenceManager sharedInstance] disableTopView] ? [fHideTopView setState:NSOnState] : [fHideTopView setState:NSOffState];
 	// Notification preferences
-	[[PTPreferenceManager getInstance] disableGrowl] ? [fDisableGrowl setState:NSOnState] : [fDisableGrowl setState:NSOffState];
-	[[PTPreferenceManager getInstance] disableMessageNotification] ? [fDisableMessageNotification setState:NSOnState] : [fDisableMessageNotification setState:NSOffState];
-	[[PTPreferenceManager getInstance] disableReplyNotification] ? [fDisableReplyNotification setState:NSOnState] : [fDisableReplyNotification setState:NSOffState];
-	[[PTPreferenceManager getInstance] disableStatusNotification] ? [fDisableStatusNotification setState:NSOnState] : [fDisableStatusNotification setState:NSOffState];
-	[[PTPreferenceManager getInstance] disableErrorNotification] ? [fDisableErrorNotification setState:NSOnState] : [fDisableErrorNotification setState:NSOffState];
-	[[PTPreferenceManager getInstance] disableSoundNotification] ? [fDisableSoundNotification setState:NSOnState] : [fDisableSoundNotification setState:NSOffState];
-	if ([[PTPreferenceManager getInstance] disableGrowl]) {
+	[[PTPreferenceManager sharedInstance] disableGrowl] ? [fDisableGrowl setState:NSOnState] : [fDisableGrowl setState:NSOffState];
+	[[PTPreferenceManager sharedInstance] disableMessageNotification] ? [fDisableMessageNotification setState:NSOnState] : [fDisableMessageNotification setState:NSOffState];
+	[[PTPreferenceManager sharedInstance] disableReplyNotification] ? [fDisableReplyNotification setState:NSOnState] : [fDisableReplyNotification setState:NSOffState];
+	[[PTPreferenceManager sharedInstance] disableStatusNotification] ? [fDisableStatusNotification setState:NSOnState] : [fDisableStatusNotification setState:NSOffState];
+	[[PTPreferenceManager sharedInstance] disableErrorNotification] ? [fDisableErrorNotification setState:NSOnState] : [fDisableErrorNotification setState:NSOffState];
+	[[PTPreferenceManager sharedInstance] disableSoundNotification] ? [fDisableSoundNotification setState:NSOnState] : [fDisableSoundNotification setState:NSOffState];
+	if ([[PTPreferenceManager sharedInstance] disableGrowl]) {
 		[fDisableMessageNotification setEnabled:NO];
 		[fDisableStatusNotification setEnabled:NO];
 		[fDisableReplyNotification setEnabled:NO];
@@ -59,12 +60,12 @@
 		[fDisableReplyNotification setEnabled:NO];
 		[fDisableErrorNotification setEnabled:NO];
 	}
-	[[fMainController fMenuItem] setSwapped:[[PTPreferenceManager getInstance] swapMenuItemBehavior]];
+	[[fMainController fMenuItem] setSwapped:[[PTPreferenceManager sharedInstance] swapMenuItemBehavior]];
 	// load key combination
 	[self loadKeyCombo];
 	[self turnOffHotKey];
 	[fShortcutRecorder setEnabled:NO];
-	if ([[PTPreferenceManager getInstance] quickPost]) {
+	if ([[PTPreferenceManager sharedInstance] quickPost]) {
 		[fShortcutRecorder setEnabled:YES];
 		[self turnOnHotKey];
 	}
@@ -72,52 +73,60 @@
 
 - (IBAction)pressOK:(id)sender {
 	BOOL fShouldReset = NO;
-	[[PTPreferenceManager getInstance] setAlwaysOnTop:[fAlwaysOnTop state] == NSOnState];
-	[[PTPreferenceManager getInstance] setHideDockIcon:[fHideDockIcon state] == NSOnState];
-	[[PTPreferenceManager getInstance] setUseMiniView:[fUseMiniView state] == NSOnState];
-	[[PTPreferenceManager getInstance] setQuickPost:[fActivateGlobalKey state] == NSOnState];
-	[[PTPreferenceManager getInstance] setIgnoreErrors:[fIgnoreErrors state] == NSOnState];
-	[[PTPreferenceManager getInstance] setSwapMenuItemBehavior:[fSwapMenuItem state] == NSOnState];
-	fShouldReset = [[PTPreferenceManager getInstance] useTwelveHour] == ([fUseTwelveHour state] != NSOnState);
-	[[PTPreferenceManager getInstance] setUseTwelveHour:[fUseTwelveHour state] == NSOnState];
+	[[PTPreferenceManager sharedInstance] setAlwaysOnTop:[fAlwaysOnTop state] == NSOnState];
+	[[PTPreferenceManager sharedInstance] setHideDockIcon:[fHideDockIcon state] == NSOnState];
+	[[PTPreferenceManager sharedInstance] setUseMiniView:[fUseMiniView state] == NSOnState];
+	[[PTPreferenceManager sharedInstance] setQuickPost:[fActivateGlobalKey state] == NSOnState];
+	[[PTPreferenceManager sharedInstance] setIgnoreErrors:[fIgnoreErrors state] == NSOnState];
+	[[PTPreferenceManager sharedInstance] setSwapMenuItemBehavior:[fSwapMenuItem state] == NSOnState];
+	fShouldReset = [[PTPreferenceManager sharedInstance] useTwelveHour] == ([fUseTwelveHour state] != NSOnState);
+	[[PTPreferenceManager sharedInstance] setUseTwelveHour:[fUseTwelveHour state] == NSOnState];
+	if ([[PTPreferenceManager sharedInstance] disableTopView] == ([fHideTopView state] != NSOnState))
+	{
+		if ([[PTPreferenceManager sharedInstance] disableTopView])
+			[fMainActionHandler enableTopView];
+		else
+			[fMainActionHandler disableTopView];
+	}
+	[[PTPreferenceManager sharedInstance] setDisableTopView:[fHideTopView state] == NSOnState];
 	// Notification preferences
-	[[PTPreferenceManager getInstance] setDisableGrowl:[fDisableGrowl state] == NSOnState];
-	[[PTPreferenceManager getInstance] setDisableMessageNotification:[fDisableMessageNotification state] == NSOnState];
-	[[PTPreferenceManager getInstance] setDisableReplyNotification:[fDisableReplyNotification state] == NSOnState];
-	[[PTPreferenceManager getInstance] setDisableStatusNotification:[fDisableStatusNotification state] == NSOnState];
-	[[PTPreferenceManager getInstance] setDisableErrorNotification:[fDisableErrorNotification state] == NSOnState];
-	[[PTPreferenceManager getInstance] setDisableSoundNotification:[fDisableSoundNotification state] == NSOnState];
+	[[PTPreferenceManager sharedInstance] setDisableGrowl:[fDisableGrowl state] == NSOnState];
+	[[PTPreferenceManager sharedInstance] setDisableMessageNotification:[fDisableMessageNotification state] == NSOnState];
+	[[PTPreferenceManager sharedInstance] setDisableReplyNotification:[fDisableReplyNotification state] == NSOnState];
+	[[PTPreferenceManager sharedInstance] setDisableStatusNotification:[fDisableStatusNotification state] == NSOnState];
+	[[PTPreferenceManager sharedInstance] setDisableErrorNotification:[fDisableErrorNotification state] == NSOnState];
+	[[PTPreferenceManager sharedInstance] setDisableSoundNotification:[fDisableSoundNotification state] == NSOnState];
 	if ([fIgnoreErrors state] == NSOnState)
 		[fMainActionHandler clearErrors:sender];
 	BOOL lNonFollower = [fReceiveFromNonFollowers state] == NSOnState;
-	if ([[PTPreferenceManager getInstance] receiveFromNonFollowers] != lNonFollower) {
-		[[PTPreferenceManager getInstance] setReceiveFromNonFollowers:lNonFollower];
+	if ([[PTPreferenceManager sharedInstance] receiveFromNonFollowers] != lNonFollower) {
+		[[PTPreferenceManager sharedInstance] setReceiveFromNonFollowers:lNonFollower];
 		fShouldReset = YES;
 	}
-	[[PTPreferenceManager getInstance] setAutoLogin:[fAutoLogin state] == NSOnState];
-	if ([[PTPreferenceManager getInstance] timeInterval] != [fTimeInterval indexOfSelectedItem] + 1) {
-		[[PTPreferenceManager getInstance] setTimeInterval:[fTimeInterval indexOfSelectedItem] + 1];
+	[[PTPreferenceManager sharedInstance] setAutoLogin:[fAutoLogin state] == NSOnState];
+	if ([[PTPreferenceManager sharedInstance] timeInterval] != [fTimeInterval indexOfSelectedItem] + 1) {
+		[[PTPreferenceManager sharedInstance] setTimeInterval:[fTimeInterval indexOfSelectedItem] + 1];
 		[fMainController setupUpdateTimer];
 	}
-	if ([[PTPreferenceManager getInstance] messageInterval] != [fMessageUpdateInterval indexOfSelectedItem] + 1) {
-		[[PTPreferenceManager getInstance] setMessageInterval:[fMessageUpdateInterval indexOfSelectedItem] + 1];
+	if ([[PTPreferenceManager sharedInstance] messageInterval] != [fMessageUpdateInterval indexOfSelectedItem] + 1) {
+		[[PTPreferenceManager sharedInstance] setMessageInterval:[fMessageUpdateInterval indexOfSelectedItem] + 1];
 		[fMainController setupMessageUpdateTimer];
 	}
-	if ([[PTPreferenceManager getInstance] statusUpdateBehavior] != [fBehaviorAfterUpdate indexOfSelectedItem] + 1) {
-		[[PTPreferenceManager getInstance] setStatusUpdateBehavior:[fBehaviorAfterUpdate indexOfSelectedItem] + 1];
+	if ([[PTPreferenceManager sharedInstance] statusUpdateBehavior] != [fBehaviorAfterUpdate indexOfSelectedItem] + 1) {
+		[[PTPreferenceManager sharedInstance] setStatusUpdateBehavior:[fBehaviorAfterUpdate indexOfSelectedItem] + 1];
 	}
 	if ([[fPassword stringValue] length] != 0) {
-		[[PTPreferenceManager getInstance] setUserName:[fUserName stringValue] 
+		[[PTPreferenceManager sharedInstance] setUserName:[fUserName stringValue] 
 											  password:[fPassword stringValue]];
 		fShouldReset = YES;
 	}
-	if ([[PTPreferenceManager getInstance] statusUpdateBehavior] == 1) {
+	if ([[PTPreferenceManager sharedInstance] statusUpdateBehavior] == 1) {
 		[fStatusController setSelectsInsertedObjects:YES];
 	} else {
 		[fStatusController setSelectsInsertedObjects:NO];
 	}
-	[fMainWindow setFloatingPanel:[[PTPreferenceManager getInstance] alwaysOnTop]];
-	[[fMainController fMenuItem] setSwapped:[[PTPreferenceManager getInstance] swapMenuItemBehavior]];
+	[fMainWindow setFloatingPanel:[[PTPreferenceManager sharedInstance] alwaysOnTop]];
+	[[fMainController fMenuItem] setSwapped:[[PTPreferenceManager sharedInstance] swapMenuItemBehavior]];
 	[self saveKeyCombo];
 	[self turnOffHotKey];
 	if ([fActivateGlobalKey state] == NSOnState)

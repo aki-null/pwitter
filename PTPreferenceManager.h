@@ -14,7 +14,7 @@
 	NSUserDefaults *fPrefData;
 }
 
-+ (PTPreferenceManager *)getInstance;
++ (PTPreferenceManager *)sharedInstance;
 - (void)setupPreferences;
 - (void)setUserName:(NSString *)aUserName password:(NSString *)aPassword;
 - (NSString *)userName;
@@ -53,6 +53,8 @@
 - (BOOL)swapMenuItemBehavior;
 - (void)setUseTwelveHour:(BOOL)aFlag;
 - (BOOL)useTwelveHour;
+- (void)setDisableTopView:(BOOL)aFlag;
+- (BOOL)disableTopView;
 - (void)setHideDockIcon:(BOOL)aFlag;
 - (BOOL)hideDockIcon;
 

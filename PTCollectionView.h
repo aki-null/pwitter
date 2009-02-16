@@ -12,6 +12,7 @@
 
 @interface PTCollectionView : NSCollectionView {
     IBOutlet id fMainActionHandler;
+    IBOutlet id fMainController;
 }
 
 - (void)sendReplyForStatus:(PTStatusBox *)aBox;

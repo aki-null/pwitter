@@ -43,7 +43,7 @@
 		lNewBox.entityColor = [NSColor colorWithCalibratedRed:0.8 green:0.28 blue:0.28 alpha:0.7];
 		lNewBox.sType = ReplyMessage;
 	} else {
-		if ([[[PTPreferenceManager getInstance] userName] isEqualToString:[[aStatusInfo objectForKey:@"user"] objectForKey:@"screen_name"]]) {
+		if ([[[PTPreferenceManager sharedInstance] userName] isEqualToString:[[aStatusInfo objectForKey:@"user"] objectForKey:@"screen_name"]]) {
 			lNewBox.entityColor = [NSColor colorWithCalibratedRed:0.55 green:0.55 blue:0.55 alpha:0.7];
 		} else {
 			lNewBox.entityColor = [NSColor colorWithCalibratedRed:0.4 green:0.4 blue:0.4 alpha:0.7];

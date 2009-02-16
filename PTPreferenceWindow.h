@@ -9,6 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import <ShortcutRecorder/SRRecorderControl.h>
 #import "PTHotKey.h"
+#import "PTMainActionHandler.h"
 
 
 @interface PTPreferenceWindow : NSPanel {
@@ -25,7 +26,7 @@
     IBOutlet id fActivateGlobalKey;
     IBOutlet id fShortcutRecorder;
     IBOutlet id fIgnoreErrors;
-    IBOutlet id fMainActionHandler;
+    IBOutlet PTMainActionHandler *fMainActionHandler;
     IBOutlet id fDisableGrowl;
     IBOutlet id fDisableMessageNotification;
     IBOutlet id fDisableReplyNotification;
@@ -38,6 +39,7 @@
     IBOutlet id fHideDockIcon;
     IBOutlet id fSwapMenuItem;
     IBOutlet id fUseTwelveHour;
+    IBOutlet id fHideTopView;
 	PTHotKey *fHotKey;
 }
 - (void)loadPreferences;
