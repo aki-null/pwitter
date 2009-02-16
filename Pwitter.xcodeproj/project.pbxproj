@@ -34,8 +34,6 @@
 		6161AA2C0F36C10300141B8B /* reply.png in Resources */ = {isa = PBXBuildFile; fileRef = 6161AA2B0F36C10300141B8B /* reply.png */; };
 		6161AA330F36C22B00141B8B /* web.png in Resources */ = {isa = PBXBuildFile; fileRef = 6161AA320F36C22B00141B8B /* web.png */; };
 		6161AA3D0F36C76F00141B8B /* dm.png in Resources */ = {isa = PBXBuildFile; fileRef = 6161AA3C0F36C76F00141B8B /* dm.png */; };
-		616C1F210F28A35500314953 /* AutoHyperlinks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 616C1F200F28A35500314953 /* AutoHyperlinks.framework */; };
-		616C1F340F28A35C00314953 /* AutoHyperlinks.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 616C1F200F28A35500314953 /* AutoHyperlinks.framework */; };
 		617A69AD0F33318D0002D105 /* menu_icon_off.png in Resources */ = {isa = PBXBuildFile; fileRef = 617A69AC0F33318D0002D105 /* menu_icon_off.png */; };
 		617A69BF0F334BC70002D105 /* menu_icon_on.png in Resources */ = {isa = PBXBuildFile; fileRef = 617A69BD0F334BC70002D105 /* menu_icon_on.png */; };
 		618DB6760F4593E5000A9815 /* PTCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 618DB6750F4593E5000A9815 /* PTCollectionView.m */; };
@@ -68,6 +66,7 @@
 		61D6BE430F077DF300C6B98D /* MGTwitterXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 61D6BE330F077DF300C6B98D /* MGTwitterXMLParser.m */; };
 		61D6BE440F077DF300C6B98D /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 61D6BE350F077DF300C6B98D /* NSData+Base64.m */; };
 		61D6BE450F077DF300C6B98D /* NSString+UUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 61D6BE370F077DF300C6B98D /* NSString+UUID.m */; };
+		61D7F9380F4940360076B796 /* PTURLUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 61D7F9370F4940360076B796 /* PTURLUtils.m */; };
 		61D9FBC70F04B0D9003CC890 /* EMKeychainItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 61D9FBC40F04B0D9003CC890 /* EMKeychainItem.m */; };
 		61D9FBC80F04B0D9003CC890 /* EMKeychainProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 61D9FBC60F04B0D9003CC890 /* EMKeychainProxy.m */; };
 		61D9FDFD0F04B41C003CC890 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61D9FDFC0F04B41C003CC890 /* Security.framework */; };
@@ -99,7 +98,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				616C1F340F28A35C00314953 /* AutoHyperlinks.framework in CopyFiles */,
 				61F177C10F1C5CE100C04938 /* ShortcutRecorder.framework in CopyFiles */,
 				615B85B90F136A4A0005E38F /* Growl.framework in CopyFiles */,
 				6131FD5B0F0E297D004CA960 /* Sparkle.framework in CopyFiles */,
@@ -153,7 +151,6 @@
 		6161AA2B0F36C10300141B8B /* reply.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reply.png; sourceTree = "<group>"; };
 		6161AA320F36C22B00141B8B /* web.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = web.png; sourceTree = "<group>"; };
 		6161AA3C0F36C76F00141B8B /* dm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dm.png; sourceTree = "<group>"; };
-		616C1F200F28A35500314953 /* AutoHyperlinks.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AutoHyperlinks.framework; sourceTree = "<group>"; };
 		617A69AC0F33318D0002D105 /* menu_icon_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_icon_off.png; sourceTree = "<group>"; };
 		617A69BD0F334BC70002D105 /* menu_icon_on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_icon_on.png; sourceTree = "<group>"; };
 		618DB6740F4593E5000A9815 /* PTCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTCollectionView.h; sourceTree = "<group>"; };
@@ -212,6 +209,8 @@
 		61D6BE350F077DF300C6B98D /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSData+Base64.m"; path = "MGTwitterEngine/NSData+Base64.m"; sourceTree = "<group>"; };
 		61D6BE360F077DF300C6B98D /* NSString+UUID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+UUID.h"; path = "MGTwitterEngine/NSString+UUID.h"; sourceTree = "<group>"; };
 		61D6BE370F077DF300C6B98D /* NSString+UUID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+UUID.m"; path = "MGTwitterEngine/NSString+UUID.m"; sourceTree = "<group>"; };
+		61D7F9360F4940360076B796 /* PTURLUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTURLUtils.h; sourceTree = "<group>"; };
+		61D7F9370F4940360076B796 /* PTURLUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTURLUtils.m; sourceTree = "<group>"; };
 		61D9FBC30F04B0D9003CC890 /* EMKeychainItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EMKeychainItem.h; path = EMKeychain/EMKeychainItem.h; sourceTree = "<group>"; };
 		61D9FBC40F04B0D9003CC890 /* EMKeychainItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EMKeychainItem.m; path = EMKeychain/EMKeychainItem.m; sourceTree = "<group>"; };
 		61D9FBC50F04B0D9003CC890 /* EMKeychainProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EMKeychainProxy.h; path = EMKeychain/EMKeychainProxy.h; sourceTree = "<group>"; };
@@ -260,7 +259,6 @@
 				615B85A30F136A2A0005E38F /* Growl.framework in Frameworks */,
 				61F177A90F1C5A6B00C04938 /* ShortcutRecorder.framework in Frameworks */,
 				61BAFB0F0F1C89B400428121 /* Carbon.framework in Frameworks */,
-				616C1F210F28A35500314953 /* AutoHyperlinks.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,7 +279,6 @@
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				616C1F200F28A35500314953 /* AutoHyperlinks.framework */,
 				61F177A80F1C5A6B00C04938 /* ShortcutRecorder.framework */,
 				615B85A20F136A2A0005E38F /* Growl.framework */,
 				6131FD490F0E28C7004CA960 /* Sparkle.framework */,
@@ -466,6 +463,15 @@
 			name = MGTwitterEngine;
 			sourceTree = "<group>";
 		};
+		61D7F9350F49402A0076B796 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				61D7F9360F4940360076B796 /* PTURLUtils.h */,
+				61D7F9370F4940360076B796 /* PTURLUtils.m */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
 		61D9FBC00F04B041003CC890 /* EMKeychain */ = {
 			isa = PBXGroup;
 			children = (
@@ -480,6 +486,7 @@
 		61EE70620F02107B005C42F5 /* Pwitter */ = {
 			isa = PBXGroup;
 			children = (
+				61D7F9350F49402A0076B796 /* Utils */,
 				61C388DF0F4025C6001E018B /* GrowNotification */,
 				611384F10F39822F0065B59B /* StatusMaker */,
 				611384F00F3981DC0065B59B /* StatusItem */,
@@ -669,6 +676,7 @@
 				61C388EA0F4025F1001E018B /* PTGrowlDelegate.m in Sources */,
 				618DB6760F4593E5000A9815 /* PTCollectionView.m in Sources */,
 				618DB6E20F459B52000A9815 /* PTClickableIcon.m in Sources */,
+				61D7F9380F4940360076B796 /* PTURLUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -37,9 +37,9 @@
 	NSArrayController *lArrController = aObject;
 	// get the status entry that is currently selected
 	PTStatusBox *lSelectedBox = [[lArrController selectedObjects] lastObject];
-	if (lSelectedBox) {
+	if (lSelectedBox)
 		[[fStatusText textStorage] setAttributedString:lSelectedBox.statusMessage];
-	} else
+	else
 		[[fStatusText textStorage] setAttributedString:[[[NSAttributedString alloc] init] autorelease]];
 	[fActionHandler updateSelectedMessage:lSelectedBox];
 }

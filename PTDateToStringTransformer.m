@@ -7,6 +7,7 @@
 //
 
 #import "PTDateToStringTransformer.h"
+#import "PTPreferenceManager.h"
 
 
 @implementation PTDateToStringTransformer
@@ -22,9 +23,15 @@
 }
 
 - (id)transformedValue:(id)aValue {
-	return [aValue descriptionWithCalendarFormat:@"%H:%M:%S" 
-										timeZone:[NSTimeZone systemTimeZone] 
-										  locale:nil];
+	if (![[PTPreferenceManager getInstance] useTwelveHour]) {
+		return [aValue descriptionWithCalendarFormat:@"%H:%M:%S" 
+											timeZone:[NSTimeZone systemTimeZone] 
+											  locale:nil];
+	} else {
+		return [aValue descriptionWithCalendarFormat:@"%I:%M %p" 
+											timeZone:[NSTimeZone systemTimeZone] 
+											  locale:nil];
+	}
 }
 
 @end

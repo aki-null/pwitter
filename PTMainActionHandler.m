@@ -19,7 +19,7 @@
 	fShouldExit = NO;
 	NSDictionary *lLinkFormat =
 	[NSDictionary dictionaryWithObjectsAndKeys:
-	 [NSColor cyanColor], @"NSColor",
+	 [NSColor whiteColor], @"NSColor",
 	 [NSCursor pointingHandCursor], @"NSCursor",
 	 [NSNumber numberWithInt:1], @"NSUnderline",
 	 nil];

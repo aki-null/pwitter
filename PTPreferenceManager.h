@@ -51,6 +51,8 @@
 - (int)statusUpdateBehavior;
 - (void)setSwapMenuItemBehavior:(BOOL)aFlag;
 - (BOOL)swapMenuItemBehavior;
+- (void)setUseTwelveHour:(BOOL)aFlag;
+- (BOOL)useTwelveHour;
 - (void)setHideDockIcon:(BOOL)aFlag;
 - (BOOL)hideDockIcon;
 

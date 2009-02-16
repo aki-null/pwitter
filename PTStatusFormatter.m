@@ -7,83 +7,70 @@
 //
 
 #import "PTStatusFormatter.h"
-#import <AutoHyperlinks/AHHyperlinkScanner.h>
-#import <AutoHyperlinks/AHMarkedHyperlink.h>
+#import "PTURLUtils.h"
 
+@interface NSAttributedString (Hyperlink)
++(id) hyperlinkFromString:(NSString*)inString URL:(NSURL*)aURL attributes:(NSDictionary*)attributes;
+@end
+
+@implementation NSAttributedString (Hyperlink)
++(id) hyperlinkFromString:(NSString*)inString URL:(NSURL*)aURL attributes:(NSDictionary*)attributes {
+    NSMutableAttributedString* attrString = [[[NSMutableAttributedString alloc] initWithString:inString] autorelease];
+    NSRange range = NSMakeRange(0, [attrString length]);
+    [attrString addAttributes:attributes range:range];
+    [attrString addAttribute:NSLinkAttributeName value:[aURL absoluteString] range:range];
+    return attrString;
+}
+@end
 
 @implementation PTStatusFormatter
 
-+ (void)processLinks:(NSMutableAttributedString *)aTargetString forBox:(PTStatusBox *)aBox {
-//	NSString *lString = [aTargetString string];
-//	NSRange lSearchRange = NSMakeRange(0, [lString length]);
-//	NSRange lFoundRange;
-//	lFoundRange = [lString rangeOfString:@"http://" options:0 range:lSearchRange];
-//	if (lFoundRange.length > 0) {
-//		NSURL* lUrl;
-//		NSDictionary* lLinkAttributes;
-//		NSRange lEndOfURLRange;
-//		lSearchRange.location = lFoundRange.location + lFoundRange.length;
-//		lSearchRange.length = [lString length] - lSearchRange.location;
-//		lEndOfURLRange = [lString rangeOfCharacterFromSet:[NSCharacterSet whitespaceAndNewlineCharacterSet] 
-//												  options:0 range:lSearchRange];
-//		if (lEndOfURLRange.length == 0)
-//			lEndOfURLRange.location = [lString length] - 1;
-//		lFoundRange.length = lEndOfURLRange.location - lFoundRange.location + 1;
-//		lUrl = [NSURL URLWithString:[lString substringWithRange:lFoundRange]];
-//		lLinkAttributes = [NSDictionary dictionaryWithObjectsAndKeys:lUrl, NSLinkAttributeName,
-//						   [NSNumber numberWithInt:NSSingleUnderlineStyle], NSUnderlineStyleAttributeName,
-//						   [NSColor cyanColor], NSForegroundColorAttributeName,
-//						   nil];
-//		[aTargetString addAttributes:lLinkAttributes range:lFoundRange];
-//	}
-	AHHyperlinkScanner *lScanner = [AHHyperlinkScanner hyperlinkScannerWithAttributedString:aTargetString];
-	[aTargetString setAttributedString:[lScanner linkifiedString]];
-	AHMarkedHyperlink *lCurrentURI = [lScanner nextURI];
-	while (lCurrentURI != nil) {
-		NSDictionary *lLinkAttributes = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:NSSingleUnderlineStyle], NSUnderlineStyleAttributeName,
-										 [NSColor cyanColor], NSForegroundColorAttributeName,
-										 nil];
-		[aTargetString addAttributes:lLinkAttributes range:[lCurrentURI range]];
-		if (!aBox.statusLink) {
-			aBox.statusLink = [lCurrentURI URL];
-		}
-		lCurrentURI = [lScanner nextURI];
-	}
++ (NSDictionary *)defaultLinkFontAttributes {
+	return [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:NSSingleUnderlineStyle], NSUnderlineStyleAttributeName, 
+			[NSColor whiteColor], NSForegroundColorAttributeName, 
+			[NSFont fontWithName:@"Helvetica" size:12.0], NSFontAttributeName, 
+			nil];
 }
 
-+ (void)detectReplyLinks:(NSMutableAttributedString *)aMessage {
-	NSArray *lSeparated = [[aMessage string] componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-	NSString *lCurrentString;
-	int lCurrentIndex = 0;
-	int lReplyCount = 0;
-	for (lCurrentString in lSeparated) {
-		if ([lCurrentString length] > 0 && [lCurrentString characterAtIndex:0] == '@') {
-			lReplyCount++;
-			NSString *lReplyTarget = [lCurrentString substringFromIndex:1];
-			NSURL *lUrl = [NSURL URLWithString:[NSString stringWithFormat:@"http://twitter.com/%@", lReplyTarget]];
-			NSDictionary *lLinkAttributes = [NSDictionary dictionaryWithObjectsAndKeys:lUrl, NSLinkAttributeName,
-											 [NSNumber numberWithInt:NSSingleUnderlineStyle], NSUnderlineStyleAttributeName,
-											 [NSColor cyanColor], NSForegroundColorAttributeName,
-											 nil];
-			[aMessage addAttributes:lLinkAttributes range:NSMakeRange(lCurrentIndex, [lCurrentString length])];
-		}
-		lCurrentIndex += [lCurrentString length] + 1;
-	}
++ (NSDictionary *)defaultFontAttributes {
+	return [NSDictionary dictionaryWithObjectsAndKeys:[NSColor whiteColor], NSForegroundColorAttributeName, 
+			[NSFont fontWithName:@"Helvetica" size:12.0], NSFontAttributeName, 
+			nil];
+}
+
++ (NSMutableAttributedString *)processLinks:(NSString *)aTargetString forBox:(PTStatusBox *)aBox {
+	PTURLUtils *lUtils = [PTURLUtils utils];
+    NSArray *lTokens = [lUtils tokenizeByAll:aTargetString];
+    NSMutableAttributedString* lProcessedString = [[[NSMutableAttributedString alloc] init] autorelease];
+    int i;
+    for (i = 0; i < [lTokens count]; i++) {
+        NSString *lToken = [lTokens objectAtIndex:i];
+        if ([lUtils isURLToken:lToken]) {
+			NSURL *lUrl = [NSURL URLWithString:lToken];
+            [lProcessedString appendAttributedString:[NSAttributedString hyperlinkFromString:lToken 
+																						 URL:lUrl 
+																				  attributes:[self defaultLinkFontAttributes]]];
+			if (!aBox.statusLink) aBox.statusLink = lUrl;
+        } else if ([lUtils isIDToken:lToken]) {
+            [lProcessedString appendAttributedString:
+			 [NSAttributedString hyperlinkFromString:lToken
+												 URL:[NSURL URLWithString:
+													  [NSString stringWithFormat:@"http://twitter.com/%@", [lToken substringFromIndex:1]]]
+										  attributes:[self defaultLinkFontAttributes]]];
+        } else {
+            NSMutableAttributedString *lAttrStr = [[[NSMutableAttributedString alloc] initWithString:lToken] autorelease];
+            [lAttrStr setAttributes:[self defaultFontAttributes] range:NSMakeRange(0, [lAttrStr length])];
+            [lProcessedString appendAttributedString:lAttrStr];
+        }
+    }
+	return lProcessedString;
 }
 
 + (NSMutableAttributedString *)formatStatusMessage:(NSString *)aMessage forBox:(PTStatusBox *)aBox {
 	NSString *lUnescaped = (NSString *)CFXMLCreateStringByUnescapingEntities(nil, (CFStringRef)aMessage, nil);
-	NSMutableAttributedString *lNewMessage = [[NSMutableAttributedString alloc] initWithString:lUnescaped];
+	NSMutableAttributedString *lProcessedString = [PTStatusFormatter processLinks:lUnescaped forBox:aBox];
 	[lUnescaped release];
-	[lNewMessage beginEditing];
-	NSDictionary *lMessageAttributes = [NSDictionary dictionaryWithObjectsAndKeys:[NSColor whiteColor], NSForegroundColorAttributeName, 
-										[NSFont fontWithName:@"Helvetica" size:12.0], NSFontAttributeName, 
-										nil];
-	[lNewMessage addAttributes:lMessageAttributes range:NSMakeRange(0, [lNewMessage length])];
-	[PTStatusFormatter processLinks:lNewMessage forBox:aBox];
-	[PTStatusFormatter detectReplyLinks:lNewMessage];
-	[lNewMessage endEditing];
-	return [lNewMessage autorelease];
+	return lProcessedString;
 }
 
 + (NSMutableAttributedString *)createUserLabel:(NSString *)aScreenName name:(NSString *)aName {
@@ -139,10 +126,7 @@
 	if (!lErrorMessage) lErrorMessage = @"unknown error";
 	NSMutableAttributedString *lFinalString = [[NSMutableAttributedString alloc] initWithString:lErrorMessage];
 	[lFinalString beginEditing];
-	NSDictionary *lMessageAttributes = [NSDictionary dictionaryWithObjectsAndKeys:[NSColor whiteColor], NSForegroundColorAttributeName, 
-										[NSFont fontWithName:@"Helvetica" size:12.0], NSFontAttributeName, 
-										nil];
-	[lFinalString addAttributes:lMessageAttributes range:NSMakeRange(0, [lFinalString length])];
+	[lFinalString addAttributes:[self defaultFontAttributes] range:NSMakeRange(0, [lFinalString length])];
 	[lFinalString endEditing];
 	return [lFinalString autorelease];
 }

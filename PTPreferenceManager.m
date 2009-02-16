@@ -195,6 +195,14 @@
 	return [fPrefData boolForKey:@"swap_menu_item_behavior"];
 }
 
+- (void)setUseTwelveHour:(BOOL)aFlag {
+	[fPrefData setBool:aFlag forKey:@"use_twelve_hour"];
+}
+
+- (BOOL)useTwelveHour {
+	return [fPrefData boolForKey:@"use_twelve_hour"];
+}
+
 - (void)setHideDockIcon:(BOOL)aFlag {
 	NSString * lFilePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/../Info.plist"];
 	if (lFilePath) {

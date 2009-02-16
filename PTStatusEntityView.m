@@ -80,7 +80,11 @@
 	if (!lBox.statusLink) [[lMenu itemAtIndex:5] setTarget:[self superview]];
 	[lMenu insertItem:[NSMenuItem separatorItem] atIndex:6];
 	[lMenu insertItemWithTitle:@"Open User's Twitter Home" action:@selector(openUserPage:) keyEquivalent:@"h" atIndex:7];
-	if (lBox.sType == ErrorMessage) [[lMenu itemAtIndex:7] setTarget:[self superview]];
+	if (lBox.sType == ErrorMessage) {
+		[[lMenu itemAtIndex:0] setTarget:[self superview]];
+		[[lMenu itemAtIndex:1] setTarget:[self superview]];
+		[[lMenu itemAtIndex:7] setTarget:[self superview]];
+	}
 	[lMenu insertItemWithTitle:@"Open User's Website" action:@selector(openUserWeb:) keyEquivalent:@"w" atIndex:8];
 	if (lBox.userHome == nil) [[lMenu itemAtIndex:8] setTarget:[self superview]];
 	[NSMenu popUpContextMenu:lMenu withEvent:aEvent forView:self];

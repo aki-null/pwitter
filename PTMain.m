@@ -437,7 +437,6 @@
 	// sender is self when this method is provoked by the timer
 	if (sender != self) {
 		[self setupUpdateTimer];
-		[self setupMessageUpdateTimer];
 	}
 	if (!fLastUpdateID) {
 		[self runInitialUpdates];
@@ -449,10 +448,6 @@
 		if ([[PTPreferenceManager getInstance] receiveFromNonFollowers])
 			[fRequestDetails setObject:@"REPLY_UPDATE" 
 								forKey:[fTwitterEngine getRepliesSinceID:fLastReplyID startingAtPage:0 count:20]];
-		if (sender != self)
-			[fRequestDetails setObject:@"MESSAGE_UPDATE" 
-								forKey:[fTwitterEngine getDirectMessagesSinceID:fLastMessageID 
-																 startingAtPage:0]];
 	}
 }
 

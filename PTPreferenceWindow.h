@@ -37,6 +37,7 @@
     IBOutlet id fDisableErrorNotification;
     IBOutlet id fHideDockIcon;
     IBOutlet id fSwapMenuItem;
+    IBOutlet id fUseTwelveHour;
 	PTHotKey *fHotKey;
 }
 - (void)loadPreferences;

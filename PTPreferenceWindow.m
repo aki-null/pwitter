@@ -38,6 +38,7 @@
 	[[PTPreferenceManager getInstance] quickPost] ? [fActivateGlobalKey setState:NSOnState] : [fActivateGlobalKey setState:NSOffState];
 	[[PTPreferenceManager getInstance] ignoreErrors] ? [fIgnoreErrors setState:NSOnState] : [fIgnoreErrors setState:NSOffState];
 	[[PTPreferenceManager getInstance] swapMenuItemBehavior] ? [fSwapMenuItem setState:NSOnState] : [fSwapMenuItem setState:NSOffState];
+	[[PTPreferenceManager getInstance] useTwelveHour] ? [fUseTwelveHour setState:NSOnState] : [fUseTwelveHour setState:NSOffState];
 	// Notification preferences
 	[[PTPreferenceManager getInstance] disableGrowl] ? [fDisableGrowl setState:NSOnState] : [fDisableGrowl setState:NSOffState];
 	[[PTPreferenceManager getInstance] disableMessageNotification] ? [fDisableMessageNotification setState:NSOnState] : [fDisableMessageNotification setState:NSOffState];
@@ -77,6 +78,8 @@
 	[[PTPreferenceManager getInstance] setQuickPost:[fActivateGlobalKey state] == NSOnState];
 	[[PTPreferenceManager getInstance] setIgnoreErrors:[fIgnoreErrors state] == NSOnState];
 	[[PTPreferenceManager getInstance] setSwapMenuItemBehavior:[fSwapMenuItem state] == NSOnState];
+	fShouldReset = [[PTPreferenceManager getInstance] useTwelveHour] == ([fUseTwelveHour state] != NSOnState);
+	[[PTPreferenceManager getInstance] setUseTwelveHour:[fUseTwelveHour state] == NSOnState];
 	// Notification preferences
 	[[PTPreferenceManager getInstance] setDisableGrowl:[fDisableGrowl state] == NSOnState];
 	[[PTPreferenceManager getInstance] setDisableMessageNotification:[fDisableMessageNotification state] == NSOnState];
