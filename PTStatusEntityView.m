@@ -66,7 +66,7 @@
 
 - (void)addToFav:(id)sender {
 	PTStatusBox *lBox = [fColItem representedObject];
-	[(PTCollectionView *)[self superview] addToFav:lBox];
+	[(PTCollectionView *)[self superview] markAsFav:lBox];
 }
 
 - (void)openContextMenu:(NSEvent *)aEvent {
@@ -79,7 +79,10 @@
 	[lMenu insertItem:[NSMenuItem separatorItem] atIndex:3];
 	[lMenu insertItemWithTitle:@"Open Tweet in Browser" action:@selector(openInBrowser:) keyEquivalent:@"b" atIndex:4];
 	if (lBox.sType != NormalMessage && lBox.sType != ReplyMessage)
+	{
+		[[lMenu itemAtIndex:2] setTarget:[self superview]];
 		[[lMenu itemAtIndex:4] setTarget:[self superview]];
+	}
 	[lMenu insertItemWithTitle:@"Open Reply in Browser" action:@selector(openReply:) keyEquivalent:@"t" atIndex:5];
 	if (lBox.replyId == 0) [[lMenu itemAtIndex:5] setTarget:[self superview]];
 	[lMenu insertItemWithTitle:@"Open Link in Browser" action:@selector(openLink:) keyEquivalent:@"l" atIndex:6];

@@ -17,6 +17,7 @@
 
 - (void)sendReplyForStatus:(PTStatusBox *)aBox;
 - (void)sendMessageForStatus:(PTStatusBox *)aBox;
+- (void)markAsFav:(PTStatusBox *)aBox;
 - (void)disableAnimation;
 
 @end

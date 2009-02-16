@@ -22,7 +22,7 @@
 	[fMainActionHandler messageToStatus:aBox];
 }
 
-- (void)addToFav:(PTStatusBox *)aBox {
+- (void)markAsFav:(PTStatusBox *)aBox {
 	[fMainController favStatus:aBox];
 }
 
