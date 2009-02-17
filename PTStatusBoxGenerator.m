@@ -40,7 +40,7 @@
 		lNewBox.userHome = nil;
 	}
 	if (aIsReply) {
-		lNewBox.entityColor = [NSColor colorWithCalibratedRed:0.8 green:0.28 blue:0.28 alpha:0.7];
+		lNewBox.entityColor = [NSColor colorWithCalibratedRed:0.7 green:0.18 blue:0.18 alpha:0.7];
 		lNewBox.sType = ReplyMessage;
 	} else {
 		if ([[[PTPreferenceManager sharedInstance] userName] isEqualToString:[[aStatusInfo objectForKey:@"user"] objectForKey:@"screen_name"]]) {
@@ -51,7 +51,7 @@
 		lNewBox.sType = NormalMessage;
 	}
 	if ([[aStatusInfo objectForKey:@"favorited"] boolValue]) {
-		lNewBox.entityColor = [NSColor colorWithCalibratedRed:1.0 green:0.6 blue:0.0 alpha:0.7];
+		lNewBox.entityColor = [NSColor colorWithCalibratedRed:0.9 green:0.5 blue:0.0 alpha:0.7];
 	}
 	lNewBox.searchString = [NSString stringWithFormat:@"%@ %@ %@",
 							[[aStatusInfo objectForKey:@"user"] objectForKey:@"screen_name"], 
@@ -95,7 +95,7 @@
 	} else {
 		lNewBox.userHome = nil;
 	}
-	lNewBox.entityColor = [NSColor colorWithCalibratedRed:0.4 green:0.5 blue:0.7 alpha:0.8];
+	lNewBox.entityColor = [NSColor colorWithCalibratedRed:0.4 green:0.5 blue:0.7 alpha:0.7];
 	lNewBox.sType = DirectMessage;
 	lNewBox.searchString = [NSString stringWithFormat:@"%@ %@ %@",
 							[[aStatusInfo objectForKey:@"sender"] objectForKey:@"screen_name"], 

@@ -73,6 +73,7 @@ typedef enum soundEventType {
 - (void)loadUnread;
 - (void)setCurrentBottomFrame:(NSRect)aRect;
 - (NSRect)currentBottomFrame;
+- (void)toggleApp;
 
 @property(readonly) PTMenuBarIcon *fMenuItem;
 

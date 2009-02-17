@@ -62,7 +62,7 @@
 		[self display];
 		fMouseDown = NO;
 		[self setNeedsDisplay:YES];
-		[fMainController activateApp:self];
+		[fMainController toggleApp];
 	}
 }
 
@@ -75,7 +75,7 @@
 		[self display];
 		fMouseDown = NO;
 		[self setNeedsDisplay:YES];
-		[fMainController activateApp:self];
+		[fMainController toggleApp];
 	}}
 
 - (void)setImage:(NSImage *)aImage

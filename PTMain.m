@@ -236,6 +236,15 @@
 	[fMainWindow makeKeyAndOrderFront:self];
 }
 
+- (void)toggleApp {
+	if ([NSApp isActive] && [fMainWindow isKeyWindow]) {
+		[fMainWindow orderOut:self];
+	} else {
+		[fMainWindow makeKeyAndOrderFront:self];
+		[self activateApp:self];
+	}
+}
+
 - (void)awakeFromNib
 {
 	[NSApp activateIgnoringOtherApps:YES];
