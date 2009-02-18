@@ -22,6 +22,7 @@
 
 - (void)forceSelect:(BOOL)aFlag {
 	[fColItem setSelected:aFlag];
+	[(PTCollectionView *)[self superview] fixFocus];
 }
 
 - (void)openInBrowser:(id)sender {
@@ -56,12 +57,14 @@
 
 - (void)sendReply:(id)sender {
 	PTStatusBox *lBox = [fColItem representedObject];
-	[(PTCollectionView *)[self superview] sendReplyForStatus:lBox];
+	if (lBox.sType != ErrorMessage)
+		[(PTCollectionView *)[self superview] sendReplyForStatus:lBox];
 }
 
 - (void)sendMessage:(id)sender {
 	PTStatusBox *lBox = [fColItem representedObject];
-	[(PTCollectionView *)[self superview] sendMessageForStatus:lBox];
+	if (lBox.sType != ErrorMessage)
+		[(PTCollectionView *)[self superview] sendMessageForStatus:lBox];
 }
 
 - (void)addToFav:(id)sender {

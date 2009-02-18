@@ -13,16 +13,19 @@
 @implementation PTStatusTextField
 
 - (void)mouseDown:(NSEvent *)aEvent {
-	// pass the event to the super class as usual
-	[super mouseDown:aEvent];
-	// send a message to the owner of the status view to select this entity
-	[(PTStatusEntityView *)[self superview] forceSelect:YES];
+	if ([(PTStatusEntityView *)[self superview] selected]) {
+		[super mouseDown:aEvent];
+	} else {
+		// send a message to the owner of the status view to select this entity
+		[(PTStatusEntityView *)[self superview] forceSelect:YES];
+	}
 }
 
 - (void)rightMouseDown:(NSEvent *)aEvent {
-	[super rightMouseDown:aEvent];
-	[(PTStatusEntityView *)[self superview] openContextMenu:aEvent];
+	//[super rightMouseDown:aEvent];
 	[(PTStatusEntityView *)[self superview] forceSelect:YES];
+	[(PTStatusEntityView *)[self superview] openContextMenu:aEvent];
 }
+
 
 @end

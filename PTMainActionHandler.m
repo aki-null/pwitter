@@ -11,6 +11,7 @@
 #import "PTPreferenceWindow.h"
 #import "PTMain.h"
 #import "PTReadManager.h"
+#import "PTStatusTextField.h"
 
 
 @implementation PTMainActionHandler
@@ -38,6 +39,7 @@
 	[self setCollectionViewPrototype:[[PTPreferenceManager sharedInstance] useMiniView]];
 	if ([[PTPreferenceManager sharedInstance] disableTopView])
 		[self disableTopView];
+	[fMainWindow makeFirstResponder:fStatusCollectionView];
 }
 
 - (void)setCollectionViewPrototype:(BOOL)aIsMini {
@@ -45,19 +47,19 @@
 		if ([fStatusCollectionView itemPrototype] != fMiniItemPrototype) {
 			[fStatusCollectionView setItemPrototype:fMiniItemPrototype];
 			NSSize lTempSize = [fStatusCollectionView minItemSize];
-			lTempSize.height = 36;
+			lTempSize.height = 38;
 			[fStatusCollectionView setMinItemSize:lTempSize];
 			lTempSize = [fStatusCollectionView maxItemSize];
-			lTempSize.height = 36;
+			lTempSize.height = 38;
 			[fStatusCollectionView setMaxItemSize:lTempSize];
 		}
 	} else if ([fStatusCollectionView itemPrototype] != fNormalItemPrototype) {
 		[fStatusCollectionView setItemPrototype:fNormalItemPrototype];
 		NSSize lTempSize = [fStatusCollectionView minItemSize];
-		lTempSize.height = 73;
+		lTempSize.height = 76;
 		[fStatusCollectionView setMinItemSize:lTempSize];
 		lTempSize = [fStatusCollectionView maxItemSize];
-		lTempSize.height = 73;
+		lTempSize.height = 76;
 		[fStatusCollectionView setMaxItemSize:lTempSize];
 	}
 }
@@ -239,6 +241,13 @@
 	}
 }
 
++ (BOOL) hasFocus:(id)aField {
+	return [[[aField window] firstResponder] isKindOfClass:[NSTextView class]] && 
+	[[aField window] fieldEditor:NO forObject:nil] != nil && 
+	((id)[[aField window] firstResponder] == aField || 
+	 [(id)[[aField window] firstResponder] delegate] == aField);
+}
+
 - (void)updateSelectedMessage:(PTStatusBox *)aBox {
 	if (!aBox) {
 		if (![[PTPreferenceManager sharedInstance] disableTopView])
@@ -272,6 +281,8 @@
 		[self updateViewSizes:lHeightReq withAnim:!fNoAnim];
 	}
 	fNoAnim = NO;
+	if (![PTMainActionHandler hasFocus:fStatusUpdateField])
+		[fMainWindow makeFirstResponder:fStatusCollectionView];
 }
 
 - (void)disableAnimation {

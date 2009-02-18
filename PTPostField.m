@@ -14,6 +14,7 @@
 
 - (void) awakeFromNib {
 	[(NSTextView*)[[self window] fieldEditor:TRUE forObject:self] setInsertionPointColor:[NSColor whiteColor]];
+	fEditing = NO;
 }
 
 - (void)drawRect:(NSRect)aRect {
@@ -26,5 +27,6 @@
 	[lPath setLineWidth:2];
 	[lPath stroke];
 }
+
 
 @end

@@ -166,12 +166,10 @@
 	[fRequestDetails setObject:@"INIT_UPDATE" 
 						forKey:[fTwitterEngine getFollowedTimelineFor:[[PTPreferenceManager sharedInstance] userName] 
 																since:nil startingAtPage:0 count:100]];
-	if ([[PTPreferenceManager sharedInstance] receiveFromNonFollowers]) {
-		[fRequestDetails setObject:@"INIT_REPLY_UPDATE" 
-							forKey:[fTwitterEngine getRepliesStartingAtPage:1]];
-		[fRequestDetails setObject:@"INIT_REPLY_UPDATE" 
-							forKey:[fTwitterEngine getRepliesStartingAtPage:2]];
-	}
+	[fRequestDetails setObject:@"INIT_REPLY_UPDATE" 
+						forKey:[fTwitterEngine getRepliesStartingAtPage:1]];
+	[fRequestDetails setObject:@"INIT_REPLY_UPDATE" 
+						forKey:[fTwitterEngine getRepliesStartingAtPage:2]];
 }
 
 - (void)setUpTwitterEngine {

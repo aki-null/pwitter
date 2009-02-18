@@ -11,6 +11,8 @@
 		610333FA0F18C0C500BFB060 /* PTStatusScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 610333F90F18C0C500BFB060 /* PTStatusScrollView.m */; };
 		610BF8AB0F030DFA008D9A3B /* PTStatusBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 610BF8AA0F030DFA008D9A3B /* PTStatusBox.m */; };
 		610C2E8E0F37F0E300A31533 /* PTMenuBarIcon.m in Sources */ = {isa = PBXBuildFile; fileRef = 610C2E8D0F37F0E300A31533 /* PTMenuBarIcon.m */; };
+		6112C5560F4C34730043F7CD /* PTReplyButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6112C5550F4C34730043F7CD /* PTReplyButton.m */; };
+		6112C5590F4C347E0043F7CD /* PTMessageButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6112C5580F4C347E0043F7CD /* PTMessageButton.m */; };
 		611384ED0F3980740065B59B /* PTDateToStringTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 611384EC0F3980740065B59B /* PTDateToStringTransformer.m */; };
 		6113861A0F3988DD0065B59B /* error.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 611386190F3988DD0065B59B /* error.m4a */; };
 		611386250F3989D60065B59B /* PTImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 611386240F3989D60065B59B /* PTImageManager.m */; };
@@ -26,6 +28,8 @@
 		6156BB0B0F29F4D000338FCD /* statusReceived.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 6156BB070F29F4D000338FCD /* statusReceived.m4a */; };
 		6156BB0C0F29F4D000338FCD /* statusPosted.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 6156BB080F29F4D000338FCD /* statusPosted.m4a */; };
 		6156BB0D0F29F4D000338FCD /* replyReceived.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 6156BB090F29F4D000338FCD /* replyReceived.m4a */; };
+		6159E0DA0F4B6FA400999951 /* context.png in Resources */ = {isa = PBXBuildFile; fileRef = 6159E0D90F4B6FA400999951 /* context.png */; };
+		6159E2B70F4C2F3400999951 /* PTContextButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6159E2B60F4C2F3400999951 /* PTContextButton.m */; };
 		615B85920F1366DC0005E38F /* Growl Registration Ticket.growlRegDict in Resources */ = {isa = PBXBuildFile; fileRef = 615B85910F1366DC0005E38F /* Growl Registration Ticket.growlRegDict */; };
 		615B85A30F136A2A0005E38F /* Growl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 615B85A20F136A2A0005E38F /* Growl.framework */; };
 		615B85B90F136A4A0005E38F /* Growl.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 615B85A20F136A2A0005E38F /* Growl.framework */; };
@@ -127,6 +131,10 @@
 		610BF8AA0F030DFA008D9A3B /* PTStatusBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTStatusBox.m; sourceTree = "<group>"; };
 		610C2E8C0F37F0E300A31533 /* PTMenuBarIcon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTMenuBarIcon.h; sourceTree = "<group>"; };
 		610C2E8D0F37F0E300A31533 /* PTMenuBarIcon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTMenuBarIcon.m; sourceTree = "<group>"; };
+		6112C5540F4C34730043F7CD /* PTReplyButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTReplyButton.h; sourceTree = "<group>"; };
+		6112C5550F4C34730043F7CD /* PTReplyButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTReplyButton.m; sourceTree = "<group>"; };
+		6112C5570F4C347E0043F7CD /* PTMessageButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTMessageButton.h; sourceTree = "<group>"; };
+		6112C5580F4C347E0043F7CD /* PTMessageButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTMessageButton.m; sourceTree = "<group>"; };
 		611384EB0F3980740065B59B /* PTDateToStringTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTDateToStringTransformer.h; sourceTree = "<group>"; };
 		611384EC0F3980740065B59B /* PTDateToStringTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTDateToStringTransformer.m; sourceTree = "<group>"; };
 		611386190F3988DD0065B59B /* error.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = error.m4a; sourceTree = "<group>"; };
@@ -146,6 +154,9 @@
 		6156BB070F29F4D000338FCD /* statusReceived.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = statusReceived.m4a; sourceTree = "<group>"; };
 		6156BB080F29F4D000338FCD /* statusPosted.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = statusPosted.m4a; sourceTree = "<group>"; };
 		6156BB090F29F4D000338FCD /* replyReceived.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = replyReceived.m4a; sourceTree = "<group>"; };
+		6159E0D90F4B6FA400999951 /* context.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = context.png; sourceTree = "<group>"; };
+		6159E2B50F4C2F3400999951 /* PTContextButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTContextButton.h; sourceTree = "<group>"; };
+		6159E2B60F4C2F3400999951 /* PTContextButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTContextButton.m; sourceTree = "<group>"; };
 		615B85910F1366DC0005E38F /* Growl Registration Ticket.growlRegDict */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Growl Registration Ticket.growlRegDict"; sourceTree = "<group>"; };
 		615B85A20F136A2A0005E38F /* Growl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Growl.framework; sourceTree = "<group>"; };
 		615B85CD0F136BB30005E38F /* PTGrowlNotificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTGrowlNotificationManager.h; sourceTree = "<group>"; };
@@ -341,6 +352,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				6159E0D90F4B6FA400999951 /* context.png */,
 				616143050F4AD81100AFE156 /* reload.png */,
 				616143060F4AD81100AFE156 /* text140.png */,
 				616143070F4AD81100AFE156 /* home.png */,
@@ -406,6 +418,12 @@
 				613B64F60F0A45B500B67438 /* PTStatusImageView.m */,
 				61FE03D50F2368A300E20A0C /* PTStatusTextField.h */,
 				61FE03D60F2368A300E20A0C /* PTStatusTextField.m */,
+				6159E2B50F4C2F3400999951 /* PTContextButton.h */,
+				6159E2B60F4C2F3400999951 /* PTContextButton.m */,
+				6112C5540F4C34730043F7CD /* PTReplyButton.h */,
+				6112C5550F4C34730043F7CD /* PTReplyButton.m */,
+				6112C5570F4C347E0043F7CD /* PTMessageButton.h */,
+				6112C5580F4C347E0043F7CD /* PTMessageButton.m */,
 			);
 			name = StatusItem;
 			sourceTree = "<group>";
@@ -618,6 +636,7 @@
 				6161430A0F4AD81100AFE156 /* text140.png in Resources */,
 				6161430B0F4AD81100AFE156 /* home.png in Resources */,
 				6161430C0F4AD81100AFE156 /* setting.png in Resources */,
+				6159E0DA0F4B6FA400999951 /* context.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -693,6 +712,9 @@
 				618DB6760F4593E5000A9815 /* PTCollectionView.m in Sources */,
 				618DB6E20F459B52000A9815 /* PTClickableIcon.m in Sources */,
 				61D7F9380F4940360076B796 /* PTURLUtils.m in Sources */,
+				6159E2B70F4C2F3400999951 /* PTContextButton.m in Sources */,
+				6112C5560F4C34730043F7CD /* PTReplyButton.m in Sources */,
+				6112C5590F4C347E0043F7CD /* PTMessageButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

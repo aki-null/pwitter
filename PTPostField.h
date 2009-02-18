@@ -10,7 +10,7 @@
 
 
 @interface PTPostField : NSTextField {
-
+	BOOL fEditing;
 }
 
 @end

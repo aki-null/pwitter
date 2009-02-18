@@ -30,4 +30,8 @@
 	[fMainActionHandler disableAnimation];
 }
 
+- (void)fixFocus {
+	[fMainWindow makeFirstResponder:self];
+}
+
 @end

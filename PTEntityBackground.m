@@ -71,16 +71,16 @@ static PTBubbleFactory *sharedSingleton;
 		if (fPath) [fPath release];
 		fPath = [[NSBezierPath alloc] init];
 		[fPath setLineJoinStyle:NSRoundLineJoinStyle];
-		[fPath moveToPoint:NSMakePoint(lLeftOffset, 6.0)];
-		[fPath curveToPoint:NSMakePoint(lLeftOffset + 4.0, 2.0) 
-			  controlPoint1:NSMakePoint(lLeftOffset, 4.0) 
-			  controlPoint2:NSMakePoint(lLeftOffset + 2.0, 2.0)];
+		[fPath moveToPoint:NSMakePoint(lLeftOffset, 7.0)];
+		[fPath curveToPoint:NSMakePoint(lLeftOffset + 4.0, 3.0) 
+			  controlPoint1:NSMakePoint(lLeftOffset, 5.0) 
+			  controlPoint2:NSMakePoint(lLeftOffset + 2.0, 3.0)];
 		int lCurrentOffsetX = aWidth - 10.0;
 		int lCurrentOffsetY = aHeight - 2.0;
-		[fPath lineToPoint:NSMakePoint(lCurrentOffsetX - 4.0, 2.0)];
-		[fPath curveToPoint:NSMakePoint(lCurrentOffsetX, 6.0) 
-			  controlPoint1:NSMakePoint(lCurrentOffsetX - 2, 2.0) 
-			  controlPoint2:NSMakePoint(lCurrentOffsetX, 4.0)];
+		[fPath lineToPoint:NSMakePoint(lCurrentOffsetX - 4.0, 3.0)];
+		[fPath curveToPoint:NSMakePoint(lCurrentOffsetX, 7.0) 
+			  controlPoint1:NSMakePoint(lCurrentOffsetX - 2, 3.0) 
+			  controlPoint2:NSMakePoint(lCurrentOffsetX, 7.0)];
 		[fPath lineToPoint:NSMakePoint(lCurrentOffsetX, lCurrentOffsetY - 4.0)];
 		[fPath curveToPoint:NSMakePoint(lCurrentOffsetX - 4.0, lCurrentOffsetY) 
 			  controlPoint1:NSMakePoint(lCurrentOffsetX, lCurrentOffsetY - 2.0) 
@@ -131,8 +131,8 @@ static PTBubbleFactory *sharedSingleton;
 
 - (void)rightMouseDown:(NSEvent *)aEvent {
 	[super rightMouseDown:aEvent];
-	[(PTStatusEntityView *)[self superview] openContextMenu:aEvent];
 	[(PTStatusEntityView *)[self superview] forceSelect:YES];
+	[(PTStatusEntityView *)[self superview] openContextMenu:aEvent];
 }
 
 @end

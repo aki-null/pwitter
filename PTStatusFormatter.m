@@ -28,13 +28,13 @@
 + (NSDictionary *)defaultLinkFontAttributes {
 	return [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:NSSingleUnderlineStyle], NSUnderlineStyleAttributeName, 
 			[NSColor whiteColor], NSForegroundColorAttributeName, 
-			[NSFont fontWithName:@"Helvetica" size:12.0], NSFontAttributeName, 
+			[NSFont fontWithName:@"Hiragino Kaku Gothic Pro W3" size:12.0], NSFontAttributeName, 
 			nil];
 }
 
 + (NSDictionary *)defaultFontAttributes {
 	return [NSDictionary dictionaryWithObjectsAndKeys:[NSColor whiteColor], NSForegroundColorAttributeName, 
-			[NSFont fontWithName:@"Helvetica" size:12.0], NSFontAttributeName, 
+			[NSFont fontWithName:@"Hiragino Kaku Gothic Pro W3" size:12.0], NSFontAttributeName, 
 			nil];
 }
 
@@ -123,7 +123,7 @@
 			lErrorMessage = [aError localizedDescription];
 			break;
 	}
-	if (!lErrorMessage) lErrorMessage = @"unknown error";
+	if (!lErrorMessage) lErrorMessage = @"Unknown error";
 	NSMutableAttributedString *lFinalString = [[NSMutableAttributedString alloc] initWithString:lErrorMessage];
 	[lFinalString beginEditing];
 	[lFinalString addAttributes:[self defaultFontAttributes] range:NSMakeRange(0, [lFinalString length])];

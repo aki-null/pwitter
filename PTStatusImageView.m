@@ -22,8 +22,8 @@
 
 - (void)rightMouseDown:(NSEvent *)aEvent {
 	[super rightMouseDown:aEvent];
-	[(PTStatusEntityView *)[self superview] openContextMenu:aEvent];
 	[(PTStatusEntityView *)[self superview] forceSelect:YES];
+	[(PTStatusEntityView *)[self superview] openContextMenu:aEvent];
 }
 
 @end
