@@ -33,6 +33,8 @@
 - (BOOL)autoLogin;
 - (void)setQuickPost:(BOOL)aFlag;
 - (BOOL)quickPost;
+- (void)setQuickRead:(BOOL)aFlag;
+- (BOOL)quickRead;
 - (void)setIgnoreErrors:(BOOL)aFlag;
 - (BOOL)ignoreErrors;
 - (void)setDisableGrowl:(BOOL)aFlag;

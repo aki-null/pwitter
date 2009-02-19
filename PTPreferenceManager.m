@@ -123,6 +123,14 @@
 	return [fPrefData boolForKey:@"use_quick_post"];
 }
 
+- (void)setQuickRead:(BOOL)aFlag {
+	[fPrefData setBool:aFlag forKey:@"use_quick_read"];
+}
+
+- (BOOL)quickRead {
+	return [fPrefData boolForKey:@"use_quick_read"];
+}
+
 - (void)setIgnoreErrors:(BOOL)aFlag {
 	[fPrefData setBool:aFlag forKey:@"ignore_errors"];
 }

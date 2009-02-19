@@ -36,6 +36,7 @@
 	[[PTPreferenceManager sharedInstance] receiveFromNonFollowers] ? [fReceiveFromNonFollowers setState:NSOnState] : [fReceiveFromNonFollowers setState:NSOffState];
 	[[PTPreferenceManager sharedInstance] useMiniView] ? [fUseMiniView setState:NSOnState] : [fUseMiniView setState:NSOffState];
 	[[PTPreferenceManager sharedInstance] quickPost] ? [fActivateGlobalKey setState:NSOnState] : [fActivateGlobalKey setState:NSOffState];
+	[[PTPreferenceManager sharedInstance] quickRead] ? [fActivateQuickReadKey setState:NSOnState] : [fActivateQuickReadKey setState:NSOffState];
 	[[PTPreferenceManager sharedInstance] ignoreErrors] ? [fIgnoreErrors setState:NSOnState] : [fIgnoreErrors setState:NSOffState];
 	[[PTPreferenceManager sharedInstance] swapMenuItemBehavior] ? [fSwapMenuItem setState:NSOnState] : [fSwapMenuItem setState:NSOffState];
 	[[PTPreferenceManager sharedInstance] useTwelveHour] ? [fUseTwelveHour setState:NSOnState] : [fUseTwelveHour setState:NSOffState];
@@ -65,9 +66,14 @@
 	[self loadKeyCombo];
 	[self turnOffHotKey];
 	[fShortcutRecorder setEnabled:NO];
+	[fQuickReadShortcutRecorder setEnabled:NO];
 	if ([[PTPreferenceManager sharedInstance] quickPost]) {
 		[fShortcutRecorder setEnabled:YES];
 		[self turnOnHotKey];
+	}
+	if ([[PTPreferenceManager sharedInstance] quickRead]) {
+		[fQuickReadShortcutRecorder setEnabled:YES];
+		[self turnOnReadHotKey];
 	}
 }
 
@@ -77,6 +83,7 @@
 	[[PTPreferenceManager sharedInstance] setHideDockIcon:[fHideDockIcon state] == NSOnState];
 	[[PTPreferenceManager sharedInstance] setUseMiniView:[fUseMiniView state] == NSOnState];
 	[[PTPreferenceManager sharedInstance] setQuickPost:[fActivateGlobalKey state] == NSOnState];
+	[[PTPreferenceManager sharedInstance] setQuickRead:[fActivateGlobalKey state] == NSOnState];
 	[[PTPreferenceManager sharedInstance] setIgnoreErrors:[fIgnoreErrors state] == NSOnState];
 	[[PTPreferenceManager sharedInstance] setSwapMenuItemBehavior:[fSwapMenuItem state] == NSOnState];
 	fShouldReset = [[PTPreferenceManager sharedInstance] useTwelveHour] == ([fUseTwelveHour state] != NSOnState);
@@ -131,6 +138,8 @@
 	[self turnOffHotKey];
 	if ([fActivateGlobalKey state] == NSOnState)
 		[self turnOnHotKey];
+	if ([fActivateQuickReadKey state] == NSOnState)
+		[self turnOnReadHotKey];
 	[NSApp endSheet:self];
 	if (fShouldReset) [fMainController changeAccount:self];
 }
@@ -142,22 +151,37 @@
 
 - (void)turnOffHotKey {
 	[fShortcutRecorder setCanCaptureGlobalHotKeys:NO];
-	if (fHotKey != nil)
-	{
+	[fQuickReadShortcutRecorder setCanCaptureGlobalHotKeys:NO];
+	if (fHotKey != nil) {
 		[[PTHotKeyCenter sharedCenter] unregisterHotKey: fHotKey];
 		[fHotKey release];
 		fHotKey = nil;
+	}
+	if (fHotKeyRead != nil) {
+		[[PTHotKeyCenter sharedCenter] unregisterHotKey: fHotKeyRead];
+		[fHotKeyRead release];
+		fHotKeyRead = nil;
 	}
 }
 
 - (void)turnOnHotKey {
 	[fShortcutRecorder setCanCaptureGlobalHotKeys:YES];
-	fHotKey = [[PTHotKey alloc] initWithIdentifier:@"ActivateQuickPostWindow" 
+	fHotKey = [[PTHotKey alloc] initWithIdentifier:@"ActivateQuickPost" 
 										  keyCombo:[PTKeyCombo keyComboWithKeyCode:[(SRRecorderControl *)fShortcutRecorder keyCombo].code 
 																		 modifiers:[(SRRecorderControl *)fShortcutRecorder cocoaToCarbonFlags:[(SRRecorderControl *)fShortcutRecorder keyCombo].flags]]];
 	[fHotKey setTarget: self];
 	[fHotKey setAction: @selector(hitKey:)];
 	[[PTHotKeyCenter sharedCenter] registerHotKey: fHotKey];
+}
+
+- (void)turnOnReadHotKey {
+	[fQuickReadShortcutRecorder setCanCaptureGlobalHotKeys:YES];
+	fHotKeyRead = [[PTHotKey alloc] initWithIdentifier:@"ActivateQuickRead" 
+										  keyCombo:[PTKeyCombo keyComboWithKeyCode:[(SRRecorderControl *)fQuickReadShortcutRecorder keyCombo].code 
+																		 modifiers:[(SRRecorderControl *)fQuickReadShortcutRecorder cocoaToCarbonFlags:[(SRRecorderControl *)fQuickReadShortcutRecorder keyCombo].flags]]];
+	[fHotKeyRead setTarget: self];
+	[fHotKeyRead setAction: @selector(hitReadKey:)];
+	[[PTHotKeyCenter sharedCenter] registerHotKey: fHotKeyRead];
 }
 
 - (void)saveKeyCombo {
@@ -168,6 +192,12 @@
 							   [NSNumber numberWithUnsignedInt:lTempKeyCode.flags], @"modifierFlags", 
 							   nil];
 	[lValues setValue:lDefValue forKey:@"quick_post_activation_key"];
+	lTempKeyCode = [(SRRecorderControl*)fQuickReadShortcutRecorder keyCombo];
+	lDefValue = [NSDictionary dictionaryWithObjectsAndKeys: 
+				  [NSNumber numberWithShort:lTempKeyCode.code], @"keyCode", 
+				  [NSNumber numberWithUnsignedInt:lTempKeyCode.flags], @"modifierFlags", 
+				  nil];
+	[lValues setValue:lDefValue forKey:@"quick_read_activation_key"];
 }
 
 - (void)loadKeyCombo
@@ -181,12 +211,25 @@
 	keyCombo.code = lKeyCode;
 	keyCombo.flags = lFlags;
 	[(SRRecorderControl *)fShortcutRecorder setKeyCombo:keyCombo];
+	lSavedCombo = [lValued valueForKey:@"quick_read_activation_key"];
+	lKeyCode = [[lSavedCombo valueForKey:@"keyCode"] shortValue];
+	lFlags = [[lSavedCombo valueForKey:@"modifierFlags"] unsignedIntValue];
+	if (lKeyCode == 0 && lFlags == 0) return;
+	keyCombo.code = lKeyCode;
+	keyCombo.flags = lFlags;
+	[(SRRecorderControl *)fQuickReadShortcutRecorder setKeyCombo:keyCombo];
 }
 
 - (void)hitKey:(PTHotKey *)aHotKey {
 	[NSApp activateIgnoringOtherApps:YES];
 	[fMainWindow makeKeyAndOrderFront:self];
 	[fPostTextField selectText:self];
+}
+
+- (void)hitReadKey:(PTHotKey *)aHotKey {
+	[NSApp activateIgnoringOtherApps:YES];
+	[fMainWindow makeKeyAndOrderFront:self];
+	[fMainWindow makeFirstResponder:fStatusCollectionView];
 }
 
 - (IBAction)quickPostChanged:(id)sender {
@@ -204,5 +247,39 @@
 		[fDisableReplyNotification setEnabled:YES];
 	}
 }
+
+-(void)tabView:(NSTabView *)tabView didSelectTabViewItem:(NSTabViewItem *)tabViewItem
+{
+	int lTargetHeight;
+	switch ([[tabViewItem identifier] intValue]) {
+		case 1:
+			lTargetHeight = 313;
+			break;
+		case 2:
+			lTargetHeight = 261;
+			break;
+		case 3:
+			lTargetHeight = 274;
+			break;
+		case 4:
+			lTargetHeight = 268;
+			break;
+		default:
+			lTargetHeight = 313;
+			break;
+	}
+	NSRect lNewFrame = [self frame];
+	lNewFrame.origin.y += lNewFrame.size.height - lTargetHeight;
+	lNewFrame.size.height = lTargetHeight;
+	[NSAnimationContext beginGrouping];
+	[[NSAnimationContext currentContext]setDuration: 0.2];
+	[[self animator] setFrame:lNewFrame display:YES];
+	[NSAnimationContext endGrouping];
+}
+
+- (IBAction)quickReadChanged:(id)sender {
+    [fQuickReadShortcutRecorder setEnabled:[sender state] == NSOnState];
+}
+
 
 @end

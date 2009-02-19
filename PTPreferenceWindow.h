@@ -40,16 +40,23 @@
     IBOutlet id fSwapMenuItem;
     IBOutlet id fUseTwelveHour;
     IBOutlet id fHideTopView;
+    IBOutlet id fActivateQuickReadKey;
+    IBOutlet id fQuickReadShortcutRecorder;
+    IBOutlet id fStatusCollectionView;
 	PTHotKey *fHotKey;
+	PTHotKey *fHotKeyRead;
 }
 - (void)loadPreferences;
 - (IBAction)pressOK:(id)sender;
 - (IBAction)pressCancel:(id)sender;
 - (IBAction)quickPostChanged:(id)sender;
 - (IBAction)growlDisabled:(id)sender;
+- (IBAction)quickReadChanged:(id)sender;
 - (void)turnOnHotKey;
+- (void)turnOnReadHotKey;
 - (void)turnOffHotKey;
 - (void)saveKeyCombo;
 - (void)loadKeyCombo;
+-(void)tabView:(NSTabView *)tabView didSelectTabViewItem:(NSTabViewItem *)tabViewItem;
 
 @end

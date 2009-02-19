@@ -81,8 +81,7 @@
 	[lMenu insertItemWithTitle:@"Add to Favorite" action:@selector(addToFav:) keyEquivalent:@"f" atIndex:2];
 	[lMenu insertItem:[NSMenuItem separatorItem] atIndex:3];
 	[lMenu insertItemWithTitle:@"Open Tweet in Browser" action:@selector(openInBrowser:) keyEquivalent:@"b" atIndex:4];
-	if (lBox.sType != NormalMessage && lBox.sType != ReplyMessage)
-	{
+	if (lBox.sType != NormalMessage && lBox.sType != ReplyMessage) {
 		[[lMenu itemAtIndex:2] setTarget:[self superview]];
 		[[lMenu itemAtIndex:4] setTarget:[self superview]];
 	}
