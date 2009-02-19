@@ -1,3 +1,18 @@
+19 February 2009: (Version 0.9):
+Feature: QuickRead - you can now assign a keyboard shortcut to activate the application and start reading the tweets
+Feature: Option to show time in 12-hour notation
+Feature: Option to hide the top view (full tweet view)
+Feature: Buttons in each tweets to open context menu, reply, and message (only context menu button is available when in mini-view)
+Improvement: Hyperlink colors are now white
+Improvement: Hyperlinks in tweets can now be clicked
+Improvement: Improved URL detection
+Improvement: New icon by Susumu
+Improvement: All graphics has been redone by Susumu
+Improvement: New balloon background for tweets
+Improvement: Clicking menu bar icon toggles the window (clicking it while the window is open will close the window)
+Improvement: Animated preference menu (animates when you change the tab item)
+Improvement: Preference menu has been organized
+
 14 February 2009: (Version 0.8.3):
 Improvement: Error messages have been significantly improved
 Bug Fixed: Multiple visual glitches
