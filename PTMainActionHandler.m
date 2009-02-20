@@ -281,7 +281,8 @@
 		[self updateViewSizes:lHeightReq withAnim:!fNoAnim];
 	}
 	fNoAnim = NO;
-	if (![PTMainActionHandler hasFocus:fStatusUpdateField])
+	if (![PTMainActionHandler hasFocus:fStatusUpdateField] && 
+		![PTMainActionHandler hasFocus:fSearchBox])
 		[fMainWindow makeFirstResponder:fStatusCollectionView];
 }
 

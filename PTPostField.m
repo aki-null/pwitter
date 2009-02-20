@@ -14,6 +14,7 @@
 
 - (void) awakeFromNib {
 	[(NSTextView*)[[self window] fieldEditor:TRUE forObject:self] setInsertionPointColor:[NSColor whiteColor]];
+	[(NSTextView*)[[self window] fieldEditor:TRUE forObject:self] toggleContinuousSpellChecking:self];
 	fEditing = NO;
 }
 
