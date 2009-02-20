@@ -41,6 +41,7 @@
 	[[PTPreferenceManager sharedInstance] swapMenuItemBehavior] ? [fSwapMenuItem setState:NSOnState] : [fSwapMenuItem setState:NSOffState];
 	[[PTPreferenceManager sharedInstance] useTwelveHour] ? [fUseTwelveHour setState:NSOnState] : [fUseTwelveHour setState:NSOffState];
 	[[PTPreferenceManager sharedInstance] disableTopView] ? [fHideTopView setState:NSOnState] : [fHideTopView setState:NSOffState];
+	[[PTPreferenceManager sharedInstance] usePOSTMethod] ? [fUsePOSTMethod setState:NSOnState] : [fUsePOSTMethod setState:NSOffState];
 	// Notification preferences
 	[[PTPreferenceManager sharedInstance] disableGrowl] ? [fDisableGrowl setState:NSOnState] : [fDisableGrowl setState:NSOffState];
 	[[PTPreferenceManager sharedInstance] disableMessageNotification] ? [fDisableMessageNotification setState:NSOnState] : [fDisableMessageNotification setState:NSOffState];
@@ -88,6 +89,7 @@
 	[[PTPreferenceManager sharedInstance] setSwapMenuItemBehavior:[fSwapMenuItem state] == NSOnState];
 	fShouldReset = [[PTPreferenceManager sharedInstance] useTwelveHour] == ([fUseTwelveHour state] != NSOnState);
 	[[PTPreferenceManager sharedInstance] setUseTwelveHour:[fUseTwelveHour state] == NSOnState];
+	[[PTPreferenceManager sharedInstance] setUsePOSTMethod:[fUsePOSTMethod state] == NSOnState];
 	if ([[PTPreferenceManager sharedInstance] disableTopView] == ([fHideTopView state] != NSOnState))
 	{
 		if ([[PTPreferenceManager sharedInstance] disableTopView])
@@ -259,7 +261,7 @@
 			lTargetHeight = 261;
 			break;
 		case 3:
-			lTargetHeight = 274;
+			lTargetHeight = 294;
 			break;
 		case 4:
 			lTargetHeight = 268;

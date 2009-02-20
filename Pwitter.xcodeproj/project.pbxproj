@@ -7,34 +7,71 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		610332F10F1873B000BFB060 /* PTSelectedStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 610332F00F1873B000BFB060 /* PTSelectedStatusView.m */; };
-		610333FA0F18C0C500BFB060 /* PTStatusScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 610333F90F18C0C500BFB060 /* PTStatusScrollView.m */; };
-		610BF8AB0F030DFA008D9A3B /* PTStatusBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 610BF8AA0F030DFA008D9A3B /* PTStatusBox.m */; };
-		610C2E8E0F37F0E300A31533 /* PTMenuBarIcon.m in Sources */ = {isa = PBXBuildFile; fileRef = 610C2E8D0F37F0E300A31533 /* PTMenuBarIcon.m */; };
-		6112C5560F4C34730043F7CD /* PTReplyButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6112C5550F4C34730043F7CD /* PTReplyButton.m */; };
-		6112C5590F4C347E0043F7CD /* PTMessageButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6112C5580F4C347E0043F7CD /* PTMessageButton.m */; };
-		611384ED0F3980740065B59B /* PTDateToStringTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 611384EC0F3980740065B59B /* PTDateToStringTransformer.m */; };
 		6113861A0F3988DD0065B59B /* error.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 611386190F3988DD0065B59B /* error.m4a */; };
-		611386250F3989D60065B59B /* PTImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 611386240F3989D60065B59B /* PTImageManager.m */; };
 		612BD6900F076F8500EF064D /* Pwitter.icns in Resources */ = {isa = PBXBuildFile; fileRef = 612BD68F0F076F8500EF064D /* Pwitter.icns */; };
 		6131FD4A0F0E28C7004CA960 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6131FD490F0E28C7004CA960 /* Sparkle.framework */; };
 		6131FD5B0F0E297D004CA960 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6131FD490F0E28C7004CA960 /* Sparkle.framework */; };
 		6131FD600F0E2B5A004CA960 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 6131FD5F0F0E2B5A004CA960 /* dsa_pub.pem */; };
-		6134601A0F0602AB00B422A6 /* PTArrayObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 613460190F0602AB00B422A6 /* PTArrayObserver.m */; };
-		613B64F70F0A45B500B67438 /* PTStatusImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 613B64F60F0A45B500B67438 /* PTStatusImageView.m */; };
-		614393A90F09D23400971122 /* PTEntityBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 614393A80F09D23400971122 /* PTEntityBackground.m */; };
 		614C2D9F0F40394F00DEB3D6 /* menu_icon_inv.png in Resources */ = {isa = PBXBuildFile; fileRef = 614C2D9E0F40394F00DEB3D6 /* menu_icon_inv.png */; };
+		614C9FFF0F4EDAAB007B3940 /* EMKeychainItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 614C9F8E0F4EDAAB007B3940 /* EMKeychainItem.m */; };
+		614CA0000F4EDAAB007B3940 /* EMKeychainProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 614C9F900F4EDAAB007B3940 /* EMKeychainProxy.m */; };
+		614CA0010F4EDAAB007B3940 /* PTHotKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 614C9F930F4EDAAB007B3940 /* PTHotKey.m */; };
+		614CA0020F4EDAAB007B3940 /* PTHotKeyCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 614C9F950F4EDAAB007B3940 /* PTHotKeyCenter.m */; };
+		614CA0030F4EDAAB007B3940 /* PTKeyCombo.m in Sources */ = {isa = PBXBuildFile; fileRef = 614C9F970F4EDAAB007B3940 /* PTKeyCombo.m */; };
+		614CA0040F4EDAAB007B3940 /* MGTwitterEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 614C9F9A0F4EDAAB007B3940 /* MGTwitterEngine.m */; };
+		614CA0050F4EDAAB007B3940 /* MGTwitterHTTPURLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 614C9F9E0F4EDAAB007B3940 /* MGTwitterHTTPURLConnection.m */; };
+		614CA0060F4EDAAB007B3940 /* MGTwitterLibXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 614C9FA00F4EDAAB007B3940 /* MGTwitterLibXMLParser.m */; };
+		614CA0070F4EDAAB007B3940 /* MGTwitterMessagesLibXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 614C9FA20F4EDAAB007B3940 /* MGTwitterMessagesLibXMLParser.m */; };
+		614CA0080F4EDAAB007B3940 /* MGTwitterMessagesParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 614C9FA40F4EDAAB007B3940 /* MGTwitterMessagesParser.m */; };
+		614CA0090F4EDAAB007B3940 /* MGTwitterMiscLibXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 614C9FA60F4EDAAB007B3940 /* MGTwitterMiscLibXMLParser.m */; };
+		614CA00A0F4EDAAB007B3940 /* MGTwitterMiscParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 614C9FA80F4EDAAB007B3940 /* MGTwitterMiscParser.m */; };
+		614CA00B0F4EDAAB007B3940 /* MGTwitterStatusesLibXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 614C9FAC0F4EDAAB007B3940 /* MGTwitterStatusesLibXMLParser.m */; };
+		614CA00C0F4EDAAB007B3940 /* MGTwitterStatusesParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 614C9FAE0F4EDAAB007B3940 /* MGTwitterStatusesParser.m */; };
+		614CA00D0F4EDAAB007B3940 /* MGTwitterUsersLibXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 614C9FB00F4EDAAB007B3940 /* MGTwitterUsersLibXMLParser.m */; };
+		614CA00E0F4EDAAB007B3940 /* MGTwitterUsersParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 614C9FB20F4EDAAB007B3940 /* MGTwitterUsersParser.m */; };
+		614CA00F0F4EDAAB007B3940 /* MGTwitterXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 614C9FB40F4EDAAB007B3940 /* MGTwitterXMLParser.m */; };
+		614CA0100F4EDAAB007B3940 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 614C9FB60F4EDAAB007B3940 /* NSData+Base64.m */; };
+		614CA0110F4EDAAB007B3940 /* NSString+UUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 614C9FB80F4EDAAB007B3940 /* NSString+UUID.m */; };
+		614CA0120F4EDAAB007B3940 /* PTGrowlDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 614C9FBC0F4EDAAB007B3940 /* PTGrowlDelegate.m */; };
+		614CA0130F4EDAAB007B3940 /* PTGrowlNotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 614C9FBE0F4EDAAB007B3940 /* PTGrowlNotificationManager.m */; };
+		614CA0140F4EDAAB007B3940 /* PTPreferenceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 614C9FC10F4EDAAB007B3940 /* PTPreferenceManager.m */; };
+		614CA0150F4EDAAB007B3940 /* PTPreferenceWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 614C9FC30F4EDAAB007B3940 /* PTPreferenceWindow.m */; };
+		614CA0160F4EDAAB007B3940 /* PTArrayObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 614C9FC50F4EDAAB007B3940 /* PTArrayObserver.m */; };
+		614CA0170F4EDAAB007B3940 /* PTCharacterCounter.m in Sources */ = {isa = PBXBuildFile; fileRef = 614C9FC70F4EDAAB007B3940 /* PTCharacterCounter.m */; };
+		614CA0180F4EDAAB007B3940 /* PTClickableIcon.m in Sources */ = {isa = PBXBuildFile; fileRef = 614C9FC90F4EDAAB007B3940 /* PTClickableIcon.m */; };
+		614CA0190F4EDAAB007B3940 /* PTCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 614C9FCB0F4EDAAB007B3940 /* PTCollectionView.m */; };
+		614CA01A0F4EDAAB007B3940 /* PTMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 614C9FCD0F4EDAAB007B3940 /* PTMain.m */; };
+		614CA01B0F4EDAAB007B3940 /* PTMainActionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 614C9FCF0F4EDAAB007B3940 /* PTMainActionHandler.m */; };
+		614CA01C0F4EDAAB007B3940 /* PTMainWindowDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 614C9FD10F4EDAAB007B3940 /* PTMainWindowDelegate.m */; };
+		614CA01D0F4EDAAB007B3940 /* PTMenuBarIcon.m in Sources */ = {isa = PBXBuildFile; fileRef = 614C9FD30F4EDAAB007B3940 /* PTMenuBarIcon.m */; };
+		614CA01E0F4EDAAB007B3940 /* PTPostField.m in Sources */ = {isa = PBXBuildFile; fileRef = 614C9FD50F4EDAAB007B3940 /* PTPostField.m */; };
+		614CA01F0F4EDAAB007B3940 /* PTSelectedStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 614C9FD70F4EDAAB007B3940 /* PTSelectedStatusView.m */; };
+		614CA0200F4EDAAB007B3940 /* PTStatusFilterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 614C9FD90F4EDAAB007B3940 /* PTStatusFilterController.m */; };
+		614CA0210F4EDAAB007B3940 /* PTStatusScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 614C9FDB0F4EDAAB007B3940 /* PTStatusScrollView.m */; };
+		614CA0220F4EDAAB007B3940 /* PTContextButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 614C9FDE0F4EDAAB007B3940 /* PTContextButton.m */; };
+		614CA0230F4EDAAB007B3940 /* PTEntityBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 614C9FE00F4EDAAB007B3940 /* PTEntityBackground.m */; };
+		614CA0240F4EDAAB007B3940 /* PTMessageButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 614C9FE20F4EDAAB007B3940 /* PTMessageButton.m */; };
+		614CA0250F4EDAAB007B3940 /* PTReplyButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 614C9FE40F4EDAAB007B3940 /* PTReplyButton.m */; };
+		614CA0260F4EDAAB007B3940 /* PTStatusBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 614C9FE60F4EDAAB007B3940 /* PTStatusBox.m */; };
+		614CA0270F4EDAAB007B3940 /* PTStatusCollectionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 614C9FE80F4EDAAB007B3940 /* PTStatusCollectionItem.m */; };
+		614CA0280F4EDAAB007B3940 /* PTStatusEntityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 614C9FEA0F4EDAAB007B3940 /* PTStatusEntityView.m */; };
+		614CA0290F4EDAAB007B3940 /* PTStatusImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 614C9FEC0F4EDAAB007B3940 /* PTStatusImageView.m */; };
+		614CA02A0F4EDAAB007B3940 /* PTStatusTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 614C9FEE0F4EDAAB007B3940 /* PTStatusTextField.m */; };
+		614CA02B0F4EDAAB007B3940 /* PTDateToStringTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 614C9FF10F4EDAAB007B3940 /* PTDateToStringTransformer.m */; };
+		614CA02C0F4EDAAB007B3940 /* PTReadStatusTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 614C9FF30F4EDAAB007B3940 /* PTReadStatusTransformer.m */; };
+		614CA02D0F4EDAAB007B3940 /* PTStatusBoxGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 614C9FF50F4EDAAB007B3940 /* PTStatusBoxGenerator.m */; };
+		614CA02E0F4EDAAB007B3940 /* PTStatusFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 614C9FF70F4EDAAB007B3940 /* PTStatusFormatter.m */; };
+		614CA02F0F4EDAAB007B3940 /* PTImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 614C9FFA0F4EDAAB007B3940 /* PTImageManager.m */; };
+		614CA0300F4EDAAB007B3940 /* PTReadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 614C9FFC0F4EDAAB007B3940 /* PTReadManager.m */; };
+		614CA0310F4EDAAB007B3940 /* PTURLUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 614C9FFE0F4EDAAB007B3940 /* PTURLUtils.m */; };
 		6156BB0A0F29F4D000338FCD /* startUp.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 6156BB060F29F4D000338FCD /* startUp.m4a */; };
 		6156BB0B0F29F4D000338FCD /* statusReceived.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 6156BB070F29F4D000338FCD /* statusReceived.m4a */; };
 		6156BB0C0F29F4D000338FCD /* statusPosted.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 6156BB080F29F4D000338FCD /* statusPosted.m4a */; };
 		6156BB0D0F29F4D000338FCD /* replyReceived.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 6156BB090F29F4D000338FCD /* replyReceived.m4a */; };
 		6159E0DA0F4B6FA400999951 /* context.png in Resources */ = {isa = PBXBuildFile; fileRef = 6159E0D90F4B6FA400999951 /* context.png */; };
-		6159E2B70F4C2F3400999951 /* PTContextButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6159E2B60F4C2F3400999951 /* PTContextButton.m */; };
 		615B85920F1366DC0005E38F /* Growl Registration Ticket.growlRegDict in Resources */ = {isa = PBXBuildFile; fileRef = 615B85910F1366DC0005E38F /* Growl Registration Ticket.growlRegDict */; };
 		615B85A30F136A2A0005E38F /* Growl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 615B85A20F136A2A0005E38F /* Growl.framework */; };
 		615B85B90F136A4A0005E38F /* Growl.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 615B85A20F136A2A0005E38F /* Growl.framework */; };
-		615B85CF0F136BB30005E38F /* PTGrowlNotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 615B85CE0F136BB30005E38F /* PTGrowlNotificationManager.m */; };
-		615D39770F0B016F0086E57F /* PTCharacterCounter.m in Sources */ = {isa = PBXBuildFile; fileRef = 615D39760F0B016F0086E57F /* PTCharacterCounter.m */; };
 		616143090F4AD81100AFE156 /* reload.png in Resources */ = {isa = PBXBuildFile; fileRef = 616143050F4AD81100AFE156 /* reload.png */; };
 		6161430A0F4AD81100AFE156 /* text140.png in Resources */ = {isa = PBXBuildFile; fileRef = 616143060F4AD81100AFE156 /* text140.png */; };
 		6161430B0F4AD81100AFE156 /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = 616143070F4AD81100AFE156 /* home.png */; };
@@ -44,56 +81,19 @@
 		6161AA3D0F36C76F00141B8B /* dm.png in Resources */ = {isa = PBXBuildFile; fileRef = 6161AA3C0F36C76F00141B8B /* dm.png */; };
 		617A69AD0F33318D0002D105 /* menu_icon_off.png in Resources */ = {isa = PBXBuildFile; fileRef = 617A69AC0F33318D0002D105 /* menu_icon_off.png */; };
 		617A69BF0F334BC70002D105 /* menu_icon_on.png in Resources */ = {isa = PBXBuildFile; fileRef = 617A69BD0F334BC70002D105 /* menu_icon_on.png */; };
-		618DB6760F4593E5000A9815 /* PTCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 618DB6750F4593E5000A9815 /* PTCollectionView.m */; };
-		618DB6E20F459B52000A9815 /* PTClickableIcon.m in Sources */ = {isa = PBXBuildFile; fileRef = 618DB6E10F459B52000A9815 /* PTClickableIcon.m */; };
 		6190A09A0F0AE46100E4F12E /* BGHUDAppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6190A0990F0AE46100E4F12E /* BGHUDAppKit.framework */; };
 		6190A0CB0F0AE55000E4F12E /* BGHUDAppKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6190A0990F0AE46100E4F12E /* BGHUDAppKit.framework */; };
 		61A50F520F063ADB009050CC /* console.png in Resources */ = {isa = PBXBuildFile; fileRef = 61A50F510F063ADB009050CC /* console.png */; };
 		61A66AAA0F36DB8100E4D335 /* fav.png in Resources */ = {isa = PBXBuildFile; fileRef = 61A66AA90F36DB8100E4D335 /* fav.png */; };
-		61AA247E0F3C659000988678 /* PTReadStatusTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 61AA247D0F3C659000988678 /* PTReadStatusTransformer.m */; };
 		61AA24A20F3C67F600988678 /* unread_orb.png in Resources */ = {isa = PBXBuildFile; fileRef = 61AA24A10F3C67F600988678 /* unread_orb.png */; };
-		61AA24E30F3C6D8B00988678 /* PTReadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 61AA24E20F3C6D8B00988678 /* PTReadManager.m */; };
 		61BAFB0F0F1C89B400428121 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61BAFB0E0F1C89B400428121 /* Carbon.framework */; };
 		61BD916F0F0B7C7E00F1CA33 /* default.png in Resources */ = {isa = PBXBuildFile; fileRef = 61BD916E0F0B7C7E00F1CA33 /* default.png */; };
-		61C388EA0F4025F1001E018B /* PTGrowlDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C388E90F4025F1001E018B /* PTGrowlDelegate.m */; };
-		61C773BD0F0509F100258650 /* PTStatusEntityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C773BC0F0509F100258650 /* PTStatusEntityView.m */; };
-		61C773F80F050BBB00258650 /* PTStatusCollectionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C773F70F050BBB00258650 /* PTStatusCollectionItem.m */; };
-		61C786F40F046622007CBC1A /* PTPreferenceWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C786F30F046622007CBC1A /* PTPreferenceWindow.m */; };
-		61CBB1180F3D80C2000EC13D /* PTPostField.m in Sources */ = {isa = PBXBuildFile; fileRef = 61CBB1170F3D80C2000EC13D /* PTPostField.m */; };
-		61D6BE380F077DF300C6B98D /* MGTwitterEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 61D6BE190F077DF300C6B98D /* MGTwitterEngine.m */; };
-		61D6BE390F077DF300C6B98D /* MGTwitterHTTPURLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 61D6BE1D0F077DF300C6B98D /* MGTwitterHTTPURLConnection.m */; };
-		61D6BE3A0F077DF300C6B98D /* MGTwitterLibXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 61D6BE1F0F077DF300C6B98D /* MGTwitterLibXMLParser.m */; };
-		61D6BE3B0F077DF300C6B98D /* MGTwitterMessagesLibXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 61D6BE210F077DF300C6B98D /* MGTwitterMessagesLibXMLParser.m */; };
-		61D6BE3C0F077DF300C6B98D /* MGTwitterMessagesParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 61D6BE230F077DF300C6B98D /* MGTwitterMessagesParser.m */; };
-		61D6BE3D0F077DF300C6B98D /* MGTwitterMiscLibXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 61D6BE250F077DF300C6B98D /* MGTwitterMiscLibXMLParser.m */; };
-		61D6BE3E0F077DF300C6B98D /* MGTwitterMiscParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 61D6BE270F077DF300C6B98D /* MGTwitterMiscParser.m */; };
-		61D6BE3F0F077DF300C6B98D /* MGTwitterStatusesLibXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 61D6BE2B0F077DF300C6B98D /* MGTwitterStatusesLibXMLParser.m */; };
-		61D6BE400F077DF300C6B98D /* MGTwitterStatusesParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 61D6BE2D0F077DF300C6B98D /* MGTwitterStatusesParser.m */; };
-		61D6BE410F077DF300C6B98D /* MGTwitterUsersLibXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 61D6BE2F0F077DF300C6B98D /* MGTwitterUsersLibXMLParser.m */; };
-		61D6BE420F077DF300C6B98D /* MGTwitterUsersParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 61D6BE310F077DF300C6B98D /* MGTwitterUsersParser.m */; };
-		61D6BE430F077DF300C6B98D /* MGTwitterXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 61D6BE330F077DF300C6B98D /* MGTwitterXMLParser.m */; };
-		61D6BE440F077DF300C6B98D /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 61D6BE350F077DF300C6B98D /* NSData+Base64.m */; };
-		61D6BE450F077DF300C6B98D /* NSString+UUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 61D6BE370F077DF300C6B98D /* NSString+UUID.m */; };
-		61D7F9380F4940360076B796 /* PTURLUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 61D7F9370F4940360076B796 /* PTURLUtils.m */; };
-		61D9FBC70F04B0D9003CC890 /* EMKeychainItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 61D9FBC40F04B0D9003CC890 /* EMKeychainItem.m */; };
-		61D9FBC80F04B0D9003CC890 /* EMKeychainProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 61D9FBC60F04B0D9003CC890 /* EMKeychainProxy.m */; };
 		61D9FDFD0F04B41C003CC890 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61D9FDFC0F04B41C003CC890 /* Security.framework */; };
-		61D9FE1C0F04B6DA003CC890 /* PTPreferenceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 61D9FE1B0F04B6DA003CC890 /* PTPreferenceManager.m */; };
-		61DF44B30F0F027C00B8BD2A /* PTStatusFilterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61DF44B20F0F027C00B8BD2A /* PTStatusFilterController.m */; };
-		61E70AF00F10BA17002526FA /* PTMainActionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E70AEF0F10BA17002526FA /* PTMainActionHandler.m */; };
-		61E9997A0F0D88C800509EE8 /* PTMainWindowDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E999790F0D88C800509EE8 /* PTMainWindowDelegate.m */; };
 		61EE70640F0210C0005C42F5 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 61EE70630F0210C0005C42F5 /* libxml2.2.dylib */; };
-		61EE71400F021802005C42F5 /* PTMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 61EE713F0F021802005C42F5 /* PTMain.m */; };
 		61F177A90F1C5A6B00C04938 /* ShortcutRecorder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61F177A80F1C5A6B00C04938 /* ShortcutRecorder.framework */; };
 		61F177C10F1C5CE100C04938 /* ShortcutRecorder.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 61F177A80F1C5A6B00C04938 /* ShortcutRecorder.framework */; };
-		61F177DB0F1C833200C04938 /* PTHotKeyCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 61F177D50F1C833200C04938 /* PTHotKeyCenter.m */; };
-		61F177DC0F1C833200C04938 /* PTHotKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 61F177D80F1C833200C04938 /* PTHotKey.m */; };
-		61F177DD0F1C833200C04938 /* PTKeyCombo.m in Sources */ = {isa = PBXBuildFile; fileRef = 61F177D90F1C833200C04938 /* PTKeyCombo.m */; };
-		61F2CF510F10A3DA00CE073B /* PTStatusFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 61F2CF500F10A3DA00CE073B /* PTStatusFormatter.m */; };
-		61F2CF5C0F10A52400CE073B /* PTStatusBoxGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 61F2CF5B0F10A52400CE073B /* PTStatusBoxGenerator.m */; };
 		61F8E08B0F3C02DA0070C04A /* icon_mask.tif in Resources */ = {isa = PBXBuildFile; fileRef = 61F8E08A0F3C02DA0070C04A /* icon_mask.tif */; };
 		61FCE2520F11956B00496A23 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61FCE2510F11956B00496A23 /* MainMenu.xib */; };
-		61FE03D70F2368A300E20A0C /* PTStatusTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 61FE03D60F2368A300E20A0C /* PTStatusTextField.m */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
@@ -123,46 +123,124 @@
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32CA4F630368D1EE00C91783 /* Pwitter_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pwitter_Prefix.pch; sourceTree = "<group>"; };
-		610332EF0F1873B000BFB060 /* PTSelectedStatusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTSelectedStatusView.h; sourceTree = "<group>"; };
-		610332F00F1873B000BFB060 /* PTSelectedStatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTSelectedStatusView.m; sourceTree = "<group>"; };
-		610333F80F18C0C500BFB060 /* PTStatusScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTStatusScrollView.h; sourceTree = "<group>"; };
-		610333F90F18C0C500BFB060 /* PTStatusScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTStatusScrollView.m; sourceTree = "<group>"; };
-		610BF8A90F030DFA008D9A3B /* PTStatusBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTStatusBox.h; sourceTree = "<group>"; };
-		610BF8AA0F030DFA008D9A3B /* PTStatusBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTStatusBox.m; sourceTree = "<group>"; };
-		610C2E8C0F37F0E300A31533 /* PTMenuBarIcon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTMenuBarIcon.h; sourceTree = "<group>"; };
-		610C2E8D0F37F0E300A31533 /* PTMenuBarIcon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTMenuBarIcon.m; sourceTree = "<group>"; };
-		6112C5540F4C34730043F7CD /* PTReplyButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTReplyButton.h; sourceTree = "<group>"; };
-		6112C5550F4C34730043F7CD /* PTReplyButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTReplyButton.m; sourceTree = "<group>"; };
-		6112C5570F4C347E0043F7CD /* PTMessageButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTMessageButton.h; sourceTree = "<group>"; };
-		6112C5580F4C347E0043F7CD /* PTMessageButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTMessageButton.m; sourceTree = "<group>"; };
-		611384EB0F3980740065B59B /* PTDateToStringTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTDateToStringTransformer.h; sourceTree = "<group>"; };
-		611384EC0F3980740065B59B /* PTDateToStringTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTDateToStringTransformer.m; sourceTree = "<group>"; };
 		611386190F3988DD0065B59B /* error.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = error.m4a; sourceTree = "<group>"; };
-		611386230F3989D60065B59B /* PTImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTImageManager.h; sourceTree = "<group>"; };
-		611386240F3989D60065B59B /* PTImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTImageManager.m; sourceTree = "<group>"; };
 		612BD68F0F076F8500EF064D /* Pwitter.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Pwitter.icns; sourceTree = "<group>"; };
 		6131FD490F0E28C7004CA960 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		6131FD5F0F0E2B5A004CA960 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
-		613460180F0602AB00B422A6 /* PTArrayObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTArrayObserver.h; sourceTree = "<group>"; };
-		613460190F0602AB00B422A6 /* PTArrayObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTArrayObserver.m; sourceTree = "<group>"; };
-		613B64F50F0A45B500B67438 /* PTStatusImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTStatusImageView.h; sourceTree = "<group>"; };
-		613B64F60F0A45B500B67438 /* PTStatusImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTStatusImageView.m; sourceTree = "<group>"; };
-		614393A70F09D23400971122 /* PTEntityBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTEntityBackground.h; sourceTree = "<group>"; };
-		614393A80F09D23400971122 /* PTEntityBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTEntityBackground.m; sourceTree = "<group>"; };
 		614C2D9E0F40394F00DEB3D6 /* menu_icon_inv.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_icon_inv.png; sourceTree = "<group>"; };
+		614C9F8D0F4EDAAB007B3940 /* EMKeychainItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMKeychainItem.h; sourceTree = "<group>"; };
+		614C9F8E0F4EDAAB007B3940 /* EMKeychainItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMKeychainItem.m; sourceTree = "<group>"; };
+		614C9F8F0F4EDAAB007B3940 /* EMKeychainProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMKeychainProxy.h; sourceTree = "<group>"; };
+		614C9F900F4EDAAB007B3940 /* EMKeychainProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMKeychainProxy.m; sourceTree = "<group>"; };
+		614C9F920F4EDAAB007B3940 /* PTHotKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTHotKey.h; sourceTree = "<group>"; };
+		614C9F930F4EDAAB007B3940 /* PTHotKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTHotKey.m; sourceTree = "<group>"; };
+		614C9F940F4EDAAB007B3940 /* PTHotKeyCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTHotKeyCenter.h; sourceTree = "<group>"; };
+		614C9F950F4EDAAB007B3940 /* PTHotKeyCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTHotKeyCenter.m; sourceTree = "<group>"; };
+		614C9F960F4EDAAB007B3940 /* PTKeyCombo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTKeyCombo.h; sourceTree = "<group>"; };
+		614C9F970F4EDAAB007B3940 /* PTKeyCombo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTKeyCombo.m; sourceTree = "<group>"; };
+		614C9F990F4EDAAB007B3940 /* MGTwitterEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGTwitterEngine.h; sourceTree = "<group>"; };
+		614C9F9A0F4EDAAB007B3940 /* MGTwitterEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGTwitterEngine.m; sourceTree = "<group>"; };
+		614C9F9B0F4EDAAB007B3940 /* MGTwitterEngineDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGTwitterEngineDelegate.h; sourceTree = "<group>"; };
+		614C9F9C0F4EDAAB007B3940 /* MGTwitterEngineGlobalHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGTwitterEngineGlobalHeader.h; sourceTree = "<group>"; };
+		614C9F9D0F4EDAAB007B3940 /* MGTwitterHTTPURLConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGTwitterHTTPURLConnection.h; sourceTree = "<group>"; };
+		614C9F9E0F4EDAAB007B3940 /* MGTwitterHTTPURLConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGTwitterHTTPURLConnection.m; sourceTree = "<group>"; };
+		614C9F9F0F4EDAAB007B3940 /* MGTwitterLibXMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGTwitterLibXMLParser.h; sourceTree = "<group>"; };
+		614C9FA00F4EDAAB007B3940 /* MGTwitterLibXMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGTwitterLibXMLParser.m; sourceTree = "<group>"; };
+		614C9FA10F4EDAAB007B3940 /* MGTwitterMessagesLibXMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGTwitterMessagesLibXMLParser.h; sourceTree = "<group>"; };
+		614C9FA20F4EDAAB007B3940 /* MGTwitterMessagesLibXMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGTwitterMessagesLibXMLParser.m; sourceTree = "<group>"; };
+		614C9FA30F4EDAAB007B3940 /* MGTwitterMessagesParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGTwitterMessagesParser.h; sourceTree = "<group>"; };
+		614C9FA40F4EDAAB007B3940 /* MGTwitterMessagesParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGTwitterMessagesParser.m; sourceTree = "<group>"; };
+		614C9FA50F4EDAAB007B3940 /* MGTwitterMiscLibXMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGTwitterMiscLibXMLParser.h; sourceTree = "<group>"; };
+		614C9FA60F4EDAAB007B3940 /* MGTwitterMiscLibXMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGTwitterMiscLibXMLParser.m; sourceTree = "<group>"; };
+		614C9FA70F4EDAAB007B3940 /* MGTwitterMiscParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGTwitterMiscParser.h; sourceTree = "<group>"; };
+		614C9FA80F4EDAAB007B3940 /* MGTwitterMiscParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGTwitterMiscParser.m; sourceTree = "<group>"; };
+		614C9FA90F4EDAAB007B3940 /* MGTwitterParserDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGTwitterParserDelegate.h; sourceTree = "<group>"; };
+		614C9FAA0F4EDAAB007B3940 /* MGTwitterRequestTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGTwitterRequestTypes.h; sourceTree = "<group>"; };
+		614C9FAB0F4EDAAB007B3940 /* MGTwitterStatusesLibXMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGTwitterStatusesLibXMLParser.h; sourceTree = "<group>"; };
+		614C9FAC0F4EDAAB007B3940 /* MGTwitterStatusesLibXMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGTwitterStatusesLibXMLParser.m; sourceTree = "<group>"; };
+		614C9FAD0F4EDAAB007B3940 /* MGTwitterStatusesParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGTwitterStatusesParser.h; sourceTree = "<group>"; };
+		614C9FAE0F4EDAAB007B3940 /* MGTwitterStatusesParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGTwitterStatusesParser.m; sourceTree = "<group>"; };
+		614C9FAF0F4EDAAB007B3940 /* MGTwitterUsersLibXMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGTwitterUsersLibXMLParser.h; sourceTree = "<group>"; };
+		614C9FB00F4EDAAB007B3940 /* MGTwitterUsersLibXMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGTwitterUsersLibXMLParser.m; sourceTree = "<group>"; };
+		614C9FB10F4EDAAB007B3940 /* MGTwitterUsersParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGTwitterUsersParser.h; sourceTree = "<group>"; };
+		614C9FB20F4EDAAB007B3940 /* MGTwitterUsersParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGTwitterUsersParser.m; sourceTree = "<group>"; };
+		614C9FB30F4EDAAB007B3940 /* MGTwitterXMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGTwitterXMLParser.h; sourceTree = "<group>"; };
+		614C9FB40F4EDAAB007B3940 /* MGTwitterXMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGTwitterXMLParser.m; sourceTree = "<group>"; };
+		614C9FB50F4EDAAB007B3940 /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
+		614C9FB60F4EDAAB007B3940 /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
+		614C9FB70F4EDAAB007B3940 /* NSString+UUID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+UUID.h"; sourceTree = "<group>"; };
+		614C9FB80F4EDAAB007B3940 /* NSString+UUID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+UUID.m"; sourceTree = "<group>"; };
+		614C9FBB0F4EDAAB007B3940 /* PTGrowlDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTGrowlDelegate.h; sourceTree = "<group>"; };
+		614C9FBC0F4EDAAB007B3940 /* PTGrowlDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTGrowlDelegate.m; sourceTree = "<group>"; };
+		614C9FBD0F4EDAAB007B3940 /* PTGrowlNotificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTGrowlNotificationManager.h; sourceTree = "<group>"; };
+		614C9FBE0F4EDAAB007B3940 /* PTGrowlNotificationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTGrowlNotificationManager.m; sourceTree = "<group>"; };
+		614C9FC00F4EDAAB007B3940 /* PTPreferenceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTPreferenceManager.h; sourceTree = "<group>"; };
+		614C9FC10F4EDAAB007B3940 /* PTPreferenceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTPreferenceManager.m; sourceTree = "<group>"; };
+		614C9FC20F4EDAAB007B3940 /* PTPreferenceWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTPreferenceWindow.h; sourceTree = "<group>"; };
+		614C9FC30F4EDAAB007B3940 /* PTPreferenceWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTPreferenceWindow.m; sourceTree = "<group>"; };
+		614C9FC40F4EDAAB007B3940 /* PTArrayObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTArrayObserver.h; sourceTree = "<group>"; };
+		614C9FC50F4EDAAB007B3940 /* PTArrayObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTArrayObserver.m; sourceTree = "<group>"; };
+		614C9FC60F4EDAAB007B3940 /* PTCharacterCounter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTCharacterCounter.h; sourceTree = "<group>"; };
+		614C9FC70F4EDAAB007B3940 /* PTCharacterCounter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTCharacterCounter.m; sourceTree = "<group>"; };
+		614C9FC80F4EDAAB007B3940 /* PTClickableIcon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTClickableIcon.h; sourceTree = "<group>"; };
+		614C9FC90F4EDAAB007B3940 /* PTClickableIcon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTClickableIcon.m; sourceTree = "<group>"; };
+		614C9FCA0F4EDAAB007B3940 /* PTCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTCollectionView.h; sourceTree = "<group>"; };
+		614C9FCB0F4EDAAB007B3940 /* PTCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTCollectionView.m; sourceTree = "<group>"; };
+		614C9FCC0F4EDAAB007B3940 /* PTMain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTMain.h; sourceTree = "<group>"; };
+		614C9FCD0F4EDAAB007B3940 /* PTMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTMain.m; sourceTree = "<group>"; };
+		614C9FCE0F4EDAAB007B3940 /* PTMainActionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTMainActionHandler.h; sourceTree = "<group>"; };
+		614C9FCF0F4EDAAB007B3940 /* PTMainActionHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTMainActionHandler.m; sourceTree = "<group>"; };
+		614C9FD00F4EDAAB007B3940 /* PTMainWindowDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTMainWindowDelegate.h; sourceTree = "<group>"; };
+		614C9FD10F4EDAAB007B3940 /* PTMainWindowDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTMainWindowDelegate.m; sourceTree = "<group>"; };
+		614C9FD20F4EDAAB007B3940 /* PTMenuBarIcon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTMenuBarIcon.h; sourceTree = "<group>"; };
+		614C9FD30F4EDAAB007B3940 /* PTMenuBarIcon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTMenuBarIcon.m; sourceTree = "<group>"; };
+		614C9FD40F4EDAAB007B3940 /* PTPostField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTPostField.h; sourceTree = "<group>"; };
+		614C9FD50F4EDAAB007B3940 /* PTPostField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTPostField.m; sourceTree = "<group>"; };
+		614C9FD60F4EDAAB007B3940 /* PTSelectedStatusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTSelectedStatusView.h; sourceTree = "<group>"; };
+		614C9FD70F4EDAAB007B3940 /* PTSelectedStatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTSelectedStatusView.m; sourceTree = "<group>"; };
+		614C9FD80F4EDAAB007B3940 /* PTStatusFilterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTStatusFilterController.h; sourceTree = "<group>"; };
+		614C9FD90F4EDAAB007B3940 /* PTStatusFilterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTStatusFilterController.m; sourceTree = "<group>"; };
+		614C9FDA0F4EDAAB007B3940 /* PTStatusScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTStatusScrollView.h; sourceTree = "<group>"; };
+		614C9FDB0F4EDAAB007B3940 /* PTStatusScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTStatusScrollView.m; sourceTree = "<group>"; };
+		614C9FDD0F4EDAAB007B3940 /* PTContextButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTContextButton.h; sourceTree = "<group>"; };
+		614C9FDE0F4EDAAB007B3940 /* PTContextButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTContextButton.m; sourceTree = "<group>"; };
+		614C9FDF0F4EDAAB007B3940 /* PTEntityBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTEntityBackground.h; sourceTree = "<group>"; };
+		614C9FE00F4EDAAB007B3940 /* PTEntityBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTEntityBackground.m; sourceTree = "<group>"; };
+		614C9FE10F4EDAAB007B3940 /* PTMessageButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTMessageButton.h; sourceTree = "<group>"; };
+		614C9FE20F4EDAAB007B3940 /* PTMessageButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTMessageButton.m; sourceTree = "<group>"; };
+		614C9FE30F4EDAAB007B3940 /* PTReplyButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTReplyButton.h; sourceTree = "<group>"; };
+		614C9FE40F4EDAAB007B3940 /* PTReplyButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTReplyButton.m; sourceTree = "<group>"; };
+		614C9FE50F4EDAAB007B3940 /* PTStatusBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTStatusBox.h; sourceTree = "<group>"; };
+		614C9FE60F4EDAAB007B3940 /* PTStatusBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTStatusBox.m; sourceTree = "<group>"; };
+		614C9FE70F4EDAAB007B3940 /* PTStatusCollectionItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTStatusCollectionItem.h; sourceTree = "<group>"; };
+		614C9FE80F4EDAAB007B3940 /* PTStatusCollectionItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTStatusCollectionItem.m; sourceTree = "<group>"; };
+		614C9FE90F4EDAAB007B3940 /* PTStatusEntityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTStatusEntityView.h; sourceTree = "<group>"; };
+		614C9FEA0F4EDAAB007B3940 /* PTStatusEntityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTStatusEntityView.m; sourceTree = "<group>"; };
+		614C9FEB0F4EDAAB007B3940 /* PTStatusImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTStatusImageView.h; sourceTree = "<group>"; };
+		614C9FEC0F4EDAAB007B3940 /* PTStatusImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTStatusImageView.m; sourceTree = "<group>"; };
+		614C9FED0F4EDAAB007B3940 /* PTStatusTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTStatusTextField.h; sourceTree = "<group>"; };
+		614C9FEE0F4EDAAB007B3940 /* PTStatusTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTStatusTextField.m; sourceTree = "<group>"; };
+		614C9FF00F4EDAAB007B3940 /* PTDateToStringTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTDateToStringTransformer.h; sourceTree = "<group>"; };
+		614C9FF10F4EDAAB007B3940 /* PTDateToStringTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTDateToStringTransformer.m; sourceTree = "<group>"; };
+		614C9FF20F4EDAAB007B3940 /* PTReadStatusTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTReadStatusTransformer.h; sourceTree = "<group>"; };
+		614C9FF30F4EDAAB007B3940 /* PTReadStatusTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTReadStatusTransformer.m; sourceTree = "<group>"; };
+		614C9FF40F4EDAAB007B3940 /* PTStatusBoxGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTStatusBoxGenerator.h; sourceTree = "<group>"; };
+		614C9FF50F4EDAAB007B3940 /* PTStatusBoxGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTStatusBoxGenerator.m; sourceTree = "<group>"; };
+		614C9FF60F4EDAAB007B3940 /* PTStatusFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTStatusFormatter.h; sourceTree = "<group>"; };
+		614C9FF70F4EDAAB007B3940 /* PTStatusFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTStatusFormatter.m; sourceTree = "<group>"; };
+		614C9FF90F4EDAAB007B3940 /* PTImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTImageManager.h; sourceTree = "<group>"; };
+		614C9FFA0F4EDAAB007B3940 /* PTImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTImageManager.m; sourceTree = "<group>"; };
+		614C9FFB0F4EDAAB007B3940 /* PTReadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTReadManager.h; sourceTree = "<group>"; };
+		614C9FFC0F4EDAAB007B3940 /* PTReadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTReadManager.m; sourceTree = "<group>"; };
+		614C9FFD0F4EDAAB007B3940 /* PTURLUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTURLUtils.h; sourceTree = "<group>"; };
+		614C9FFE0F4EDAAB007B3940 /* PTURLUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTURLUtils.m; sourceTree = "<group>"; };
 		6156BB060F29F4D000338FCD /* startUp.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = startUp.m4a; sourceTree = "<group>"; };
 		6156BB070F29F4D000338FCD /* statusReceived.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = statusReceived.m4a; sourceTree = "<group>"; };
 		6156BB080F29F4D000338FCD /* statusPosted.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = statusPosted.m4a; sourceTree = "<group>"; };
 		6156BB090F29F4D000338FCD /* replyReceived.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = replyReceived.m4a; sourceTree = "<group>"; };
 		6159E0D90F4B6FA400999951 /* context.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = context.png; sourceTree = "<group>"; };
-		6159E2B50F4C2F3400999951 /* PTContextButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTContextButton.h; sourceTree = "<group>"; };
-		6159E2B60F4C2F3400999951 /* PTContextButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTContextButton.m; sourceTree = "<group>"; };
 		615B85910F1366DC0005E38F /* Growl Registration Ticket.growlRegDict */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Growl Registration Ticket.growlRegDict"; sourceTree = "<group>"; };
 		615B85A20F136A2A0005E38F /* Growl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Growl.framework; sourceTree = "<group>"; };
-		615B85CD0F136BB30005E38F /* PTGrowlNotificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTGrowlNotificationManager.h; sourceTree = "<group>"; };
-		615B85CE0F136BB30005E38F /* PTGrowlNotificationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTGrowlNotificationManager.m; sourceTree = "<group>"; };
-		615D39750F0B016F0086E57F /* PTCharacterCounter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTCharacterCounter.h; sourceTree = "<group>"; };
-		615D39760F0B016F0086E57F /* PTCharacterCounter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTCharacterCounter.m; sourceTree = "<group>"; };
 		616143050F4AD81100AFE156 /* reload.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reload.png; sourceTree = "<group>"; };
 		616143060F4AD81100AFE156 /* text140.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = text140.png; sourceTree = "<group>"; };
 		616143070F4AD81100AFE156 /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
@@ -172,95 +250,17 @@
 		6161AA3C0F36C76F00141B8B /* dm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dm.png; sourceTree = "<group>"; };
 		617A69AC0F33318D0002D105 /* menu_icon_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_icon_off.png; sourceTree = "<group>"; };
 		617A69BD0F334BC70002D105 /* menu_icon_on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_icon_on.png; sourceTree = "<group>"; };
-		618DB6740F4593E5000A9815 /* PTCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTCollectionView.h; sourceTree = "<group>"; };
-		618DB6750F4593E5000A9815 /* PTCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTCollectionView.m; sourceTree = "<group>"; };
-		618DB6E00F459B52000A9815 /* PTClickableIcon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTClickableIcon.h; sourceTree = "<group>"; };
-		618DB6E10F459B52000A9815 /* PTClickableIcon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTClickableIcon.m; sourceTree = "<group>"; };
 		6190A0990F0AE46100E4F12E /* BGHUDAppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BGHUDAppKit.framework; sourceTree = "<group>"; };
 		61A50F510F063ADB009050CC /* console.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = console.png; sourceTree = "<group>"; };
 		61A66AA90F36DB8100E4D335 /* fav.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fav.png; sourceTree = "<group>"; };
-		61AA247C0F3C659000988678 /* PTReadStatusTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTReadStatusTransformer.h; sourceTree = "<group>"; };
-		61AA247D0F3C659000988678 /* PTReadStatusTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTReadStatusTransformer.m; sourceTree = "<group>"; };
 		61AA24A10F3C67F600988678 /* unread_orb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unread_orb.png; sourceTree = "<group>"; };
-		61AA24E10F3C6D8B00988678 /* PTReadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTReadManager.h; sourceTree = "<group>"; };
-		61AA24E20F3C6D8B00988678 /* PTReadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTReadManager.m; sourceTree = "<group>"; };
 		61BAFB0E0F1C89B400428121 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
 		61BD916E0F0B7C7E00F1CA33 /* default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default.png; sourceTree = "<group>"; };
-		61C388E80F4025F1001E018B /* PTGrowlDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTGrowlDelegate.h; sourceTree = "<group>"; };
-		61C388E90F4025F1001E018B /* PTGrowlDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTGrowlDelegate.m; sourceTree = "<group>"; };
-		61C773BB0F0509F100258650 /* PTStatusEntityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTStatusEntityView.h; sourceTree = "<group>"; };
-		61C773BC0F0509F100258650 /* PTStatusEntityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTStatusEntityView.m; sourceTree = "<group>"; };
-		61C773F60F050BBB00258650 /* PTStatusCollectionItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTStatusCollectionItem.h; sourceTree = "<group>"; };
-		61C773F70F050BBB00258650 /* PTStatusCollectionItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTStatusCollectionItem.m; sourceTree = "<group>"; };
-		61C786F20F046622007CBC1A /* PTPreferenceWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTPreferenceWindow.h; sourceTree = "<group>"; };
-		61C786F30F046622007CBC1A /* PTPreferenceWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTPreferenceWindow.m; sourceTree = "<group>"; };
-		61CBB1160F3D80C2000EC13D /* PTPostField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTPostField.h; sourceTree = "<group>"; };
-		61CBB1170F3D80C2000EC13D /* PTPostField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTPostField.m; sourceTree = "<group>"; };
-		61D6BE180F077DF300C6B98D /* MGTwitterEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MGTwitterEngine.h; path = MGTwitterEngine/MGTwitterEngine.h; sourceTree = "<group>"; };
-		61D6BE190F077DF300C6B98D /* MGTwitterEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MGTwitterEngine.m; path = MGTwitterEngine/MGTwitterEngine.m; sourceTree = "<group>"; };
-		61D6BE1A0F077DF300C6B98D /* MGTwitterEngineDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MGTwitterEngineDelegate.h; path = MGTwitterEngine/MGTwitterEngineDelegate.h; sourceTree = "<group>"; };
-		61D6BE1B0F077DF300C6B98D /* MGTwitterEngineGlobalHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MGTwitterEngineGlobalHeader.h; path = MGTwitterEngine/MGTwitterEngineGlobalHeader.h; sourceTree = "<group>"; };
-		61D6BE1C0F077DF300C6B98D /* MGTwitterHTTPURLConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MGTwitterHTTPURLConnection.h; path = MGTwitterEngine/MGTwitterHTTPURLConnection.h; sourceTree = "<group>"; };
-		61D6BE1D0F077DF300C6B98D /* MGTwitterHTTPURLConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MGTwitterHTTPURLConnection.m; path = MGTwitterEngine/MGTwitterHTTPURLConnection.m; sourceTree = "<group>"; };
-		61D6BE1E0F077DF300C6B98D /* MGTwitterLibXMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MGTwitterLibXMLParser.h; path = MGTwitterEngine/MGTwitterLibXMLParser.h; sourceTree = "<group>"; };
-		61D6BE1F0F077DF300C6B98D /* MGTwitterLibXMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MGTwitterLibXMLParser.m; path = MGTwitterEngine/MGTwitterLibXMLParser.m; sourceTree = "<group>"; };
-		61D6BE200F077DF300C6B98D /* MGTwitterMessagesLibXMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MGTwitterMessagesLibXMLParser.h; path = MGTwitterEngine/MGTwitterMessagesLibXMLParser.h; sourceTree = "<group>"; };
-		61D6BE210F077DF300C6B98D /* MGTwitterMessagesLibXMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MGTwitterMessagesLibXMLParser.m; path = MGTwitterEngine/MGTwitterMessagesLibXMLParser.m; sourceTree = "<group>"; };
-		61D6BE220F077DF300C6B98D /* MGTwitterMessagesParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MGTwitterMessagesParser.h; path = MGTwitterEngine/MGTwitterMessagesParser.h; sourceTree = "<group>"; };
-		61D6BE230F077DF300C6B98D /* MGTwitterMessagesParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MGTwitterMessagesParser.m; path = MGTwitterEngine/MGTwitterMessagesParser.m; sourceTree = "<group>"; };
-		61D6BE240F077DF300C6B98D /* MGTwitterMiscLibXMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MGTwitterMiscLibXMLParser.h; path = MGTwitterEngine/MGTwitterMiscLibXMLParser.h; sourceTree = "<group>"; };
-		61D6BE250F077DF300C6B98D /* MGTwitterMiscLibXMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MGTwitterMiscLibXMLParser.m; path = MGTwitterEngine/MGTwitterMiscLibXMLParser.m; sourceTree = "<group>"; };
-		61D6BE260F077DF300C6B98D /* MGTwitterMiscParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MGTwitterMiscParser.h; path = MGTwitterEngine/MGTwitterMiscParser.h; sourceTree = "<group>"; };
-		61D6BE270F077DF300C6B98D /* MGTwitterMiscParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MGTwitterMiscParser.m; path = MGTwitterEngine/MGTwitterMiscParser.m; sourceTree = "<group>"; };
-		61D6BE280F077DF300C6B98D /* MGTwitterParserDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MGTwitterParserDelegate.h; path = MGTwitterEngine/MGTwitterParserDelegate.h; sourceTree = "<group>"; };
-		61D6BE290F077DF300C6B98D /* MGTwitterRequestTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MGTwitterRequestTypes.h; path = MGTwitterEngine/MGTwitterRequestTypes.h; sourceTree = "<group>"; };
-		61D6BE2A0F077DF300C6B98D /* MGTwitterStatusesLibXMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MGTwitterStatusesLibXMLParser.h; path = MGTwitterEngine/MGTwitterStatusesLibXMLParser.h; sourceTree = "<group>"; };
-		61D6BE2B0F077DF300C6B98D /* MGTwitterStatusesLibXMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MGTwitterStatusesLibXMLParser.m; path = MGTwitterEngine/MGTwitterStatusesLibXMLParser.m; sourceTree = "<group>"; };
-		61D6BE2C0F077DF300C6B98D /* MGTwitterStatusesParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MGTwitterStatusesParser.h; path = MGTwitterEngine/MGTwitterStatusesParser.h; sourceTree = "<group>"; };
-		61D6BE2D0F077DF300C6B98D /* MGTwitterStatusesParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MGTwitterStatusesParser.m; path = MGTwitterEngine/MGTwitterStatusesParser.m; sourceTree = "<group>"; };
-		61D6BE2E0F077DF300C6B98D /* MGTwitterUsersLibXMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MGTwitterUsersLibXMLParser.h; path = MGTwitterEngine/MGTwitterUsersLibXMLParser.h; sourceTree = "<group>"; };
-		61D6BE2F0F077DF300C6B98D /* MGTwitterUsersLibXMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MGTwitterUsersLibXMLParser.m; path = MGTwitterEngine/MGTwitterUsersLibXMLParser.m; sourceTree = "<group>"; };
-		61D6BE300F077DF300C6B98D /* MGTwitterUsersParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MGTwitterUsersParser.h; path = MGTwitterEngine/MGTwitterUsersParser.h; sourceTree = "<group>"; };
-		61D6BE310F077DF300C6B98D /* MGTwitterUsersParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MGTwitterUsersParser.m; path = MGTwitterEngine/MGTwitterUsersParser.m; sourceTree = "<group>"; };
-		61D6BE320F077DF300C6B98D /* MGTwitterXMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MGTwitterXMLParser.h; path = MGTwitterEngine/MGTwitterXMLParser.h; sourceTree = "<group>"; };
-		61D6BE330F077DF300C6B98D /* MGTwitterXMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MGTwitterXMLParser.m; path = MGTwitterEngine/MGTwitterXMLParser.m; sourceTree = "<group>"; };
-		61D6BE340F077DF300C6B98D /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSData+Base64.h"; path = "MGTwitterEngine/NSData+Base64.h"; sourceTree = "<group>"; };
-		61D6BE350F077DF300C6B98D /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSData+Base64.m"; path = "MGTwitterEngine/NSData+Base64.m"; sourceTree = "<group>"; };
-		61D6BE360F077DF300C6B98D /* NSString+UUID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+UUID.h"; path = "MGTwitterEngine/NSString+UUID.h"; sourceTree = "<group>"; };
-		61D6BE370F077DF300C6B98D /* NSString+UUID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+UUID.m"; path = "MGTwitterEngine/NSString+UUID.m"; sourceTree = "<group>"; };
-		61D7F9360F4940360076B796 /* PTURLUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTURLUtils.h; sourceTree = "<group>"; };
-		61D7F9370F4940360076B796 /* PTURLUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTURLUtils.m; sourceTree = "<group>"; };
-		61D9FBC30F04B0D9003CC890 /* EMKeychainItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EMKeychainItem.h; path = EMKeychain/EMKeychainItem.h; sourceTree = "<group>"; };
-		61D9FBC40F04B0D9003CC890 /* EMKeychainItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EMKeychainItem.m; path = EMKeychain/EMKeychainItem.m; sourceTree = "<group>"; };
-		61D9FBC50F04B0D9003CC890 /* EMKeychainProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EMKeychainProxy.h; path = EMKeychain/EMKeychainProxy.h; sourceTree = "<group>"; };
-		61D9FBC60F04B0D9003CC890 /* EMKeychainProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EMKeychainProxy.m; path = EMKeychain/EMKeychainProxy.m; sourceTree = "<group>"; };
 		61D9FDFC0F04B41C003CC890 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
-		61D9FE1A0F04B6DA003CC890 /* PTPreferenceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTPreferenceManager.h; sourceTree = "<group>"; };
-		61D9FE1B0F04B6DA003CC890 /* PTPreferenceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTPreferenceManager.m; sourceTree = "<group>"; };
-		61DF44B10F0F027C00B8BD2A /* PTStatusFilterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTStatusFilterController.h; sourceTree = "<group>"; };
-		61DF44B20F0F027C00B8BD2A /* PTStatusFilterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTStatusFilterController.m; sourceTree = "<group>"; };
-		61E70AEE0F10BA17002526FA /* PTMainActionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTMainActionHandler.h; sourceTree = "<group>"; };
-		61E70AEF0F10BA17002526FA /* PTMainActionHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTMainActionHandler.m; sourceTree = "<group>"; };
-		61E999780F0D88C800509EE8 /* PTMainWindowDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTMainWindowDelegate.h; sourceTree = "<group>"; };
-		61E999790F0D88C800509EE8 /* PTMainWindowDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTMainWindowDelegate.m; sourceTree = "<group>"; };
 		61EE70630F0210C0005C42F5 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = /usr/lib/libxml2.2.dylib; sourceTree = "<absolute>"; };
-		61EE713E0F021802005C42F5 /* PTMain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTMain.h; sourceTree = "<group>"; };
-		61EE713F0F021802005C42F5 /* PTMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTMain.m; sourceTree = "<group>"; };
 		61F177A80F1C5A6B00C04938 /* ShortcutRecorder.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ShortcutRecorder.framework; sourceTree = "<group>"; };
-		61F177D50F1C833200C04938 /* PTHotKeyCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTHotKeyCenter.m; sourceTree = "<group>"; };
-		61F177D60F1C833200C04938 /* PTHotKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTHotKey.h; sourceTree = "<group>"; };
-		61F177D70F1C833200C04938 /* PTKeyCombo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTKeyCombo.h; sourceTree = "<group>"; };
-		61F177D80F1C833200C04938 /* PTHotKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTHotKey.m; sourceTree = "<group>"; };
-		61F177D90F1C833200C04938 /* PTKeyCombo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTKeyCombo.m; sourceTree = "<group>"; };
-		61F177DA0F1C833200C04938 /* PTHotKeyCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTHotKeyCenter.h; sourceTree = "<group>"; };
 		61F2CF370F10A10800CE073B /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		61F2CF4F0F10A3DA00CE073B /* PTStatusFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTStatusFormatter.h; sourceTree = "<group>"; };
-		61F2CF500F10A3DA00CE073B /* PTStatusFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTStatusFormatter.m; sourceTree = "<group>"; };
-		61F2CF5A0F10A52400CE073B /* PTStatusBoxGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTStatusBoxGenerator.h; sourceTree = "<group>"; };
-		61F2CF5B0F10A52400CE073B /* PTStatusBoxGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTStatusBoxGenerator.m; sourceTree = "<group>"; };
 		61F8E08A0F3C02DA0070C04A /* icon_mask.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = icon_mask.tif; sourceTree = "<group>"; };
-		61FE03D50F2368A300E20A0C /* PTStatusTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTStatusTextField.h; sourceTree = "<group>"; };
-		61FE03D60F2368A300E20A0C /* PTStatusTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTStatusTextField.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* Pwitter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pwitter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -284,17 +284,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		080E96DDFE201D6D7F000001 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				61EE70620F02107B005C42F5 /* Pwitter */,
-				61F177D30F1C832400C04938 /* HotKey */,
-				61D6BE170F077DDE00C6B98D /* MGTwitterEngine */,
-				61D9FBC00F04B041003CC890 /* EMKeychain */,
-			);
-			name = Classes;
-			sourceTree = "<group>";
-		};
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -331,7 +320,7 @@
 		29B97314FDCFA39411CA2CEA /* Pwitter */ = {
 			isa = PBXGroup;
 			children = (
-				080E96DDFE201D6D7F000001 /* Classes */,
+				614C9F8B0F4EDAAB007B3940 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
@@ -392,178 +381,189 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		611384EE0F3981C80065B59B /* Preferences */ = {
+		614C9F8B0F4EDAAB007B3940 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				61C786F20F046622007CBC1A /* PTPreferenceWindow.h */,
-				61C786F30F046622007CBC1A /* PTPreferenceWindow.m */,
-				61D9FE1A0F04B6DA003CC890 /* PTPreferenceManager.h */,
-				61D9FE1B0F04B6DA003CC890 /* PTPreferenceManager.m */,
+				614C9FB90F4EDAAB007B3940 /* Pwitter */,
+				614C9F8C0F4EDAAB007B3940 /* EMKeychain */,
+				614C9F910F4EDAAB007B3940 /* HotKey */,
+				614C9F980F4EDAAB007B3940 /* MGTwitterEngine */,
 			);
-			name = Preferences;
+			path = Classes;
 			sourceTree = "<group>";
 		};
-		611384F00F3981DC0065B59B /* StatusItem */ = {
+		614C9F8C0F4EDAAB007B3940 /* EMKeychain */ = {
 			isa = PBXGroup;
 			children = (
-				610BF8A90F030DFA008D9A3B /* PTStatusBox.h */,
-				610BF8AA0F030DFA008D9A3B /* PTStatusBox.m */,
-				61C773BB0F0509F100258650 /* PTStatusEntityView.h */,
-				61C773BC0F0509F100258650 /* PTStatusEntityView.m */,
-				61C773F60F050BBB00258650 /* PTStatusCollectionItem.h */,
-				61C773F70F050BBB00258650 /* PTStatusCollectionItem.m */,
-				614393A70F09D23400971122 /* PTEntityBackground.h */,
-				614393A80F09D23400971122 /* PTEntityBackground.m */,
-				613B64F50F0A45B500B67438 /* PTStatusImageView.h */,
-				613B64F60F0A45B500B67438 /* PTStatusImageView.m */,
-				61FE03D50F2368A300E20A0C /* PTStatusTextField.h */,
-				61FE03D60F2368A300E20A0C /* PTStatusTextField.m */,
-				6159E2B50F4C2F3400999951 /* PTContextButton.h */,
-				6159E2B60F4C2F3400999951 /* PTContextButton.m */,
-				6112C5540F4C34730043F7CD /* PTReplyButton.h */,
-				6112C5550F4C34730043F7CD /* PTReplyButton.m */,
-				6112C5570F4C347E0043F7CD /* PTMessageButton.h */,
-				6112C5580F4C347E0043F7CD /* PTMessageButton.m */,
+				614C9F8D0F4EDAAB007B3940 /* EMKeychainItem.h */,
+				614C9F8E0F4EDAAB007B3940 /* EMKeychainItem.m */,
+				614C9F8F0F4EDAAB007B3940 /* EMKeychainProxy.h */,
+				614C9F900F4EDAAB007B3940 /* EMKeychainProxy.m */,
 			);
-			name = StatusItem;
+			path = EMKeychain;
 			sourceTree = "<group>";
 		};
-		611384F10F39822F0065B59B /* StatusMaker */ = {
+		614C9F910F4EDAAB007B3940 /* HotKey */ = {
 			isa = PBXGroup;
 			children = (
-				61F2CF4F0F10A3DA00CE073B /* PTStatusFormatter.h */,
-				61F2CF500F10A3DA00CE073B /* PTStatusFormatter.m */,
-				61F2CF5A0F10A52400CE073B /* PTStatusBoxGenerator.h */,
-				61F2CF5B0F10A52400CE073B /* PTStatusBoxGenerator.m */,
-				611384EB0F3980740065B59B /* PTDateToStringTransformer.h */,
-				611384EC0F3980740065B59B /* PTDateToStringTransformer.m */,
-				61AA247C0F3C659000988678 /* PTReadStatusTransformer.h */,
-				61AA247D0F3C659000988678 /* PTReadStatusTransformer.m */,
+				614C9F920F4EDAAB007B3940 /* PTHotKey.h */,
+				614C9F930F4EDAAB007B3940 /* PTHotKey.m */,
+				614C9F940F4EDAAB007B3940 /* PTHotKeyCenter.h */,
+				614C9F950F4EDAAB007B3940 /* PTHotKeyCenter.m */,
+				614C9F960F4EDAAB007B3940 /* PTKeyCombo.h */,
+				614C9F970F4EDAAB007B3940 /* PTKeyCombo.m */,
 			);
-			name = StatusMaker;
+			path = HotKey;
 			sourceTree = "<group>";
 		};
-		61C388DF0F4025C6001E018B /* GrowNotification */ = {
+		614C9F980F4EDAAB007B3940 /* MGTwitterEngine */ = {
 			isa = PBXGroup;
 			children = (
-				615B85CD0F136BB30005E38F /* PTGrowlNotificationManager.h */,
-				615B85CE0F136BB30005E38F /* PTGrowlNotificationManager.m */,
-				61C388E80F4025F1001E018B /* PTGrowlDelegate.h */,
-				61C388E90F4025F1001E018B /* PTGrowlDelegate.m */,
+				614C9F990F4EDAAB007B3940 /* MGTwitterEngine.h */,
+				614C9F9A0F4EDAAB007B3940 /* MGTwitterEngine.m */,
+				614C9F9B0F4EDAAB007B3940 /* MGTwitterEngineDelegate.h */,
+				614C9F9C0F4EDAAB007B3940 /* MGTwitterEngineGlobalHeader.h */,
+				614C9F9D0F4EDAAB007B3940 /* MGTwitterHTTPURLConnection.h */,
+				614C9F9E0F4EDAAB007B3940 /* MGTwitterHTTPURLConnection.m */,
+				614C9F9F0F4EDAAB007B3940 /* MGTwitterLibXMLParser.h */,
+				614C9FA00F4EDAAB007B3940 /* MGTwitterLibXMLParser.m */,
+				614C9FA10F4EDAAB007B3940 /* MGTwitterMessagesLibXMLParser.h */,
+				614C9FA20F4EDAAB007B3940 /* MGTwitterMessagesLibXMLParser.m */,
+				614C9FA30F4EDAAB007B3940 /* MGTwitterMessagesParser.h */,
+				614C9FA40F4EDAAB007B3940 /* MGTwitterMessagesParser.m */,
+				614C9FA50F4EDAAB007B3940 /* MGTwitterMiscLibXMLParser.h */,
+				614C9FA60F4EDAAB007B3940 /* MGTwitterMiscLibXMLParser.m */,
+				614C9FA70F4EDAAB007B3940 /* MGTwitterMiscParser.h */,
+				614C9FA80F4EDAAB007B3940 /* MGTwitterMiscParser.m */,
+				614C9FA90F4EDAAB007B3940 /* MGTwitterParserDelegate.h */,
+				614C9FAA0F4EDAAB007B3940 /* MGTwitterRequestTypes.h */,
+				614C9FAB0F4EDAAB007B3940 /* MGTwitterStatusesLibXMLParser.h */,
+				614C9FAC0F4EDAAB007B3940 /* MGTwitterStatusesLibXMLParser.m */,
+				614C9FAD0F4EDAAB007B3940 /* MGTwitterStatusesParser.h */,
+				614C9FAE0F4EDAAB007B3940 /* MGTwitterStatusesParser.m */,
+				614C9FAF0F4EDAAB007B3940 /* MGTwitterUsersLibXMLParser.h */,
+				614C9FB00F4EDAAB007B3940 /* MGTwitterUsersLibXMLParser.m */,
+				614C9FB10F4EDAAB007B3940 /* MGTwitterUsersParser.h */,
+				614C9FB20F4EDAAB007B3940 /* MGTwitterUsersParser.m */,
+				614C9FB30F4EDAAB007B3940 /* MGTwitterXMLParser.h */,
+				614C9FB40F4EDAAB007B3940 /* MGTwitterXMLParser.m */,
+				614C9FB50F4EDAAB007B3940 /* NSData+Base64.h */,
+				614C9FB60F4EDAAB007B3940 /* NSData+Base64.m */,
+				614C9FB70F4EDAAB007B3940 /* NSString+UUID.h */,
+				614C9FB80F4EDAAB007B3940 /* NSString+UUID.m */,
 			);
-			name = GrowNotification;
+			path = MGTwitterEngine;
 			sourceTree = "<group>";
 		};
-		61D6BE170F077DDE00C6B98D /* MGTwitterEngine */ = {
+		614C9FB90F4EDAAB007B3940 /* Pwitter */ = {
 			isa = PBXGroup;
 			children = (
-				61D6BE180F077DF300C6B98D /* MGTwitterEngine.h */,
-				61D6BE190F077DF300C6B98D /* MGTwitterEngine.m */,
-				61D6BE1A0F077DF300C6B98D /* MGTwitterEngineDelegate.h */,
-				61D6BE1B0F077DF300C6B98D /* MGTwitterEngineGlobalHeader.h */,
-				61D6BE1C0F077DF300C6B98D /* MGTwitterHTTPURLConnection.h */,
-				61D6BE1D0F077DF300C6B98D /* MGTwitterHTTPURLConnection.m */,
-				61D6BE1E0F077DF300C6B98D /* MGTwitterLibXMLParser.h */,
-				61D6BE1F0F077DF300C6B98D /* MGTwitterLibXMLParser.m */,
-				61D6BE200F077DF300C6B98D /* MGTwitterMessagesLibXMLParser.h */,
-				61D6BE210F077DF300C6B98D /* MGTwitterMessagesLibXMLParser.m */,
-				61D6BE220F077DF300C6B98D /* MGTwitterMessagesParser.h */,
-				61D6BE230F077DF300C6B98D /* MGTwitterMessagesParser.m */,
-				61D6BE240F077DF300C6B98D /* MGTwitterMiscLibXMLParser.h */,
-				61D6BE250F077DF300C6B98D /* MGTwitterMiscLibXMLParser.m */,
-				61D6BE260F077DF300C6B98D /* MGTwitterMiscParser.h */,
-				61D6BE270F077DF300C6B98D /* MGTwitterMiscParser.m */,
-				61D6BE280F077DF300C6B98D /* MGTwitterParserDelegate.h */,
-				61D6BE290F077DF300C6B98D /* MGTwitterRequestTypes.h */,
-				61D6BE2A0F077DF300C6B98D /* MGTwitterStatusesLibXMLParser.h */,
-				61D6BE2B0F077DF300C6B98D /* MGTwitterStatusesLibXMLParser.m */,
-				61D6BE2C0F077DF300C6B98D /* MGTwitterStatusesParser.h */,
-				61D6BE2D0F077DF300C6B98D /* MGTwitterStatusesParser.m */,
-				61D6BE2E0F077DF300C6B98D /* MGTwitterUsersLibXMLParser.h */,
-				61D6BE2F0F077DF300C6B98D /* MGTwitterUsersLibXMLParser.m */,
-				61D6BE300F077DF300C6B98D /* MGTwitterUsersParser.h */,
-				61D6BE310F077DF300C6B98D /* MGTwitterUsersParser.m */,
-				61D6BE320F077DF300C6B98D /* MGTwitterXMLParser.h */,
-				61D6BE330F077DF300C6B98D /* MGTwitterXMLParser.m */,
-				61D6BE340F077DF300C6B98D /* NSData+Base64.h */,
-				61D6BE350F077DF300C6B98D /* NSData+Base64.m */,
-				61D6BE360F077DF300C6B98D /* NSString+UUID.h */,
-				61D6BE370F077DF300C6B98D /* NSString+UUID.m */,
+				614C9FDC0F4EDAAB007B3940 /* StatusItem */,
+				614C9FEF0F4EDAAB007B3940 /* StatusMaker */,
+				614C9FBF0F4EDAAB007B3940 /* Preferences */,
+				614C9FBA0F4EDAAB007B3940 /* GrowlNotification */,
+				614C9FF80F4EDAAB007B3940 /* Utils */,
+				614C9FC40F4EDAAB007B3940 /* PTArrayObserver.h */,
+				614C9FC50F4EDAAB007B3940 /* PTArrayObserver.m */,
+				614C9FC60F4EDAAB007B3940 /* PTCharacterCounter.h */,
+				614C9FC70F4EDAAB007B3940 /* PTCharacterCounter.m */,
+				614C9FC80F4EDAAB007B3940 /* PTClickableIcon.h */,
+				614C9FC90F4EDAAB007B3940 /* PTClickableIcon.m */,
+				614C9FCA0F4EDAAB007B3940 /* PTCollectionView.h */,
+				614C9FCB0F4EDAAB007B3940 /* PTCollectionView.m */,
+				614C9FCC0F4EDAAB007B3940 /* PTMain.h */,
+				614C9FCD0F4EDAAB007B3940 /* PTMain.m */,
+				614C9FCE0F4EDAAB007B3940 /* PTMainActionHandler.h */,
+				614C9FCF0F4EDAAB007B3940 /* PTMainActionHandler.m */,
+				614C9FD00F4EDAAB007B3940 /* PTMainWindowDelegate.h */,
+				614C9FD10F4EDAAB007B3940 /* PTMainWindowDelegate.m */,
+				614C9FD20F4EDAAB007B3940 /* PTMenuBarIcon.h */,
+				614C9FD30F4EDAAB007B3940 /* PTMenuBarIcon.m */,
+				614C9FD40F4EDAAB007B3940 /* PTPostField.h */,
+				614C9FD50F4EDAAB007B3940 /* PTPostField.m */,
+				614C9FD60F4EDAAB007B3940 /* PTSelectedStatusView.h */,
+				614C9FD70F4EDAAB007B3940 /* PTSelectedStatusView.m */,
+				614C9FD80F4EDAAB007B3940 /* PTStatusFilterController.h */,
+				614C9FD90F4EDAAB007B3940 /* PTStatusFilterController.m */,
+				614C9FDA0F4EDAAB007B3940 /* PTStatusScrollView.h */,
+				614C9FDB0F4EDAAB007B3940 /* PTStatusScrollView.m */,
 			);
-			name = MGTwitterEngine;
+			path = Pwitter;
 			sourceTree = "<group>";
 		};
-		61D7F9350F49402A0076B796 /* Utils */ = {
+		614C9FBA0F4EDAAB007B3940 /* GrowlNotification */ = {
 			isa = PBXGroup;
 			children = (
-				611386230F3989D60065B59B /* PTImageManager.h */,
-				611386240F3989D60065B59B /* PTImageManager.m */,
-				61AA24E10F3C6D8B00988678 /* PTReadManager.h */,
-				61AA24E20F3C6D8B00988678 /* PTReadManager.m */,
-				61D7F9360F4940360076B796 /* PTURLUtils.h */,
-				61D7F9370F4940360076B796 /* PTURLUtils.m */,
+				614C9FBB0F4EDAAB007B3940 /* PTGrowlDelegate.h */,
+				614C9FBC0F4EDAAB007B3940 /* PTGrowlDelegate.m */,
+				614C9FBD0F4EDAAB007B3940 /* PTGrowlNotificationManager.h */,
+				614C9FBE0F4EDAAB007B3940 /* PTGrowlNotificationManager.m */,
 			);
-			name = Utils;
+			path = GrowlNotification;
 			sourceTree = "<group>";
 		};
-		61D9FBC00F04B041003CC890 /* EMKeychain */ = {
+		614C9FBF0F4EDAAB007B3940 /* Preferences */ = {
 			isa = PBXGroup;
 			children = (
-				61D9FBC30F04B0D9003CC890 /* EMKeychainItem.h */,
-				61D9FBC40F04B0D9003CC890 /* EMKeychainItem.m */,
-				61D9FBC50F04B0D9003CC890 /* EMKeychainProxy.h */,
-				61D9FBC60F04B0D9003CC890 /* EMKeychainProxy.m */,
+				614C9FC00F4EDAAB007B3940 /* PTPreferenceManager.h */,
+				614C9FC10F4EDAAB007B3940 /* PTPreferenceManager.m */,
+				614C9FC20F4EDAAB007B3940 /* PTPreferenceWindow.h */,
+				614C9FC30F4EDAAB007B3940 /* PTPreferenceWindow.m */,
 			);
-			name = EMKeychain;
+			path = Preferences;
 			sourceTree = "<group>";
 		};
-		61EE70620F02107B005C42F5 /* Pwitter */ = {
+		614C9FDC0F4EDAAB007B3940 /* StatusItem */ = {
 			isa = PBXGroup;
 			children = (
-				61D7F9350F49402A0076B796 /* Utils */,
-				61C388DF0F4025C6001E018B /* GrowNotification */,
-				611384F10F39822F0065B59B /* StatusMaker */,
-				611384F00F3981DC0065B59B /* StatusItem */,
-				611384EE0F3981C80065B59B /* Preferences */,
-				61EE713E0F021802005C42F5 /* PTMain.h */,
-				61EE713F0F021802005C42F5 /* PTMain.m */,
-				61E70AEE0F10BA17002526FA /* PTMainActionHandler.h */,
-				61E70AEF0F10BA17002526FA /* PTMainActionHandler.m */,
-				61E999780F0D88C800509EE8 /* PTMainWindowDelegate.h */,
-				61E999790F0D88C800509EE8 /* PTMainWindowDelegate.m */,
-				613460180F0602AB00B422A6 /* PTArrayObserver.h */,
-				613460190F0602AB00B422A6 /* PTArrayObserver.m */,
-				615D39750F0B016F0086E57F /* PTCharacterCounter.h */,
-				615D39760F0B016F0086E57F /* PTCharacterCounter.m */,
-				61DF44B10F0F027C00B8BD2A /* PTStatusFilterController.h */,
-				61DF44B20F0F027C00B8BD2A /* PTStatusFilterController.m */,
-				610332EF0F1873B000BFB060 /* PTSelectedStatusView.h */,
-				610332F00F1873B000BFB060 /* PTSelectedStatusView.m */,
-				610333F80F18C0C500BFB060 /* PTStatusScrollView.h */,
-				610333F90F18C0C500BFB060 /* PTStatusScrollView.m */,
-				610C2E8C0F37F0E300A31533 /* PTMenuBarIcon.h */,
-				610C2E8D0F37F0E300A31533 /* PTMenuBarIcon.m */,
-				61CBB1160F3D80C2000EC13D /* PTPostField.h */,
-				61CBB1170F3D80C2000EC13D /* PTPostField.m */,
-				618DB6740F4593E5000A9815 /* PTCollectionView.h */,
-				618DB6750F4593E5000A9815 /* PTCollectionView.m */,
-				618DB6E00F459B52000A9815 /* PTClickableIcon.h */,
-				618DB6E10F459B52000A9815 /* PTClickableIcon.m */,
+				614C9FDD0F4EDAAB007B3940 /* PTContextButton.h */,
+				614C9FDE0F4EDAAB007B3940 /* PTContextButton.m */,
+				614C9FDF0F4EDAAB007B3940 /* PTEntityBackground.h */,
+				614C9FE00F4EDAAB007B3940 /* PTEntityBackground.m */,
+				614C9FE10F4EDAAB007B3940 /* PTMessageButton.h */,
+				614C9FE20F4EDAAB007B3940 /* PTMessageButton.m */,
+				614C9FE30F4EDAAB007B3940 /* PTReplyButton.h */,
+				614C9FE40F4EDAAB007B3940 /* PTReplyButton.m */,
+				614C9FE50F4EDAAB007B3940 /* PTStatusBox.h */,
+				614C9FE60F4EDAAB007B3940 /* PTStatusBox.m */,
+				614C9FE70F4EDAAB007B3940 /* PTStatusCollectionItem.h */,
+				614C9FE80F4EDAAB007B3940 /* PTStatusCollectionItem.m */,
+				614C9FE90F4EDAAB007B3940 /* PTStatusEntityView.h */,
+				614C9FEA0F4EDAAB007B3940 /* PTStatusEntityView.m */,
+				614C9FEB0F4EDAAB007B3940 /* PTStatusImageView.h */,
+				614C9FEC0F4EDAAB007B3940 /* PTStatusImageView.m */,
+				614C9FED0F4EDAAB007B3940 /* PTStatusTextField.h */,
+				614C9FEE0F4EDAAB007B3940 /* PTStatusTextField.m */,
 			);
-			name = Pwitter;
+			path = StatusItem;
 			sourceTree = "<group>";
 		};
-		61F177D30F1C832400C04938 /* HotKey */ = {
+		614C9FEF0F4EDAAB007B3940 /* StatusMaker */ = {
 			isa = PBXGroup;
 			children = (
-				61F177D60F1C833200C04938 /* PTHotKey.h */,
-				61F177D80F1C833200C04938 /* PTHotKey.m */,
-				61F177D70F1C833200C04938 /* PTKeyCombo.h */,
-				61F177D90F1C833200C04938 /* PTKeyCombo.m */,
-				61F177DA0F1C833200C04938 /* PTHotKeyCenter.h */,
-				61F177D50F1C833200C04938 /* PTHotKeyCenter.m */,
+				614C9FF00F4EDAAB007B3940 /* PTDateToStringTransformer.h */,
+				614C9FF10F4EDAAB007B3940 /* PTDateToStringTransformer.m */,
+				614C9FF20F4EDAAB007B3940 /* PTReadStatusTransformer.h */,
+				614C9FF30F4EDAAB007B3940 /* PTReadStatusTransformer.m */,
+				614C9FF40F4EDAAB007B3940 /* PTStatusBoxGenerator.h */,
+				614C9FF50F4EDAAB007B3940 /* PTStatusBoxGenerator.m */,
+				614C9FF60F4EDAAB007B3940 /* PTStatusFormatter.h */,
+				614C9FF70F4EDAAB007B3940 /* PTStatusFormatter.m */,
 			);
-			name = HotKey;
+			path = StatusMaker;
+			sourceTree = "<group>";
+		};
+		614C9FF80F4EDAAB007B3940 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				614C9FF90F4EDAAB007B3940 /* PTImageManager.h */,
+				614C9FFA0F4EDAAB007B3940 /* PTImageManager.m */,
+				614C9FFB0F4EDAAB007B3940 /* PTReadManager.h */,
+				614C9FFC0F4EDAAB007B3940 /* PTReadManager.m */,
+				614C9FFD0F4EDAAB007B3940 /* PTURLUtils.h */,
+				614C9FFE0F4EDAAB007B3940 /* PTURLUtils.m */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -664,57 +664,57 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
-				61EE71400F021802005C42F5 /* PTMain.m in Sources */,
-				610BF8AB0F030DFA008D9A3B /* PTStatusBox.m in Sources */,
-				61C786F40F046622007CBC1A /* PTPreferenceWindow.m in Sources */,
-				61D9FBC70F04B0D9003CC890 /* EMKeychainItem.m in Sources */,
-				61D9FBC80F04B0D9003CC890 /* EMKeychainProxy.m in Sources */,
-				61D9FE1C0F04B6DA003CC890 /* PTPreferenceManager.m in Sources */,
-				61C773BD0F0509F100258650 /* PTStatusEntityView.m in Sources */,
-				61C773F80F050BBB00258650 /* PTStatusCollectionItem.m in Sources */,
-				6134601A0F0602AB00B422A6 /* PTArrayObserver.m in Sources */,
-				61D6BE380F077DF300C6B98D /* MGTwitterEngine.m in Sources */,
-				61D6BE390F077DF300C6B98D /* MGTwitterHTTPURLConnection.m in Sources */,
-				61D6BE3A0F077DF300C6B98D /* MGTwitterLibXMLParser.m in Sources */,
-				61D6BE3B0F077DF300C6B98D /* MGTwitterMessagesLibXMLParser.m in Sources */,
-				61D6BE3C0F077DF300C6B98D /* MGTwitterMessagesParser.m in Sources */,
-				61D6BE3D0F077DF300C6B98D /* MGTwitterMiscLibXMLParser.m in Sources */,
-				61D6BE3E0F077DF300C6B98D /* MGTwitterMiscParser.m in Sources */,
-				61D6BE3F0F077DF300C6B98D /* MGTwitterStatusesLibXMLParser.m in Sources */,
-				61D6BE400F077DF300C6B98D /* MGTwitterStatusesParser.m in Sources */,
-				61D6BE410F077DF300C6B98D /* MGTwitterUsersLibXMLParser.m in Sources */,
-				61D6BE420F077DF300C6B98D /* MGTwitterUsersParser.m in Sources */,
-				61D6BE430F077DF300C6B98D /* MGTwitterXMLParser.m in Sources */,
-				61D6BE440F077DF300C6B98D /* NSData+Base64.m in Sources */,
-				61D6BE450F077DF300C6B98D /* NSString+UUID.m in Sources */,
-				614393A90F09D23400971122 /* PTEntityBackground.m in Sources */,
-				613B64F70F0A45B500B67438 /* PTStatusImageView.m in Sources */,
-				615D39770F0B016F0086E57F /* PTCharacterCounter.m in Sources */,
-				61E9997A0F0D88C800509EE8 /* PTMainWindowDelegate.m in Sources */,
-				61DF44B30F0F027C00B8BD2A /* PTStatusFilterController.m in Sources */,
-				61F2CF510F10A3DA00CE073B /* PTStatusFormatter.m in Sources */,
-				61F2CF5C0F10A52400CE073B /* PTStatusBoxGenerator.m in Sources */,
-				61E70AF00F10BA17002526FA /* PTMainActionHandler.m in Sources */,
-				615B85CF0F136BB30005E38F /* PTGrowlNotificationManager.m in Sources */,
-				610332F10F1873B000BFB060 /* PTSelectedStatusView.m in Sources */,
-				610333FA0F18C0C500BFB060 /* PTStatusScrollView.m in Sources */,
-				61F177DB0F1C833200C04938 /* PTHotKeyCenter.m in Sources */,
-				61F177DC0F1C833200C04938 /* PTHotKey.m in Sources */,
-				61F177DD0F1C833200C04938 /* PTKeyCombo.m in Sources */,
-				61FE03D70F2368A300E20A0C /* PTStatusTextField.m in Sources */,
-				610C2E8E0F37F0E300A31533 /* PTMenuBarIcon.m in Sources */,
-				611384ED0F3980740065B59B /* PTDateToStringTransformer.m in Sources */,
-				611386250F3989D60065B59B /* PTImageManager.m in Sources */,
-				61AA247E0F3C659000988678 /* PTReadStatusTransformer.m in Sources */,
-				61AA24E30F3C6D8B00988678 /* PTReadManager.m in Sources */,
-				61CBB1180F3D80C2000EC13D /* PTPostField.m in Sources */,
-				61C388EA0F4025F1001E018B /* PTGrowlDelegate.m in Sources */,
-				618DB6760F4593E5000A9815 /* PTCollectionView.m in Sources */,
-				618DB6E20F459B52000A9815 /* PTClickableIcon.m in Sources */,
-				61D7F9380F4940360076B796 /* PTURLUtils.m in Sources */,
-				6159E2B70F4C2F3400999951 /* PTContextButton.m in Sources */,
-				6112C5560F4C34730043F7CD /* PTReplyButton.m in Sources */,
-				6112C5590F4C347E0043F7CD /* PTMessageButton.m in Sources */,
+				614C9FFF0F4EDAAB007B3940 /* EMKeychainItem.m in Sources */,
+				614CA0000F4EDAAB007B3940 /* EMKeychainProxy.m in Sources */,
+				614CA0010F4EDAAB007B3940 /* PTHotKey.m in Sources */,
+				614CA0020F4EDAAB007B3940 /* PTHotKeyCenter.m in Sources */,
+				614CA0030F4EDAAB007B3940 /* PTKeyCombo.m in Sources */,
+				614CA0040F4EDAAB007B3940 /* MGTwitterEngine.m in Sources */,
+				614CA0050F4EDAAB007B3940 /* MGTwitterHTTPURLConnection.m in Sources */,
+				614CA0060F4EDAAB007B3940 /* MGTwitterLibXMLParser.m in Sources */,
+				614CA0070F4EDAAB007B3940 /* MGTwitterMessagesLibXMLParser.m in Sources */,
+				614CA0080F4EDAAB007B3940 /* MGTwitterMessagesParser.m in Sources */,
+				614CA0090F4EDAAB007B3940 /* MGTwitterMiscLibXMLParser.m in Sources */,
+				614CA00A0F4EDAAB007B3940 /* MGTwitterMiscParser.m in Sources */,
+				614CA00B0F4EDAAB007B3940 /* MGTwitterStatusesLibXMLParser.m in Sources */,
+				614CA00C0F4EDAAB007B3940 /* MGTwitterStatusesParser.m in Sources */,
+				614CA00D0F4EDAAB007B3940 /* MGTwitterUsersLibXMLParser.m in Sources */,
+				614CA00E0F4EDAAB007B3940 /* MGTwitterUsersParser.m in Sources */,
+				614CA00F0F4EDAAB007B3940 /* MGTwitterXMLParser.m in Sources */,
+				614CA0100F4EDAAB007B3940 /* NSData+Base64.m in Sources */,
+				614CA0110F4EDAAB007B3940 /* NSString+UUID.m in Sources */,
+				614CA0120F4EDAAB007B3940 /* PTGrowlDelegate.m in Sources */,
+				614CA0130F4EDAAB007B3940 /* PTGrowlNotificationManager.m in Sources */,
+				614CA0140F4EDAAB007B3940 /* PTPreferenceManager.m in Sources */,
+				614CA0150F4EDAAB007B3940 /* PTPreferenceWindow.m in Sources */,
+				614CA0160F4EDAAB007B3940 /* PTArrayObserver.m in Sources */,
+				614CA0170F4EDAAB007B3940 /* PTCharacterCounter.m in Sources */,
+				614CA0180F4EDAAB007B3940 /* PTClickableIcon.m in Sources */,
+				614CA0190F4EDAAB007B3940 /* PTCollectionView.m in Sources */,
+				614CA01A0F4EDAAB007B3940 /* PTMain.m in Sources */,
+				614CA01B0F4EDAAB007B3940 /* PTMainActionHandler.m in Sources */,
+				614CA01C0F4EDAAB007B3940 /* PTMainWindowDelegate.m in Sources */,
+				614CA01D0F4EDAAB007B3940 /* PTMenuBarIcon.m in Sources */,
+				614CA01E0F4EDAAB007B3940 /* PTPostField.m in Sources */,
+				614CA01F0F4EDAAB007B3940 /* PTSelectedStatusView.m in Sources */,
+				614CA0200F4EDAAB007B3940 /* PTStatusFilterController.m in Sources */,
+				614CA0210F4EDAAB007B3940 /* PTStatusScrollView.m in Sources */,
+				614CA0220F4EDAAB007B3940 /* PTContextButton.m in Sources */,
+				614CA0230F4EDAAB007B3940 /* PTEntityBackground.m in Sources */,
+				614CA0240F4EDAAB007B3940 /* PTMessageButton.m in Sources */,
+				614CA0250F4EDAAB007B3940 /* PTReplyButton.m in Sources */,
+				614CA0260F4EDAAB007B3940 /* PTStatusBox.m in Sources */,
+				614CA0270F4EDAAB007B3940 /* PTStatusCollectionItem.m in Sources */,
+				614CA0280F4EDAAB007B3940 /* PTStatusEntityView.m in Sources */,
+				614CA0290F4EDAAB007B3940 /* PTStatusImageView.m in Sources */,
+				614CA02A0F4EDAAB007B3940 /* PTStatusTextField.m in Sources */,
+				614CA02B0F4EDAAB007B3940 /* PTDateToStringTransformer.m in Sources */,
+				614CA02C0F4EDAAB007B3940 /* PTReadStatusTransformer.m in Sources */,
+				614CA02D0F4EDAAB007B3940 /* PTStatusBoxGenerator.m in Sources */,
+				614CA02E0F4EDAAB007B3940 /* PTStatusFormatter.m in Sources */,
+				614CA02F0F4EDAAB007B3940 /* PTImageManager.m in Sources */,
+				614CA0300F4EDAAB007B3940 /* PTReadManager.m in Sources */,
+				614CA0310F4EDAAB007B3940 /* PTURLUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -219,6 +219,14 @@
 	return [fPrefData boolForKey:@"disable_top_view"];
 }
 
+- (void)setUsePOSTMethod:(BOOL)aFlag {
+	[fPrefData setBool:aFlag forKey:@"use_POST_method"];
+}
+
+- (BOOL)usePOSTMethod {
+	return [fPrefData boolForKey:@"use_POST_method"];
+}
+
 - (void)setHideDockIcon:(BOOL)aFlag {
 	NSString * lFilePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/../Info.plist"];
 	if (lFilePath) {

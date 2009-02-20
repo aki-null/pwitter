@@ -43,6 +43,7 @@
     IBOutlet id fActivateQuickReadKey;
     IBOutlet id fQuickReadShortcutRecorder;
     IBOutlet id fStatusCollectionView;
+    IBOutlet id fUsePOSTMethod;
 	PTHotKey *fHotKey;
 	PTHotKey *fHotKeyRead;
 }

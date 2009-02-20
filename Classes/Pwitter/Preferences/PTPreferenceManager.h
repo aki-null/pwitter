@@ -57,6 +57,8 @@
 - (BOOL)useTwelveHour;
 - (void)setDisableTopView:(BOOL)aFlag;
 - (BOOL)disableTopView;
+- (void)setUsePOSTMethod:(BOOL)aFlag;
+- (BOOL)usePOSTMethod;
 - (void)setHideDockIcon:(BOOL)aFlag;
 - (BOOL)hideDockIcon;
 
