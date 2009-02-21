@@ -28,13 +28,13 @@
 + (NSDictionary *)defaultLinkFontAttributes {
 	return [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:NSSingleUnderlineStyle], NSUnderlineStyleAttributeName, 
 			[NSColor whiteColor], NSForegroundColorAttributeName, 
-			[NSFont fontWithName:@"Hiragino Kaku Gothic Pro W3" size:12.0], NSFontAttributeName, 
+			[NSFont fontWithName:@"Lucida Grande" size:12.0], NSFontAttributeName, 
 			nil];
 }
 
 + (NSDictionary *)defaultFontAttributes {
 	return [NSDictionary dictionaryWithObjectsAndKeys:[NSColor whiteColor], NSForegroundColorAttributeName, 
-			[NSFont fontWithName:@"Hiragino Kaku Gothic Pro W3" size:12.0], NSFontAttributeName, 
+			[NSFont fontWithName:@"Lucida Grande" size:12.0], NSFontAttributeName, 
 			nil];
 }
 
@@ -78,9 +78,9 @@
 	NSMutableAttributedString *lUserLabel = [[NSMutableAttributedString alloc] initWithString:lTempUserLabel];
 	[lUserLabel beginEditing];
 	NSURL *lUrl = [NSURL URLWithString:[NSString stringWithFormat:@"http://twitter.com/%@", aScreenName]];
-	NSDictionary *lLinkAttributes = [NSDictionary dictionaryWithObjectsAndKeys:lUrl, NSLinkAttributeName,
-									 [NSNumber numberWithInt:NSSingleUnderlineStyle], NSUnderlineStyleAttributeName,
-									 [NSColor whiteColor], NSForegroundColorAttributeName,
+	NSDictionary *lLinkAttributes = [NSDictionary dictionaryWithObjectsAndKeys:lUrl, NSLinkAttributeName, 
+									 [NSNumber numberWithInt:NSSingleUnderlineStyle], NSUnderlineStyleAttributeName, 
+									 [NSColor whiteColor], NSForegroundColorAttributeName, 
 									 nil];
 	[lUserLabel addAttributes:lLinkAttributes range:NSMakeRange(0, [lUserLabel length])];
 	[lUserLabel endEditing];

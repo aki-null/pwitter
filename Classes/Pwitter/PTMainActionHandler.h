@@ -42,6 +42,7 @@
 	BOOL fReplyViewIsOpen;
 	BOOL fShouldExit;
 	BOOL fNoAnim;
+	BOOL fTopViewIsDisabled;
 }
 - (IBAction)closeAuthSheet:(id)sender;
 - (IBAction)quitApp:(id)sender;

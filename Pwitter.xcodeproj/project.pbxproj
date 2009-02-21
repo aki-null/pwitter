@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		61095D0C0F4F7C60001882C7 /* PTTooltipTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 61095D0B0F4F7C60001882C7 /* PTTooltipTransformer.m */; };
 		6113861A0F3988DD0065B59B /* error.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 611386190F3988DD0065B59B /* error.m4a */; };
 		612BD6900F076F8500EF064D /* Pwitter.icns in Resources */ = {isa = PBXBuildFile; fileRef = 612BD68F0F076F8500EF064D /* Pwitter.icns */; };
 		6131FD4A0F0E28C7004CA960 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6131FD490F0E28C7004CA960 /* Sparkle.framework */; };
@@ -123,6 +124,8 @@
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32CA4F630368D1EE00C91783 /* Pwitter_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pwitter_Prefix.pch; sourceTree = "<group>"; };
+		61095D0A0F4F7C60001882C7 /* PTTooltipTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTTooltipTransformer.h; sourceTree = "<group>"; };
+		61095D0B0F4F7C60001882C7 /* PTTooltipTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTTooltipTransformer.m; sourceTree = "<group>"; };
 		611386190F3988DD0065B59B /* error.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = error.m4a; sourceTree = "<group>"; };
 		612BD68F0F076F8500EF064D /* Pwitter.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Pwitter.icns; sourceTree = "<group>"; };
 		6131FD490F0E28C7004CA960 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
@@ -549,6 +552,8 @@
 				614C9FF50F4EDAAB007B3940 /* PTStatusBoxGenerator.m */,
 				614C9FF60F4EDAAB007B3940 /* PTStatusFormatter.h */,
 				614C9FF70F4EDAAB007B3940 /* PTStatusFormatter.m */,
+				61095D0A0F4F7C60001882C7 /* PTTooltipTransformer.h */,
+				61095D0B0F4F7C60001882C7 /* PTTooltipTransformer.m */,
 			);
 			path = StatusMaker;
 			sourceTree = "<group>";
@@ -715,6 +720,7 @@
 				614CA02F0F4EDAAB007B3940 /* PTImageManager.m in Sources */,
 				614CA0300F4EDAAB007B3940 /* PTReadManager.m in Sources */,
 				614CA0310F4EDAAB007B3940 /* PTURLUtils.m in Sources */,
+				61095D0C0F4F7C60001882C7 /* PTTooltipTransformer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

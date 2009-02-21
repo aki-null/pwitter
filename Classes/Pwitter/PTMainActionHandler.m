@@ -334,31 +334,37 @@
 }
 
 - (void)disableTopView {
-	NSRect lTopFrame = [fTopView frame];
-	NSRect lBottomFrame = [fBottomView frame];
-	[fBottomView setFrame:NSMakeRect(0, lBottomFrame.origin.y, lBottomFrame.size.width, lBottomFrame.size.height + lTopFrame.size.height - 7)];
-	int lHeightDif = [fSelectedStatusView frame].size.height - 51;
-	[fTopView setFrame:NSMakeRect(0, lTopFrame.origin.y + lHeightDif, [fTopView frame].size.width, 1)];
+	if (!fTopViewIsDisabled) {
+		fTopViewIsDisabled = YES;
+		NSRect lTopFrame = [fTopView frame];
+		NSRect lBottomFrame = [fBottomView frame];
+		[fBottomView setFrame:NSMakeRect(0, lBottomFrame.origin.y, lBottomFrame.size.width, lBottomFrame.size.height + lTopFrame.size.height - 7)];
+		int lHeightDif = [fSelectedStatusView frame].size.height - 51;
+		[fTopView setFrame:NSMakeRect(0, lTopFrame.origin.y + lHeightDif, [fTopView frame].size.width, 1)];
+	}
 }
 
 - (void)enableTopView {
-	NSRect lTopFrame = [fTopView frame];
-	NSRect lBottomFrame = [fBottomView frame];
-	[fTopView setFrame:NSMakeRect(0, lTopFrame.origin.y, [fTopView frame].size.width, 84)];
-	[fBottomView setFrame:NSMakeRect(0, lBottomFrame.origin.y, lBottomFrame.size.width, lBottomFrame.size.height - 77)];
-	PTStatusBox *lBox = [[fStatusController selectedObjects] lastObject];
-	NSRect lSelectedView = [fSelectedStatusView frame];
-	lSelectedView.size.height = 51;
-	[fSelectedStatusView setFrame:lSelectedView];
-	if (lBox) {
-		NSRect lFrame = NSMakeRect(0, 0, [fSelectedTextView frame].size.width, MAXFLOAT);
-		NSTextView *lTempTextView = [[NSTextView alloc] initWithFrame:lFrame];
-		[[lTempTextView textStorage] setAttributedString:lBox.statusMessage];
-		[lTempTextView setHorizontallyResizable:NO];
-		[lTempTextView sizeToFit];
-		float lHeightReq = [lTempTextView frame].size.height + 3;
-		[lTempTextView release];
-		[self updateViewSizes:lHeightReq withAnim:NO];
+	if (fTopViewIsDisabled) {
+		fTopViewIsDisabled = NO;
+		NSRect lTopFrame = [fTopView frame];
+		NSRect lBottomFrame = [fBottomView frame];
+		[fTopView setFrame:NSMakeRect(0, lTopFrame.origin.y, [fTopView frame].size.width, 84)];
+		[fBottomView setFrame:NSMakeRect(0, lBottomFrame.origin.y, lBottomFrame.size.width, lBottomFrame.size.height - 77)];
+		PTStatusBox *lBox = [[fStatusController selectedObjects] lastObject];
+		NSRect lSelectedView = [fSelectedStatusView frame];
+		lSelectedView.size.height = 51;
+		[fSelectedStatusView setFrame:lSelectedView];
+		if (lBox) {
+			NSRect lFrame = NSMakeRect(0, 0, [fSelectedTextView frame].size.width, MAXFLOAT);
+			NSTextView *lTempTextView = [[NSTextView alloc] initWithFrame:lFrame];
+			[[lTempTextView textStorage] setAttributedString:lBox.statusMessage];
+			[lTempTextView setHorizontallyResizable:NO];
+			[lTempTextView sizeToFit];
+			float lHeightReq = [lTempTextView frame].size.height + 3;
+			[lTempTextView release];
+			[self updateViewSizes:lHeightReq withAnim:NO];
+		}
 	}
 }
 

@@ -11,6 +11,7 @@
 #import "PTMain.h"
 #import "PTDateToStringTransformer.h"
 #import "PTReadStatusTransformer.h"
+#import "PTTooltipTransformer.h"
 #import "PTReadManager.h"
 
 
@@ -21,6 +22,8 @@
 	[NSValueTransformer setValueTransformer:lTransformer forName:@"DateToStringTransformer"];
 	PTReadStatusTransformer *lReadTrans = [[[PTReadStatusTransformer alloc] init] autorelease];
 	[NSValueTransformer setValueTransformer:lReadTrans forName:@"ReadImageTransformer"];
+	PTTooltipTransformer *lToolTrans = [[[PTTooltipTransformer alloc] init] autorelease];
+	[NSValueTransformer setValueTransformer:lToolTrans forName:@"TooltipTransformer"];
 }
 
 - (PTStatusBox *)constructStatusBox:(NSDictionary *)aStatusInfo isReply:(BOOL)aIsReply {

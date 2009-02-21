@@ -49,7 +49,6 @@
 }
 - (void)loadPreferences;
 - (IBAction)pressOK:(id)sender;
-- (IBAction)pressCancel:(id)sender;
 - (IBAction)quickPostChanged:(id)sender;
 - (IBAction)growlDisabled:(id)sender;
 - (IBAction)quickReadChanged:(id)sender;
@@ -58,6 +57,6 @@
 - (void)turnOffHotKey;
 - (void)saveKeyCombo;
 - (void)loadKeyCombo;
--(void)tabView:(NSTabView *)tabView didSelectTabViewItem:(NSTabViewItem *)tabViewItem;
+- (void)tabView:(NSTabView *)tabView didSelectTabViewItem:(NSTabViewItem *)tabViewItem;
 
 @end
