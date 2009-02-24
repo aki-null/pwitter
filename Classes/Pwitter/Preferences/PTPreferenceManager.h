@@ -43,6 +43,7 @@
 - (BOOL)usePOSTMethod;
 - (BOOL)disableWindowShadow;
 - (BOOL)hideWithQuickReadShortcut;
+- (BOOL)useClassicView;
 - (void)setHideDockIcon:(BOOL)aFlag;
 - (BOOL)hideDockIcon;
 

@@ -35,6 +35,8 @@
     IBOutlet id fFavButton;
     IBOutlet id fCharacterCounter;
     IBOutlet id fReplyInfoView;
+    IBOutlet id fMiniClassicItemPrototype;
+    IBOutlet id fNormalClassicItemPrototype;
 	BOOL fSearchBoxIsOpen;
 	BOOL fReplyViewIsOpen;
 	BOOL fShouldExit;
@@ -60,7 +62,7 @@
 - (IBAction)endSearch:(id)sender;
 - (void)startAuthentication;
 - (void)updateSelectedMessage:(PTStatusBox *)aBox;
-- (void)setCollectionViewPrototype:(BOOL)aIsMini;
+- (void)setCollectionViewPrototype:(BOOL)aIsMini useClassic:(BOOL)aIsClassic;
 - (void)openReplyView:(BOOL)aAnimate;
 - (void)closeReplyView;
 - (void)replyToStatus:(PTStatusBox *)aBox shouldAnimate:(BOOL)aAnimate;

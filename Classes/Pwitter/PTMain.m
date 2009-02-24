@@ -305,7 +305,7 @@
 	NSString *lReqType = [fRequestDetails objectForKey:requestIdentifier];
 	if (lReqType == @"FAV") {
 		PTStatusBox *lBoxToFav = [fFavRecord objectForKey:requestIdentifier];
-		lBoxToFav.entityColor = [NSColor colorWithCalibratedRed:0.9 green:0.5 blue:0.0 alpha:0.7];
+		lBoxToFav.entityColor = [NSColor colorWithCalibratedRed:0.6 green:0.2 blue:0.0 alpha:1.0];
 		lBoxToFav.fav = YES;
 		[fRequestDetails removeObjectForKey:lReqType];
 		[fFavRecord removeObjectForKey:requestIdentifier];

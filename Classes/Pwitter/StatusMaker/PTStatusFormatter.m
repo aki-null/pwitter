@@ -26,15 +26,14 @@
 @implementation PTStatusFormatter
 
 + (NSDictionary *)defaultLinkFontAttributes {
-	return [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:NSSingleUnderlineStyle], NSUnderlineStyleAttributeName, 
-			[NSColor whiteColor], NSForegroundColorAttributeName, 
-			[NSFont fontWithName:@"Lucida Grande" size:12.0], NSFontAttributeName, 
+	return [NSDictionary dictionaryWithObjectsAndKeys:[NSColor colorWithCalibratedRed:0.7 green:0.84 blue:1.0 alpha:1.0], NSForegroundColorAttributeName, 
+			[NSFont fontWithName:@"Lucida Grande" size:11.0], NSFontAttributeName, 
 			nil];
 }
 
 + (NSDictionary *)defaultFontAttributes {
-	return [NSDictionary dictionaryWithObjectsAndKeys:[NSColor whiteColor], NSForegroundColorAttributeName, 
-			[NSFont fontWithName:@"Lucida Grande" size:12.0], NSFontAttributeName, 
+	return [NSDictionary dictionaryWithObjectsAndKeys:[NSColor colorWithCalibratedRed:0.9 green:0.9 blue:0.9 alpha:1.0], NSForegroundColorAttributeName, 
+			[NSFont fontWithName:@"Lucida Grande" size:11.0], NSFontAttributeName, 
 			nil];
 }
 

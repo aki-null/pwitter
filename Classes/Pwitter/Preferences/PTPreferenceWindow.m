@@ -206,7 +206,7 @@
 	int lTargetHeight;
 	switch ([[tabViewItem identifier] intValue]) {
 		case 1:
-			lTargetHeight = 313;
+			lTargetHeight = 333;
 			break;
 		case 2:
 			lTargetHeight = 261;
@@ -218,7 +218,7 @@
 			lTargetHeight = 290;
 			break;
 		default:
-			lTargetHeight = 313;
+			lTargetHeight = 333;
 			break;
 	}
 	NSRect lNewFrame = [self frame];

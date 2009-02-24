@@ -68,7 +68,7 @@
 				lNewFrame.size.height = lNewSize.height;
 				[fStatusMessage setFrame:lNewFrame];
 				fIsOpen = YES;
-				fCachedSize = NSMakeSize(aNewSize.width, lNewSize.height + 22);
+				fCachedSize = NSMakeSize(aNewSize.width, lNewSize.height + 24);
 				fOldWidth = aNewSize.width;
 			}
 			return fCachedSize;

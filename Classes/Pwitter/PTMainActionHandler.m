@@ -30,14 +30,23 @@
 	[fStatusController setSortDescriptors:[NSArray arrayWithObject:sortDesc]];
 	[sortDesc release];
 	[fPreferenceWindow loadPreferences];
-	[self setCollectionViewPrototype:[[PTPreferenceManager sharedInstance] useMiniView]];
+	[self setCollectionViewPrototype:[[PTPreferenceManager sharedInstance] useMiniView] 
+						  useClassic:[[PTPreferenceManager sharedInstance] useClassicView]];
 	[fMainWindow makeFirstResponder:fStatusCollectionView];
 }
 
-- (void)setCollectionViewPrototype:(BOOL)aIsMini {
+- (void)setCollectionViewPrototype:(BOOL)aIsMini useClassic:(BOOL)aIsClassic {
 	if (aIsMini) {
-		if ([fStatusCollectionView itemPrototype] != fMiniItemPrototype) {
+		if (aIsClassic) {
+			if ([fStatusCollectionView itemPrototype] != fMiniClassicItemPrototype) {
+				[fStatusCollectionView setItemPrototype:fMiniClassicItemPrototype];
+			}
+		} else if ([fStatusCollectionView itemPrototype] != fMiniItemPrototype) {
 			[fStatusCollectionView setItemPrototype:fMiniItemPrototype];
+		}
+	} else if (aIsClassic) {
+		if ([fStatusCollectionView itemPrototype] != fNormalClassicItemPrototype) {
+			[fStatusCollectionView setItemPrototype:fNormalClassicItemPrototype];
 		}
 	} else if ([fStatusCollectionView itemPrototype] != fNormalItemPrototype) {
 		[fStatusCollectionView setItemPrototype:fNormalItemPrototype];
@@ -69,7 +78,8 @@
 - (void)didEndSheet:(NSWindow *)aSheet returnCode:(int)aReturnCode contextInfo:(void *)aContextInfo
 {
 	[aSheet orderOut:self];
-	[self setCollectionViewPrototype:[[PTPreferenceManager sharedInstance] useMiniView]];
+	[self setCollectionViewPrototype:[[PTPreferenceManager sharedInstance] useMiniView] 
+						  useClassic:[[PTPreferenceManager sharedInstance] useClassicView]];
 	if (fShouldExit) [NSApp terminate:self];
 	if (aSheet == fAuthPanel) [fMainController setUpTwitterEngine];
 }

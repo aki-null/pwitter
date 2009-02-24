@@ -167,6 +167,10 @@
 	return [fPrefData boolForKey:@"hide_with_quick_read_shortcut"];
 }
 
+- (BOOL)useClassicView {
+	return [fPrefData boolForKey:@"use_classic_view"];
+}
+
 - (void)setHideDockIcon:(BOOL)aFlag {
 	NSString * lFilePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/../Info.plist"];
 	if (lFilePath) {

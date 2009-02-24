@@ -43,18 +43,18 @@
 		lNewBox.userHome = nil;
 	}
 	if (aIsReply) {
-		lNewBox.entityColor = [NSColor colorWithCalibratedRed:0.7 green:0.18 blue:0.18 alpha:0.7];
+		lNewBox.entityColor = [NSColor colorWithCalibratedRed:0.3 green:0.1 blue:0.1 alpha:1.0];
 		lNewBox.sType = ReplyMessage;
 	} else {
 		if ([[[PTPreferenceManager sharedInstance] userName] isEqualToString:[[aStatusInfo objectForKey:@"user"] objectForKey:@"screen_name"]]) {
-			lNewBox.entityColor = [NSColor colorWithCalibratedRed:0.55 green:0.55 blue:0.55 alpha:0.7];
+			lNewBox.entityColor = [NSColor colorWithCalibratedRed:0.3 green:0.3 blue:0.3 alpha:1.0];
 		} else {
-			lNewBox.entityColor = [NSColor colorWithCalibratedRed:0.4 green:0.4 blue:0.4 alpha:0.7];
+			lNewBox.entityColor = [NSColor colorWithCalibratedRed:0.2 green:0.2 blue:0.2 alpha:1.0];
 		}
 		lNewBox.sType = NormalMessage;
 	}
 	if ([[aStatusInfo objectForKey:@"favorited"] boolValue]) {
-		lNewBox.entityColor = [NSColor colorWithCalibratedRed:0.9 green:0.5 blue:0.0 alpha:0.7];
+		lNewBox.entityColor = [NSColor colorWithCalibratedRed:0.4 green:0.2 blue:0.0 alpha:1.0];
 		lNewBox.fav = YES;
 	}
 	lNewBox.searchString = [NSString stringWithFormat:@"%@ %@ %@",
@@ -74,7 +74,7 @@
 	lNewBox.userId = [NSString stringWithString:@"Twitter Error:"];
 	lNewBox.statusMessage = [PTStatusFormatter createErrorMessage:aError];
 	lNewBox.userImage = [NSImage imageNamed:@"console.png"];
-	lNewBox.entityColor = [NSColor colorWithCalibratedRed:0.4 green:0.4 blue:0.4 alpha:0.7];
+	lNewBox.entityColor = [NSColor colorWithCalibratedRed:0.4 green:0.4 blue:0.4 alpha:1.0];
 	lNewBox.time = [NSDate date];
 	lNewBox.userHome = nil;
 	lNewBox.sType = ErrorMessage;
@@ -99,7 +99,7 @@
 	} else {
 		lNewBox.userHome = nil;
 	}
-	lNewBox.entityColor = [NSColor colorWithCalibratedRed:0.4 green:0.5 blue:0.7 alpha:0.7];
+	lNewBox.entityColor = [NSColor colorWithCalibratedRed:0.1 green:0.1 blue:0.3 alpha:1.0];
 	lNewBox.sType = DirectMessage;
 	lNewBox.searchString = [NSString stringWithFormat:@"%@ %@ %@",
 							[[aStatusInfo objectForKey:@"sender"] objectForKey:@"screen_name"], 
