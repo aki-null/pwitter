@@ -83,6 +83,8 @@
 	} else {
 		[fStatusController setSelectsInsertedObjects:NO];
 	}
+	if ([[PTPreferenceManager sharedInstance] hideDockIcon] != ([fHideDockIcon state] == NSOnState))
+		[[PTPreferenceManager sharedInstance] setHideDockIcon:[fHideDockIcon state] == NSOnState];
 	[fMainWindow setFloatingPanel:[[PTPreferenceManager sharedInstance] alwaysOnTop]];
 	[fMainWindow setHasShadow:![[PTPreferenceManager sharedInstance] disableWindowShadow]];
 	[[fMainController fMenuItem] setSwapped:[[PTPreferenceManager sharedInstance] swapMenuItemBehavior]];
