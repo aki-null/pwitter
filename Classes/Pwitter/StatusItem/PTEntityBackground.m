@@ -114,7 +114,11 @@ static PTBubbleFactory *sharedSingleton;
 @implementation PTEntityBackground
 
 - (void)drawRect:(NSRect)aRect {
-	[[self textColor] set];
+	BOOL lIsSelected = [(PTStatusEntityView *)[self superview] selected];
+	if (lIsSelected) {
+		[[[self textColor] highlightWithLevel:0.1] set];
+	} else 
+		[[self textColor] set];
 	NSBezierPath *lPath = [[PTBubbleFactory sharedSingleton] bubbleWithWidth:[self bounds].size.width 
 																	  height:[self bounds].size.height];
 	[lPath fill];
@@ -125,7 +129,7 @@ static PTBubbleFactory *sharedSingleton;
 	//								   xRadius:12.0 
 	//								   yRadius:12.0];
 	// render the selection border
-	if([(PTStatusEntityView *)[self superview] selected]) {
+	if(lIsSelected) {
 		[[NSColor colorWithCalibratedRed:0.8 green:0.8 blue:0.8 alpha:1.0] set];
 		[lPath setLineWidth:2.5];
 		[lPath stroke];
