@@ -23,13 +23,10 @@
 	[fTimeInterval selectItemAtIndex:[[PTPreferenceManager sharedInstance] timeInterval] - 1];
 	[fMessageUpdateInterval selectItemAtIndex:[[PTPreferenceManager sharedInstance] messageInterval] - 1];
 	[fBehaviorAfterUpdate selectItemAtIndex:[[PTPreferenceManager sharedInstance] statusUpdateBehavior] - 1];
-	if ([[PTPreferenceManager sharedInstance] statusUpdateBehavior] == 1) {
-		[fStatusController setSelectsInsertedObjects:YES];
-	} else {
-		[fStatusController setSelectsInsertedObjects:NO];
-	}
+	[fStatusController setSelectsInsertedObjects:[[PTPreferenceManager sharedInstance] statusUpdateBehavior] == 1];
 	[fPassword setStringValue:@""];
 	[fMainWindow setFloatingPanel:[[PTPreferenceManager sharedInstance] alwaysOnTop]];
+	[fMainWindow setHasShadow:![[PTPreferenceManager sharedInstance] disableWindowShadow]];
 	[[PTPreferenceManager sharedInstance] hideDockIcon] ? [fHideDockIcon setState:NSOnState] : [fHideDockIcon setState:NSOffState];
 	if ([[PTPreferenceManager sharedInstance] disableGrowl]) {
 		[fDisableMessageNotification setEnabled:NO];
@@ -50,23 +47,20 @@
 	[self turnOffHotKey];
 	[fShortcutRecorder setEnabled:NO];
 	[fQuickReadShortcutRecorder setEnabled:NO];
+	[fHideWhenReading setEnabled:NO];
 	if ([[PTPreferenceManager sharedInstance] quickPost]) {
 		[fShortcutRecorder setEnabled:YES];
 		[self turnOnHotKey];
 	}
 	if ([[PTPreferenceManager sharedInstance] quickRead]) {
 		[fQuickReadShortcutRecorder setEnabled:YES];
+		[fHideWhenReading setEnabled:YES];
 		[self turnOnReadHotKey];
 	}
 }
 
 - (IBAction)pressOK:(id)sender {
-	BOOL fShouldReset = NO;
-	if ([[PTPreferenceManager sharedInstance] disableTopView])
-		[fMainActionHandler disableTopView];
-	else
-		[fMainActionHandler enableTopView];
-	if ([fIgnoreErrors state] == NSOnState)
+	if ([[PTPreferenceManager sharedInstance] ignoreErrors])
 		[fMainActionHandler clearErrors:sender];
 	if ([[PTPreferenceManager sharedInstance] timeInterval] != [fTimeInterval indexOfSelectedItem] + 1) {
 		[[PTPreferenceManager sharedInstance] setTimeInterval:[fTimeInterval indexOfSelectedItem] + 1];
@@ -90,12 +84,13 @@
 		[fStatusController setSelectsInsertedObjects:NO];
 	}
 	[fMainWindow setFloatingPanel:[[PTPreferenceManager sharedInstance] alwaysOnTop]];
+	[fMainWindow setHasShadow:![[PTPreferenceManager sharedInstance] disableWindowShadow]];
 	[[fMainController fMenuItem] setSwapped:[[PTPreferenceManager sharedInstance] swapMenuItemBehavior]];
 	[self saveKeyCombo];
 	[self turnOffHotKey];
-	if ([fActivateGlobalKey state] == NSOnState)
+	if ([[PTPreferenceManager sharedInstance] quickPost])
 		[self turnOnHotKey];
-	if ([fActivateQuickReadKey state] == NSOnState)
+	if ([[PTPreferenceManager sharedInstance] quickRead])
 		[self turnOnReadHotKey];
 	[NSApp endSheet:self];
 	if (fShouldReset) [fMainController changeAccount:self];
@@ -180,9 +175,14 @@
 }
 
 - (void)hitReadKey:(PTHotKey *)aHotKey {
-	[NSApp activateIgnoringOtherApps:YES];
-	[fMainWindow makeKeyAndOrderFront:self];
-	[fMainWindow makeFirstResponder:fStatusCollectionView];
+	if ([[PTPreferenceManager sharedInstance] hideWithQuickReadShortcut] && 
+		[NSApp isActive] && [fMainWindow firstResponder] == fStatusCollectionView)
+		[NSApp hide:self];
+	else {
+		[NSApp activateIgnoringOtherApps:YES];
+		[fMainWindow makeKeyAndOrderFront:self];
+		[fMainWindow makeFirstResponder:fStatusCollectionView];
+	}
 }
 
 - (IBAction)quickPostChanged:(id)sender {
@@ -215,7 +215,7 @@
 			lTargetHeight = 294;
 			break;
 		case 4:
-			lTargetHeight = 268;
+			lTargetHeight = 290;
 			break;
 		default:
 			lTargetHeight = 313;
@@ -232,6 +232,11 @@
 
 - (IBAction)quickReadChanged:(id)sender {
     [fQuickReadShortcutRecorder setEnabled:[sender state] == NSOnState];
+	[fHideWhenReading setEnabled:[sender state] == NSOnState];
+}
+
+- (IBAction)resetTimeline:(id)sender {
+    fShouldReset = YES;
 }
 
 

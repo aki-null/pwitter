@@ -9,11 +9,16 @@
 #import "PTMainWindowDelegate.h"
 #import "PTMain.h"
 #import "PTMainActionHandler.h"
+#import "AMCollectionView.h"
+#import "PTStatusCollectionItem.h"
 
 
 @implementation PTMainWindowDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
+	[fStatusCollection setAllowsMultipleSelection:NO];
+	[fStatusCollection setRowHeight:38];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateSelection:) name:AMCollectionViewSelectionDidChangeNotification object:nil];
 	[fMainActionHandler startAuthentication];
 }
 
@@ -41,6 +46,21 @@
 		lResult = NO;
 	}
 	return lResult;
+}
+
+- (void)updateSelection:(NSNotification *)aNotification {
+	PTStatusBox *lSelectedBox = [[fStatusCollection selectedObjects] lastObject];
+	if ([[PTPreferenceManager sharedInstance] useMiniView]) {
+		if (fOldSelection != lSelectedBox && fOldSelection != nil) {
+			PTStatusCollectionItem *lOldItem = (PTStatusCollectionItem *)[fStatusCollection itemForObject:fOldSelection];
+			if (lOldItem)
+				[fStatusCollection noteSizeForItemsChanged:[NSArray arrayWithObject:lOldItem]];
+		}
+		if (lSelectedBox)
+			[fStatusCollection noteSizeForItemsChanged:[NSArray arrayWithObject:lSelectedBox]];
+	}
+	[fMainActionHandler updateSelectedMessage:lSelectedBox];
+	fOldSelection = lSelectedBox;
 }
 
 @end

@@ -37,7 +37,6 @@
 		614CA0130F4EDAAB007B3940 /* PTGrowlNotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 614C9FBE0F4EDAAB007B3940 /* PTGrowlNotificationManager.m */; };
 		614CA0140F4EDAAB007B3940 /* PTPreferenceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 614C9FC10F4EDAAB007B3940 /* PTPreferenceManager.m */; };
 		614CA0150F4EDAAB007B3940 /* PTPreferenceWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 614C9FC30F4EDAAB007B3940 /* PTPreferenceWindow.m */; };
-		614CA0160F4EDAAB007B3940 /* PTArrayObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 614C9FC50F4EDAAB007B3940 /* PTArrayObserver.m */; };
 		614CA0170F4EDAAB007B3940 /* PTCharacterCounter.m in Sources */ = {isa = PBXBuildFile; fileRef = 614C9FC70F4EDAAB007B3940 /* PTCharacterCounter.m */; };
 		614CA0180F4EDAAB007B3940 /* PTClickableIcon.m in Sources */ = {isa = PBXBuildFile; fileRef = 614C9FC90F4EDAAB007B3940 /* PTClickableIcon.m */; };
 		614CA0190F4EDAAB007B3940 /* PTCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 614C9FCB0F4EDAAB007B3940 /* PTCollectionView.m */; };
@@ -46,9 +45,7 @@
 		614CA01C0F4EDAAB007B3940 /* PTMainWindowDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 614C9FD10F4EDAAB007B3940 /* PTMainWindowDelegate.m */; };
 		614CA01D0F4EDAAB007B3940 /* PTMenuBarIcon.m in Sources */ = {isa = PBXBuildFile; fileRef = 614C9FD30F4EDAAB007B3940 /* PTMenuBarIcon.m */; };
 		614CA01E0F4EDAAB007B3940 /* PTPostField.m in Sources */ = {isa = PBXBuildFile; fileRef = 614C9FD50F4EDAAB007B3940 /* PTPostField.m */; };
-		614CA01F0F4EDAAB007B3940 /* PTSelectedStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 614C9FD70F4EDAAB007B3940 /* PTSelectedStatusView.m */; };
 		614CA0200F4EDAAB007B3940 /* PTStatusFilterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 614C9FD90F4EDAAB007B3940 /* PTStatusFilterController.m */; };
-		614CA0210F4EDAAB007B3940 /* PTStatusScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 614C9FDB0F4EDAAB007B3940 /* PTStatusScrollView.m */; };
 		614CA0220F4EDAAB007B3940 /* PTContextButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 614C9FDE0F4EDAAB007B3940 /* PTContextButton.m */; };
 		614CA0230F4EDAAB007B3940 /* PTEntityBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 614C9FE00F4EDAAB007B3940 /* PTEntityBackground.m */; };
 		614CA0240F4EDAAB007B3940 /* PTMessageButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 614C9FE20F4EDAAB007B3940 /* PTMessageButton.m */; };
@@ -89,6 +86,8 @@
 		61AA24A20F3C67F600988678 /* unread_orb.png in Resources */ = {isa = PBXBuildFile; fileRef = 61AA24A10F3C67F600988678 /* unread_orb.png */; };
 		61BAFB0F0F1C89B400428121 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61BAFB0E0F1C89B400428121 /* Carbon.framework */; };
 		61BD916F0F0B7C7E00F1CA33 /* default.png in Resources */ = {isa = PBXBuildFile; fileRef = 61BD916E0F0B7C7E00F1CA33 /* default.png */; };
+		61D3ABEC0F500425000E8C12 /* AMCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 61D3ABE80F500425000E8C12 /* AMCollectionView.m */; };
+		61D3ABED0F500425000E8C12 /* AMCollectionViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 61D3ABEA0F500425000E8C12 /* AMCollectionViewItem.m */; };
 		61D9FDFD0F04B41C003CC890 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61D9FDFC0F04B41C003CC890 /* Security.framework */; };
 		61EE70640F0210C0005C42F5 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 61EE70630F0210C0005C42F5 /* libxml2.2.dylib */; };
 		61F177A90F1C5A6B00C04938 /* ShortcutRecorder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61F177A80F1C5A6B00C04938 /* ShortcutRecorder.framework */; };
@@ -181,8 +180,6 @@
 		614C9FC10F4EDAAB007B3940 /* PTPreferenceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTPreferenceManager.m; sourceTree = "<group>"; };
 		614C9FC20F4EDAAB007B3940 /* PTPreferenceWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTPreferenceWindow.h; sourceTree = "<group>"; };
 		614C9FC30F4EDAAB007B3940 /* PTPreferenceWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTPreferenceWindow.m; sourceTree = "<group>"; };
-		614C9FC40F4EDAAB007B3940 /* PTArrayObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTArrayObserver.h; sourceTree = "<group>"; };
-		614C9FC50F4EDAAB007B3940 /* PTArrayObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTArrayObserver.m; sourceTree = "<group>"; };
 		614C9FC60F4EDAAB007B3940 /* PTCharacterCounter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTCharacterCounter.h; sourceTree = "<group>"; };
 		614C9FC70F4EDAAB007B3940 /* PTCharacterCounter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTCharacterCounter.m; sourceTree = "<group>"; };
 		614C9FC80F4EDAAB007B3940 /* PTClickableIcon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTClickableIcon.h; sourceTree = "<group>"; };
@@ -199,12 +196,8 @@
 		614C9FD30F4EDAAB007B3940 /* PTMenuBarIcon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTMenuBarIcon.m; sourceTree = "<group>"; };
 		614C9FD40F4EDAAB007B3940 /* PTPostField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTPostField.h; sourceTree = "<group>"; };
 		614C9FD50F4EDAAB007B3940 /* PTPostField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTPostField.m; sourceTree = "<group>"; };
-		614C9FD60F4EDAAB007B3940 /* PTSelectedStatusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTSelectedStatusView.h; sourceTree = "<group>"; };
-		614C9FD70F4EDAAB007B3940 /* PTSelectedStatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTSelectedStatusView.m; sourceTree = "<group>"; };
 		614C9FD80F4EDAAB007B3940 /* PTStatusFilterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTStatusFilterController.h; sourceTree = "<group>"; };
 		614C9FD90F4EDAAB007B3940 /* PTStatusFilterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTStatusFilterController.m; sourceTree = "<group>"; };
-		614C9FDA0F4EDAAB007B3940 /* PTStatusScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTStatusScrollView.h; sourceTree = "<group>"; };
-		614C9FDB0F4EDAAB007B3940 /* PTStatusScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTStatusScrollView.m; sourceTree = "<group>"; };
 		614C9FDD0F4EDAAB007B3940 /* PTContextButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTContextButton.h; sourceTree = "<group>"; };
 		614C9FDE0F4EDAAB007B3940 /* PTContextButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTContextButton.m; sourceTree = "<group>"; };
 		614C9FDF0F4EDAAB007B3940 /* PTEntityBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTEntityBackground.h; sourceTree = "<group>"; };
@@ -259,6 +252,11 @@
 		61AA24A10F3C67F600988678 /* unread_orb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unread_orb.png; sourceTree = "<group>"; };
 		61BAFB0E0F1C89B400428121 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
 		61BD916E0F0B7C7E00F1CA33 /* default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default.png; sourceTree = "<group>"; };
+		61D3ABE70F500425000E8C12 /* AMCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMCollectionView.h; sourceTree = "<group>"; };
+		61D3ABE80F500425000E8C12 /* AMCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMCollectionView.m; sourceTree = "<group>"; };
+		61D3ABE90F500425000E8C12 /* AMCollectionViewItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMCollectionViewItem.h; sourceTree = "<group>"; };
+		61D3ABEA0F500425000E8C12 /* AMCollectionViewItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMCollectionViewItem.m; sourceTree = "<group>"; };
+		61D3ABEB0F500425000E8C12 /* AMCollectionViewItemProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMCollectionViewItemProtocol.h; sourceTree = "<group>"; };
 		61D9FDFC0F04B41C003CC890 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
 		61EE70630F0210C0005C42F5 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = /usr/lib/libxml2.2.dylib; sourceTree = "<absolute>"; };
 		61F177A80F1C5A6B00C04938 /* ShortcutRecorder.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ShortcutRecorder.framework; sourceTree = "<group>"; };
@@ -466,8 +464,6 @@
 				614C9FBF0F4EDAAB007B3940 /* Preferences */,
 				614C9FBA0F4EDAAB007B3940 /* GrowlNotification */,
 				614C9FF80F4EDAAB007B3940 /* Utils */,
-				614C9FC40F4EDAAB007B3940 /* PTArrayObserver.h */,
-				614C9FC50F4EDAAB007B3940 /* PTArrayObserver.m */,
 				614C9FC60F4EDAAB007B3940 /* PTCharacterCounter.h */,
 				614C9FC70F4EDAAB007B3940 /* PTCharacterCounter.m */,
 				614C9FC80F4EDAAB007B3940 /* PTClickableIcon.h */,
@@ -484,12 +480,13 @@
 				614C9FD30F4EDAAB007B3940 /* PTMenuBarIcon.m */,
 				614C9FD40F4EDAAB007B3940 /* PTPostField.h */,
 				614C9FD50F4EDAAB007B3940 /* PTPostField.m */,
-				614C9FD60F4EDAAB007B3940 /* PTSelectedStatusView.h */,
-				614C9FD70F4EDAAB007B3940 /* PTSelectedStatusView.m */,
 				614C9FD80F4EDAAB007B3940 /* PTStatusFilterController.h */,
 				614C9FD90F4EDAAB007B3940 /* PTStatusFilterController.m */,
-				614C9FDA0F4EDAAB007B3940 /* PTStatusScrollView.h */,
-				614C9FDB0F4EDAAB007B3940 /* PTStatusScrollView.m */,
+				61D3ABE70F500425000E8C12 /* AMCollectionView.h */,
+				61D3ABE80F500425000E8C12 /* AMCollectionView.m */,
+				61D3ABE90F500425000E8C12 /* AMCollectionViewItem.h */,
+				61D3ABEA0F500425000E8C12 /* AMCollectionViewItem.m */,
+				61D3ABEB0F500425000E8C12 /* AMCollectionViewItemProtocol.h */,
 			);
 			path = Pwitter;
 			sourceTree = "<group>";
@@ -692,7 +689,6 @@
 				614CA0130F4EDAAB007B3940 /* PTGrowlNotificationManager.m in Sources */,
 				614CA0140F4EDAAB007B3940 /* PTPreferenceManager.m in Sources */,
 				614CA0150F4EDAAB007B3940 /* PTPreferenceWindow.m in Sources */,
-				614CA0160F4EDAAB007B3940 /* PTArrayObserver.m in Sources */,
 				614CA0170F4EDAAB007B3940 /* PTCharacterCounter.m in Sources */,
 				614CA0180F4EDAAB007B3940 /* PTClickableIcon.m in Sources */,
 				614CA0190F4EDAAB007B3940 /* PTCollectionView.m in Sources */,
@@ -701,9 +697,7 @@
 				614CA01C0F4EDAAB007B3940 /* PTMainWindowDelegate.m in Sources */,
 				614CA01D0F4EDAAB007B3940 /* PTMenuBarIcon.m in Sources */,
 				614CA01E0F4EDAAB007B3940 /* PTPostField.m in Sources */,
-				614CA01F0F4EDAAB007B3940 /* PTSelectedStatusView.m in Sources */,
 				614CA0200F4EDAAB007B3940 /* PTStatusFilterController.m in Sources */,
-				614CA0210F4EDAAB007B3940 /* PTStatusScrollView.m in Sources */,
 				614CA0220F4EDAAB007B3940 /* PTContextButton.m in Sources */,
 				614CA0230F4EDAAB007B3940 /* PTEntityBackground.m in Sources */,
 				614CA0240F4EDAAB007B3940 /* PTMessageButton.m in Sources */,
@@ -721,6 +715,8 @@
 				614CA0300F4EDAAB007B3940 /* PTReadManager.m in Sources */,
 				614CA0310F4EDAAB007B3940 /* PTURLUtils.m in Sources */,
 				61095D0C0F4F7C60001882C7 /* PTTooltipTransformer.m in Sources */,
+				61D3ABEC0F500425000E8C12 /* AMCollectionView.m in Sources */,
+				61D3ABED0F500425000E8C12 /* AMCollectionViewItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

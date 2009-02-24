@@ -20,11 +20,6 @@
 	return fIsSelected;
 }
 
-- (void)forceSelect:(BOOL)aFlag {
-	[fColItem setSelected:aFlag];
-	[(PTCollectionView *)[self superview] fixFocus];
-}
-
 - (void)openInBrowser:(id)sender {
 	PTStatusBox *lBox = [fColItem representedObject];
 	if (lBox.updateId != 0) {
@@ -73,7 +68,6 @@
 }
 
 - (void)openContextMenu:(NSEvent *)aEvent {
-	[(PTCollectionView *)[self superview] disableAnimation];
 	PTStatusBox *lBox = [fColItem representedObject];
 	NSMenu *lMenu = [[[NSMenu alloc] initWithTitle:@"Contextual Menu"] autorelease];
 	[lMenu insertItemWithTitle:@"Send Reply" action:@selector(sendReply:) keyEquivalent:@"r" atIndex:0];

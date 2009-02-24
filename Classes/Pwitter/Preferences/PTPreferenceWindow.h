@@ -22,10 +22,7 @@
     IBOutlet id fAutoLogin;
     IBOutlet id fReceiveFromNonFollowers;
     IBOutlet id fMessageUpdateInterval;
-    IBOutlet id fUseMiniView;
-    IBOutlet id fActivateGlobalKey;
     IBOutlet id fShortcutRecorder;
-    IBOutlet id fIgnoreErrors;
     IBOutlet PTMainActionHandler *fMainActionHandler;
     IBOutlet id fDisableGrowl;
     IBOutlet id fDisableMessageNotification;
@@ -37,21 +34,19 @@
     IBOutlet id fStatusController;
     IBOutlet id fDisableErrorNotification;
     IBOutlet id fHideDockIcon;
-    IBOutlet id fSwapMenuItem;
-    IBOutlet id fUseTwelveHour;
-    IBOutlet id fHideTopView;
-    IBOutlet id fActivateQuickReadKey;
     IBOutlet id fQuickReadShortcutRecorder;
     IBOutlet id fStatusCollectionView;
-    IBOutlet id fUsePOSTMethod;
+    IBOutlet id fHideWhenReading;
 	PTHotKey *fHotKey;
 	PTHotKey *fHotKeyRead;
+	BOOL fShouldReset;
 }
 - (void)loadPreferences;
 - (IBAction)pressOK:(id)sender;
 - (IBAction)quickPostChanged:(id)sender;
 - (IBAction)growlDisabled:(id)sender;
 - (IBAction)quickReadChanged:(id)sender;
+- (IBAction)resetTimeline:(id)sender;
 - (void)turnOnHotKey;
 - (void)turnOnReadHotKey;
 - (void)turnOffHotKey;

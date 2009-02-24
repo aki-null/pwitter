@@ -37,6 +37,7 @@ typedef enum soundEventType {
     IBOutlet id fMainWindow;
     IBOutlet id fMainActionHandler;
     IBOutlet id fIconMenu;
+    IBOutlet id fStatusCollection;
 	MGTwitterEngine *fTwitterEngine;
 	int fLastUpdateID;
 	int fLastMessageID;
@@ -71,8 +72,6 @@ typedef enum soundEventType {
 - (void)favStatus:(PTStatusBox *)aBox;
 - (void)saveUnread;
 - (void)loadUnread;
-- (void)setCurrentBottomFrame:(NSRect)aRect;
-- (NSRect)currentBottomFrame;
 - (void)toggleApp;
 
 @property(readonly) PTMenuBarIcon *fMenuItem;

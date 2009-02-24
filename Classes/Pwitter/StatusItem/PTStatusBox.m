@@ -25,6 +25,7 @@
 @synthesize replyId;
 @synthesize replyUserId;
 @synthesize readFlag;
+@synthesize fav;
 
 - (void)dealloc {
 	if (userImage) [userImage release];

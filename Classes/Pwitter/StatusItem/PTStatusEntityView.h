@@ -16,7 +16,6 @@
 }
 - (void)setSelected:(BOOL)aFlag;
 - (BOOL)selected;
-- (void)forceSelect:(BOOL)aFlag;
 - (void)setColItem:(PTStatusCollectionItem *)aParentCol;
 - (void)openInBrowser:(id)sender;
 - (void)openUserPage:(id)sender;

@@ -7,12 +7,16 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "PTStatusBox.h"
 
 
 @interface PTMainWindowDelegate : NSObject {
     IBOutlet id fMainWindow;
     IBOutlet id fMainActionHandler;
     IBOutlet id fMainController;
+    IBOutlet id fStatusCollection;
+    IBOutlet id fStatusText;
+	PTStatusBox *fOldSelection;
 }
 
 @end

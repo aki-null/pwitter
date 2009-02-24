@@ -12,33 +12,25 @@
 #import "PTMain.h"
 #import "PTReadManager.h"
 #import "PTStatusTextField.h"
+#import "AMCollectionView.h"
 
 
 @implementation PTMainActionHandler
 
 - (void)awakeFromNib {
 	fShouldExit = NO;
-	NSDictionary *lLinkFormat =
-	[NSDictionary dictionaryWithObjectsAndKeys:
-	 [NSColor whiteColor], @"NSColor",
-	 [NSCursor pointingHandCursor], @"NSCursor",
-	 [NSNumber numberWithInt:1], @"NSUnderline",
-	 nil];
-	[fSelectedTextView setLinkTextAttributes:lLinkFormat];
-	lLinkFormat =
-	[NSDictionary dictionaryWithObjectsAndKeys:
+	NSDictionary *lLinkFormat = [NSDictionary dictionaryWithObjectsAndKeys:
 	 [NSColor whiteColor], @"NSColor",
 	 [NSCursor pointingHandCursor], @"NSCursor",
 	 [NSNumber numberWithInt:1], @"NSUnderline",
 	 nil];
 	[fUserNameBox setLinkTextAttributes:lLinkFormat];
+	[[fUserNameBox textContainer] setContainerSize:NSMakeSize(FLT_MAX, FLT_MAX)];
 	NSSortDescriptor * sortDesc = [[NSSortDescriptor alloc] initWithKey:@"time" ascending:NO];
 	[fStatusController setSortDescriptors:[NSArray arrayWithObject:sortDesc]];
 	[sortDesc release];
 	[fPreferenceWindow loadPreferences];
 	[self setCollectionViewPrototype:[[PTPreferenceManager sharedInstance] useMiniView]];
-	if ([[PTPreferenceManager sharedInstance] disableTopView])
-		[self disableTopView];
 	[fMainWindow makeFirstResponder:fStatusCollectionView];
 }
 
@@ -46,22 +38,14 @@
 	if (aIsMini) {
 		if ([fStatusCollectionView itemPrototype] != fMiniItemPrototype) {
 			[fStatusCollectionView setItemPrototype:fMiniItemPrototype];
-			NSSize lTempSize = [fStatusCollectionView minItemSize];
-			lTempSize.height = 38;
-			[fStatusCollectionView setMinItemSize:lTempSize];
-			lTempSize = [fStatusCollectionView maxItemSize];
-			lTempSize.height = 38;
-			[fStatusCollectionView setMaxItemSize:lTempSize];
 		}
 	} else if ([fStatusCollectionView itemPrototype] != fNormalItemPrototype) {
 		[fStatusCollectionView setItemPrototype:fNormalItemPrototype];
-		NSSize lTempSize = [fStatusCollectionView minItemSize];
-		lTempSize.height = 76;
-		[fStatusCollectionView setMinItemSize:lTempSize];
-		lTempSize = [fStatusCollectionView maxItemSize];
-		lTempSize.height = 76;
-		[fStatusCollectionView setMaxItemSize:lTempSize];
 	}
+	[fStatusCollectionView deselectAll:self];
+}
+- (void)updateCollection {
+	[fStatusCollectionView setContent:[fStatusController arrangedObjects]];
 }
 
 - (void)startAuthentication {
@@ -111,7 +95,7 @@
 }
 
 - (IBAction)messageToSelected:(id)sender {
-	PTStatusBox *lCurrentSelection = [[fStatusController selectedObjects] lastObject];
+	PTStatusBox *lCurrentSelection = [[fStatusCollectionView selectedObjects] lastObject];
 	if (lCurrentSelection.sType != ErrorMessage) {
 		[self messageToStatus:lCurrentSelection];
 	}
@@ -122,7 +106,7 @@
 }
 
 - (IBAction)openWebSelected:(id)sender {
-	PTStatusBox *lCurrentSelection = [[fStatusController selectedObjects] lastObject];
+	PTStatusBox *lCurrentSelection = [[fStatusCollectionView selectedObjects] lastObject];
 	[[NSWorkspace sharedWorkspace] openURL:lCurrentSelection.userHome];
 }
 
@@ -174,7 +158,7 @@
 }
 
 - (IBAction)replyToSelected:(id)sender {
-	PTStatusBox *lCurrentSelection = [[fStatusController selectedObjects] lastObject];
+	PTStatusBox *lCurrentSelection = [[fStatusCollectionView selectedObjects] lastObject];
 	if (!lCurrentSelection) return;
 	if (lCurrentSelection.sType == NormalMessage || lCurrentSelection.sType == ReplyMessage || lCurrentSelection.sType == DirectMessage) {
 		[self replyToStatus:lCurrentSelection shouldAnimate:YES];
@@ -210,6 +194,7 @@
 		lTempRect = [fStatusScrollView frame];
 		[[fStatusScrollView animator] setFrame:NSMakeRect(lTempRect.origin.x, lTempRect.origin.y, lTempRect.size.width, lTempRect.size.height + 21)];
 		[fStatusController setFilterPredicate:nil];
+		[self updateCollection];
 	}
 	[fMainWindow makeFirstResponder:fStatusCollectionView];
 }
@@ -220,25 +205,7 @@
 	NSArray *lErrorBoxes = [fStatusController arrangedObjects];
 	[fStatusController removeObjects:lErrorBoxes];
 	[fStatusController setFilterPredicate:nil];
-}
-
-- (void)updateViewSizes:(float)aHeightReq withAnim:(BOOL)aAnim {
-	float lTopHeight = 84;
-	if (aHeightReq > 51) lTopHeight += aHeightReq - 51;
-	NSRect lTopFrame = [fTopView frame];
-	NSRect lBottomFrame = [fBottomView frame];
-	float lTopDiff = lTopFrame.size.height - lTopHeight;
-	if (!lTopDiff) return;
-	if (aAnim) {
-		[NSAnimationContext beginGrouping];
-		[[NSAnimationContext currentContext] setDuration:0.1f];
-		[[fTopView animator] setFrame:NSMakeRect(0, lTopFrame.origin.y + lTopDiff, [fTopView frame].size.width, lTopHeight)];
-		[[fBottomView animator] setFrame:NSMakeRect(0, lBottomFrame.origin.y, lBottomFrame.size.width, lBottomFrame.size.height + lTopDiff)];
-		[NSAnimationContext endGrouping];
-	} else {
-		[fTopView setFrame:NSMakeRect(0, lTopFrame.origin.y + lTopDiff, [fTopView frame].size.width, lTopHeight)];
-		[fBottomView setFrame:NSMakeRect(0, lBottomFrame.origin.y, lBottomFrame.size.width, lBottomFrame.size.height + lTopDiff)];
-	}
+	[self updateCollection];
 }
 
 + (BOOL) hasFocus:(id)aField {
@@ -250,12 +217,11 @@
 
 - (void)updateSelectedMessage:(PTStatusBox *)aBox {
 	if (!aBox) {
-		if (![[PTPreferenceManager sharedInstance] disableTopView])
-			[self updateViewSizes:0 withAnim:YES];
 		[fWebButton setEnabled:NO];
 		[fReplyButton setEnabled:NO];
 		[fMessageButton setEnabled:NO];
 		[fFavButton setEnabled:NO];
+		[[fUserNameBox textStorage] setAttributedString:[[[NSAttributedString alloc] init] autorelease]];
 		return;
 	}
 	aBox.readFlag = YES;
@@ -270,25 +236,10 @@
 		[fMessageButton setEnabled:YES];
 	}
 	[fFavButton setEnabled:aBox.sType == NormalMessage || aBox.sType == ReplyMessage];
-	if (![[PTPreferenceManager sharedInstance] disableTopView]) {
-		NSRect lFrame = NSMakeRect(0, 0, [fSelectedTextView frame].size.width, MAXFLOAT);
-		NSTextView *lTempTextView = [[NSTextView alloc] initWithFrame:lFrame];
-		[[lTempTextView textStorage] setAttributedString:aBox.statusMessage];
-		[lTempTextView setHorizontallyResizable:NO];
-		[lTempTextView sizeToFit];
-		float lHeightReq = [lTempTextView frame].size.height + 3;
-		[lTempTextView release];
-		[self updateViewSizes:lHeightReq withAnim:!fNoAnim];
-	}
-	fNoAnim = NO;
+	[[fUserNameBox textStorage] setAttributedString:aBox.userName];
 	if (![PTMainActionHandler hasFocus:fStatusUpdateField] && 
 		![PTMainActionHandler hasFocus:fSearchBox])
 		[fMainWindow makeFirstResponder:fStatusCollectionView];
-}
-
-- (void)disableAnimation {
-	if (!fReplyViewIsOpen)
-		fNoAnim = YES;
 }
 
 - (IBAction)closeReplyViewFromButton:(id)sender {
@@ -296,11 +247,11 @@
 }
 
 - (IBAction)favSelected:(id)sender {
-	[fMainController favStatus:[[fStatusController selectedObjects] lastObject]];
+	[fMainController favStatus:[[fStatusCollectionView selectedObjects] lastObject]];
 }
 
 - (IBAction)retweetSelection:(id)sender {
-	PTStatusBox *lCurrentSelection = [[fStatusController selectedObjects] lastObject];
+	PTStatusBox *lCurrentSelection = [[fStatusCollectionView selectedObjects] lastObject];
 	if (lCurrentSelection.sType == ErrorMessage) return;
 	NSString *lMessageTarget = [NSString stringWithFormat:@"RT @%@ %@", lCurrentSelection.userId, [lCurrentSelection.statusMessage string]];
 	[fStatusUpdateField setStringValue:lMessageTarget];
@@ -318,14 +269,14 @@
 }
 
 - (IBAction)openSelectedLink:(id)sender {
-	PTStatusBox *lCurrentSelection = [[fStatusController selectedObjects] lastObject];
+	PTStatusBox *lCurrentSelection = [[fStatusCollectionView selectedObjects] lastObject];
 	if (lCurrentSelection.statusLink) {
 		[[NSWorkspace sharedWorkspace] openURL:lCurrentSelection.statusLink];
 	}
 }
 
 - (IBAction)openSelectedUser:(id)sender {
-    PTStatusBox *lCurrentSelection = [[fStatusController selectedObjects] lastObject];
+    PTStatusBox *lCurrentSelection = [[fStatusCollectionView selectedObjects] lastObject];
 	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[@"http://twitter.com/" stringByAppendingString:lCurrentSelection.userId]]];
 }
 
@@ -333,39 +284,8 @@
 	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://wiki.github.com/koroshiya1/pwitter"]];
 }
 
-- (void)disableTopView {
-	if (!fTopViewIsDisabled) {
-		fTopViewIsDisabled = YES;
-		NSRect lTopFrame = [fTopView frame];
-		NSRect lBottomFrame = [fBottomView frame];
-		[fBottomView setFrame:NSMakeRect(0, lBottomFrame.origin.y, lBottomFrame.size.width, lBottomFrame.size.height + lTopFrame.size.height - 7)];
-		int lHeightDif = [fSelectedStatusView frame].size.height - 51;
-		[fTopView setFrame:NSMakeRect(0, lTopFrame.origin.y + lHeightDif, [fTopView frame].size.width, 1)];
-	}
-}
-
-- (void)enableTopView {
-	if (fTopViewIsDisabled) {
-		fTopViewIsDisabled = NO;
-		NSRect lTopFrame = [fTopView frame];
-		NSRect lBottomFrame = [fBottomView frame];
-		[fTopView setFrame:NSMakeRect(0, lTopFrame.origin.y, [fTopView frame].size.width, 84)];
-		[fBottomView setFrame:NSMakeRect(0, lBottomFrame.origin.y, lBottomFrame.size.width, lBottomFrame.size.height - 77)];
-		PTStatusBox *lBox = [[fStatusController selectedObjects] lastObject];
-		NSRect lSelectedView = [fSelectedStatusView frame];
-		lSelectedView.size.height = 51;
-		[fSelectedStatusView setFrame:lSelectedView];
-		if (lBox) {
-			NSRect lFrame = NSMakeRect(0, 0, [fSelectedTextView frame].size.width, MAXFLOAT);
-			NSTextView *lTempTextView = [[NSTextView alloc] initWithFrame:lFrame];
-			[[lTempTextView textStorage] setAttributedString:lBox.statusMessage];
-			[lTempTextView setHorizontallyResizable:NO];
-			[lTempTextView sizeToFit];
-			float lHeightReq = [lTempTextView frame].size.height + 3;
-			[lTempTextView release];
-			[self updateViewSizes:lHeightReq withAnim:NO];
-		}
-	}
+- (IBAction)endSearch:(id)sender {
+    [self updateCollection];
 }
 
 @end

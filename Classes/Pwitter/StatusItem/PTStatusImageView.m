@@ -15,14 +15,13 @@
 - (void)mouseDown:(NSEvent *)aEvent {
 	// pass the event to the super class as usual
 	[super mouseDown:aEvent];
-	[(PTStatusEntityView *)[self superview] sendReply:self];
 	// send a message to the owner of the status view to select this entity
-	[(PTStatusEntityView *)[self superview] forceSelect:YES];
+	[[self superview] mouseDown:aEvent];
+	[(PTStatusEntityView *)[self superview] sendReply:self];
 }
 
 - (void)rightMouseDown:(NSEvent *)aEvent {
-	[super rightMouseDown:aEvent];
-	[(PTStatusEntityView *)[self superview] forceSelect:YES];
+	[[self superview] mouseDown:aEvent];
 	[(PTStatusEntityView *)[self superview] openContextMenu:aEvent];
 }
 

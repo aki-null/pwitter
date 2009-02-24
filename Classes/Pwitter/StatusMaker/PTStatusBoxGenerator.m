@@ -55,6 +55,7 @@
 	}
 	if ([[aStatusInfo objectForKey:@"favorited"] boolValue]) {
 		lNewBox.entityColor = [NSColor colorWithCalibratedRed:0.9 green:0.5 blue:0.0 alpha:0.7];
+		lNewBox.fav = YES;
 	}
 	lNewBox.searchString = [NSString stringWithFormat:@"%@ %@ %@",
 							[[aStatusInfo objectForKey:@"user"] objectForKey:@"screen_name"], 

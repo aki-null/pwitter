@@ -13,7 +13,7 @@
 @implementation PTContextButton
 
 - (void)mouseDown:(NSEvent *)aEvent {
-	[(PTStatusEntityView *)[self superview] forceSelect:YES];
+	[[self superview] mouseDown:aEvent];
 	// send a message to the owner of the status view to select this entity
 	[(PTStatusEntityView *)[self superview] openContextMenu:aEvent];
 }

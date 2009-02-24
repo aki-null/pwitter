@@ -8,9 +8,10 @@
 
 #import <Cocoa/Cocoa.h>
 #import "PTStatusBox.h"
+#import "AMCollectionView.h"
 
 
-@interface PTCollectionView : NSCollectionView {
+@interface PTCollectionView : AMCollectionView {
     IBOutlet id fMainActionHandler;
     IBOutlet id fMainController;
     IBOutlet id fMainWindow;
@@ -19,7 +20,6 @@
 - (void)sendReplyForStatus:(PTStatusBox *)aBox;
 - (void)sendMessageForStatus:(PTStatusBox *)aBox;
 - (void)markAsFav:(PTStatusBox *)aBox;
-- (void)disableAnimation;
 - (void)fixFocus;
 
 @end

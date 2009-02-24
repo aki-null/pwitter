@@ -18,7 +18,6 @@
     IBOutlet id fPreferenceWindow;
     IBOutlet id fSearchBox;
     IBOutlet id fSearchView;
-    IBOutlet id fSelectedTextView;
     IBOutlet id fStatusScrollView;
     IBOutlet id fUserNameBox;
     IBOutlet id fStatusController;
@@ -28,8 +27,6 @@
     IBOutlet id fWebButton;
     IBOutlet id fStatusUpdateField;
     IBOutlet id fBottomView;
-    IBOutlet id fSelectedStatusView;
-    IBOutlet id fTopView;
     IBOutlet id fMiniItemPrototype;
     IBOutlet id fNormalItemPrototype;
     IBOutlet id fStatusCollectionView;
@@ -41,7 +38,6 @@
 	BOOL fSearchBoxIsOpen;
 	BOOL fReplyViewIsOpen;
 	BOOL fShouldExit;
-	BOOL fNoAnim;
 	BOOL fTopViewIsDisabled;
 }
 - (IBAction)closeAuthSheet:(id)sender;
@@ -61,16 +57,14 @@
 - (IBAction)openSelectedLink:(id)sender;
 - (IBAction)openSelectedUser:(id)sender;
 - (IBAction)openPwitterHome:(id)sender;
+- (IBAction)endSearch:(id)sender;
 - (void)startAuthentication;
 - (void)updateSelectedMessage:(PTStatusBox *)aBox;
-- (void)updateViewSizes:(float)aHeightReq withAnim:(BOOL)aAnim;
 - (void)setCollectionViewPrototype:(BOOL)aIsMini;
 - (void)openReplyView:(BOOL)aAnimate;
 - (void)closeReplyView;
 - (void)replyToStatus:(PTStatusBox *)aBox shouldAnimate:(BOOL)aAnimate;
 - (void)messageToStatus:(PTStatusBox *)aBox;
-- (void)disableAnimation;
-- (void)disableTopView;
-- (void)enableTopView;
+- (void)updateCollection;
 
 @end

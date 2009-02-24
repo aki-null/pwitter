@@ -11,10 +11,12 @@
 
 @interface PTStatusFilterController : NSObject {
     IBOutlet id fStatusController;
+    IBOutlet id fMainActionHandler;
 }
 - (IBAction)showAll:(id)sender;
 - (IBAction)showMessages:(id)sender;
 - (IBAction)showReplies:(id)sender;
 - (IBAction)showUpdates:(id)sender;
 - (IBAction)showError:(id)sender;
+- (IBAction)showFavorites:(id)sender;
 @end

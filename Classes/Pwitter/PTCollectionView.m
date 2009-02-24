@@ -14,7 +14,6 @@
 @implementation PTCollectionView
 
 - (void)sendReplyForStatus:(PTStatusBox *)aBox {
-	[fMainActionHandler disableAnimation];
 	[fMainActionHandler replyToStatus:aBox shouldAnimate:NO];
 }
 
@@ -24,10 +23,6 @@
 
 - (void)markAsFav:(PTStatusBox *)aBox {
 	[fMainController favStatus:aBox];
-}
-
-- (void)disableAnimation {
-	[fMainActionHandler disableAnimation];
 }
 
 - (void)fixFocus {

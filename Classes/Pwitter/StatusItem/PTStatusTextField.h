@@ -12,4 +12,6 @@
 @interface PTStatusTextField : NSTextField {
 }
 
+- (NSSize)minSizeForContent;
+
 @end

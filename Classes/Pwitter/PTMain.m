@@ -11,8 +11,9 @@
 #import "PTGrowlNotificationManager.h"
 #import "PTMainActionHandler.h"
 #import "PTReadManager.h"
+#import "PTCollectionView.h"
 
-#define STATUS_LIMIT 200
+#define STATUS_LIMIT 400
 
 
 @implementation PTMain
@@ -134,6 +135,7 @@
 		[fProgressBar stopAnimation:self];
 		[fProgressBar setHidden:YES];
 		[fUpdateButton setEnabled:YES];
+		NSPredicate *lBackupPredicate = [[fStatusController filterPredicate] copy];
 		[self addNewStatusBoxes];
 		// limit the number of status boxes
 		int lStatusCount = [[fStatusController content] count] + 1;
@@ -141,6 +143,15 @@
 			NSRange lDeletionRange = NSMakeRange(STATUS_LIMIT - 1, lStatusCount - STATUS_LIMIT);
 			NSIndexSet *lToDelete = [NSIndexSet indexSetWithIndexesInRange:lDeletionRange];
 			[fStatusController removeObjectsAtArrangedObjectIndexes:lToDelete];
+		}
+		if (lBackupPredicate) {
+			[fStatusController setFilterPredicate:lBackupPredicate];
+			[lBackupPredicate release];
+		}
+		[fStatusCollection setContent:[fStatusController arrangedObjects]];
+		if ([fStatusController selectsInsertedObjects]) {
+			id lObj = [[fStatusController selectedObjects] objectAtIndex:0];
+			if (lObj) [fStatusCollection selectItemsForObjects:[NSArray arrayWithObject:lObj]];
 		}
 		[self postGrowlNotifications];
 		[self playSoundEffect];
@@ -165,7 +176,10 @@
 													   startingAtPage:0]];
 	[fRequestDetails setObject:@"INIT_UPDATE" 
 						forKey:[fTwitterEngine getFollowedTimelineFor:[[PTPreferenceManager sharedInstance] userName] 
-																since:nil startingAtPage:0 count:100]];
+																since:nil startingAtPage:1 count:170]];
+	[fRequestDetails setObject:@"INIT_UPDATE" 
+						forKey:[fTwitterEngine getFollowedTimelineFor:[[PTPreferenceManager sharedInstance] userName] 
+																since:nil startingAtPage:2 count:170]];
 	[fRequestDetails setObject:@"INIT_REPLY_UPDATE" 
 						forKey:[fTwitterEngine getRepliesStartingAtPage:1]];
 	[fRequestDetails setObject:@"INIT_REPLY_UPDATE" 
@@ -236,7 +250,7 @@
 
 - (void)toggleApp {
 	if ([NSApp isActive] && [fMainWindow isKeyWindow]) {
-		[fMainWindow orderOut:self];
+		[NSApp hide:self];
 	} else {
 		[fMainWindow makeKeyAndOrderFront:self];
 		[self activateApp:self];
@@ -280,6 +294,7 @@
 	[fStatusUpdateField setEnabled:YES];
 	[fStatusUpdateField setStringValue:@""];
 	[fTextLevelIndicator setIntValue:140];
+	[fMainWindow makeFirstResponder:fStatusCollection];
 }
 
 - (void)connectionFinished {
@@ -290,7 +305,8 @@
 	NSString *lReqType = [fRequestDetails objectForKey:requestIdentifier];
 	if (lReqType == @"FAV") {
 		PTStatusBox *lBoxToFav = [fFavRecord objectForKey:requestIdentifier];
-		lBoxToFav.entityColor = [NSColor colorWithCalibratedRed:1.0 green:0.6 blue:0.0 alpha:0.7];
+		lBoxToFav.entityColor = [NSColor colorWithCalibratedRed:0.9 green:0.5 blue:0.0 alpha:0.7];
+		lBoxToFav.fav = YES;
 		[fRequestDetails removeObjectForKey:lReqType];
 		[fFavRecord removeObjectForKey:requestIdentifier];
 	} else if (lReqType == @"MESSAGE") {
@@ -451,7 +467,7 @@
 		[self startingTransaction];
 		[fRequestDetails setObject:@"UPDATE" 
 							forKey:[fTwitterEngine getFollowedTimelineFor:[fTwitterEngine username] 
-																  sinceID:fLastUpdateID startingAtPage:0 count:100]];
+																  sinceID:fLastUpdateID startingAtPage:0 count:200]];
 		if ([[PTPreferenceManager sharedInstance] receiveFromNonFollowers])
 			[fRequestDetails setObject:@"REPLY_UPDATE" 
 								forKey:[fTwitterEngine getRepliesSinceID:fLastReplyID startingAtPage:0 count:20]];
@@ -545,14 +561,6 @@
 	lRootObj = [NSMutableDictionary dictionary];
 	[lRootObj setValue:lUnreadDict forKey:@"unreads"];
 	[NSKeyedArchiver archiveRootObject:lRootObj toFile:lPath];
-}
-
-- (void)setCurrentBottomFrame:(NSRect)aRect {
-	fCurrentTarget = aRect;
-}
-
-- (NSRect)currentBottomFrame {
-	return fCurrentTarget;
 }
 
 @synthesize fMenuItem;

@@ -31,6 +31,7 @@ typedef enum statusType {
 	int replyId;
 	NSString *replyUserId;
 	BOOL readFlag;
+	BOOL fav;
 }
 
 @property(copy, readwrite) NSAttributedString *userName;
@@ -47,5 +48,6 @@ typedef enum statusType {
 @property(readwrite) int replyId;
 @property(copy, readwrite) NSString *replyUserId;
 @property(readwrite) BOOL readFlag;
+@property(readwrite) BOOL fav;
 
 @end

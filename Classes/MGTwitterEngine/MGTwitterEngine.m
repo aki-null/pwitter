@@ -13,7 +13,7 @@
 
 #import "PTPreferenceManager.h"
 
-#define USE_LIBXML 1
+#define USE_LIBXML 0
 
 #if YAJL_AVAILABLE
 	#define API_FORMAT @"json"

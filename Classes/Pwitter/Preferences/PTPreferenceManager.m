@@ -67,16 +67,8 @@
 	}
 }
 
-- (void)setAlwaysOnTop:(BOOL)aFlag {
-	[fPrefData setBool:aFlag forKey:@"always_on_top"];
-}
-
 - (BOOL)alwaysOnTop {
 	return [fPrefData boolForKey:@"always_on_top"];
-}
-
-- (void)setReceiveFromNonFollowers:(BOOL)aFlag {
-	[fPrefData setBool:aFlag forKey:@"receive_updates_from_non_followers"];
 }
 
 - (BOOL)receiveFromNonFollowers {
@@ -99,88 +91,44 @@
 	return [fPrefData integerForKey:@"message_interval"];
 }
 
-- (void)setUseMiniView:(BOOL)aFlag {
-	[fPrefData setBool:aFlag forKey:@"enable_mini_view"];
-}
-
 - (BOOL)useMiniView {
 	return [fPrefData boolForKey:@"enable_mini_view"];
-}
-
-- (void)setAutoLogin:(BOOL)aFlag {
-	[fPrefData setBool:aFlag forKey:@"auto_login"];
 }
 
 - (BOOL)autoLogin {
 	return [fPrefData boolForKey:@"auto_login"];
 }
 
-- (void)setQuickPost:(BOOL)aFlag {
-	[fPrefData setBool:aFlag forKey:@"use_quick_post"];
-}
-
 - (BOOL)quickPost {
 	return [fPrefData boolForKey:@"use_quick_post"];
-}
-
-- (void)setQuickRead:(BOOL)aFlag {
-	[fPrefData setBool:aFlag forKey:@"use_quick_read"];
 }
 
 - (BOOL)quickRead {
 	return [fPrefData boolForKey:@"use_quick_read"];
 }
 
-- (void)setIgnoreErrors:(BOOL)aFlag {
-	[fPrefData setBool:aFlag forKey:@"ignore_errors"];
-}
-
 - (BOOL)ignoreErrors {
 	return [fPrefData boolForKey:@"ignore_errors"];
-}
-
-- (void)setDisableGrowl:(BOOL)aFlag {
-	[fPrefData setBool:aFlag forKey:@"disable_growl"];
 }
 
 - (BOOL)disableGrowl {
 	return [fPrefData boolForKey:@"disable_growl"];
 }
 
-- (void)setDisableMessageNotification:(BOOL)aFlag {
-	[fPrefData setBool:aFlag forKey:@"disable_message_notification"];
-}
-
 - (BOOL)disableMessageNotification {
 	return [fPrefData boolForKey:@"disable_message_notification"];
-}
-
-- (void)setDisableReplyNotification:(BOOL)aFlag {
-	[fPrefData setBool:aFlag forKey:@"disable_reply_notification"];
 }
 
 - (BOOL)disableReplyNotification {
 	return [fPrefData boolForKey:@"disable_reply_notification"];
 }
 
-- (void)setDisableStatusNotification:(BOOL)aFlag {
-	[fPrefData setBool:aFlag forKey:@"disable_status_notification"];
-}
-
 - (BOOL)disableStatusNotification {
 	return [fPrefData boolForKey:@"disable_status_notification"];
 }
 
-- (void)setDisableErrorNotification:(BOOL)aFlag {
-	[fPrefData setBool:aFlag forKey:@"disable_error_notification"];
-}
-
 - (BOOL)disableErrorNotification {
 	return [fPrefData boolForKey:@"disable_error_notification"];
-}
-
-- (void)setDisableSoundNotification:(BOOL)aFlag {
-	[fPrefData setBool:aFlag forKey:@"disable_sound_notification"];
 }
 
 - (BOOL)disableSoundNotification {
@@ -195,36 +143,28 @@
 	return [fPrefData integerForKey:@"status_update_behavior"];
 }
 
-- (void)setSwapMenuItemBehavior:(BOOL)aFlag {
-	[fPrefData setBool:aFlag forKey:@"swap_menu_item_behavior"];
-}
-
 - (BOOL)swapMenuItemBehavior {
 	return [fPrefData boolForKey:@"swap_menu_item_behavior"];
-}
-
-- (void)setUseTwelveHour:(BOOL)aFlag {
-	[fPrefData setBool:aFlag forKey:@"use_twelve_hour"];
 }
 
 - (BOOL)useTwelveHour {
 	return [fPrefData boolForKey:@"use_twelve_hour"];
 }
 
-- (void)setDisableTopView:(BOOL)aFlag {
-	[fPrefData setBool:aFlag forKey:@"disable_top_view"];
-}
-
 - (BOOL)disableTopView {
 	return [fPrefData boolForKey:@"disable_top_view"];
 }
 
-- (void)setUsePOSTMethod:(BOOL)aFlag {
-	[fPrefData setBool:aFlag forKey:@"use_POST_method"];
-}
-
 - (BOOL)usePOSTMethod {
 	return [fPrefData boolForKey:@"use_POST_method"];
+}
+
+- (BOOL)disableWindowShadow {
+	return [fPrefData boolForKey:@"disable_window_shadow"];
+}
+
+- (BOOL)hideWithQuickReadShortcut {
+	return [fPrefData boolForKey:@"hide_with_quick_read_shortcut"];
 }
 
 - (void)setHideDockIcon:(BOOL)aFlag {
