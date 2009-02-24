@@ -353,7 +353,7 @@
 				if (lUpdateType == @"REPLY_UPDATE" || 
 					lUpdateType == @"INIT_REPLY_UPDATE" || 
 					lUpdateType == @"POST" ||
-					![[PTPreferenceManager sharedInstance] receiveFromNonFollowers]) {
+					(![[PTPreferenceManager sharedInstance] receiveFromNonFollowers] && lUpdateType != @"INIT_UPDATE")) {
 					lDecision = 1;
 				}
 			} else lDecision = 2;
