@@ -512,6 +512,7 @@
 	NSView *view;
 	NSSize viewSize;
 	NSRect viewFrame;
+	CGRect visibleRect = NSRectToCGRect([[[self enclosingScrollView] contentView] documentVisibleRect]);
 	[NSAnimationContext beginGrouping];
 	[[NSAnimationContext currentContext] setDuration:0.25];
 	while ((object = [enumerator nextObject])) {
@@ -525,13 +526,20 @@
 		viewFrame.origin = NSMakePoint(0.0, y);
 		viewFrame.size = viewSize;
 		if ([item isAnimated]) {
-			[[view animator] setFrame:viewFrame];
+			if (CGRectIntersectsRect(NSRectToCGRect([view frame]), visibleRect) || 
+				CGRectIntersectsRect(NSRectToCGRect(viewFrame), visibleRect)) {
+				[[view animator] setFrame:viewFrame];
+			} else 
+				[view setFrame:viewFrame];
 		} else {
-			NSRect lTempRect = viewFrame;
-			lTempRect.size.height = 1;
-			lTempRect.origin.y = 0;
-			[view setFrame:lTempRect];
-			[[view animator] setFrame:viewFrame];
+			if (CGRectIntersectsRect(NSRectToCGRect(viewFrame), visibleRect)) {
+				NSRect lTempRect = viewFrame;
+				lTempRect.size.height = 1;
+				lTempRect.origin.y = 0;
+				[view setFrame:lTempRect];
+				[[view animator] setFrame:viewFrame];
+			} else 
+				[view setFrame:viewFrame];
 			[item setAnimated:YES];
 		}
 		[self addSubview:view];

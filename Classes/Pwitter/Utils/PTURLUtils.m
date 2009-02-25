@@ -1,6 +1,6 @@
 #import "PTURLUtils.h"
 
-// Derived from NatsuLion
+// derived from natsulion
 
 @implementation PTURLUtils
 
@@ -8,18 +8,28 @@
     return [[[[self class] alloc] init] autorelease];
 }
 
-- (NSArray*) tokenize:(NSString*)aString acceptedChars:(NSCharacterSet*)acceptedChars prefix:(NSString*)prefix {
+- (NSArray*) tokenize:(NSString*)aString acceptedChars:(NSCharacterSet*)acceptedChars prefix:(NSArray*)prefixes {
     
     NSMutableArray *back = [NSMutableArray arrayWithCapacity:10];
+	
+    NSString *prefix;
     
-    NSRange startRange = [aString rangeOfString:prefix];
+    NSRange startRange = NSMakeRange(NSNotFound, 0);
+    for (NSString *p in prefixes) {
+        NSRange r = [aString rangeOfString:p];
+        if (r.location != NSNotFound && (startRange.location == NSNotFound || r.location < startRange.location)) {
+            startRange = r;
+            prefix = p;
+        }
+    }
+    
     if (startRange.location == NSNotFound) {
         if ([aString length] > 0) {
             [back addObject:aString];
         }
         return back;
     }
-    
+	
     if (startRange.location > 0) {
         [back addObject:[aString substringWithRange:NSMakeRange(0, startRange.location)]];
     }
@@ -35,13 +45,13 @@
     
     NSRange targetRange = NSMakeRange(startRange.location, searchRange.location - startRange.location);
     NSString *extracted = [aString substringWithRange:targetRange];
-	//NSLog(@"extracted: %@", [aString substringWithRange:targetRange]);
+	//    NSLog(@"extracted: %@", [aString substringWithRange:targetRange]);
     [back addObject:extracted];
     
     NSArray *subBack = [self tokenize:[aString substringWithRange:
                                        NSMakeRange(targetRange.location + targetRange.length, [aString length] - (targetRange.location + targetRange.length))]
 						acceptedChars:acceptedChars
-							   prefix:prefix];
+							   prefix:prefixes];
     
     [back addObjectsFromArray:subBack];
     
@@ -52,27 +62,26 @@
     
     NSCharacterSet *acceptedCharacterSet = [NSCharacterSet characterSetWithCharactersInString:
                                             @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789;/?:@&=+$,-_.!~*'%"];
-    return [self tokenize:aString 
-            acceptedChars:acceptedCharacterSet
-                   prefix:PT_URLEXTRACTOR_PREFIX_HTTP];
-}
-
-- (NSArray*) tokenizeByFTPURL:(NSString*)aString {
     
-    NSCharacterSet *acceptedCharacterSet = [NSCharacterSet characterSetWithCharactersInString:
-                                            @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789;/?:@&=+$,-_.!~*'%"];
-    return [self tokenize:aString 
-            acceptedChars:acceptedCharacterSet
-                   prefix:PT_URLEXTRACTOR_PREFIX_FTP];
-}
-
-- (NSArray*) tokenizeByHTTPSURL:(NSString*)aString {
+    NSMutableArray *back = [NSMutableArray arrayWithCapacity:10];
+    NSArray *tokens = [self tokenize:aString 
+                       acceptedChars:acceptedCharacterSet
+                              prefix:[NSArray arrayWithObjects:NTLN_URLEXTRACTOR_PREFIX_HTTP, NTLN_URLEXTRACTOR_PREFIX_HTTPS, NTLN_URLEXTRACTOR_PREFIX_FTP, nil]];
     
-    NSCharacterSet *acceptedCharacterSet = [NSCharacterSet characterSetWithCharactersInString:
-                                            @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789;/?:@&=+$,-_.!~*'%"];
-    return [self tokenize:aString 
-            acceptedChars:acceptedCharacterSet
-                   prefix:PT_URLEXTRACTOR_PREFIX_HTTPS];
+    // last dot in URL should not a part of URL, so devide it to an other token.
+    for (NSString *s in tokens) {
+        if (([s rangeOfString:NTLN_URLEXTRACTOR_PREFIX_HTTP].location == 0 || 
+			 [s rangeOfString:NTLN_URLEXTRACTOR_PREFIX_HTTPS].location == 0 || 
+			 [s rangeOfString:NTLN_URLEXTRACTOR_PREFIX_FTP].location == 0) &&
+            [s characterAtIndex:([s length] - 1)] == '.') {
+            [back addObject:[s substringToIndex:([s length] - 1)]];
+            [back addObject:@"."];
+        } else {
+            [back addObject:s];
+        }
+    }
+    
+    return back;
 }
 
 - (NSArray*) tokenizeByID:(NSString*)aString {
@@ -82,14 +91,12 @@
 	
     return [self tokenize:aString 
             acceptedChars:acceptedCharacterSet
-                   prefix:PT_URLEXTRACTOR_PREFIX_ID];
+                   prefix:[NSArray arrayWithObject:NTLN_URLEXTRACTOR_PREFIX_ID]];
     
 }
 
 - (NSArray*) tokenizeByAll:(NSString*)aString {
     NSMutableArray *back = [NSMutableArray arrayWithCapacity:100];
-	NSMutableArray *back2 = [NSMutableArray arrayWithCapacity:100];
-	NSMutableArray *back3 = [NSMutableArray arrayWithCapacity:100];
 	
     NSArray *tokensById = [self tokenizeByID:aString];
     
@@ -97,33 +104,21 @@
     for (i = 0; i < [tokensById count]; i++) {
         [back addObjectsFromArray:[self tokenizeByURL:[tokensById objectAtIndex:i]]];
     }
-	
-	for (i = 0; i < [back count]; i++) {
-        [back2 addObjectsFromArray:[self tokenizeByHTTPSURL:[back objectAtIndex:i]]];
-    }
-	
-	for (i = 0; i < [back2 count]; i++) {
-        [back3 addObjectsFromArray:[self tokenizeByFTPURL:[back2 objectAtIndex:i]]];
-    }
     
-    return back3;
+    return back;
 }
 
 - (BOOL) isURLToken:(NSString*)token {
-    if ([token rangeOfString:PT_URLEXTRACTOR_PREFIX_HTTP].location == 0 && [token length] > [PT_URLEXTRACTOR_PREFIX_HTTP length]) {
-        return TRUE;
-    }
-	if ([token rangeOfString:PT_URLEXTRACTOR_PREFIX_HTTPS].location == 0 && [token length] > [PT_URLEXTRACTOR_PREFIX_HTTPS length]) {
-        return TRUE;
-    }
-	if ([token rangeOfString:PT_URLEXTRACTOR_PREFIX_FTP].location == 0 && [token length] > [PT_URLEXTRACTOR_PREFIX_FTP length]) {
+    if (([token rangeOfString:NTLN_URLEXTRACTOR_PREFIX_HTTP].location == 0 && [token length] > [NTLN_URLEXTRACTOR_PREFIX_HTTP length])
+        || ([token rangeOfString:NTLN_URLEXTRACTOR_PREFIX_HTTPS].location == 0 && [token length] > [NTLN_URLEXTRACTOR_PREFIX_HTTPS length])
+		|| ([token rangeOfString:NTLN_URLEXTRACTOR_PREFIX_FTP].location == 0 && [token length] > [NTLN_URLEXTRACTOR_PREFIX_FTP length])) {
         return TRUE;
     }
     return FALSE;
 }
 
 - (BOOL) isIDToken:(NSString*)token {
-    if ([token rangeOfString:PT_URLEXTRACTOR_PREFIX_ID].location == 0  && [token length] > [PT_URLEXTRACTOR_PREFIX_ID length]) {
+    if ([token rangeOfString:NTLN_URLEXTRACTOR_PREFIX_ID].location == 0  && [token length] > [NTLN_URLEXTRACTOR_PREFIX_ID length]) {
         return TRUE;
     }
     return FALSE;

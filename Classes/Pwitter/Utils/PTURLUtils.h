@@ -1,14 +1,14 @@
 #import <Cocoa/Cocoa.h>
 
-#define PT_URLEXTRACTOR_PREFIX_HTTP @"http://"
-#define PT_URLEXTRACTOR_PREFIX_HTTPS @"https://"
-#define PT_URLEXTRACTOR_PREFIX_FTP @"ftp://"
-#define PT_URLEXTRACTOR_PREFIX_ID @"@"
+// derived from natsulion
 
-// Derived from NatsuLion
+#define NTLN_URLEXTRACTOR_PREFIX_HTTP @"http://"
+#define NTLN_URLEXTRACTOR_PREFIX_HTTPS @"https://"
+#define NTLN_URLEXTRACTOR_PREFIX_FTP @"ftp://"
+#define NTLN_URLEXTRACTOR_PREFIX_ID @"@"
 
 @interface PTURLUtils : NSObject {
-
+	
 }
 + (id) utils;
 - (NSArray*) tokenizeByAll:(NSString*)aString;

@@ -13,7 +13,7 @@
 #import "PTReadManager.h"
 #import "PTCollectionView.h"
 
-#define STATUS_LIMIT 400
+#define STATUS_LIMIT 1000
 
 
 @implementation PTMain
@@ -176,10 +176,10 @@
 													   startingAtPage:0]];
 	[fRequestDetails setObject:@"INIT_UPDATE" 
 						forKey:[fTwitterEngine getFollowedTimelineFor:[[PTPreferenceManager sharedInstance] userName] 
-																since:nil startingAtPage:1 count:170]];
+																since:nil startingAtPage:1 count:200]];
 	[fRequestDetails setObject:@"INIT_UPDATE" 
 						forKey:[fTwitterEngine getFollowedTimelineFor:[[PTPreferenceManager sharedInstance] userName] 
-																since:nil startingAtPage:2 count:170]];
+																since:nil startingAtPage:2 count:200]];
 	[fRequestDetails setObject:@"INIT_REPLY_UPDATE" 
 						forKey:[fTwitterEngine getRepliesStartingAtPage:1]];
 	[fRequestDetails setObject:@"INIT_REPLY_UPDATE" 
