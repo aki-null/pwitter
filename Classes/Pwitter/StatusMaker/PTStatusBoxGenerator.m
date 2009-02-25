@@ -29,8 +29,7 @@
 - (PTStatusBox *)constructStatusBox:(NSDictionary *)aStatusInfo isReply:(BOOL)aIsReply {
 	PTStatusBox *lNewBox = [[PTStatusBox alloc] init];
 	lNewBox.userId = [[aStatusInfo objectForKey:@"user"] objectForKey:@"screen_name"];
-	lNewBox.userName = [PTStatusFormatter createUserLabel:[[aStatusInfo objectForKey:@"user"] objectForKey:@"screen_name"] 
-													 name:[[aStatusInfo objectForKey:@"user"] objectForKey:@"name"]];
+	lNewBox.userName = [NSString stringWithFormat:@"%@ / %@", [[aStatusInfo objectForKey:@"user"] objectForKey:@"screen_name"], [[aStatusInfo objectForKey:@"user"] objectForKey:@"name"]];
 	NSDate *lReceivedTime = [aStatusInfo objectForKey:@"created_at"];
 	lNewBox.time = lReceivedTime;
 	lNewBox.statusMessage = [PTStatusFormatter formatStatusMessage:[aStatusInfo objectForKey:@"text"] forBox:lNewBox];
@@ -70,8 +69,8 @@
 
 - (PTStatusBox *)constructErrorBox:(NSError *)aError {
 	PTStatusBox *lNewBox = [[PTStatusBox alloc] init];
-	lNewBox.userName = [PTStatusFormatter createErrorLabel];
-	lNewBox.userId = [NSString stringWithString:@"Twitter Error:"];
+	lNewBox.userName = @"Error:";
+	lNewBox.userId = [NSString stringWithString:@"Error"];
 	lNewBox.statusMessage = [PTStatusFormatter createErrorMessage:aError];
 	lNewBox.userImage = [NSImage imageNamed:@"console.png"];
 	lNewBox.entityColor = [NSColor colorWithCalibratedRed:0.4 green:0.4 blue:0.4 alpha:1.0];
@@ -86,8 +85,7 @@
 
 - (PTStatusBox *)constructMessageBox:(NSDictionary *)aStatusInfo {
 	PTStatusBox *lNewBox = [[PTStatusBox alloc] init];
-	lNewBox.userName = [PTStatusFormatter createUserLabel:[[aStatusInfo objectForKey:@"sender"] objectForKey:@"screen_name"] 
-													 name:[[aStatusInfo objectForKey:@"sender"] objectForKey:@"name"]];
+	lNewBox.userName = [NSString stringWithFormat:@"%@ / %@", [[aStatusInfo objectForKey:@"sender"] objectForKey:@"screen_name"], [[aStatusInfo objectForKey:@"sender"] objectForKey:@"name"]];
 	lNewBox.userId = [[aStatusInfo objectForKey:@"sender"] objectForKey:@"screen_name"];
 	lNewBox.time = [aStatusInfo objectForKey:@"created_at"];
 	lNewBox.statusMessage = [PTStatusFormatter formatStatusMessage:[aStatusInfo objectForKey:@"text"] forBox:lNewBox];

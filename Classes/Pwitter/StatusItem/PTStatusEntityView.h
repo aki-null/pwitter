@@ -24,6 +24,7 @@
 - (void)openLink:(id)sender;
 - (void)sendReply:(id)sender;
 - (void)sendMessage:(id)sender;
+- (void)retweetSelection:(id)sender;
 - (void)openContextMenu:(NSEvent *)aEvent;
 
 @end

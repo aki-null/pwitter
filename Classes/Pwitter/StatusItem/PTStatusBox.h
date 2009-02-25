@@ -17,7 +17,7 @@ typedef enum statusType {
 }StatusType;
 
 @interface PTStatusBox : NSObject {
-	NSAttributedString *userName;
+	NSString *userName;
 	NSAttributedString *statusMessage;
 	NSImage *userImage;
 	NSURL *userHome;
@@ -34,7 +34,7 @@ typedef enum statusType {
 	BOOL fav;
 }
 
-@property(copy, readwrite) NSAttributedString *userName;
+@property(copy, readwrite) NSString *userName;
 @property(copy, readwrite) NSAttributedString *statusMessage;
 @property(copy, readwrite) NSImage *userImage;
 @property(copy, readwrite) NSURL *userHome;

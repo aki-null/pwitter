@@ -19,13 +19,6 @@
 
 - (void)awakeFromNib {
 	fShouldExit = NO;
-	NSDictionary *lLinkFormat = [NSDictionary dictionaryWithObjectsAndKeys:
-	 [NSColor whiteColor], @"NSColor",
-	 [NSCursor pointingHandCursor], @"NSCursor",
-	 [NSNumber numberWithInt:1], @"NSUnderline",
-	 nil];
-	[fUserNameBox setLinkTextAttributes:lLinkFormat];
-	[[fUserNameBox textContainer] setContainerSize:NSMakeSize(FLT_MAX, FLT_MAX)];
 	NSSortDescriptor * sortDesc = [[NSSortDescriptor alloc] initWithKey:@"time" ascending:NO];
 	[fStatusController setSortDescriptors:[NSArray arrayWithObject:sortDesc]];
 	[sortDesc release];
@@ -231,7 +224,6 @@
 		[fReplyButton setEnabled:NO];
 		[fMessageButton setEnabled:NO];
 		[fFavButton setEnabled:NO];
-		[[fUserNameBox textStorage] setAttributedString:[[[NSAttributedString alloc] init] autorelease]];
 		return;
 	}
 	aBox.readFlag = YES;
@@ -246,7 +238,6 @@
 		[fMessageButton setEnabled:YES];
 	}
 	[fFavButton setEnabled:aBox.sType == NormalMessage || aBox.sType == ReplyMessage];
-	[[fUserNameBox textStorage] setAttributedString:aBox.userName];
 	if (![PTMainActionHandler hasFocus:fStatusUpdateField] && 
 		![PTMainActionHandler hasFocus:fSearchBox])
 		[fMainWindow makeFirstResponder:fStatusCollectionView];
@@ -260,14 +251,18 @@
 	[fMainController favStatus:[[fStatusCollectionView selectedObjects] lastObject]];
 }
 
-- (IBAction)retweetSelection:(id)sender {
-	PTStatusBox *lCurrentSelection = [[fStatusCollectionView selectedObjects] lastObject];
-	if (lCurrentSelection.sType == ErrorMessage) return;
-	NSString *lMessageTarget = [NSString stringWithFormat:@"RT @%@ %@", lCurrentSelection.userId, [lCurrentSelection.statusMessage string]];
+- (void)retweetStatus:(PTStatusBox *)aBox {
+	if (aBox.sType == ErrorMessage) return;
+	NSString *lMessageTarget = [NSString stringWithFormat:@"RT @%@ %@", aBox.userId, [aBox.statusMessage string]];
 	[fStatusUpdateField setStringValue:lMessageTarget];
 	[fMainWindow makeFirstResponder:fStatusUpdateField];
 	[(NSText *)[fMainWindow firstResponder] setSelectedRange:NSMakeRange([[fStatusUpdateField stringValue] length], 0)];
 	[fCharacterCounter setIntValue:140 - [[fStatusUpdateField stringValue] length]];
+}
+
+- (IBAction)retweetSelection:(id)sender {
+	PTStatusBox *lCurrentSelection = [[fStatusCollectionView selectedObjects] lastObject];
+	[self retweetSelection:lCurrentSelection];
 }
 
 - (IBAction)markAllAsRead:(id)sender {

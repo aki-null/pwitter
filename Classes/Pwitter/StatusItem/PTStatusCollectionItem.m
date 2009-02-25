@@ -45,7 +45,7 @@
 																						  nil]];
 		[fUnreadStatus bind:@"value" toObject:self withKeyPath:@"representedObject.readFlag" options:[NSDictionary dictionaryWithObjectsAndKeys:@"ReadImageTransformer", NSValueTransformerNameBindingOption, 
 																									  nil]];
-		[fUserId bind:@"value" toObject:self withKeyPath:@"representedObject.userId" options:nil];
+		[fUserId bind:@"value" toObject:self withKeyPath:@"representedObject.userName" options:nil];
 	}
 	[self willChangeValueForKey:@"representedObject"];
 	[super setRepresentedObject:object];

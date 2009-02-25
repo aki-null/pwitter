@@ -25,6 +25,10 @@
 	[fMainController favStatus:aBox];
 }
 
+- (void)retweet:(PTStatusBox *)aBox {
+	[fMainActionHandler retweetStatus:aBox];
+}
+
 - (void)fixFocus {
 	[fMainWindow makeFirstResponder:self];
 }

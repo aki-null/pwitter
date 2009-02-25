@@ -124,6 +124,8 @@
 
 - (void)startingTransaction {
 	if ([fRequestDetails count] == 0) {
+		fCurrentSoundStatus = NoneReceived;
+		[fBoxesToAdd removeAllObjects];
 		[fProgressBar startAnimation:self];
 		[fProgressBar setHidden:NO];
 		[fUpdateButton setEnabled:NO];

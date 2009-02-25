@@ -19,7 +19,6 @@
     IBOutlet id fSearchBox;
     IBOutlet id fSearchView;
     IBOutlet id fStatusScrollView;
-    IBOutlet id fUserNameBox;
     IBOutlet id fStatusController;
     IBOutlet id fMainController;
     IBOutlet id fMessageButton;
@@ -68,5 +67,6 @@
 - (void)replyToStatus:(PTStatusBox *)aBox shouldAnimate:(BOOL)aAnimate;
 - (void)messageToStatus:(PTStatusBox *)aBox;
 - (void)updateCollection;
+- (void)retweetStatus:(PTStatusBox *)aBox;
 
 @end

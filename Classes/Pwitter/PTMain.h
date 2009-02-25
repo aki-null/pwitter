@@ -33,7 +33,6 @@ typedef enum soundEventType {
     IBOutlet id fStatusBoxGenerator;
     IBOutlet id fUpdateButton;
     IBOutlet id fNotificationMan;
-    IBOutlet id fSelectedTextView;
     IBOutlet id fMainWindow;
     IBOutlet id fMainActionHandler;
     IBOutlet id fIconMenu;
