@@ -19,4 +19,5 @@
 - (IBAction)showUpdates:(id)sender;
 - (IBAction)showError:(id)sender;
 - (IBAction)showFavorites:(id)sender;
+- (IBAction)showMyPosts:(id)sender;
 @end

@@ -171,6 +171,10 @@
 	return [fPrefData boolForKey:@"use_classic_view"];
 }
 
+- (BOOL)postWithModifier {
+	return [fPrefData boolForKey:@"post_with_modifier"];
+}
+
 - (void)setHideDockIcon:(BOOL)aFlag {
 	NSString * lFilePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/../Info.plist"];
 	if (lFilePath) {

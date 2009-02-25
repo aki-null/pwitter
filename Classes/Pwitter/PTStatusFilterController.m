@@ -9,6 +9,7 @@
 #import "PTStatusFilterController.h"
 #import "PTStatusBox.h"
 #import "PTMainActionHandler.h"
+#import "PTPreferenceManager.h"
 
 
 @implementation PTStatusFilterController
@@ -43,6 +44,12 @@
 
 - (IBAction)showFavorites:(id)sender {
 	NSPredicate *lPredicate = [NSPredicate predicateWithFormat:@"%K == YES", @"fav"];
+	[fStatusController setFilterPredicate:lPredicate];
+	[fMainActionHandler updateCollection];
+}
+
+- (IBAction)showMyPosts:(id)sender {
+	NSPredicate *lPredicate = [NSPredicate predicateWithFormat:@"%K == %@", @"userId", [[PTPreferenceManager sharedInstance] userName]];
 	[fStatusController setFilterPredicate:lPredicate];
 	[fMainActionHandler updateCollection];
 }

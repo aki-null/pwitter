@@ -309,6 +309,20 @@
 		lBoxToFav.fav = YES;
 		[fRequestDetails removeObjectForKey:lReqType];
 		[fFavRecord removeObjectForKey:requestIdentifier];
+	} else if (lReqType == @"UNFAV") {
+		PTStatusBox *lBoxToFav = [fFavRecord objectForKey:requestIdentifier];
+		if (lBoxToFav.sType == ReplyMessage) {
+			lBoxToFav.entityColor = [NSColor colorWithCalibratedRed:0.3 green:0.1 blue:0.1 alpha:1.0];
+		} else {
+			if ([[[PTPreferenceManager sharedInstance] userName] isEqualToString:lBoxToFav.userId]) {
+				lBoxToFav.entityColor = [NSColor colorWithCalibratedRed:0.3 green:0.3 blue:0.3 alpha:1.0];
+			} else {
+				lBoxToFav.entityColor = [NSColor colorWithCalibratedRed:0.2 green:0.2 blue:0.2 alpha:1.0];
+			}
+		}
+		lBoxToFav.fav = NO;
+		[fRequestDetails removeObjectForKey:lReqType];
+		[fFavRecord removeObjectForKey:requestIdentifier];
 	} else if (lReqType == @"MESSAGE") {
 		[self postComplete];
 	}
@@ -337,7 +351,8 @@
 - (void)statusesReceived:(NSArray *)aStatuses forRequest:(NSString *)aIdentifier
 {
 	if ([aStatuses count] == 0 || 
-		[fRequestDetails objectForKey:aIdentifier] == @"FAV") {
+		[fRequestDetails objectForKey:aIdentifier] == @"FAV" || 
+		[fRequestDetails objectForKey:aIdentifier] == @"UNFAV") {
 		[fRequestDetails removeObjectForKey:aIdentifier];
 		[self endingTransaction];
 		return;
@@ -520,10 +535,18 @@
 
 - (void)favStatus:(PTStatusBox *)aBox {
 	[self startingTransaction];
-	NSString *lReqStr = [fTwitterEngine markUpdate:aBox.updateId 
-										asFavorite:YES];
-	[fRequestDetails setObject:@"FAV" 
-						forKey:lReqStr];
+	NSString *lReqStr;
+	if (aBox.fav) {
+		lReqStr = [fTwitterEngine markUpdate:aBox.updateId 
+								  asFavorite:NO];
+		[fRequestDetails setObject:@"UNFAV" 
+							forKey:lReqStr];
+	} else {
+		lReqStr = [fTwitterEngine markUpdate:aBox.updateId 
+								  asFavorite:YES];
+		[fRequestDetails setObject:@"FAV" 
+							forKey:lReqStr];
+	}
 	[fFavRecord setObject:aBox forKey:lReqStr];
 }
 

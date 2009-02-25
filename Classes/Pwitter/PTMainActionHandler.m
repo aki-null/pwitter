@@ -218,7 +218,7 @@
 	[self updateCollection];
 }
 
-+ (BOOL) hasFocus:(id)aField {
++ (BOOL)hasFocus:(id)aField {
 	return [[[aField window] firstResponder] isKindOfClass:[NSTextView class]] && 
 	[[aField window] fieldEditor:NO forObject:nil] != nil && 
 	((id)[[aField window] firstResponder] == aField || 
