@@ -1,3 +1,30 @@
+27 February 2009: (Version 1.0):
+Feature: Dynamically expanding tweet items
+Feature: Ability to delete tweets
+Feature: Option to only post when control key is also down
+Feature: Added a filter to only show posts made by the user
+Feature: Added a filter to only show favorite posts
+Feature: Added an ability to "toggle" favorite status
+Feature: Added an option to use classic tweet view
+Feature: Added an option to disable window shadow
+Feature: Added an option to use POST method to retrieve updates
+Feature: Added an option hide the application when quick read shortcut is provoked again
+Improvement: New colors for tweets
+Improvement: Tweets are highlighted more significantly when selected
+Improvement: Much smoother animation
+Improvement: Contextual menu has been improved overall
+Improvement: Top view is gone for good
+Improvement: Full name in the tweet items
+Improvement: Real time filtering will not be reset when it received an update
+Improvement: Tweet collection view can now hold 1000 items instead of 200
+Improvement: The initial update now downloads more tweets
+Improvement: Normal update can download up to 200 tweets
+Improvement: Better font
+Improvement: You can now use HJKL keys to navigate the tweet view
+Improvement: You can escape from "sending reply to" status by hitting the escape key
+Bug Fixed: Error message and error sound problem
+Bug Fixed: Sparkle control position glitch
+
 19 February 2009: (Version 0.9):
 Feature: QuickRead - you can now assign a keyboard shortcut to activate the application and start reading the tweets
 Feature: Option to show time in 12-hour notation
