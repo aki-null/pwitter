@@ -8,6 +8,7 @@
 
 #import "PTStatusFormatter.h"
 #import "PTURLUtils.h"
+#import "PTPreferenceManager.h"
 
 @interface NSAttributedString (Hyperlink)
 +(id) hyperlinkFromString:(NSString*)inString URL:(NSURL*)aURL attributes:(NSDictionary*)attributes;
@@ -51,6 +52,11 @@
 																				  attributes:[self defaultLinkFontAttributes]]];
 			if (!aBox.statusLink) aBox.statusLink = lUrl;
         } else if ([lUtils isIDToken:lToken]) {
+			if (aBox.sType == NormalMessage && 
+				[[lToken substringFromIndex:1] isEqualToString:[[PTPreferenceManager sharedInstance] userName]]) {
+				aBox.entityColor = [NSColor colorWithCalibratedRed:0.3 green:0.1 blue:0.1 alpha:1.0];
+				aBox.sType = ReplyMessage;
+			}
             [lProcessedString appendAttributedString:
 			 [NSAttributedString hyperlinkFromString:lToken
 												 URL:[NSURL URLWithString:

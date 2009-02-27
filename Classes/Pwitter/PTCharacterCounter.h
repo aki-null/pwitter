@@ -11,6 +11,7 @@
 
 @interface PTCharacterCounter : NSTextField {
     IBOutlet id fPostTextField;
+    IBOutlet id fMainActionController;
 }
 
 @end

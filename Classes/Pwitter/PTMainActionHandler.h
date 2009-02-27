@@ -59,12 +59,14 @@
 - (IBAction)openSelectedUser:(id)sender;
 - (IBAction)openPwitterHome:(id)sender;
 - (IBAction)endSearch:(id)sender;
+- (IBAction)openTweet:(id)sender;
+- (IBAction)openReplyInBrowser:(id)sender;
 - (void)startAuthentication;
 - (void)updateSelectedMessage:(PTStatusBox *)aBox;
 - (void)setCollectionViewPrototype:(BOOL)aIsMini useClassic:(BOOL)aIsClassic;
-- (void)openReplyView:(BOOL)aAnimate;
+- (void)openReplyView;
 - (void)closeReplyView;
-- (void)replyToStatus:(PTStatusBox *)aBox shouldAnimate:(BOOL)aAnimate;
+- (void)replyToStatus:(PTStatusBox *)aBox;
 - (void)messageToStatus:(PTStatusBox *)aBox;
 - (void)updateCollection;
 - (void)retweetStatus:(PTStatusBox *)aBox;

@@ -45,6 +45,7 @@
 - (BOOL)hideWithQuickReadShortcut;
 - (BOOL)useClassicView;
 - (BOOL)postWithModifier;
+- (BOOL)updateAfterPost;
 - (void)setHideDockIcon:(BOOL)aFlag;
 - (BOOL)hideDockIcon;
 

@@ -14,7 +14,7 @@
 @implementation PTCollectionView
 
 - (void)sendReplyForStatus:(PTStatusBox *)aBox {
-	[fMainActionHandler replyToStatus:aBox shouldAnimate:NO];
+	[fMainActionHandler replyToStatus:aBox];
 }
 
 - (void)sendMessageForStatus:(PTStatusBox *)aBox {

@@ -55,6 +55,11 @@ typedef enum soundEventType {
 	PTMenuBarIcon *fMenuItem;
 	// core animation frame size fix
 	NSRect fCurrentTarget;
+	// cached sound effects;
+	NSSound *fStatusReceived;
+	NSSound *fReplyReceived;
+	NSSound *fErrorReceived;
+	NSSound *fStatusPosted;
 }
 - (IBAction)updateTimeline:(id)sender;
 - (IBAction)postStatus:(id)sender;

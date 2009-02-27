@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		61095D0C0F4F7C60001882C7 /* PTTooltipTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 61095D0B0F4F7C60001882C7 /* PTTooltipTransformer.m */; };
-		6113861A0F3988DD0065B59B /* error.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 611386190F3988DD0065B59B /* error.m4a */; };
 		612BD6900F076F8500EF064D /* Pwitter.icns in Resources */ = {isa = PBXBuildFile; fileRef = 612BD68F0F076F8500EF064D /* Pwitter.icns */; };
 		6131FD4A0F0E28C7004CA960 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6131FD490F0E28C7004CA960 /* Sparkle.framework */; };
 		6131FD5B0F0E297D004CA960 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6131FD490F0E28C7004CA960 /* Sparkle.framework */; };
@@ -62,10 +61,6 @@
 		614CA02F0F4EDAAB007B3940 /* PTImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 614C9FFA0F4EDAAB007B3940 /* PTImageManager.m */; };
 		614CA0300F4EDAAB007B3940 /* PTReadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 614C9FFC0F4EDAAB007B3940 /* PTReadManager.m */; };
 		614CA0310F4EDAAB007B3940 /* PTURLUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 614C9FFE0F4EDAAB007B3940 /* PTURLUtils.m */; };
-		6156BB0A0F29F4D000338FCD /* startUp.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 6156BB060F29F4D000338FCD /* startUp.m4a */; };
-		6156BB0B0F29F4D000338FCD /* statusReceived.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 6156BB070F29F4D000338FCD /* statusReceived.m4a */; };
-		6156BB0C0F29F4D000338FCD /* statusPosted.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 6156BB080F29F4D000338FCD /* statusPosted.m4a */; };
-		6156BB0D0F29F4D000338FCD /* replyReceived.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 6156BB090F29F4D000338FCD /* replyReceived.m4a */; };
 		6159E0DA0F4B6FA400999951 /* context.png in Resources */ = {isa = PBXBuildFile; fileRef = 6159E0D90F4B6FA400999951 /* context.png */; };
 		615B85920F1366DC0005E38F /* Growl Registration Ticket.growlRegDict in Resources */ = {isa = PBXBuildFile; fileRef = 615B85910F1366DC0005E38F /* Growl Registration Ticket.growlRegDict */; };
 		615B85A30F136A2A0005E38F /* Growl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 615B85A20F136A2A0005E38F /* Growl.framework */; };
@@ -77,6 +72,11 @@
 		6161AA2C0F36C10300141B8B /* reply.png in Resources */ = {isa = PBXBuildFile; fileRef = 6161AA2B0F36C10300141B8B /* reply.png */; };
 		6161AA330F36C22B00141B8B /* web.png in Resources */ = {isa = PBXBuildFile; fileRef = 6161AA320F36C22B00141B8B /* web.png */; };
 		6161AA3D0F36C76F00141B8B /* dm.png in Resources */ = {isa = PBXBuildFile; fileRef = 6161AA3C0F36C76F00141B8B /* dm.png */; };
+		617037410F5826680099B150 /* startUp.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 6170373C0F5826680099B150 /* startUp.m4a */; };
+		617037420F5826680099B150 /* replyReceived.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 6170373D0F5826680099B150 /* replyReceived.m4a */; };
+		617037430F5826680099B150 /* statusReceived.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 6170373E0F5826680099B150 /* statusReceived.m4a */; };
+		617037440F5826680099B150 /* error.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 6170373F0F5826680099B150 /* error.m4a */; };
+		617037450F5826680099B150 /* statusPosted.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 617037400F5826680099B150 /* statusPosted.m4a */; };
 		617A69AD0F33318D0002D105 /* menu_icon_off.png in Resources */ = {isa = PBXBuildFile; fileRef = 617A69AC0F33318D0002D105 /* menu_icon_off.png */; };
 		617A69BF0F334BC70002D105 /* menu_icon_on.png in Resources */ = {isa = PBXBuildFile; fileRef = 617A69BD0F334BC70002D105 /* menu_icon_on.png */; };
 		6190A09A0F0AE46100E4F12E /* BGHUDAppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6190A0990F0AE46100E4F12E /* BGHUDAppKit.framework */; };
@@ -125,7 +125,6 @@
 		32CA4F630368D1EE00C91783 /* Pwitter_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pwitter_Prefix.pch; sourceTree = "<group>"; };
 		61095D0A0F4F7C60001882C7 /* PTTooltipTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTTooltipTransformer.h; sourceTree = "<group>"; };
 		61095D0B0F4F7C60001882C7 /* PTTooltipTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTTooltipTransformer.m; sourceTree = "<group>"; };
-		611386190F3988DD0065B59B /* error.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = error.m4a; sourceTree = "<group>"; };
 		612BD68F0F076F8500EF064D /* Pwitter.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Pwitter.icns; sourceTree = "<group>"; };
 		6131FD490F0E28C7004CA960 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		6131FD5F0F0E2B5A004CA960 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
@@ -230,10 +229,6 @@
 		614C9FFC0F4EDAAB007B3940 /* PTReadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTReadManager.m; sourceTree = "<group>"; };
 		614C9FFD0F4EDAAB007B3940 /* PTURLUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTURLUtils.h; sourceTree = "<group>"; };
 		614C9FFE0F4EDAAB007B3940 /* PTURLUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTURLUtils.m; sourceTree = "<group>"; };
-		6156BB060F29F4D000338FCD /* startUp.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = startUp.m4a; sourceTree = "<group>"; };
-		6156BB070F29F4D000338FCD /* statusReceived.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = statusReceived.m4a; sourceTree = "<group>"; };
-		6156BB080F29F4D000338FCD /* statusPosted.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = statusPosted.m4a; sourceTree = "<group>"; };
-		6156BB090F29F4D000338FCD /* replyReceived.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = replyReceived.m4a; sourceTree = "<group>"; };
 		6159E0D90F4B6FA400999951 /* context.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = context.png; sourceTree = "<group>"; };
 		615B85910F1366DC0005E38F /* Growl Registration Ticket.growlRegDict */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Growl Registration Ticket.growlRegDict"; sourceTree = "<group>"; };
 		615B85A20F136A2A0005E38F /* Growl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Growl.framework; sourceTree = "<group>"; };
@@ -244,6 +239,11 @@
 		6161AA2B0F36C10300141B8B /* reply.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reply.png; sourceTree = "<group>"; };
 		6161AA320F36C22B00141B8B /* web.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = web.png; sourceTree = "<group>"; };
 		6161AA3C0F36C76F00141B8B /* dm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dm.png; sourceTree = "<group>"; };
+		6170373C0F5826680099B150 /* startUp.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = startUp.m4a; sourceTree = "<group>"; };
+		6170373D0F5826680099B150 /* replyReceived.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = replyReceived.m4a; sourceTree = "<group>"; };
+		6170373E0F5826680099B150 /* statusReceived.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = statusReceived.m4a; sourceTree = "<group>"; };
+		6170373F0F5826680099B150 /* error.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = error.m4a; sourceTree = "<group>"; };
+		617037400F5826680099B150 /* statusPosted.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = statusPosted.m4a; sourceTree = "<group>"; };
 		617A69AC0F33318D0002D105 /* menu_icon_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_icon_off.png; sourceTree = "<group>"; };
 		617A69BD0F334BC70002D105 /* menu_icon_on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_icon_on.png; sourceTree = "<group>"; };
 		6190A0990F0AE46100E4F12E /* BGHUDAppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BGHUDAppKit.framework; sourceTree = "<group>"; };
@@ -356,11 +356,11 @@
 				617A69BD0F334BC70002D105 /* menu_icon_on.png */,
 				617A69AC0F33318D0002D105 /* menu_icon_off.png */,
 				61F8E08A0F3C02DA0070C04A /* icon_mask.tif */,
-				611386190F3988DD0065B59B /* error.m4a */,
-				6156BB060F29F4D000338FCD /* startUp.m4a */,
-				6156BB070F29F4D000338FCD /* statusReceived.m4a */,
-				6156BB080F29F4D000338FCD /* statusPosted.m4a */,
-				6156BB090F29F4D000338FCD /* replyReceived.m4a */,
+				6170373C0F5826680099B150 /* startUp.m4a */,
+				6170373D0F5826680099B150 /* replyReceived.m4a */,
+				6170373E0F5826680099B150 /* statusReceived.m4a */,
+				6170373F0F5826680099B150 /* error.m4a */,
+				617037400F5826680099B150 /* statusPosted.m4a */,
 				61FCE2510F11956B00496A23 /* MainMenu.xib */,
 				6131FD5F0F0E2B5A004CA960 /* dsa_pub.pem */,
 				61BD916E0F0B7C7E00F1CA33 /* default.png */,
@@ -620,17 +620,12 @@
 				6131FD600F0E2B5A004CA960 /* dsa_pub.pem in Resources */,
 				61FCE2520F11956B00496A23 /* MainMenu.xib in Resources */,
 				615B85920F1366DC0005E38F /* Growl Registration Ticket.growlRegDict in Resources */,
-				6156BB0A0F29F4D000338FCD /* startUp.m4a in Resources */,
-				6156BB0B0F29F4D000338FCD /* statusReceived.m4a in Resources */,
-				6156BB0C0F29F4D000338FCD /* statusPosted.m4a in Resources */,
-				6156BB0D0F29F4D000338FCD /* replyReceived.m4a in Resources */,
 				617A69AD0F33318D0002D105 /* menu_icon_off.png in Resources */,
 				617A69BF0F334BC70002D105 /* menu_icon_on.png in Resources */,
 				6161AA2C0F36C10300141B8B /* reply.png in Resources */,
 				6161AA330F36C22B00141B8B /* web.png in Resources */,
 				6161AA3D0F36C76F00141B8B /* dm.png in Resources */,
 				61A66AAA0F36DB8100E4D335 /* fav.png in Resources */,
-				6113861A0F3988DD0065B59B /* error.m4a in Resources */,
 				61F8E08B0F3C02DA0070C04A /* icon_mask.tif in Resources */,
 				61AA24A20F3C67F600988678 /* unread_orb.png in Resources */,
 				614C2D9F0F40394F00DEB3D6 /* menu_icon_inv.png in Resources */,
@@ -639,6 +634,11 @@
 				6161430B0F4AD81100AFE156 /* home.png in Resources */,
 				6161430C0F4AD81100AFE156 /* setting.png in Resources */,
 				6159E0DA0F4B6FA400999951 /* context.png in Resources */,
+				617037410F5826680099B150 /* startUp.m4a in Resources */,
+				617037420F5826680099B150 /* replyReceived.m4a in Resources */,
+				617037430F5826680099B150 /* statusReceived.m4a in Resources */,
+				617037440F5826680099B150 /* error.m4a in Resources */,
+				617037450F5826680099B150 /* statusPosted.m4a in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -362,6 +362,20 @@
 	[self moveUp:sender];
 }
 
+- (void)keyDown:(NSEvent *)aEvent {
+	if ([[aEvent characters] isEqualToString:@"k"]) {
+		[self moveUp:self];
+	} else if ([[aEvent characters] isEqualToString:@"j"]) {
+		[self moveDown:self];
+	} else if ([[aEvent characters] isEqualToString:@"h"]) {
+		[self moveUp:self];
+	} else if ([[aEvent characters] isEqualToString:@"l"]) {
+		[self moveDown:self];
+	} else {
+		[super keyDown:aEvent];
+	}
+}
+
 - (void)mouseDown:(NSEvent *)theEvent
 {
 	[[self window] makeFirstResponder:self];
@@ -514,7 +528,7 @@
 	NSRect viewFrame;
 	CGRect visibleRect = NSRectToCGRect([[[self enclosingScrollView] contentView] documentVisibleRect]);
 	[NSAnimationContext beginGrouping];
-	[[NSAnimationContext currentContext] setDuration:0.25];
+//	[[NSAnimationContext currentContext] setDuration:1.0];
 	while ((object = [enumerator nextObject])) {
 		item = [self itemForObject:object];
 		view = [item view];
@@ -538,6 +552,7 @@
 				lTempRect.origin.y = 0;
 				[view setFrame:lTempRect];
 				[[view animator] setFrame:viewFrame];
+				[[view animator] setAlphaValue:1.0];
 			} else 
 				[view setFrame:viewFrame];
 			[item setAnimated:YES];
@@ -545,11 +560,10 @@
 		[self addSubview:view];
 		y += viewSize.height;
 	}
-	[NSAnimationContext endGrouping];
 	viewSize.width = [self frame].size.width;
 	viewSize.height = y;
-	[self setFrameSize:viewSize];
-	//[self setFrameSize:viewSize];
+	[[self animator] setFrameSize:viewSize];
+	[NSAnimationContext endGrouping];
 }
 
 - (void)redrawAllSubviewsInRect:(NSRect)rect

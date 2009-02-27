@@ -8,6 +8,7 @@
 
 #import "PTCharacterCounter.h"
 #import "PTPreferenceManager.h"
+#import "PTMainActionHandler.h"
 
 
 @implementation PTCharacterCounter
@@ -18,6 +19,10 @@
 }
 
 - (BOOL)control:(NSControl *)control textView:(NSTextView *)textView doCommandBySelector:(SEL)command {
+	if (command == @selector(cancelOperation:)) {
+		[fMainActionController closeReplyView];
+	}
+	
 	if (![[PTPreferenceManager sharedInstance] postWithModifier]) {
 		return NO;
 	}

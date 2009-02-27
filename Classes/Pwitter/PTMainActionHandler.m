@@ -113,23 +113,15 @@
 	[[NSWorkspace sharedWorkspace] openURL:lCurrentSelection.userHome];
 }
 
-- (void)openReplyView:(BOOL)aAnimate {
+- (void)openReplyView {
 	if (!fReplyViewIsOpen) {
 		fReplyViewIsOpen = YES;
 		NSRect lReplyFrame = [fPostView frame];
 		NSRect lBottomFrame = [fBottomView frame];
 		NSRect lInfoFrame = [fReplyInfoView frame];
 		[fReplyInfoView setFrame:NSMakeRect(0, lReplyFrame.size.height, lInfoFrame.size.width, lInfoFrame.size.height)];
-		if (aAnimate) {
-			[NSAnimationContext beginGrouping];
-			[[NSAnimationContext currentContext] setDuration:0.1f];
-			[[fPostView animator] setFrame:NSMakeRect(lReplyFrame.origin.x, lReplyFrame.origin.y, lReplyFrame.size.width, lReplyFrame.size.height + 23)];
-			[[fBottomView animator] setFrame:NSMakeRect(0, lBottomFrame.origin.y + 23, lBottomFrame.size.width, lBottomFrame.size.height - 23)];
-			[NSAnimationContext endGrouping];
-		} else {
-			[fPostView setFrame:NSMakeRect(lReplyFrame.origin.x, lReplyFrame.origin.y, lReplyFrame.size.width, lReplyFrame.size.height + 23)];
-			[fBottomView setFrame:NSMakeRect(0, lBottomFrame.origin.y + 23, lBottomFrame.size.width, lBottomFrame.size.height - 23)];
-		}
+		[fPostView setFrame:NSMakeRect(lReplyFrame.origin.x, lReplyFrame.origin.y, lReplyFrame.size.width, lReplyFrame.size.height + 23)];
+		[fBottomView setFrame:NSMakeRect(0, lBottomFrame.origin.y + 23, lBottomFrame.size.width, lBottomFrame.size.height - 23)];
 	}
 }
 
@@ -139,17 +131,14 @@
 		fReplyViewIsOpen = NO;
 		NSRect lReplyFrame = [fPostView frame];
 		NSRect lBottomFrame = [fBottomView frame];
-		[NSAnimationContext beginGrouping];
-		[[NSAnimationContext currentContext] setDuration:0.1f];
-		[[fPostView animator] setFrame:NSMakeRect(lReplyFrame.origin.x, lReplyFrame.origin.y, lReplyFrame.size.width, 44)];
-		[[fBottomView animator] setFrame:NSMakeRect(0, lBottomFrame.origin.y - 23, lBottomFrame.size.width, lBottomFrame.size.height + 23)];
-		[NSAnimationContext endGrouping];
+		[fPostView setFrame:NSMakeRect(lReplyFrame.origin.x, lReplyFrame.origin.y, lReplyFrame.size.width, 44)];
+		[fBottomView setFrame:NSMakeRect(0, lBottomFrame.origin.y - 23, lBottomFrame.size.width, lBottomFrame.size.height + 23)];
 		[fStatusUpdateField setStringValue:@""];
 		[fCharacterCounter setIntValue:140 - [[fStatusUpdateField stringValue] length]];
 	}
 }
 
-- (void)replyToStatus:(PTStatusBox *)aBox shouldAnimate:(BOOL)aAnimate {
+- (void)replyToStatus:(PTStatusBox *)aBox {
 	NSString *replyTarget = [NSString stringWithFormat:@"@%@ %@", aBox.userId, [fStatusUpdateField stringValue]];
 	[fStatusUpdateField setStringValue:replyTarget];
 	[fCharacterCounter setIntValue:140 - [[fStatusUpdateField stringValue] length]];
@@ -157,14 +146,14 @@
 	[fReplyToBox setStringValue:[@"@" stringByAppendingString:aBox.userId]];
 	[fMainWindow makeFirstResponder:fStatusUpdateField];
 	[(NSText *)[fMainWindow firstResponder] setSelectedRange:NSMakeRange([[fStatusUpdateField stringValue] length], 0)];
-	[self openReplyView:aAnimate];
+	[self openReplyView];
 }
 
 - (IBAction)replyToSelected:(id)sender {
 	PTStatusBox *lCurrentSelection = [[fStatusCollectionView selectedObjects] lastObject];
 	if (!lCurrentSelection) return;
 	if (lCurrentSelection.sType == NormalMessage || lCurrentSelection.sType == ReplyMessage || lCurrentSelection.sType == DirectMessage) {
-		[self replyToStatus:lCurrentSelection shouldAnimate:YES];
+		[self replyToStatus:lCurrentSelection];
 	}
 }
 
@@ -262,7 +251,8 @@
 
 - (IBAction)retweetSelection:(id)sender {
 	PTStatusBox *lCurrentSelection = [[fStatusCollectionView selectedObjects] lastObject];
-	[self retweetSelection:lCurrentSelection];
+	if (lCurrentSelection)
+		[self retweetStatus:lCurrentSelection];
 }
 
 - (IBAction)markAllAsRead:(id)sender {
@@ -282,7 +272,8 @@
 
 - (IBAction)openSelectedUser:(id)sender {
     PTStatusBox *lCurrentSelection = [[fStatusCollectionView selectedObjects] lastObject];
-	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[@"http://twitter.com/" stringByAppendingString:lCurrentSelection.userId]]];
+	if (lCurrentSelection)
+		[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[@"http://twitter.com/" stringByAppendingString:lCurrentSelection.userId]]];
 }
 
 - (IBAction)openPwitterHome:(id)sender {
@@ -291,6 +282,26 @@
 
 - (IBAction)endSearch:(id)sender {
     [self updateCollection];
+}
+
+- (IBAction)openTweet:(id)sender {
+	PTStatusBox *lCurrentSelection = [[fStatusCollectionView selectedObjects] lastObject];
+	if (lCurrentSelection) {
+		if (lCurrentSelection.sType == NormalMessage || lCurrentSelection.sType == ReplyMessage) {
+			NSString *lUrlString = [NSString stringWithFormat:@"http://twitter.com/%@/status/%d", lCurrentSelection.userId, lCurrentSelection.updateId];
+			[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:lUrlString]];
+		}
+	}
+}
+
+- (IBAction)openReplyInBrowser:(id)sender {
+	PTStatusBox *lCurrentSelection = [[fStatusCollectionView selectedObjects] lastObject];
+	if (lCurrentSelection) {
+		if (lCurrentSelection.replyId != 0) {
+			NSString *lUrlString = [NSString stringWithFormat:@"http://twitter.com/%@/status/%d", lCurrentSelection.replyUserId, lCurrentSelection.replyId];
+			[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:lUrlString]];
+		}
+	}
 }
 
 @end

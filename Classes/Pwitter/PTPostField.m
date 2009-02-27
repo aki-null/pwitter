@@ -13,8 +13,9 @@
 @implementation PTPostField
 
 - (void) awakeFromNib {
-	[(NSTextView*)[[self window] fieldEditor:TRUE forObject:self] setInsertionPointColor:[NSColor whiteColor]];
-	[(NSTextView*)[[self window] fieldEditor:TRUE forObject:self] toggleContinuousSpellChecking:self];
+	NSTextView *lField = (NSTextView*)[[self window] fieldEditor:TRUE forObject:self];
+	[lField setInsertionPointColor:[NSColor whiteColor]];
+	[lField toggleContinuousSpellChecking:self];
 }
 
 - (void)drawRect:(NSRect)aRect {

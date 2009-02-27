@@ -79,16 +79,16 @@
 	if (![[PTPreferenceManager sharedInstance] disableSoundNotification]) {
 		switch (fCurrentSoundStatus) {
 			case StatusReceived:
-				[[NSSound soundNamed:@"statusReceived"] play];
+				[fStatusReceived play];
 				break;
 			case ReplyOrMessageReceived:
-				[[NSSound soundNamed:@"replyReceived"] play];
+				[fReplyReceived play];
 				break;
 			case ErrorReceived:
-				[[NSSound soundNamed:@"error"] play];
+				[fErrorReceived play];
 				break;
 			case StatusSent:
-				[[NSSound soundNamed:@"statusPosted"] play];
+				[fStatusPosted play];
 				break;
 			default:
 				break;
@@ -134,6 +134,7 @@
 
 - (void)endingTransaction {
 	if ([fRequestDetails count] == 0) {
+		[self playSoundEffect];
 		[fProgressBar stopAnimation:self];
 		[fProgressBar setHidden:YES];
 		[fUpdateButton setEnabled:YES];
@@ -156,7 +157,6 @@
 			if (lObj) [fStatusCollection selectItemsForObjects:[NSArray arrayWithObject:lObj]];
 		}
 		[self postGrowlNotifications];
-		[self playSoundEffect];
 	}
 }
 
@@ -261,6 +261,10 @@
 
 - (void)awakeFromNib
 {
+	fStatusReceived = [NSSound soundNamed:@"statusReceived"];
+	fReplyReceived = [NSSound soundNamed:@"replyReceived"];
+	fErrorReceived = [NSSound soundNamed:@"error"];
+	fStatusPosted = [NSSound soundNamed:@"statusPosted"];
 	[NSApp activateIgnoringOtherApps:YES];
 	[fMainWindow makeKeyAndOrderFront:self];
 	NSStatusItem *lItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:25] retain];
@@ -307,7 +311,7 @@
 	NSString *lReqType = [fRequestDetails objectForKey:requestIdentifier];
 	if (lReqType == @"FAV") {
 		PTStatusBox *lBoxToFav = [fFavRecord objectForKey:requestIdentifier];
-		lBoxToFav.entityColor = [NSColor colorWithCalibratedRed:0.6 green:0.2 blue:0.0 alpha:1.0];
+		lBoxToFav.entityColor = [NSColor colorWithCalibratedRed:0.4 green:0.2 blue:0.0 alpha:1.0];
 		lBoxToFav.fav = YES;
 		[fRequestDetails removeObjectForKey:lReqType];
 		[fFavRecord removeObjectForKey:requestIdentifier];
@@ -397,6 +401,8 @@
 		[fIgnoreList setObject:@"" forKey:[[aStatuses lastObject] objectForKey:@"id"]];
 		fCurrentSoundStatus = StatusSent;
 		[self postComplete];
+		if ([[PTPreferenceManager sharedInstance] updateAfterPost])
+			[self updateTimeline:fMainWindow];
 	} else if ((lUpdateType == @"REPLY_UPDATE" || lUpdateType == @"INIT_REPLY_UPDATE") && 
 			   fLastReplyID < lNewId) {
 		fLastReplyID = lNewId;
@@ -575,7 +581,7 @@
 - (void)saveUnread {
 	NSMutableDictionary *lUnreadDict = [NSMutableDictionary dictionary];
 	PTStatusBox *lCurrentBox;
-	for (lCurrentBox in [fStatusController arrangedObjects]) {
+	for (lCurrentBox in [fStatusController content]) {
 		if (lCurrentBox.sType != ErrorMessage) {
 			[lUnreadDict setObject:[NSNumber numberWithBool:lCurrentBox.readFlag] 
 							forKey:[NSNumber numberWithInt:lCurrentBox.updateId]];

@@ -175,6 +175,10 @@
 	return [fPrefData boolForKey:@"post_with_modifier"];
 }
 
+- (BOOL)updateAfterPost {
+	return [fPrefData boolForKey:@"update_after_post"];
+}
+
 - (void)setHideDockIcon:(BOOL)aFlag {
 	NSString * lFilePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/../Info.plist"];
 	if (lFilePath) {

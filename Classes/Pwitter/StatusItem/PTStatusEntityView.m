@@ -75,29 +75,32 @@
 - (void)openContextMenu:(NSEvent *)aEvent {
 	PTStatusBox *lBox = [fColItem representedObject];
 	NSMenu *lMenu = [[[NSMenu alloc] initWithTitle:@"Contextual Menu"] autorelease];
-	[lMenu insertItemWithTitle:@"Send Reply" action:@selector(sendReply:) keyEquivalent:@"r" atIndex:0];
-	[lMenu insertItemWithTitle:@"Send Message" action:@selector(sendMessage:) keyEquivalent:@"d" atIndex:1];
-	[lMenu insertItemWithTitle:@"Add to Favorite" action:@selector(addToFav:) keyEquivalent:@"f" atIndex:2];
-	[lMenu insertItemWithTitle:@"Retweet" action:@selector(retweetSelection:) keyEquivalent:@"e" atIndex:3];
+	[lMenu insertItemWithTitle:@"Send Reply to This Tweet" action:@selector(sendReply:) keyEquivalent:@"r" atIndex:0];
+	[lMenu insertItemWithTitle:@"Send Direct Message to User" action:@selector(sendMessage:) keyEquivalent:@"d" atIndex:1];
+	[lMenu insertItemWithTitle:@"Toggle Favorite" action:@selector(addToFav:) keyEquivalent:@"F" atIndex:2];
+	[lMenu insertItemWithTitle:@"Retweet Selection" action:@selector(retweetSelection:) keyEquivalent:@"r" atIndex:3];
+	[[lMenu itemAtIndex:3] setKeyEquivalentModifierMask:NSCommandKeyMask | NSAlternateKeyMask];
 	[lMenu insertItem:[NSMenuItem separatorItem] atIndex:4];
-	[lMenu insertItemWithTitle:@"Open Tweet in Browser" action:@selector(openInBrowser:) keyEquivalent:@"b" atIndex:5];
+	[lMenu insertItemWithTitle:@"Open Tweet in Browser" action:@selector(openInBrowser:) keyEquivalent:@"T" atIndex:5];
 	if (lBox.sType != NormalMessage && lBox.sType != ReplyMessage) {
 		[[lMenu itemAtIndex:2] setTarget:[self superview]];
 		[[lMenu itemAtIndex:5] setTarget:[self superview]];
 	}
-	[lMenu insertItemWithTitle:@"Open Reply in Browser" action:@selector(openReply:) keyEquivalent:@"t" atIndex:6];
+	[lMenu insertItemWithTitle:@"Open Reply in Browser" action:@selector(openReply:) keyEquivalent:@"p" atIndex:6];
+	[[lMenu itemAtIndex:6] setKeyEquivalentModifierMask:NSCommandKeyMask | NSAlternateKeyMask];
 	if (lBox.replyId == 0) [[lMenu itemAtIndex:6] setTarget:[self superview]];
-	[lMenu insertItemWithTitle:@"Open Link in Browser" action:@selector(openLink:) keyEquivalent:@"l" atIndex:7];
+	[lMenu insertItemWithTitle:@"Open Link in Selected Tweet" action:@selector(openLink:) keyEquivalent:@"l" atIndex:7];
+	[[lMenu itemAtIndex:7] setKeyEquivalentModifierMask:NSCommandKeyMask | NSAlternateKeyMask];
 	if (!lBox.statusLink) [[lMenu itemAtIndex:7] setTarget:[self superview]];
 	[lMenu insertItem:[NSMenuItem separatorItem] atIndex:8];
-	[lMenu insertItemWithTitle:@"Open User's Twitter Home" action:@selector(openUserPage:) keyEquivalent:@"h" atIndex:9];
+	[lMenu insertItemWithTitle:@"Open User's Twitter Page" action:@selector(openUserPage:) keyEquivalent:@"O" atIndex:9];
 	if (lBox.sType == ErrorMessage) {
 		[[lMenu itemAtIndex:0] setTarget:[self superview]];
 		[[lMenu itemAtIndex:1] setTarget:[self superview]];
 		[[lMenu itemAtIndex:3] setTarget:[self superview]];
 		[[lMenu itemAtIndex:9] setTarget:[self superview]];
 	}
-	[lMenu insertItemWithTitle:@"Open User's Website" action:@selector(openUserWeb:) keyEquivalent:@"w" atIndex:10];
+	[lMenu insertItemWithTitle:@"Open User's Web Page" action:@selector(openUserWeb:) keyEquivalent:@"K" atIndex:10];
 	if (lBox.userHome == nil) [[lMenu itemAtIndex:10] setTarget:[self superview]];
 	[NSMenu popUpContextMenu:lMenu withEvent:aEvent forView:self];
 }
