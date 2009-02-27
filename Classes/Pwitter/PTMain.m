@@ -382,7 +382,8 @@
 				PTStatusBox *lBoxToAdd = nil;
 				lBoxToAdd = [fStatusBoxGenerator constructStatusBox:lCurrentStatus 
 															isReply:lDecision == 1];
-				if (lDecision == 1 && fCurrentSoundStatus != ErrorReceived)
+				if ((lDecision == 1 || lBoxToAdd.sType == ReplyMessage) && 
+					fCurrentSoundStatus != ErrorReceived)
 					fCurrentSoundStatus = ReplyOrMessageReceived;
 				[lTempBoxes addObject:lBoxToAdd];
 			}
