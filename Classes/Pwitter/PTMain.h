@@ -45,6 +45,7 @@ typedef enum soundEventType {
 	NSMutableDictionary *fRequestDetails;
 	NSMutableDictionary *fIgnoreList;
 	NSMutableDictionary *fFavRecord;
+	NSMutableDictionary *fDeleteRecord;
 	PTImageManager *fImageMan;
 	NSTimer *fUpdateTimer;
 	NSTimer *fMessageUpdateTimer;
@@ -52,6 +53,7 @@ typedef enum soundEventType {
 	// array of boxes that has been received for the current session
 	NSMutableArray *fBoxesToNotify;
 	NSMutableArray *fBoxesToAdd;
+	NSMutableArray *fBoxesToRemove;
 	PTMenuBarIcon *fMenuItem;
 	// core animation frame size fix
 	NSRect fCurrentTarget;
@@ -77,6 +79,7 @@ typedef enum soundEventType {
 - (void)saveUnread;
 - (void)loadUnread;
 - (void)toggleApp;
+- (void)deleteTweet:(PTStatusBox *)aBox;
 
 @property(readonly) PTMenuBarIcon *fMenuItem;
 

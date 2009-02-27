@@ -25,6 +25,10 @@
 	[fMainController favStatus:aBox];
 }
 
+- (void)deleteStatus:(PTStatusBox *)aBox {
+	[fMainController deleteTweet:aBox];
+}
+
 - (void)retweet:(PTStatusBox *)aBox {
 	[fMainActionHandler retweetStatus:aBox];
 }

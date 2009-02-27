@@ -551,6 +551,15 @@
 									<reference key="NSOnImage" ref="185476363"/>
 									<reference key="NSMixedImage" ref="628649836"/>
 								</object>
+								<object class="NSMenuItem" id="503298633">
+									<reference key="NSMenu" ref="363716984"/>
+									<string key="NSTitle">Delete Selection</string>
+									<string type="base64-UTF8" key="NSKeyEquiv">CA</string>
+									<int key="NSKeyEquivModMask">1048576</int>
+									<int key="NSMnemonicLoc">2147483647</int>
+									<reference key="NSOnImage" ref="185476363"/>
+									<reference key="NSMixedImage" ref="628649836"/>
+								</object>
 								<object class="NSMenuItem" id="818335355">
 									<reference key="NSMenu" ref="363716984"/>
 									<bool key="NSIsDisabled">YES</bool>
@@ -859,6 +868,15 @@
 									<string key="NSTitle">Retweet Selection</string>
 									<string key="NSKeyEquiv">r</string>
 									<int key="NSKeyEquivModMask">1572864</int>
+									<int key="NSMnemonicLoc">2147483647</int>
+									<reference key="NSOnImage" ref="185476363"/>
+									<reference key="NSMixedImage" ref="628649836"/>
+								</object>
+								<object class="NSMenuItem" id="1011068856">
+									<reference key="NSMenu" ref="601317012"/>
+									<string key="NSTitle">Delete Selection</string>
+									<string type="base64-UTF8" key="NSKeyEquiv">CA</string>
+									<int key="NSKeyEquivModMask">1048576</int>
 									<int key="NSMnemonicLoc">2147483647</int>
 									<reference key="NSOnImage" ref="185476363"/>
 									<reference key="NSMixedImage" ref="628649836"/>
@@ -3863,10 +3881,6 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 				<bool key="NSAutomaticallyRearrangesObjects">YES</bool>
 			</object>
 			<object class="NSUserDefaultsController" id="636872618">
-				<object class="NSMutableArray" key="NSDeclaredKeys">
-					<bool key="EncodedWithXMLCoder">YES</bool>
-					<string>update_after_post</string>
-				</object>
 				<bool key="NSSharedInstance">YES</bool>
 			</object>
 		</object>
@@ -5942,6 +5956,22 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 					</object>
 					<int key="connectionID">2131</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">deleteSelectedTweet:</string>
+						<reference key="source" ref="584601206"/>
+						<reference key="destination" ref="1011068856"/>
+					</object>
+					<int key="connectionID">2135</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">deleteSelectedTweet:</string>
+						<reference key="source" ref="584601206"/>
+						<reference key="destination" ref="503298633"/>
+					</object>
+					<int key="connectionID">2136</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -7302,6 +7332,7 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 							<reference ref="818335355"/>
 							<reference ref="653646965"/>
 							<reference ref="478061654"/>
+							<reference ref="503298633"/>
 						</object>
 						<reference key="parent" ref="1027690546"/>
 					</object>
@@ -8559,6 +8590,7 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 							<reference ref="194207042"/>
 							<reference ref="846338050"/>
 							<reference ref="356457598"/>
+							<reference ref="1011068856"/>
 						</object>
 						<reference key="parent" ref="648176674"/>
 					</object>
@@ -8616,6 +8648,16 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 						<int key="objectID">2122</int>
 						<reference key="object" ref="356457598"/>
 						<reference key="parent" ref="601317012"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">2132</int>
+						<reference key="object" ref="1011068856"/>
+						<reference key="parent" ref="601317012"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">2134</int>
+						<reference key="object" ref="503298633"/>
+						<reference key="parent" ref="363716984"/>
 					</object>
 				</object>
 			</object>
@@ -9002,6 +9044,8 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 					<string>2120.IBPluginDependency</string>
 					<string>2121.IBPluginDependency</string>
 					<string>2122.IBPluginDependency</string>
+					<string>2132.IBPluginDependency</string>
+					<string>2134.IBPluginDependency</string>
 					<string>214.IBPluginDependency</string>
 					<string>214.ImportedFromIB2</string>
 					<string>215.IBPluginDependency</string>
@@ -9165,7 +9209,7 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{190, 515}, {287, 203}}</string>
+					<string>{{190, 495}, {293, 223}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -9569,7 +9613,7 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{271, 79}, {287, 203}}</string>
+					<string>{{271, 59}, {293, 223}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -9583,6 +9627,8 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
 					<string>{{608, 612}, {167, 43}}</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -9768,7 +9814,7 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">2131</int>
+			<int key="maxID">2136</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -10036,6 +10082,7 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 							<string>closeAuthSheet:</string>
 							<string>closeReplyViewFromButton:</string>
 							<string>closeSearchBox:</string>
+							<string>deleteSelectedTweet:</string>
 							<string>endSearch:</string>
 							<string>favSelected:</string>
 							<string>markAllAsRead:</string>
@@ -10055,6 +10102,7 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>

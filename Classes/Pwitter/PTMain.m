@@ -122,6 +122,11 @@
 	[fBoxesToAdd removeAllObjects];
 }
 
+- (void)removeStatusBoxes {
+	[fStatusController removeObjects:fBoxesToRemove];
+	[fBoxesToRemove removeAllObjects];
+}
+
 - (void)startingTransaction {
 	if ([fRequestDetails count] == 0) {
 		fCurrentSoundStatus = NoneReceived;
@@ -140,6 +145,7 @@
 		[fUpdateButton setEnabled:YES];
 		NSPredicate *lBackupPredicate = [[fStatusController filterPredicate] copy];
 		[self addNewStatusBoxes];
+		[self removeStatusBoxes];
 		// limit the number of status boxes
 		int lStatusCount = [[fStatusController content] count] + 1;
 		if (lStatusCount > STATUS_LIMIT) {
@@ -206,9 +212,11 @@
 	fRequestDetails = [[NSMutableDictionary alloc] init];
 	fIgnoreList = [[NSMutableDictionary alloc] init];
 	fFavRecord = [[NSMutableDictionary alloc] init];
+	fDeleteRecord = [[NSMutableDictionary alloc] init];
 	[fImageMan initResource];
 	fBoxesToNotify = [[NSMutableArray alloc] init];
 	fBoxesToAdd = [[NSMutableArray alloc] init];
+	fBoxesToRemove = [[NSMutableArray alloc] init];
 	fLastReplyID = 0;
 	fLastUpdateID = 0;
 	fLastMessageID = 0;
@@ -218,9 +226,11 @@
 	if (fRequestDetails) [fRequestDetails release];
 	if (fIgnoreList) [fIgnoreList release];
 	if (fFavRecord) [fFavRecord release];
+	if (fDeleteRecord) [fDeleteRecord release];
 	[fImageMan clearResource];
 	if (fBoxesToNotify) [fBoxesToNotify release];
 	if (fBoxesToAdd) [fBoxesToAdd release];
+	if (fBoxesToRemove) [fBoxesToRemove release];
 	fLastReplyID = 0;
 	fLastUpdateID = 0;
 	fLastMessageID = 0;
@@ -331,6 +341,12 @@
 		[fFavRecord removeObjectForKey:requestIdentifier];
 	} else if (lReqType == @"MESSAGE") {
 		[self postComplete];
+	} else if (lReqType == @"DELETE") {
+		PTStatusBox *lToDelete = [fDeleteRecord objectForKey:requestIdentifier];
+		[fDeleteRecord removeObjectForKey:requestIdentifier];
+		[fBoxesToRemove addObject:lToDelete];
+		[fRequestDetails removeObjectForKey:lReqType];
+		[self endingTransaction];
 	}
 }
 
@@ -356,9 +372,11 @@
 
 - (void)statusesReceived:(NSArray *)aStatuses forRequest:(NSString *)aIdentifier
 {
+	NSString *lReqType = [fRequestDetails objectForKey:aIdentifier];
 	if ([aStatuses count] == 0 || 
-		[fRequestDetails objectForKey:aIdentifier] == @"FAV" || 
-		[fRequestDetails objectForKey:aIdentifier] == @"UNFAV") {
+		lReqType == @"FAV" || 
+		lReqType == @"UNFAV" || 
+		lReqType == @"DELETE") {
 		[fRequestDetails removeObjectForKey:aIdentifier];
 		[self endingTransaction];
 		return;
@@ -417,9 +435,13 @@
 
 - (void)directMessagesReceived:(NSArray *)aMessages forRequest:(NSString *)aIdentifier
 {
-	if ([fRequestDetails objectForKey:aIdentifier] == @"MESSAGE") {
+	NSString *lReqType = [fRequestDetails objectForKey:aIdentifier];
+	if (lReqType == @"DELETE") {
+		[fRequestDetails removeObjectForKey:aIdentifier];
+		[self endingTransaction];
+		return;
+	} else if (lReqType == @"MESSAGE")
 		fCurrentSoundStatus = StatusSent;
-	}
 	if ([aMessages count] == 0 || 
 		[[[aMessages objectAtIndex:0] objectForKey:@"id"] intValue] == 0 || 
 		[fRequestDetails objectForKey:aIdentifier] == @"MESSAGE") {
@@ -593,6 +615,23 @@
 	lRootObj = [NSMutableDictionary dictionary];
 	[lRootObj setValue:lUnreadDict forKey:@"unreads"];
 	[NSKeyedArchiver archiveRootObject:lRootObj toFile:lPath];
+}
+
+- (void)deleteTweet:(PTStatusBox *)aBox {
+	if (aBox) {
+		if ([aBox.userId isEqualToString:[[PTPreferenceManager sharedInstance] userName]] && 
+			(aBox.sType == NormalMessage || aBox.sType == ReplyMessage)) {
+			[self startingTransaction];
+			NSString *lRequestId = [fTwitterEngine deleteUpdate:aBox.updateId];
+			[fRequestDetails setObject:@"DELETE" forKey:lRequestId];
+			[fDeleteRecord setObject:aBox forKey:lRequestId];
+		} else if (aBox.sType == DirectMessage) {
+			[self startingTransaction];
+			NSString *lRequestId = [fTwitterEngine deleteDirectMessage:aBox.updateId];
+			[fRequestDetails setObject:@"DELETE" forKey:lRequestId];
+			[fDeleteRecord setObject:aBox forKey:lRequestId];
+		}
+	}
 }
 
 @synthesize fMenuItem;

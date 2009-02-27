@@ -304,4 +304,8 @@
 	}
 }
 
+- (IBAction)deleteSelectedTweet:(id)sender {
+    [fMainController deleteTweet:[[fStatusCollectionView selectedObjects] lastObject]];
+}
+
 @end

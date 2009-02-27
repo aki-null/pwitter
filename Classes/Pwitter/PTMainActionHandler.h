@@ -61,6 +61,7 @@
 - (IBAction)endSearch:(id)sender;
 - (IBAction)openTweet:(id)sender;
 - (IBAction)openReplyInBrowser:(id)sender;
+- (IBAction)deleteSelectedTweet:(id)sender;
 - (void)startAuthentication;
 - (void)updateSelectedMessage:(PTStatusBox *)aBox;
 - (void)setCollectionViewPrototype:(BOOL)aIsMini useClassic:(BOOL)aIsClassic;

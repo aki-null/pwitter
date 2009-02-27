@@ -21,6 +21,7 @@
 - (void)sendMessageForStatus:(PTStatusBox *)aBox;
 - (void)markAsFav:(PTStatusBox *)aBox;
 - (void)retweet:(PTStatusBox *)aBox;
+- (void)deleteStatus:(PTStatusBox *)aBox;
 - (void)fixFocus;
 
 @end

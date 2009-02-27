@@ -9,6 +9,7 @@
 #import "PTStatusEntityView.h"
 #import "PTStatusBox.h"
 #import "PTCollectionView.h"
+#import "PTPreferenceManager.h"
 
 @implementation PTStatusEntityView
 
@@ -72,6 +73,11 @@
 	[(PTCollectionView *)[self superview] retweet:lBox];
 }
 
+- (void)deleteSelection:(id)sender {
+	PTStatusBox *lBox = [fColItem representedObject];
+	[(PTCollectionView *)[self superview] deleteStatus:lBox];
+}
+
 - (void)openContextMenu:(NSEvent *)aEvent {
 	PTStatusBox *lBox = [fColItem representedObject];
 	NSMenu *lMenu = [[[NSMenu alloc] initWithTitle:@"Contextual Menu"] autorelease];
@@ -80,28 +86,32 @@
 	[lMenu insertItemWithTitle:@"Toggle Favorite" action:@selector(addToFav:) keyEquivalent:@"F" atIndex:2];
 	[lMenu insertItemWithTitle:@"Retweet Selection" action:@selector(retweetSelection:) keyEquivalent:@"r" atIndex:3];
 	[[lMenu itemAtIndex:3] setKeyEquivalentModifierMask:NSCommandKeyMask | NSAlternateKeyMask];
-	[lMenu insertItem:[NSMenuItem separatorItem] atIndex:4];
-	[lMenu insertItemWithTitle:@"Open Tweet in Browser" action:@selector(openInBrowser:) keyEquivalent:@"T" atIndex:5];
+	[lMenu insertItemWithTitle:@"Delete Selection" action:@selector(deleteSelection:) keyEquivalent:@"⌦" atIndex:4];
+	if (![lBox.userId isEqualToString:[[PTPreferenceManager sharedInstance] userName]] && 
+		lBox.sType != DirectMessage)
+		[[lMenu itemAtIndex:4] setTarget:[self superview]];
+	[lMenu insertItem:[NSMenuItem separatorItem] atIndex:5];
+	[lMenu insertItemWithTitle:@"Open Tweet in Browser" action:@selector(openInBrowser:) keyEquivalent:@"T" atIndex:6];
 	if (lBox.sType != NormalMessage && lBox.sType != ReplyMessage) {
 		[[lMenu itemAtIndex:2] setTarget:[self superview]];
-		[[lMenu itemAtIndex:5] setTarget:[self superview]];
+		[[lMenu itemAtIndex:6] setTarget:[self superview]];
 	}
-	[lMenu insertItemWithTitle:@"Open Reply in Browser" action:@selector(openReply:) keyEquivalent:@"p" atIndex:6];
-	[[lMenu itemAtIndex:6] setKeyEquivalentModifierMask:NSCommandKeyMask | NSAlternateKeyMask];
-	if (lBox.replyId == 0) [[lMenu itemAtIndex:6] setTarget:[self superview]];
-	[lMenu insertItemWithTitle:@"Open Link in Selected Tweet" action:@selector(openLink:) keyEquivalent:@"l" atIndex:7];
+	[lMenu insertItemWithTitle:@"Open Reply in Browser" action:@selector(openReply:) keyEquivalent:@"p" atIndex:7];
 	[[lMenu itemAtIndex:7] setKeyEquivalentModifierMask:NSCommandKeyMask | NSAlternateKeyMask];
-	if (!lBox.statusLink) [[lMenu itemAtIndex:7] setTarget:[self superview]];
-	[lMenu insertItem:[NSMenuItem separatorItem] atIndex:8];
-	[lMenu insertItemWithTitle:@"Open User's Twitter Page" action:@selector(openUserPage:) keyEquivalent:@"O" atIndex:9];
+	if (lBox.replyId == 0) [[lMenu itemAtIndex:7] setTarget:[self superview]];
+	[lMenu insertItemWithTitle:@"Open Link in Selected Tweet" action:@selector(openLink:) keyEquivalent:@"l" atIndex:8];
+	[[lMenu itemAtIndex:8] setKeyEquivalentModifierMask:NSCommandKeyMask | NSAlternateKeyMask];
+	if (!lBox.statusLink) [[lMenu itemAtIndex:8] setTarget:[self superview]];
+	[lMenu insertItem:[NSMenuItem separatorItem] atIndex:9];
+	[lMenu insertItemWithTitle:@"Open User's Twitter Page" action:@selector(openUserPage:) keyEquivalent:@"O" atIndex:10];
 	if (lBox.sType == ErrorMessage) {
 		[[lMenu itemAtIndex:0] setTarget:[self superview]];
 		[[lMenu itemAtIndex:1] setTarget:[self superview]];
 		[[lMenu itemAtIndex:3] setTarget:[self superview]];
-		[[lMenu itemAtIndex:9] setTarget:[self superview]];
+		[[lMenu itemAtIndex:10] setTarget:[self superview]];
 	}
-	[lMenu insertItemWithTitle:@"Open User's Web Page" action:@selector(openUserWeb:) keyEquivalent:@"K" atIndex:10];
-	if (lBox.userHome == nil) [[lMenu itemAtIndex:10] setTarget:[self superview]];
+	[lMenu insertItemWithTitle:@"Open User's Web Page" action:@selector(openUserWeb:) keyEquivalent:@"K" atIndex:11];
+	if (lBox.userHome == nil) [[lMenu itemAtIndex:11] setTarget:[self superview]];
 	[NSMenu popUpContextMenu:lMenu withEvent:aEvent forView:self];
 }
 
