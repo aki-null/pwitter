@@ -13,6 +13,7 @@
 
 @synthesize userName;
 @synthesize statusMessage;
+@synthesize statusMessageString;
 @synthesize userImage;
 @synthesize userHome;
 @synthesize statusLink;
@@ -31,6 +32,7 @@
 	if (userImage) [userImage release];
 	if (userName) [userName release];
 	if (statusMessage) [statusMessage release];
+	if (statusMessageString) [statusMessageString release];
 	if (userHome) [userHome release];
 	if (statusLink) [statusLink release];
 	if (userId) [userId release];

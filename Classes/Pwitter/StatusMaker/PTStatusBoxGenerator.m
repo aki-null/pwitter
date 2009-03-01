@@ -33,6 +33,7 @@
 	NSDate *lReceivedTime = [aStatusInfo objectForKey:@"created_at"];
 	lNewBox.time = lReceivedTime;
 	lNewBox.statusMessage = [PTStatusFormatter formatStatusMessage:[aStatusInfo objectForKey:@"text"] forBox:lNewBox];
+	lNewBox.statusMessageString = [aStatusInfo objectForKey:@"text"];
 	lNewBox.userImage = [fMainController requestUserImage:[[aStatusInfo objectForKey:@"user"] objectForKey:@"profile_image_url"]
 												   forBox:lNewBox];
 	NSString *lUrlStr = [[aStatusInfo objectForKey:@"user"] objectForKey:@"url"];
@@ -74,6 +75,7 @@
 	lNewBox.userName = @"Error:";
 	lNewBox.userId = [NSString stringWithString:@"Error"];
 	lNewBox.statusMessage = [PTStatusFormatter createErrorMessage:aError];
+	lNewBox.statusMessageString = [lNewBox.statusMessage string];
 	lNewBox.userImage = [NSImage imageNamed:@"console.png"];
 	lNewBox.entityColor = [NSColor colorWithCalibratedRed:0.4 green:0.4 blue:0.4 alpha:1.0];
 	lNewBox.time = [NSDate date];
@@ -91,6 +93,7 @@
 	lNewBox.userId = [[aStatusInfo objectForKey:@"sender"] objectForKey:@"screen_name"];
 	lNewBox.time = [aStatusInfo objectForKey:@"created_at"];
 	lNewBox.statusMessage = [PTStatusFormatter formatStatusMessage:[aStatusInfo objectForKey:@"text"] forBox:lNewBox];
+	lNewBox.statusMessageString = [aStatusInfo objectForKey:@"text"];
 	lNewBox.userImage = [fMainController requestUserImage:[[aStatusInfo objectForKey:@"sender"] objectForKey:@"profile_image_url"]
 												   forBox:lNewBox];
 	NSString *lUrlStr = [[aStatusInfo objectForKey:@"sender"] objectForKey:@"url"];

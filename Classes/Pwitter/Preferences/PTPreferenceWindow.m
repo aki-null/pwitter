@@ -57,6 +57,7 @@
 		[fHideWhenReading setEnabled:YES];
 		[self turnOnReadHotKey];
 	}
+	[fMainWindow setHidesOnDeactivate:[[PTPreferenceManager sharedInstance] hideOnDeactivate]];
 }
 
 - (IBAction)pressOK:(id)sender {
@@ -88,6 +89,7 @@
 	[fMainWindow setFloatingPanel:[[PTPreferenceManager sharedInstance] alwaysOnTop]];
 	[fMainWindow setHasShadow:![[PTPreferenceManager sharedInstance] disableWindowShadow]];
 	[[fMainController fMenuItem] setSwapped:[[PTPreferenceManager sharedInstance] swapMenuItemBehavior]];
+	[fMainWindow setHidesOnDeactivate:[[PTPreferenceManager sharedInstance] hideOnDeactivate]];
 	[self saveKeyCombo];
 	[self turnOffHotKey];
 	if ([[PTPreferenceManager sharedInstance] quickPost])
@@ -184,6 +186,8 @@
 		[NSApp activateIgnoringOtherApps:YES];
 		[fMainWindow makeKeyAndOrderFront:self];
 		[fMainWindow makeFirstResponder:fStatusCollectionView];
+		if ([[PTPreferenceManager sharedInstance] selectOldestUnread])
+			[fStatusCollectionView selectOldestUnread];
 	}
 }
 
@@ -208,7 +212,7 @@
 	int lTargetHeight;
 	switch ([[tabViewItem identifier] intValue]) {
 		case 1:
-			lTargetHeight = 333;
+			lTargetHeight = 353;
 			break;
 		case 2:
 			lTargetHeight = 261;
@@ -217,10 +221,10 @@
 			lTargetHeight = 335;
 			break;
 		case 4:
-			lTargetHeight = 290;
+			lTargetHeight = 310;
 			break;
 		default:
-			lTargetHeight = 333;
+			lTargetHeight = 353;
 			break;
 	}
 	NSRect lNewFrame = [self frame];

@@ -23,5 +23,6 @@
 - (void)retweet:(PTStatusBox *)aBox;
 - (void)deleteStatus:(PTStatusBox *)aBox;
 - (void)fixFocus;
+- (void)selectOldestUnread;
 
 @end

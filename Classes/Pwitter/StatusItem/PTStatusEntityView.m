@@ -89,29 +89,29 @@
 	[lMenu insertItemWithTitle:@"Delete Selection" action:@selector(deleteSelection:) keyEquivalent:@"⌦" atIndex:4];
 	if (![lBox.userId isEqualToString:[[PTPreferenceManager sharedInstance] userName]] && 
 		lBox.sType != DirectMessage)
-		[[lMenu itemAtIndex:4] setTarget:[self superview]];
+		[[lMenu itemAtIndex:4] setAction:nil];
 	[lMenu insertItem:[NSMenuItem separatorItem] atIndex:5];
 	[lMenu insertItemWithTitle:@"Open Tweet in Browser" action:@selector(openInBrowser:) keyEquivalent:@"T" atIndex:6];
 	if (lBox.sType != NormalMessage && lBox.sType != ReplyMessage) {
-		[[lMenu itemAtIndex:2] setTarget:[self superview]];
-		[[lMenu itemAtIndex:6] setTarget:[self superview]];
+		[[lMenu itemAtIndex:2] setAction:nil];
+		[[lMenu itemAtIndex:6] setAction:nil];
 	}
 	[lMenu insertItemWithTitle:@"Open Reply in Browser" action:@selector(openReply:) keyEquivalent:@"p" atIndex:7];
 	[[lMenu itemAtIndex:7] setKeyEquivalentModifierMask:NSCommandKeyMask | NSAlternateKeyMask];
-	if (lBox.replyId == 0) [[lMenu itemAtIndex:7] setTarget:[self superview]];
+	if (lBox.replyId == 0) [[lMenu itemAtIndex:7] setAction:nil];
 	[lMenu insertItemWithTitle:@"Open Link in Selected Tweet" action:@selector(openLink:) keyEquivalent:@"l" atIndex:8];
 	[[lMenu itemAtIndex:8] setKeyEquivalentModifierMask:NSCommandKeyMask | NSAlternateKeyMask];
-	if (!lBox.statusLink) [[lMenu itemAtIndex:8] setTarget:[self superview]];
+	if (!lBox.statusLink) [[lMenu itemAtIndex:8] setAction:nil];
 	[lMenu insertItem:[NSMenuItem separatorItem] atIndex:9];
 	[lMenu insertItemWithTitle:@"Open User's Twitter Page" action:@selector(openUserPage:) keyEquivalent:@"O" atIndex:10];
 	if (lBox.sType == ErrorMessage) {
-		[[lMenu itemAtIndex:0] setTarget:[self superview]];
-		[[lMenu itemAtIndex:1] setTarget:[self superview]];
-		[[lMenu itemAtIndex:3] setTarget:[self superview]];
-		[[lMenu itemAtIndex:10] setTarget:[self superview]];
+		[[lMenu itemAtIndex:0] setAction:nil];
+		[[lMenu itemAtIndex:1] setAction:nil];
+		[[lMenu itemAtIndex:3] setAction:nil];
+		[[lMenu itemAtIndex:10] setAction:nil];
 	}
 	[lMenu insertItemWithTitle:@"Open User's Web Page" action:@selector(openUserWeb:) keyEquivalent:@"K" atIndex:11];
-	if (lBox.userHome == nil) [[lMenu itemAtIndex:11] setTarget:[self superview]];
+	if (lBox.userHome == nil) [[lMenu itemAtIndex:11] setAction:nil];
 	[NSMenu popUpContextMenu:lMenu withEvent:aEvent forView:self];
 }
 

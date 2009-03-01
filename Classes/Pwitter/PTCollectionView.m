@@ -37,4 +37,27 @@
 	[fMainWindow makeFirstResponder:self];
 }
 
+- (void)selectOldestUnread {
+	PTStatusBox *lFinalBox = nil;
+	PTStatusBox *lCurrentBox;
+	for (lCurrentBox in [[self content] reverseObjectEnumerator]) {
+		if (!lCurrentBox.readFlag) {
+			lFinalBox = lCurrentBox;
+			break;
+		}
+	}
+	if (lFinalBox) {
+		[self selectItemsForObjects:[NSArray arrayWithObject:lFinalBox]];
+		[self scrollObjectToVisible:lFinalBox];
+	}
+}
+
+- (void)keyDown:(NSEvent *)aEvent {
+	if ([[aEvent characters] isEqualToString:@" "]) {
+		[self selectOldestUnread];
+	} else {
+		[super keyDown:aEvent];
+	}
+}
+
 @end

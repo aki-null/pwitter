@@ -179,6 +179,22 @@
 	return [fPrefData boolForKey:@"update_after_post"];
 }
 
+- (id)customFilters {
+	return [fPrefData objectForKey:@"custom_filters"];
+}
+
+- (void)setCustomFilters:(id)aFilters {
+	[fPrefData setObject:aFilters forKey:@"custom_filters"];
+}
+
+- (BOOL)hideOnDeactivate {
+	return [fPrefData boolForKey:@"hide_on_deactivate"];
+}
+
+- (BOOL)selectOldestUnread {
+	return [fPrefData boolForKey:@"select_oldest_unread"];
+}
+
 - (void)setHideDockIcon:(BOOL)aFlag {
 	NSString * lFilePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/../Info.plist"];
 	if (lFilePath) {

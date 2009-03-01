@@ -46,6 +46,10 @@
 - (BOOL)useClassicView;
 - (BOOL)postWithModifier;
 - (BOOL)updateAfterPost;
+- (id)customFilters;
+- (void)setCustomFilters:(id)aFilters;
+- (BOOL)hideOnDeactivate;
+- (BOOL)selectOldestUnread;
 - (void)setHideDockIcon:(BOOL)aFlag;
 - (BOOL)hideDockIcon;
 

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		61095D0C0F4F7C60001882C7 /* PTTooltipTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 61095D0B0F4F7C60001882C7 /* PTTooltipTransformer.m */; };
+		610E79060F59516800C714D1 /* PTTokenField.m in Sources */ = {isa = PBXBuildFile; fileRef = 610E79050F59516800C714D1 /* PTTokenField.m */; };
+		610E79090F5951B000C714D1 /* PTTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 610E79080F5951B000C714D1 /* PTTextField.m */; };
 		612BD6900F076F8500EF064D /* Pwitter.icns in Resources */ = {isa = PBXBuildFile; fileRef = 612BD68F0F076F8500EF064D /* Pwitter.icns */; };
 		6131FD4A0F0E28C7004CA960 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6131FD490F0E28C7004CA960 /* Sparkle.framework */; };
 		6131FD5B0F0E297D004CA960 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6131FD490F0E28C7004CA960 /* Sparkle.framework */; };
@@ -86,6 +88,8 @@
 		61AA24A20F3C67F600988678 /* unread_orb.png in Resources */ = {isa = PBXBuildFile; fileRef = 61AA24A10F3C67F600988678 /* unread_orb.png */; };
 		61BAFB0F0F1C89B400428121 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61BAFB0E0F1C89B400428121 /* Carbon.framework */; };
 		61BD916F0F0B7C7E00F1CA33 /* default.png in Resources */ = {isa = PBXBuildFile; fileRef = 61BD916E0F0B7C7E00F1CA33 /* default.png */; };
+		61C2675B0F58E3DB00B3889E /* PTCustomFilterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C2675A0F58E3DB00B3889E /* PTCustomFilterManager.m */; };
+		61CBCF500F5A177800366CB9 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61CBCF4F0F5A177800366CB9 /* MainMenu.xib */; };
 		61D3ABEC0F500425000E8C12 /* AMCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 61D3ABE80F500425000E8C12 /* AMCollectionView.m */; };
 		61D3ABED0F500425000E8C12 /* AMCollectionViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 61D3ABEA0F500425000E8C12 /* AMCollectionViewItem.m */; };
 		61D9FDFD0F04B41C003CC890 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61D9FDFC0F04B41C003CC890 /* Security.framework */; };
@@ -93,7 +97,6 @@
 		61F177A90F1C5A6B00C04938 /* ShortcutRecorder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61F177A80F1C5A6B00C04938 /* ShortcutRecorder.framework */; };
 		61F177C10F1C5CE100C04938 /* ShortcutRecorder.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 61F177A80F1C5A6B00C04938 /* ShortcutRecorder.framework */; };
 		61F8E08B0F3C02DA0070C04A /* icon_mask.tif in Resources */ = {isa = PBXBuildFile; fileRef = 61F8E08A0F3C02DA0070C04A /* icon_mask.tif */; };
-		61FCE2520F11956B00496A23 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61FCE2510F11956B00496A23 /* MainMenu.xib */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
@@ -125,6 +128,10 @@
 		32CA4F630368D1EE00C91783 /* Pwitter_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pwitter_Prefix.pch; sourceTree = "<group>"; };
 		61095D0A0F4F7C60001882C7 /* PTTooltipTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTTooltipTransformer.h; sourceTree = "<group>"; };
 		61095D0B0F4F7C60001882C7 /* PTTooltipTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTTooltipTransformer.m; sourceTree = "<group>"; };
+		610E79040F59516800C714D1 /* PTTokenField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTTokenField.h; sourceTree = "<group>"; };
+		610E79050F59516800C714D1 /* PTTokenField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTTokenField.m; sourceTree = "<group>"; };
+		610E79070F5951B000C714D1 /* PTTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTTextField.h; sourceTree = "<group>"; };
+		610E79080F5951B000C714D1 /* PTTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTTextField.m; sourceTree = "<group>"; };
 		612BD68F0F076F8500EF064D /* Pwitter.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Pwitter.icns; sourceTree = "<group>"; };
 		6131FD490F0E28C7004CA960 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		6131FD5F0F0E2B5A004CA960 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
@@ -252,6 +259,9 @@
 		61AA24A10F3C67F600988678 /* unread_orb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unread_orb.png; sourceTree = "<group>"; };
 		61BAFB0E0F1C89B400428121 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
 		61BD916E0F0B7C7E00F1CA33 /* default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default.png; sourceTree = "<group>"; };
+		61C267590F58E3DB00B3889E /* PTCustomFilterManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTCustomFilterManager.h; sourceTree = "<group>"; };
+		61C2675A0F58E3DB00B3889E /* PTCustomFilterManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTCustomFilterManager.m; sourceTree = "<group>"; };
+		61CBCF4F0F5A177800366CB9 /* MainMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainMenu.xib; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		61D3ABE70F500425000E8C12 /* AMCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMCollectionView.h; sourceTree = "<group>"; };
 		61D3ABE80F500425000E8C12 /* AMCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMCollectionView.m; sourceTree = "<group>"; };
 		61D3ABE90F500425000E8C12 /* AMCollectionViewItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMCollectionViewItem.h; sourceTree = "<group>"; };
@@ -260,7 +270,6 @@
 		61D9FDFC0F04B41C003CC890 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
 		61EE70630F0210C0005C42F5 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = /usr/lib/libxml2.2.dylib; sourceTree = "<absolute>"; };
 		61F177A80F1C5A6B00C04938 /* ShortcutRecorder.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ShortcutRecorder.framework; sourceTree = "<group>"; };
-		61F2CF370F10A10800CE073B /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		61F8E08A0F3C02DA0070C04A /* icon_mask.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = icon_mask.tif; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* Pwitter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pwitter.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -361,7 +370,7 @@
 				6170373E0F5826680099B150 /* statusReceived.m4a */,
 				6170373F0F5826680099B150 /* error.m4a */,
 				617037400F5826680099B150 /* statusPosted.m4a */,
-				61FCE2510F11956B00496A23 /* MainMenu.xib */,
+				61CBCF4F0F5A177800366CB9 /* MainMenu.xib */,
 				6131FD5F0F0E2B5A004CA960 /* dsa_pub.pem */,
 				61BD916E0F0B7C7E00F1CA33 /* default.png */,
 				612BD68F0F076F8500EF064D /* Pwitter.icns */,
@@ -487,6 +496,12 @@
 				61D3ABE90F500425000E8C12 /* AMCollectionViewItem.h */,
 				61D3ABEA0F500425000E8C12 /* AMCollectionViewItem.m */,
 				61D3ABEB0F500425000E8C12 /* AMCollectionViewItemProtocol.h */,
+				61C267590F58E3DB00B3889E /* PTCustomFilterManager.h */,
+				61C2675A0F58E3DB00B3889E /* PTCustomFilterManager.m */,
+				610E79040F59516800C714D1 /* PTTokenField.h */,
+				610E79050F59516800C714D1 /* PTTokenField.m */,
+				610E79070F5951B000C714D1 /* PTTextField.h */,
+				610E79080F5951B000C714D1 /* PTTextField.m */,
 			);
 			path = Pwitter;
 			sourceTree = "<group>";
@@ -618,7 +633,6 @@
 				612BD6900F076F8500EF064D /* Pwitter.icns in Resources */,
 				61BD916F0F0B7C7E00F1CA33 /* default.png in Resources */,
 				6131FD600F0E2B5A004CA960 /* dsa_pub.pem in Resources */,
-				61FCE2520F11956B00496A23 /* MainMenu.xib in Resources */,
 				615B85920F1366DC0005E38F /* Growl Registration Ticket.growlRegDict in Resources */,
 				617A69AD0F33318D0002D105 /* menu_icon_off.png in Resources */,
 				617A69BF0F334BC70002D105 /* menu_icon_on.png in Resources */,
@@ -639,6 +653,7 @@
 				617037430F5826680099B150 /* statusReceived.m4a in Resources */,
 				617037440F5826680099B150 /* error.m4a in Resources */,
 				617037450F5826680099B150 /* statusPosted.m4a in Resources */,
+				61CBCF500F5A177800366CB9 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -717,6 +732,9 @@
 				61095D0C0F4F7C60001882C7 /* PTTooltipTransformer.m in Sources */,
 				61D3ABEC0F500425000E8C12 /* AMCollectionView.m in Sources */,
 				61D3ABED0F500425000E8C12 /* AMCollectionViewItem.m in Sources */,
+				61C2675B0F58E3DB00B3889E /* PTCustomFilterManager.m in Sources */,
+				610E79060F59516800C714D1 /* PTTokenField.m in Sources */,
+				610E79090F5951B000C714D1 /* PTTextField.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -729,14 +747,6 @@
 				089C165DFE840E0CC02AAC07 /* English */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		61FCE2510F11956B00496A23 /* MainMenu.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				61F2CF370F10A10800CE073B /* English */,
-			);
-			name = MainMenu.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

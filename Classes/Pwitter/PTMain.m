@@ -482,17 +482,17 @@
 - (void)imageReceived:(NSImage *)aImage forRequest:(NSString *)aIdentifier
 {
 	[fImageMan addImage:aImage forRequest:aIdentifier];
-	[fRequestDetails removeObjectForKey:aIdentifier];
-	[self endingTransaction];
+	//[fRequestDetails removeObjectForKey:aIdentifier];
+	//[self endingTransaction];
 }
 
 - (NSImage *)requestUserImage:(NSString *)aImageLocation forBox:(PTStatusBox *)aNewBox {
 	NSImage *lImageData = [fImageMan fetchImage:aImageLocation];
 	if (!lImageData) {
 		if (![fImageMan isRequestedImage:aImageLocation]) {
-			[self startingTransaction];
+			//[self startingTransaction];
 			NSString *lImageReq = [fTwitterEngine getImageAtURL:aImageLocation];
-			[fRequestDetails setObject:@"IMAGE" forKey:lImageReq];
+			//[fRequestDetails setObject:@"IMAGE" forKey:lImageReq];
 			[fImageMan requestUserImage:aImageLocation forRequest:lImageReq];
 		}
 		[fImageMan registerStatusBox:aNewBox forLocation:aImageLocation];
