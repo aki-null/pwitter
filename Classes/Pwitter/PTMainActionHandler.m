@@ -123,7 +123,7 @@
 		[fPostView setFrame:NSMakeRect(lReplyFrame.origin.x, lReplyFrame.origin.y, lReplyFrame.size.width, lReplyFrame.size.height + 23)];
 		NSRect lPostFrame = [fStatusUpdateField frame];
 		[fBottomView setFrame:NSMakeRect(0, lBottomFrame.origin.y + 23, lBottomFrame.size.width, lBottomFrame.size.height - 23)];
-		[fReplyInfoView setFrame:NSMakeRect(0, lPostFrame.size.height, lInfoFrame.size.width, 23)];
+		[fReplyInfoView setFrame:NSMakeRect(0, lPostFrame.size.height + 3, lInfoFrame.size.width, 23)];
 		[fStatusCollectionView doLayout];
 	}
 }

@@ -8,7 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="1472"/>
+			<integer value="372"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1548,7 +1548,7 @@
 											</object>
 										</object>
 									</object>
-									<string key="NSFrame">{{0, 350}, {245, 1}}</string>
+									<string key="NSFrame">{{0, 344}, {245, 1}}</string>
 									<reference key="NSSuperview" ref="137448738"/>
 									<string key="NSClassName">NSView</string>
 								</object>
@@ -1565,11 +1565,11 @@
 												<object class="NSView" id="766733861">
 													<reference key="NSNextResponder" ref="245296969"/>
 													<int key="NSvFlags">274</int>
-													<string key="NSFrameSize">{230, 351}</string>
+													<string key="NSFrameSize">{230, 345}</string>
 													<reference key="NSSuperview" ref="245296969"/>
 												</object>
 											</object>
-											<string key="NSFrameSize">{230, 351}</string>
+											<string key="NSFrameSize">{230, 345}</string>
 											<reference key="NSSuperview" ref="307448074"/>
 											<reference key="NSNextKeyView" ref="766733861"/>
 											<reference key="NSDocView" ref="766733861"/>
@@ -1582,7 +1582,7 @@
 										<object class="BGHUDScroller" id="647314322">
 											<reference key="NSNextResponder" ref="307448074"/>
 											<int key="NSvFlags">256</int>
-											<string key="NSFrame">{{230, 0}, {15, 351}}</string>
+											<string key="NSFrame">{{230, 0}, {15, 345}}</string>
 											<reference key="NSSuperview" ref="307448074"/>
 											<reference key="NSTarget" ref="307448074"/>
 											<string key="NSAction">_doScroller:</string>
@@ -1601,7 +1601,7 @@
 											<string key="themeKey">gradientTheme</string>
 										</object>
 									</object>
-									<string key="NSFrameSize">{245, 351}</string>
+									<string key="NSFrameSize">{245, 345}</string>
 									<reference key="NSSuperview" ref="137448738"/>
 									<reference key="NSNextKeyView" ref="245296969"/>
 									<int key="NSsFlags">16</int>
@@ -1611,7 +1611,7 @@
 									<string key="themeKey">gradientTheme</string>
 								</object>
 							</object>
-							<string key="NSFrame">{{0, 48}, {245, 351}}</string>
+							<string key="NSFrame">{{0, 54}, {245, 345}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
 							<string key="NSClassName">NSView</string>
 						</object>
@@ -1823,7 +1823,7 @@
 									<string key="NSClassName">NSView</string>
 								</object>
 							</object>
-							<string key="NSFrame">{{0, 25}, {245, 23}}</string>
+							<string key="NSFrame">{{0, 27}, {245, 23}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
 							<string key="NSClassName">NSView</string>
 						</object>
@@ -11617,8 +11617,8 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 					<reference ref="9"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
-					<string>{{189, 65}, {245, 424}}</string>
-					<string>{{189, 65}, {245, 424}}</string>
+					<string>{{483, 224}, {245, 424}}</string>
+					<string>{{483, 224}, {245, 424}}</string>
 					<reference ref="9"/>
 					<string>{{180, 45}, {245, 418}}</string>
 					<reference ref="9"/>
