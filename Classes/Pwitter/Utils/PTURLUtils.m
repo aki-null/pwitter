@@ -1,6 +1,7 @@
 #import "PTURLUtils.h"
 
 // derived from natsulion
+// Copyright (c) 2007-2008, Akira Ueda
 
 @implementation PTURLUtils
 

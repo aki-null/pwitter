@@ -37,6 +37,7 @@
     IBOutlet id fQuickReadShortcutRecorder;
     IBOutlet id fStatusCollectionView;
     IBOutlet id fHideWhenReading;
+    IBOutlet id fSelectOldestUnread;
 	PTHotKey *fHotKey;
 	PTHotKey *fHotKeyRead;
 	BOOL fShouldReset;

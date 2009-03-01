@@ -75,7 +75,7 @@ static id _sharedHotKeyCenter = nil;
 								[[hotKey keyCombo] modifiers],
 								hotKeyID,
 								GetEventDispatcherTarget(),
-								nil,
+								0,
 								&carbonHotKey );
 
 	if( err )

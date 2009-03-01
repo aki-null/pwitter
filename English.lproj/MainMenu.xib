@@ -8,9 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="1117"/>
-			<integer value="539"/>
-			<integer value="2138"/>
+			<integer value="1472"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1550,7 +1548,7 @@
 											</object>
 										</object>
 									</object>
-									<string key="NSFrame">{{0, 325}, {245, 1}}</string>
+									<string key="NSFrame">{{0, 350}, {245, 1}}</string>
 									<reference key="NSSuperview" ref="137448738"/>
 									<string key="NSClassName">NSView</string>
 								</object>
@@ -1567,11 +1565,11 @@
 												<object class="NSView" id="766733861">
 													<reference key="NSNextResponder" ref="245296969"/>
 													<int key="NSvFlags">274</int>
-													<string key="NSFrameSize">{230, 326}</string>
+													<string key="NSFrameSize">{230, 351}</string>
 													<reference key="NSSuperview" ref="245296969"/>
 												</object>
 											</object>
-											<string key="NSFrameSize">{230, 326}</string>
+											<string key="NSFrameSize">{230, 351}</string>
 											<reference key="NSSuperview" ref="307448074"/>
 											<reference key="NSNextKeyView" ref="766733861"/>
 											<reference key="NSDocView" ref="766733861"/>
@@ -1584,7 +1582,7 @@
 										<object class="BGHUDScroller" id="647314322">
 											<reference key="NSNextResponder" ref="307448074"/>
 											<int key="NSvFlags">256</int>
-											<string key="NSFrame">{{230, 0}, {15, 326}}</string>
+											<string key="NSFrame">{{230, 0}, {15, 351}}</string>
 											<reference key="NSSuperview" ref="307448074"/>
 											<reference key="NSTarget" ref="307448074"/>
 											<string key="NSAction">_doScroller:</string>
@@ -1603,7 +1601,7 @@
 											<string key="themeKey">gradientTheme</string>
 										</object>
 									</object>
-									<string key="NSFrameSize">{245, 326}</string>
+									<string key="NSFrameSize">{245, 351}</string>
 									<reference key="NSSuperview" ref="137448738"/>
 									<reference key="NSNextKeyView" ref="245296969"/>
 									<int key="NSsFlags">16</int>
@@ -1613,7 +1611,7 @@
 									<string key="themeKey">gradientTheme</string>
 								</object>
 							</object>
-							<string key="NSFrame">{{0, 73}, {245, 326}}</string>
+							<string key="NSFrame">{{0, 48}, {245, 351}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
 							<string key="NSClassName">NSView</string>
 						</object>
@@ -1731,7 +1729,7 @@
 								<object class="NSTextField" id="513036667">
 									<reference key="NSNextResponder" ref="14332846"/>
 									<int key="NSvFlags">290</int>
-									<string key="NSFrame">{{5, 0}, {235, 44}}</string>
+									<string key="NSFrame">{{5, 0}, {235, 21}}</string>
 									<reference key="NSSuperview" ref="14332846"/>
 									<bool key="NSEnabled">YES</bool>
 									<object class="NSTextFieldCell" key="NSCell" id="375397337">
@@ -1820,12 +1818,12 @@
 											</object>
 										</object>
 									</object>
-									<string key="NSFrame">{{0, 42}, {245, 23}}</string>
+									<string key="NSFrame">{{0, 22}, {245, 23}}</string>
 									<reference key="NSSuperview" ref="14332846"/>
 									<string key="NSClassName">NSView</string>
 								</object>
 							</object>
-							<string key="NSFrame">{{0, 25}, {245, 45}}</string>
+							<string key="NSFrame">{{0, 25}, {245, 23}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
 							<string key="NSClassName">NSView</string>
 						</object>
@@ -1952,7 +1950,7 @@
 				<nil key="NSViewClass"/>
 				<string key="NSWindowContentMaxSize">{3.40282e+38, 3.40282e+38}</string>
 				<object class="NSView" key="NSWindowView" id="507017274">
-					<reference key="NSNextResponder"/>
+					<nil key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
 					<object class="NSMutableArray" key="NSSubviews">
 						<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1966,7 +1964,7 @@
 								<object class="NSTabViewItem" id="898073496">
 									<string key="NSIdentifier">1</string>
 									<object class="NSView" key="NSView" id="324604553">
-										<reference key="NSNextResponder" ref="151862960"/>
+										<nil key="NSNextResponder"/>
 										<int key="NSvFlags">256</int>
 										<object class="NSMutableArray" key="NSSubviews">
 											<bool key="EncodedWithXMLCoder">YES</bool>
@@ -2272,7 +2270,6 @@
 											</object>
 										</object>
 										<string key="NSFrame">{{10, 33}, {371, 261}}</string>
-										<reference key="NSSuperview" ref="151862960"/>
 									</object>
 									<string key="NSLabel">General</string>
 									<reference key="NSColor" ref="878439734"/>
@@ -2893,7 +2890,7 @@
 								<object class="NSTabViewItem" id="853009430">
 									<string key="NSIdentifier">4</string>
 									<object class="NSView" key="NSView" id="483367509">
-										<nil key="NSNextResponder"/>
+										<reference key="NSNextResponder" ref="151862960"/>
 										<int key="NSvFlags">256</int>
 										<object class="NSMutableArray" key="NSSubviews">
 											<bool key="EncodedWithXMLCoder">YES</bool>
@@ -3132,20 +3129,21 @@
 											</object>
 										</object>
 										<string key="NSFrame">{{10, 33}, {371, 261}}</string>
+										<reference key="NSSuperview" ref="151862960"/>
 									</object>
 									<string key="NSLabel">Shortcut</string>
 									<reference key="NSColor" ref="878439734"/>
 									<reference key="NSTabView" ref="151862960"/>
 								</object>
 							</object>
-							<reference key="NSSelectedTabViewItem" ref="898073496"/>
+							<reference key="NSSelectedTabViewItem" ref="853009430"/>
 							<reference key="NSFont" ref="1062233408"/>
 							<int key="NSTvFlags">0</int>
 							<bool key="NSAllowTruncatedLabels">YES</bool>
 							<bool key="NSDrawsBackground">YES</bool>
 							<object class="NSMutableArray" key="NSSubviews">
 								<bool key="EncodedWithXMLCoder">YES</bool>
-								<reference ref="324604553"/>
+								<reference ref="483367509"/>
 							</object>
 						</object>
 						<object class="NSButton" id="493604906">
@@ -3170,7 +3168,6 @@
 						</object>
 					</object>
 					<string key="NSFrameSize">{417, 353}</string>
-					<reference key="NSSuperview"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>
 				<string key="NSMaxSize">{3.40282e+38, 3.40282e+38}</string>
@@ -3312,7 +3309,7 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 									</object>
 								</object>
 								<string key="NSAlternateContents"/>
-								<string key="NSKeyEquivalent"/>
+								<string type="base64-UTF8" key="NSKeyEquivalent">DQ</string>
 								<int key="NSPeriodicDelay">200</int>
 								<int key="NSPeriodicInterval">25</int>
 							</object>
@@ -3352,9 +3349,9 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 				<string key="NSWindowClass">NSPanel</string>
 				<nil key="NSViewClass"/>
 				<string key="NSWindowContentMaxSize">{3.40282e+38, 3.40282e+38}</string>
-				<string key="NSWindowContentMinSize">{311, 433}</string>
+				<string key="NSWindowContentMinSize">{311, 473}</string>
 				<object class="NSView" key="NSWindowView" id="309120144">
-					<reference key="NSNextResponder"/>
+					<nil key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
 					<object class="NSMutableArray" key="NSSubviews">
 						<bool key="EncodedWithXMLCoder">YES</bool>
@@ -3867,10 +3864,9 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 						</object>
 					</object>
 					<string key="NSFrameSize">{311, 473}</string>
-					<reference key="NSSuperview"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>
-				<string key="NSMinSize">{311, 452}</string>
+				<string key="NSMinSize">{311, 492}</string>
 				<string key="NSMaxSize">{3.40282e+38, 3.40282e+38}</string>
 				<string key="NSFrameAutosaveName">CustomFilterPanel</string>
 			</object>
@@ -4938,22 +4934,6 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
-						<string key="label">performClick:</string>
-						<reference key="source" ref="429562043"/>
-						<reference key="destination" ref="745408768"/>
-					</object>
-					<int key="connectionID">580</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">performClick:</string>
-						<reference key="source" ref="429562043"/>
-						<reference key="destination" ref="261106713"/>
-					</object>
-					<int key="connectionID">602</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
 						<string key="label">pressOK:</string>
 						<reference key="source" ref="259615924"/>
 						<reference key="destination" ref="493604906"/>
@@ -5766,28 +5746,12 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 					<int key="connectionID">1656</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">delegate</string>
-						<reference key="source" ref="513036667"/>
-						<reference key="destination" ref="148151763"/>
-					</object>
-					<int key="connectionID">1657</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
 						<string key="label">selectText:</string>
 						<reference key="source" ref="513036667"/>
 						<reference key="destination" ref="705341025"/>
 					</object>
 					<int key="connectionID">1658</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">fPostTextField</string>
-						<reference key="source" ref="148151763"/>
-						<reference key="destination" ref="513036667"/>
-					</object>
-					<int key="connectionID">1659</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -6678,14 +6642,6 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 					<int key="connectionID">2088</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">fMainActionController</string>
-						<reference key="source" ref="148151763"/>
-						<reference key="destination" ref="584601206"/>
-					</object>
-					<int key="connectionID">2095</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
 						<string key="label">openWebSelected:</string>
 						<reference key="source" ref="584601206"/>
@@ -7148,6 +7104,70 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 						<reference key="destination" ref="968313579"/>
 					</object>
 					<int key="connectionID">2266</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">fSelectOldestUnread</string>
+						<reference key="source" ref="259615924"/>
+						<reference key="destination" ref="676499799"/>
+					</object>
+					<int key="connectionID">2267</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">fCollectionView</string>
+						<reference key="source" ref="513036667"/>
+						<reference key="destination" ref="137448738"/>
+					</object>
+					<int key="connectionID">2268</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">fReplyTextView</string>
+						<reference key="source" ref="513036667"/>
+						<reference key="destination" ref="686340029"/>
+					</object>
+					<int key="connectionID">2269</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">fPostView</string>
+						<reference key="source" ref="513036667"/>
+						<reference key="destination" ref="14332846"/>
+					</object>
+					<int key="connectionID">2270</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">fCollection</string>
+						<reference key="source" ref="513036667"/>
+						<reference key="destination" ref="766733861"/>
+					</object>
+					<int key="connectionID">2271</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">fCharacterCounter</string>
+						<reference key="source" ref="513036667"/>
+						<reference key="destination" ref="148151763"/>
+					</object>
+					<int key="connectionID">2272</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">fMainActionController</string>
+						<reference key="source" ref="513036667"/>
+						<reference key="destination" ref="584601206"/>
+					</object>
+					<int key="connectionID">2273</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">fMainWindow</string>
+						<reference key="source" ref="513036667"/>
+						<reference key="destination" ref="972006081"/>
+					</object>
+					<int key="connectionID">2274</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -11028,7 +11048,6 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 					<string>82.ImportedFromIB2</string>
 					<string>83.IBPluginDependency</string>
 					<string>83.ImportedFromIB2</string>
-					<string>941.CustomClassName</string>
 					<string>941.IBPluginDependency</string>
 					<string>942.IBPluginDependency</string>
 					<string>962.IBPluginDependency</string>
@@ -11478,7 +11497,7 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 					<string>{{354, 311}, {311, 473}}</string>
 					<reference ref="6"/>
 					<reference ref="5"/>
-					<string>{311, 433}</string>
+					<string>{311, 473}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -11598,8 +11617,8 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 					<reference ref="9"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
-					<string>{{77, 185}, {245, 424}}</string>
-					<string>{{77, 185}, {245, 424}}</string>
+					<string>{{189, 65}, {245, 424}}</string>
+					<string>{{189, 65}, {245, 424}}</string>
 					<reference ref="9"/>
 					<string>{{180, 45}, {245, 418}}</string>
 					<reference ref="9"/>
@@ -11619,8 +11638,8 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 					<string>PTStatusTextField</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{281, 294}, {417, 353}}</string>
-					<string>{{281, 294}, {417, 353}}</string>
+					<string>{{313, 398}, {417, 353}}</string>
+					<string>{{313, 398}, {417, 353}}</string>
 					<reference ref="8"/>
 					<string>{{377, 247}, {398, 236}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -11714,7 +11733,6 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 					<reference ref="9"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
-					<string>PTCharacterCounter</string>
 					<string>com.binarymethod.BGHUDAppKitPlugin</string>
 					<string>com.binarymethod.BGHUDAppKitPlugin</string>
 					<string>com.binarymethod.BGHUDAppKitPlugin</string>
@@ -11749,7 +11767,7 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">2266</int>
+			<int key="maxID">2275</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -11835,35 +11853,6 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 						<string key="NS.key.0">fMainController</string>
 						<string key="NS.object.0">id</string>
 					</object>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBUserSource</string>
-						<string key="minorKey"/>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">PTCharacterCounter</string>
-					<string key="superclassName">NSTextField</string>
-					<object class="NSMutableDictionary" key="outlets">
-						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSMutableArray" key="dict.sortedKeys">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>fMainActionController</string>
-							<string>fPostTextField</string>
-						</object>
-						<object class="NSMutableArray" key="dict.values">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>id</string>
-							<string>id</string>
-						</object>
-					</object>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">Classes/Pwitter/PTCharacterCounter.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">PTCharacterCounter</string>
-					<string key="superclassName">NSTextField</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBUserSource</string>
 						<string key="minorKey"/>
@@ -12244,6 +12233,29 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 				<object class="IBPartialClassDescription">
 					<string key="className">PTPostField</string>
 					<string key="superclassName">NSTextField</string>
+					<object class="NSMutableDictionary" key="outlets">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSMutableArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>fCharacterCounter</string>
+							<string>fCollection</string>
+							<string>fCollectionView</string>
+							<string>fMainActionController</string>
+							<string>fMainWindow</string>
+							<string>fPostView</string>
+							<string>fReplyTextView</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+						</object>
+					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">Classes/Pwitter/PTPostField.h</string>
@@ -12302,6 +12314,7 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 							<string>fPostTextField</string>
 							<string>fQuickReadShortcutRecorder</string>
 							<string>fReceiveFromNonFollowers</string>
+							<string>fSelectOldestUnread</string>
 							<string>fShortcutRecorder</string>
 							<string>fStatusCollectionView</string>
 							<string>fStatusController</string>
@@ -12322,6 +12335,7 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 							<string>id</string>
 							<string>id</string>
 							<string>PTMainActionHandler</string>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>

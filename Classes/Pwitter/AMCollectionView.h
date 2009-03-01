@@ -63,6 +63,8 @@
 
 - (void)scrollObjectToVisible:(id)object;
 
+- (void)doLayout;
+
 
 @end
 

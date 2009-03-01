@@ -10,6 +10,15 @@
 
 
 @interface PTPostField : NSTextField {
+    IBOutlet id fCollectionView;
+    IBOutlet id fPostView;
+    IBOutlet id fReplyTextView;
+    IBOutlet id fCollection;
+    IBOutlet id fCharacterCounter;
+    IBOutlet id fMainActionController;
+    IBOutlet id fMainWindow;
 }
+
+- (void)automaticallyResize;
 
 @end

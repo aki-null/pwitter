@@ -38,7 +38,6 @@
 		614CA0130F4EDAAB007B3940 /* PTGrowlNotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 614C9FBE0F4EDAAB007B3940 /* PTGrowlNotificationManager.m */; };
 		614CA0140F4EDAAB007B3940 /* PTPreferenceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 614C9FC10F4EDAAB007B3940 /* PTPreferenceManager.m */; };
 		614CA0150F4EDAAB007B3940 /* PTPreferenceWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 614C9FC30F4EDAAB007B3940 /* PTPreferenceWindow.m */; };
-		614CA0170F4EDAAB007B3940 /* PTCharacterCounter.m in Sources */ = {isa = PBXBuildFile; fileRef = 614C9FC70F4EDAAB007B3940 /* PTCharacterCounter.m */; };
 		614CA0180F4EDAAB007B3940 /* PTClickableIcon.m in Sources */ = {isa = PBXBuildFile; fileRef = 614C9FC90F4EDAAB007B3940 /* PTClickableIcon.m */; };
 		614CA0190F4EDAAB007B3940 /* PTCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 614C9FCB0F4EDAAB007B3940 /* PTCollectionView.m */; };
 		614CA01A0F4EDAAB007B3940 /* PTMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 614C9FCD0F4EDAAB007B3940 /* PTMain.m */; };
@@ -186,8 +185,6 @@
 		614C9FC10F4EDAAB007B3940 /* PTPreferenceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTPreferenceManager.m; sourceTree = "<group>"; };
 		614C9FC20F4EDAAB007B3940 /* PTPreferenceWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTPreferenceWindow.h; sourceTree = "<group>"; };
 		614C9FC30F4EDAAB007B3940 /* PTPreferenceWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTPreferenceWindow.m; sourceTree = "<group>"; };
-		614C9FC60F4EDAAB007B3940 /* PTCharacterCounter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTCharacterCounter.h; sourceTree = "<group>"; };
-		614C9FC70F4EDAAB007B3940 /* PTCharacterCounter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTCharacterCounter.m; sourceTree = "<group>"; };
 		614C9FC80F4EDAAB007B3940 /* PTClickableIcon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTClickableIcon.h; sourceTree = "<group>"; };
 		614C9FC90F4EDAAB007B3940 /* PTClickableIcon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTClickableIcon.m; sourceTree = "<group>"; };
 		614C9FCA0F4EDAAB007B3940 /* PTCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTCollectionView.h; sourceTree = "<group>"; };
@@ -473,8 +470,6 @@
 				614C9FBF0F4EDAAB007B3940 /* Preferences */,
 				614C9FBA0F4EDAAB007B3940 /* GrowlNotification */,
 				614C9FF80F4EDAAB007B3940 /* Utils */,
-				614C9FC60F4EDAAB007B3940 /* PTCharacterCounter.h */,
-				614C9FC70F4EDAAB007B3940 /* PTCharacterCounter.m */,
 				614C9FC80F4EDAAB007B3940 /* PTClickableIcon.h */,
 				614C9FC90F4EDAAB007B3940 /* PTClickableIcon.m */,
 				614C9FCA0F4EDAAB007B3940 /* PTCollectionView.h */,
@@ -704,7 +699,6 @@
 				614CA0130F4EDAAB007B3940 /* PTGrowlNotificationManager.m in Sources */,
 				614CA0140F4EDAAB007B3940 /* PTPreferenceManager.m in Sources */,
 				614CA0150F4EDAAB007B3940 /* PTPreferenceWindow.m in Sources */,
-				614CA0170F4EDAAB007B3940 /* PTCharacterCounter.m in Sources */,
 				614CA0180F4EDAAB007B3940 /* PTClickableIcon.m in Sources */,
 				614CA0190F4EDAAB007B3940 /* PTCollectionView.m in Sources */,
 				614CA01A0F4EDAAB007B3940 /* PTMain.m in Sources */,

@@ -192,18 +192,20 @@
 }
 
 - (IBAction)quickPostChanged:(id)sender {
-	[fShortcutRecorder setEnabled:[sender state] == NSOnState];
+	[fShortcutRecorder setEnabled:[sender state]];
 }
 
 - (IBAction)growlDisabled:(id)sender {
-    if ([fDisableGrowl state] == NSOnState) {
+    if ([fDisableGrowl state]) {
 		[fDisableMessageNotification setEnabled:NO];
 		[fDisableStatusNotification setEnabled:NO];
 		[fDisableReplyNotification setEnabled:NO];
+		[fDisableErrorNotification setEnabled:NO];
 	} else {
 		[fDisableMessageNotification setEnabled:YES];
 		[fDisableStatusNotification setEnabled:YES];
 		[fDisableReplyNotification setEnabled:YES];
+		[fDisableErrorNotification setEnabled:YES];
 	}
 }
 
@@ -237,8 +239,9 @@
 }
 
 - (IBAction)quickReadChanged:(id)sender {
-    [fQuickReadShortcutRecorder setEnabled:[sender state] == NSOnState];
-	[fHideWhenReading setEnabled:[sender state] == NSOnState];
+    [fQuickReadShortcutRecorder setEnabled:[sender state]];
+	[fHideWhenReading setEnabled:[sender state]];
+	[fSelectOldestUnread setEnabled:[sender state]];
 }
 
 - (IBAction)resetTimeline:(id)sender {

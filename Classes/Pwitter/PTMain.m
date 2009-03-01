@@ -356,7 +356,7 @@
 	NSString *lRequestType = [fRequestDetails objectForKey:aRequestIdentifier];
 	if (lRequestType == @"POST" || lRequestType == @"MESSAGE") {
 		[fStatusUpdateField setEnabled:YES];
-	} else if (lRequestType == @"IMAGE") {
+	} else if (lRequestType == nil) {
 		[fImageMan requestFailed:aRequestIdentifier];
 		lIgnoreError = YES;
 	}

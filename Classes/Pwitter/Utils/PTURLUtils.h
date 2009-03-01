@@ -1,6 +1,7 @@
 #import <Cocoa/Cocoa.h>
 
 // derived from natsulion
+// Copyright (c) 2007-2008, Akira Ueda
 
 #define NTLN_URLEXTRACTOR_PREFIX_HTTP @"http://"
 #define NTLN_URLEXTRACTOR_PREFIX_HTTPS @"https://"

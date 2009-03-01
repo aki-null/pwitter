@@ -125,12 +125,12 @@
     [[_connections allValues] makeObjectsPerformSelector:@selector(cancel)];
     [_connections release];
     
-    [_username release];
-    [_password release];
-    [_clientName release];
-    [_clientVersion release];
-    [_clientURL release];
-    [_clientSourceToken release];
+	[_username release];
+	[_password release];
+	[_clientName release];
+	[_clientVersion release];
+	[_clientURL release];
+	[_clientSourceToken release];
 	[_APIDomain release];
 #if YAJL_AVAILABLE
 	[_searchDomain release];

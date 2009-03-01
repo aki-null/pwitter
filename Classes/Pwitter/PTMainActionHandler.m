@@ -91,8 +91,8 @@
 
 - (void)messageToStatus:(PTStatusBox *)aBox {
 	NSString *lMessageTarget = [NSString stringWithFormat:@"D %@ %@", aBox.userId, [fStatusUpdateField stringValue]];
-	[fStatusUpdateField setStringValue:lMessageTarget];
 	[fMainWindow makeFirstResponder:fStatusUpdateField];
+	[fStatusUpdateField setStringValue:lMessageTarget];
 	[(NSText *)[fMainWindow firstResponder] setSelectedRange:NSMakeRange([[fStatusUpdateField stringValue] length], 0)];
 	[fCharacterCounter setIntValue:140 - [[fStatusUpdateField stringValue] length]];
 }
@@ -119,9 +119,12 @@
 		NSRect lReplyFrame = [fPostView frame];
 		NSRect lBottomFrame = [fBottomView frame];
 		NSRect lInfoFrame = [fReplyInfoView frame];
-		[fReplyInfoView setFrame:NSMakeRect(0, lReplyFrame.size.height, lInfoFrame.size.width, lInfoFrame.size.height)];
+		[fReplyInfoView setHidden:NO];
 		[fPostView setFrame:NSMakeRect(lReplyFrame.origin.x, lReplyFrame.origin.y, lReplyFrame.size.width, lReplyFrame.size.height + 23)];
+		NSRect lPostFrame = [fStatusUpdateField frame];
 		[fBottomView setFrame:NSMakeRect(0, lBottomFrame.origin.y + 23, lBottomFrame.size.width, lBottomFrame.size.height - 23)];
+		[fReplyInfoView setFrame:NSMakeRect(0, lPostFrame.size.height, lInfoFrame.size.width, 23)];
+		[fStatusCollectionView doLayout];
 	}
 }
 
@@ -131,21 +134,23 @@
 		fReplyViewIsOpen = NO;
 		NSRect lReplyFrame = [fPostView frame];
 		NSRect lBottomFrame = [fBottomView frame];
-		[fPostView setFrame:NSMakeRect(lReplyFrame.origin.x, lReplyFrame.origin.y, lReplyFrame.size.width, 44)];
+		[fReplyInfoView setHidden:YES];
+		[fPostView setFrame:NSMakeRect(lReplyFrame.origin.x, lReplyFrame.origin.y, lReplyFrame.size.width, lReplyFrame.size.height - 23)];
 		[fBottomView setFrame:NSMakeRect(0, lBottomFrame.origin.y - 23, lBottomFrame.size.width, lBottomFrame.size.height + 23)];
 		[fStatusUpdateField setStringValue:@""];
 		[fCharacterCounter setIntValue:140 - [[fStatusUpdateField stringValue] length]];
+		[fStatusCollectionView doLayout];
 	}
 }
 
 - (void)replyToStatus:(PTStatusBox *)aBox {
 	NSString *replyTarget = [NSString stringWithFormat:@"@%@ %@", aBox.userId, [fStatusUpdateField stringValue]];
+	[fMainWindow makeFirstResponder:fStatusUpdateField];
 	[fStatusUpdateField setStringValue:replyTarget];
+	[(NSText *)[fMainWindow firstResponder] setSelectedRange:NSMakeRange([[fStatusUpdateField stringValue] length], 0)];
 	[fCharacterCounter setIntValue:140 - [[fStatusUpdateField stringValue] length]];
 	[fMainController setReplyID:aBox.updateId];
 	[fReplyToBox setStringValue:[@"@" stringByAppendingString:aBox.userId]];
-	[fMainWindow makeFirstResponder:fStatusUpdateField];
-	[(NSText *)[fMainWindow firstResponder] setSelectedRange:NSMakeRange([[fStatusUpdateField stringValue] length], 0)];
 	[self openReplyView];
 }
 
@@ -243,8 +248,8 @@
 - (void)retweetStatus:(PTStatusBox *)aBox {
 	if (aBox.sType == ErrorMessage) return;
 	NSString *lMessageTarget = [NSString stringWithFormat:@"RT @%@ %@", aBox.userId, [aBox.statusMessage string]];
-	[fStatusUpdateField setStringValue:lMessageTarget];
 	[fMainWindow makeFirstResponder:fStatusUpdateField];
+	[fStatusUpdateField setStringValue:lMessageTarget];
 	[(NSText *)[fMainWindow firstResponder] setSelectedRange:NSMakeRange([[fStatusUpdateField stringValue] length], 0)];
 	[fCharacterCounter setIntValue:140 - [[fStatusUpdateField stringValue] length]];
 }
