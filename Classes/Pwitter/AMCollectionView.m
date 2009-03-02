@@ -562,7 +562,7 @@
 	}
 	viewSize.width = [self frame].size.width;
 	viewSize.height = y;
-	[[self animator] setFrameSize:viewSize];
+	[self setFrameSize:viewSize];
 	[NSAnimationContext endGrouping];
 }
 
