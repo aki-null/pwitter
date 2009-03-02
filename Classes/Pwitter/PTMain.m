@@ -12,6 +12,7 @@
 #import "PTMainActionHandler.h"
 #import "PTReadManager.h"
 #import "PTCollectionView.h"
+#import "PTURLUtils.h"
 
 #define STATUS_LIMIT 1000
 
@@ -139,6 +140,7 @@
 
 - (void)endingTransaction {
 	if ([fRequestDetails count] == 0) {
+		fUpdating = NO;
 		[self playSoundEffect];
 		[fProgressBar stopAnimation:self];
 		[fProgressBar setHidden:YES];
@@ -157,12 +159,12 @@
 			[fStatusController setFilterPredicate:lBackupPredicate];
 			[lBackupPredicate release];
 		}
+		[self postGrowlNotifications];
 		[fStatusCollection setContent:[fStatusController arrangedObjects]];
 		if ([fStatusController selectsInsertedObjects]) {
 			id lObj = [[fStatusController selectedObjects] objectAtIndex:0];
 			if (lObj) [fStatusCollection selectItemsForObjects:[NSArray arrayWithObject:lObj]];
 		}
-		[self postGrowlNotifications];
 	}
 }
 
@@ -420,7 +422,7 @@
 		[fIgnoreList setObject:@"" forKey:[[aStatuses lastObject] objectForKey:@"id"]];
 		fCurrentSoundStatus = StatusSent;
 		[self postComplete];
-		if ([[PTPreferenceManager sharedInstance] updateAfterPost])
+		if ([[PTPreferenceManager sharedInstance] updateAfterPost] && !fUpdating)
 			[self updateTimeline:fMainWindow];
 	} else if ((lUpdateType == @"REPLY_UPDATE" || lUpdateType == @"INIT_REPLY_UPDATE") && 
 			   fLastReplyID < lNewId) {
@@ -511,6 +513,7 @@
 		[self runInitialUpdates];
 	} else {
 		[self startingTransaction];
+		fUpdating = YES;
 		[fRequestDetails setObject:@"UPDATE" 
 							forKey:[fTwitterEngine getFollowedTimelineFor:[fTwitterEngine username] 
 																  sinceID:fLastUpdateID startingAtPage:0 count:200]];
@@ -520,9 +523,46 @@
 	}
 }
 
+- (NSString *)createShortURLs:(NSString *)aMessage {
+	NSString *lServiceURL;
+	switch ([[PTPreferenceManager sharedInstance] urlShorteningService]) {
+		case 1:
+			lServiceURL = @"http://tinyurl.com/api-create.php?url=";
+			break;
+		case 2:
+			lServiceURL = @"http://is.gd/api.php?longurl=";
+			break;
+		case 3:
+			lServiceURL = @"http://zi.ma/?module=ShortURL&file=Add&mode=API&url=";
+			break;
+		default:
+			return aMessage;
+			break;
+	}
+	NSString *lFinalMessage = aMessage;
+	PTURLUtils *lUtils = [PTURLUtils utils];
+	NSArray *lTokens = [lUtils tokenizeByAll:aMessage];
+	int i;
+	for (i = 0; i < [lTokens count]; i++) {
+		NSString *lToken = [lTokens objectAtIndex:i];
+		if ([lUtils isURLToken:lToken]) {
+			NSURL *lUrl = [NSURL URLWithString:[lServiceURL stringByAppendingString:lToken]];
+			NSString *lTinyURLString = [NSString stringWithContentsOfURL:lUrl 
+																encoding:NSUTF8StringEncoding 
+																   error:nil];
+			if (lTinyURLString && [lUtils isURLToken:lTinyURLString])
+				lFinalMessage = [lFinalMessage stringByReplacingCharactersInRange:[lFinalMessage rangeOfString:lToken] 
+																	   withString:lTinyURLString];
+		}
+	}
+	return lFinalMessage;
+}
+
 - (void)makePost:(NSString *)aMessage {
 	if ([aMessage length] == 0) return;
 	[self startingTransaction];
+	if ([[PTPreferenceManager sharedInstance] urlShorteningService])
+		aMessage = [self createShortURLs:aMessage];
 	NSArray *lSeparated = [aMessage componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 	if ([lSeparated count] >= 2 && [[lSeparated objectAtIndex:0] isEqual:@"D"]) {
 		NSString *lMessageTarget;

@@ -195,6 +195,14 @@
 	return [fPrefData boolForKey:@"select_oldest_unread"];
 }
 
+- (int)urlShorteningService {
+	return [fPrefData integerForKey:@"url_shortening_service"];
+}
+
+- (int)maxNotification {
+	return [fPrefData integerForKey:@"max_notification"];
+}
+
 - (void)setHideDockIcon:(BOOL)aFlag {
 	NSString * lFilePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/../Info.plist"];
 	if (lFilePath) {

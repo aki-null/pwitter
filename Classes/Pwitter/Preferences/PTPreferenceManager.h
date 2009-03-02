@@ -50,6 +50,8 @@
 - (void)setCustomFilters:(id)aFilters;
 - (BOOL)hideOnDeactivate;
 - (BOOL)selectOldestUnread;
+- (int)urlShorteningService;
+- (int)maxNotification;
 - (void)setHideDockIcon:(BOOL)aFlag;
 - (BOOL)hideDockIcon;
 

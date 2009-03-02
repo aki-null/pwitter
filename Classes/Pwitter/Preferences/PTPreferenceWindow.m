@@ -217,10 +217,10 @@
 			lTargetHeight = 353;
 			break;
 		case 2:
-			lTargetHeight = 261;
+			lTargetHeight = 288;
 			break;
 		case 3:
-			lTargetHeight = 335;
+			lTargetHeight = 364;
 			break;
 		case 4:
 			lTargetHeight = 310;

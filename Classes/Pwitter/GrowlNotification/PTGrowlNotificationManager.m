@@ -86,6 +86,23 @@
 }
 
 - (void)postNotifications:(NSArray *)aBoxes defaultImage:(NSImage *)aImage {
+	int lMaxNotif;
+	switch ([[PTPreferenceManager sharedInstance] maxNotification]) {
+		case 0:
+			lMaxNotif = 5;
+			break;
+		case 1:
+			lMaxNotif = 10;
+			break;
+		case 2:
+			lMaxNotif = 20;
+			break;
+		case 3:
+			lMaxNotif = 30;
+			break;
+		default:
+			break;
+	}
 	NSArray *lFilteredBoxes = [self filterNotifications:aBoxes];
 	if (!lFilteredBoxes) return;
 	PTStatusBox *lCurrentBox;
@@ -94,7 +111,7 @@
 	BOOL lOverLimit = NO;
 	for (lCurrentBox in lFilteredBoxes) {
 		i++;
-		if (i > 10) {
+		if (i > lMaxNotif) {
 			lOverLimit = YES;
 			if (![lSenderList containsObject:lCurrentBox.userId])
 				[lSenderList addObject:lCurrentBox.userId];
@@ -126,7 +143,7 @@
 			[lFromList appendString:[NSString stringWithFormat:@"%@", lCurrentString]];
 	}
 	if (lOverLimit) {
-		[self postGeneralNotification:[NSString stringWithFormat:@"%d more tweets from", [lFilteredBoxes count] - 10] 
+		[self postGeneralNotification:[NSString stringWithFormat:@"%d more tweets from", [lFilteredBoxes count] - lMaxNotif] 
 							  message:lFromList 
 							userImage:aImage];
 	}
