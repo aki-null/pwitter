@@ -123,11 +123,8 @@ static PTBubbleFactory *sharedSingleton;
 																	  height:[self bounds].size.height];
 	[lPath fill];
 	[[NSColor colorWithCalibratedRed:0.7 green:0.7 blue:0.7 alpha:1.0] set];
-	[lPath setLineWidth:1.0];
+	[lPath setLineWidth:0.5];
 	[lPath stroke];
-	//	[lPath appendBezierPathWithRoundedRect:NSInsetRect([self bounds], 10.0, 2.0) 
-	//								   xRadius:12.0 
-	//								   yRadius:12.0];
 	// render the selection border
 	if(lIsSelected) {
 		[[NSColor colorWithCalibratedRed:0.8 green:0.8 blue:0.8 alpha:1.0] set];

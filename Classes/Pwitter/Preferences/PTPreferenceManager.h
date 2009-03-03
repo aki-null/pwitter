@@ -52,6 +52,7 @@
 - (BOOL)selectOldestUnread;
 - (int)urlShorteningService;
 - (int)maxNotification;
+- (BOOL)disableAnimation;
 - (void)setHideDockIcon:(BOOL)aFlag;
 - (BOOL)hideDockIcon;
 

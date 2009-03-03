@@ -21,12 +21,16 @@
 }
 
 - (void)drawRect:(NSRect)aRect {
-	[super drawRect:aRect];
 	NSBezierPath *lPath = [NSBezierPath bezierPath];
 	[lPath appendBezierPathWithRoundedRect:[self bounds] 
 								   xRadius:4.0 
 								   yRadius:4.0];
-	[[NSColor colorWithCalibratedRed:0.8 green:0.8 blue:0.8 alpha:0.8] set];
+	
+	[[NSColor colorWithCalibratedRed:0.1 green:0.1 blue:0.1 alpha:0.6] set];
+	if ([self currentEditor])
+		[lPath fill];
+	[super drawRect:aRect];
+	[[NSColor colorWithCalibratedRed:0.7 green:0.7 blue:0.7 alpha:1.0] set];
 	[lPath setLineWidth:2];
 	[lPath stroke];
 }
@@ -39,6 +43,7 @@
 	else
 		lHeight = [[lFieldEditor layoutManager] usedRectForTextContainer:[lFieldEditor textContainer]].size.height + 5.0;
 	if (lHeight < 21.0) lHeight = 21.0;
+	if (lHeight > 130.0) return;
 	NSRect lCurrentRect = [self frame];
 	float lDelta = lHeight - lCurrentRect.size.height;
 	[super setFrameSize:NSMakeSize(lCurrentRect.size.width, lHeight)];

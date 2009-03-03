@@ -132,6 +132,7 @@
 	if ([fRequestDetails count] == 0) {
 		fCurrentSoundStatus = NoneReceived;
 		[fBoxesToAdd removeAllObjects];
+		[fBoxesToNotify removeAllObjects];
 		[fProgressBar startAnimation:self];
 		[fProgressBar setHidden:NO];
 		[fUpdateButton setEnabled:NO];
@@ -332,11 +333,7 @@
 		if (lBoxToFav.sType == ReplyMessage) {
 			lBoxToFav.entityColor = [NSColor colorWithCalibratedRed:0.3 green:0.1 blue:0.1 alpha:1.0];
 		} else {
-			if ([[[PTPreferenceManager sharedInstance] userName] isEqualToString:lBoxToFav.userId]) {
-				lBoxToFav.entityColor = [NSColor colorWithCalibratedRed:0.3 green:0.3 blue:0.3 alpha:1.0];
-			} else {
-				lBoxToFav.entityColor = [NSColor colorWithCalibratedRed:0.2 green:0.2 blue:0.2 alpha:1.0];
-			}
+			lBoxToFav.entityColor = [NSColor colorWithCalibratedRed:0.20 green:0.20 blue:0.20 alpha:1.0];
 		}
 		lBoxToFav.fav = NO;
 		[fRequestDetails removeObjectForKey:lReqType];

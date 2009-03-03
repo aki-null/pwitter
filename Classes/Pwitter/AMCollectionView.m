@@ -9,6 +9,7 @@
 #import "AMCollectionView.h"
 #import "AMCollectionViewItem.h"
 #import "AMCollectionViewItemProtocol.h"
+#import "PTPreferenceManager.h"
 
 
 @interface AMCollectionViewItem (Private)
@@ -518,7 +519,6 @@
 - (void)doLayout
 {
 	[self setNeedsLayout:NO];
-//	[self removeAllSubviews];
 	NSEnumerator *enumerator = [[self content] objectEnumerator];
 	id object;
 	float y = 0.0;
@@ -527,7 +527,8 @@
 	NSSize viewSize;
 	NSRect viewFrame;
 	CGRect visibleRect = NSRectToCGRect([[[self enclosingScrollView] contentView] documentVisibleRect]);
-	[NSAnimationContext beginGrouping];
+	BOOL lDisableAnimation = [[PTPreferenceManager sharedInstance] disableAnimation];
+	if (!lDisableAnimation) [NSAnimationContext beginGrouping];
 //	[[NSAnimationContext currentContext] setDuration:1.0];
 	while ((object = [enumerator nextObject])) {
 		item = [self itemForObject:object];
@@ -540,13 +541,15 @@
 		viewFrame.origin = NSMakePoint(0.0, y);
 		viewFrame.size = viewSize;
 		if ([item isAnimated]) {
-			if (CGRectIntersectsRect(NSRectToCGRect([view frame]), visibleRect) || 
-				CGRectIntersectsRect(NSRectToCGRect(viewFrame), visibleRect)) {
+			if (!lDisableAnimation && 
+				(CGRectIntersectsRect(NSRectToCGRect([view frame]), visibleRect) || 
+				CGRectIntersectsRect(NSRectToCGRect(viewFrame), visibleRect))) {
 				[[view animator] setFrame:viewFrame];
 			} else 
 				[view setFrame:viewFrame];
 		} else {
-			if (CGRectIntersectsRect(NSRectToCGRect(viewFrame), visibleRect)) {
+			if (!lDisableAnimation && 
+				CGRectIntersectsRect(NSRectToCGRect(viewFrame), visibleRect)) {
 				NSRect lTempRect = viewFrame;
 				lTempRect.size.height = 1;
 				lTempRect.origin.y = 0;
@@ -562,8 +565,10 @@
 	}
 	viewSize.width = [self frame].size.width;
 	viewSize.height = y;
-	[self setFrameSize:viewSize];
-	[NSAnimationContext endGrouping];
+	if (!lDisableAnimation) {
+		[[self animator] setFrameSize:viewSize];
+		[NSAnimationContext endGrouping];
+	} else [self setFrameSize:viewSize];
 }
 
 - (void)redrawAllSubviewsInRect:(NSRect)rect

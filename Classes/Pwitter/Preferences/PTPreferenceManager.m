@@ -203,6 +203,10 @@
 	return [fPrefData integerForKey:@"max_notification"];
 }
 
+- (BOOL)disableAnimation {
+	return [fPrefData boolForKey:@"disable_animation"];
+}
+
 - (void)setHideDockIcon:(BOOL)aFlag {
 	NSString * lFilePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/../Info.plist"];
 	if (lFilePath) {
