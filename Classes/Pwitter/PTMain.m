@@ -151,8 +151,9 @@
 		[self removeStatusBoxes];
 		// limit the number of status boxes
 		int lStatusCount = [[fStatusController content] count] + 1;
-		if (lStatusCount > STATUS_LIMIT) {
-			NSRange lDeletionRange = NSMakeRange(STATUS_LIMIT - 1, lStatusCount - STATUS_LIMIT);
+		int lMaxTweets = [[PTPreferenceManager sharedInstance] maxTweets];
+		if (lStatusCount > lMaxTweets) {
+			NSRange lDeletionRange = NSMakeRange(lMaxTweets - 1, lStatusCount - lMaxTweets);
 			NSIndexSet *lToDelete = [NSIndexSet indexSetWithIndexesInRange:lDeletionRange];
 			[fStatusController removeObjectsAtArrangedObjectIndexes:lToDelete];
 		}

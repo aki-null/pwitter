@@ -53,6 +53,7 @@
 - (int)urlShorteningService;
 - (int)maxNotification;
 - (BOOL)disableAnimation;
+- (int)maxTweets;
 - (void)setHideDockIcon:(BOOL)aFlag;
 - (BOOL)hideDockIcon;
 

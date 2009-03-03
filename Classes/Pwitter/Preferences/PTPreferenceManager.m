@@ -207,6 +207,15 @@
 	return [fPrefData boolForKey:@"disable_animation"];
 }
 
+- (int)maxTweets {
+	int lTempInt = [fPrefData integerForKey:@"max_tweets"];
+	if (lTempInt != 0) return lTempInt;
+	else {
+		[fPrefData setInteger:500 forKey:@"max_tweets"];
+		return 500;
+	}
+}
+
 - (void)setHideDockIcon:(BOOL)aFlag {
 	NSString * lFilePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/../Info.plist"];
 	if (lFilePath) {

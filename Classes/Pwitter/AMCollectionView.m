@@ -555,7 +555,6 @@
 				lTempRect.origin.y = 0;
 				[view setFrame:lTempRect];
 				[[view animator] setFrame:viewFrame];
-				[[view animator] setAlphaValue:1.0];
 			} else 
 				[view setFrame:viewFrame];
 			[item setAnimated:YES];
