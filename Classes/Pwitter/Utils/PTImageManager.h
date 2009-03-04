@@ -25,5 +25,6 @@
 - (void)registerStatusBox:(PTStatusBox *)aBox forLocation:(NSString *)aImageLocation;
 - (NSImage *)fetchImage:(NSString *)aImageLocation;
 - (BOOL)isRequestedImage:(NSString *)aImageLocation;
+- (int)numberOfConnections;
 
 @end

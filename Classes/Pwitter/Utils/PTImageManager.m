@@ -87,4 +87,8 @@
 	return [fImageReqForLocation objectForKey:aImageLocation] != nil;
 }
 
+- (int)numberOfConnections {
+	return [fImageLocationForReq count];
+}
+
 @end

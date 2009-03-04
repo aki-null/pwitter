@@ -63,6 +63,7 @@ typedef enum soundEventType {
 	NSSound *fErrorReceived;
 	NSSound *fStatusPosted;
 	BOOL fUpdating;
+	BOOL fIgnoreErrors;
 }
 - (IBAction)updateTimeline:(id)sender;
 - (IBAction)postStatus:(id)sender;

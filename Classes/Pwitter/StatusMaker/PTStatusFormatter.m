@@ -113,7 +113,7 @@
 			lErrorMessage = @"Either you need to provide authentication credentials, or the credentials provided aren't valid.";
 			break;
 		case 404:
-			lErrorMessage = @"Invalid resource requested.";
+			lErrorMessage = @"Invalid resource requested. This is an issue with Twitter server.";
 			break;
 		case 500:
 			lErrorMessage = @"Twitter server error.";

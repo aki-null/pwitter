@@ -24,7 +24,6 @@
 {
 	self = [super initWithFrame:frameRect];
     [self setFieldEditor:YES];
-	[self 
 	return self;
 }
 

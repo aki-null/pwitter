@@ -128,10 +128,10 @@
 }
 
 - (void)startingTransaction {
-	if ([fRequestDetails count] == 0) {
-		fCurrentSoundStatus = NoneReceived;
-		[fBoxesToAdd removeAllObjects];
-		[fBoxesToNotify removeAllObjects];
+//	fCurrentSoundStatus = NoneReceived;
+//	[fBoxesToAdd removeAllObjects];
+//	[fBoxesToNotify removeAllObjects];
+	if ([fTwitterEngine numberOfConnections] == 0) {
 		[fProgressBar startAnimation:self];
 		[fProgressBar setHidden:NO];
 		[fUpdateButton setEnabled:NO];
@@ -139,38 +139,39 @@
 }
 
 - (void)endingTransaction {
-	if ([fRequestDetails count] == 0) {
-		fUpdating = NO;
-		[self playSoundEffect];
-		[fProgressBar stopAnimation:self];
-		[fProgressBar setHidden:YES];
-		[fUpdateButton setEnabled:YES];
-		NSPredicate *lBackupPredicate = [[fStatusController filterPredicate] copy];
-		[self addNewStatusBoxes];
-		[self removeStatusBoxes];
-		// limit the number of status boxes
-		int lStatusCount = [[fStatusController content] count] + 1;
-		int lMaxTweets = [[PTPreferenceManager sharedSingleton] maxTweets];
-		if (lStatusCount > lMaxTweets) {
-			NSRange lDeletionRange = NSMakeRange(lMaxTweets - 1, lStatusCount - lMaxTweets);
-			NSIndexSet *lToDelete = [NSIndexSet indexSetWithIndexesInRange:lDeletionRange];
-			[fStatusController removeObjectsAtArrangedObjectIndexes:lToDelete];
-		}
-		if (lBackupPredicate) {
-			[fStatusController setFilterPredicate:lBackupPredicate];
-			[lBackupPredicate release];
-		}
-		[self postGrowlNotifications];
-		[fStatusCollection setContent:[fStatusController arrangedObjects]];
-		if ([fStatusController selectsInsertedObjects]) {
-			id lObj = [[fStatusController selectedObjects] objectAtIndex:0];
-			if (lObj) [fStatusCollection selectItemsForObjects:[NSArray arrayWithObject:lObj]];
-		}
+	fIgnoreErrors = NO;
+	fUpdating = NO;
+	[self playSoundEffect];
+	[fProgressBar stopAnimation:self];
+	[fProgressBar setHidden:YES];
+	[fUpdateButton setEnabled:YES];
+	NSPredicate *lBackupPredicate = [[fStatusController filterPredicate] copy];
+	[self addNewStatusBoxes];
+	[self removeStatusBoxes];
+	// limit the number of status boxes
+	int lStatusCount = [[fStatusController content] count] + 1;
+	int lMaxTweets = [[PTPreferenceManager sharedSingleton] maxTweets];
+	if (lStatusCount > lMaxTweets) {
+		NSRange lDeletionRange = NSMakeRange(lMaxTweets - 1, lStatusCount - lMaxTweets);
+		NSIndexSet *lToDelete = [NSIndexSet indexSetWithIndexesInRange:lDeletionRange];
+		[fStatusController removeObjectsAtArrangedObjectIndexes:lToDelete];
 	}
+	if (lBackupPredicate) {
+		[fStatusController setFilterPredicate:lBackupPredicate];
+		[lBackupPredicate release];
+	}
+	[self postGrowlNotifications];
+	[fStatusCollection setContent:[fStatusController arrangedObjects]];
+	if ([fStatusController selectsInsertedObjects]) {
+		id lObj = [[fStatusController selectedObjects] objectAtIndex:0];
+		if (lObj) [fStatusCollection selectItemsForObjects:[NSArray arrayWithObject:lObj]];
+	}
+	[fRequestDetails removeAllObjects];
 }
 
 - (void)runMessageUpdateFromTimer:(NSTimer *)aTimer {
-	[self startingTransaction];
+	if ([fTwitterEngine numberOfConnections] == 0)
+		[self startingTransaction];
 	[fRequestDetails setObject:@"MESSAGE_UPDATE" 
 						forKey:[fTwitterEngine getDirectMessagesSinceID:fLastMessageID 
 														 startingAtPage:0]];
@@ -317,6 +318,8 @@
 }
 
 - (void)connectionFinished {
+	if ([fTwitterEngine numberOfConnections] == 0)
+		[self endingTransaction];
 }
 
 - (void)requestSucceeded:(NSString *)requestIdentifier
@@ -347,21 +350,20 @@
 
 - (void)requestFailed:(NSString *)aRequestIdentifier withError:(NSError *)aError
 {
-	BOOL lIgnoreError = [[PTPreferenceManager sharedSingleton] ignoreErrors];
+	BOOL lIgnoreError = [[PTPreferenceManager sharedSingleton] ignoreErrors] || fIgnoreErrors;
 	NSString *lRequestType = [fRequestDetails objectForKey:aRequestIdentifier];
 	if (lRequestType == @"POST" || lRequestType == @"MESSAGE") {
 		[fStatusUpdateField setEnabled:YES];
-	} else if (lRequestType == nil) {
+	} else if (lRequestType == @"IMAGE") {
 		[fImageMan requestFailed:aRequestIdentifier];
 		lIgnoreError = YES;
 	}
-	[fRequestDetails removeObjectForKey:aRequestIdentifier];
-	[self endingTransaction];
 	if (!lIgnoreError) {
 		fCurrentSoundStatus = ErrorReceived;
 		PTStatusBox *lErrorBox = [fStatusBoxGenerator constructErrorBox:aError];
 		[fBoxesToAdd addObject:lErrorBox];
 		[fBoxesToNotify addObject:lErrorBox];
+		fIgnoreErrors = YES;
 	}
 }
 
@@ -372,8 +374,6 @@
 		lReqType == @"FAV" || 
 		lReqType == @"UNFAV" || 
 		lReqType == @"DELETE") {
-		[fRequestDetails removeObjectForKey:aIdentifier];
-		[self endingTransaction];
 		return;
 	}
 	NSString *lUpdateType = [fRequestDetails objectForKey:aIdentifier];
@@ -424,24 +424,18 @@
 		fLastUpdateID = lNewId;
 	}
 	[lTempBoxes release];
-	[fRequestDetails removeObjectForKey:aIdentifier];
-	[self endingTransaction];
 }
 
 - (void)directMessagesReceived:(NSArray *)aMessages forRequest:(NSString *)aIdentifier
 {
 	NSString *lReqType = [fRequestDetails objectForKey:aIdentifier];
 	if (lReqType == @"DELETE") {
-		[fRequestDetails removeObjectForKey:aIdentifier];
-		[self endingTransaction];
 		return;
 	} else if (lReqType == @"MESSAGE")
 		fCurrentSoundStatus = StatusSent;
 	if ([aMessages count] == 0 || 
 		[[[aMessages objectAtIndex:0] objectForKey:@"id"] intValue] == 0 || 
 		[fRequestDetails objectForKey:aIdentifier] == @"MESSAGE") {
-		[fRequestDetails removeObjectForKey:aIdentifier];
-		[self endingTransaction];
 		return;
 	}
 	NSDictionary *lCurrentDic;
@@ -458,10 +452,8 @@
 	[fBoxesToAdd addObjectsFromArray:lTempArray];
 	[lTempArray release];
 	fLastMessageID = [[lLastDic objectForKey:@"id"] intValue];
-	[fRequestDetails removeObjectForKey:aIdentifier];
 	if (fCurrentSoundStatus != ErrorReceived)
 		fCurrentSoundStatus = ReplyOrMessageReceived;
-	[self endingTransaction];
 }
 
 - (void)userInfoReceived:(NSArray *)aUserInfo forRequest:(NSString *)aIdentifier
@@ -477,17 +469,15 @@
 - (void)imageReceived:(NSImage *)aImage forRequest:(NSString *)aIdentifier
 {
 	[fImageMan addImage:aImage forRequest:aIdentifier];
-	//[fRequestDetails removeObjectForKey:aIdentifier];
-	//[self endingTransaction];
 }
 
 - (NSImage *)requestUserImage:(NSString *)aImageLocation forBox:(PTStatusBox *)aNewBox {
 	NSImage *lImageData = [fImageMan fetchImage:aImageLocation];
 	if (!lImageData) {
 		if (![fImageMan isRequestedImage:aImageLocation]) {
-			//[self startingTransaction];
+			[self startingTransaction];
 			NSString *lImageReq = [fTwitterEngine getImageAtURL:aImageLocation];
-			//[fRequestDetails setObject:@"IMAGE" forKey:lImageReq];
+			[fRequestDetails setObject:@"IMAGE" forKey:lImageReq];
 			[fImageMan requestUserImage:aImageLocation forRequest:lImageReq];
 		}
 		[fImageMan registerStatusBox:aNewBox forLocation:aImageLocation];
