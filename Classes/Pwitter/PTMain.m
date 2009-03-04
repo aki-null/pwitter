@@ -13,8 +13,7 @@
 #import "PTReadManager.h"
 #import "PTCollectionView.h"
 #import "PTURLUtils.h"
-
-#define STATUS_LIMIT 1000
+#import "PTColorManager.h"
 
 
 @implementation PTMain
@@ -27,7 +26,7 @@
 	}
 	// determine the timer delay
 	int lIntervalTime;
-	switch ([[PTPreferenceManager sharedInstance] timeInterval]) {
+	switch ([[PTPreferenceManager sharedSingleton] timeInterval]) {
 		case 1:
 			lIntervalTime = 300;
 			break;
@@ -57,7 +56,7 @@
 	}
 	// determine the timer delay
 	int lIntervalTime;
-	switch ([[PTPreferenceManager sharedInstance] messageInterval]) {
+	switch ([[PTPreferenceManager sharedSingleton] messageInterval]) {
 		case 1:
 			lIntervalTime = 900;
 			break;
@@ -77,7 +76,7 @@
 }
 
 - (void)playSoundEffect {
-	if (![[PTPreferenceManager sharedInstance] disableSoundNotification]) {
+	if (![[PTPreferenceManager sharedSingleton] disableSoundNotification]) {
 		switch (fCurrentSoundStatus) {
 			case StatusReceived:
 				[fStatusReceived play];
@@ -151,7 +150,7 @@
 		[self removeStatusBoxes];
 		// limit the number of status boxes
 		int lStatusCount = [[fStatusController content] count] + 1;
-		int lMaxTweets = [[PTPreferenceManager sharedInstance] maxTweets];
+		int lMaxTweets = [[PTPreferenceManager sharedSingleton] maxTweets];
 		if (lStatusCount > lMaxTweets) {
 			NSRange lDeletionRange = NSMakeRange(lMaxTweets - 1, lStatusCount - lMaxTweets);
 			NSIndexSet *lToDelete = [NSIndexSet indexSetWithIndexesInRange:lDeletionRange];
@@ -187,10 +186,10 @@
 						forKey:[fTwitterEngine getDirectMessagesSince:nil
 													   startingAtPage:0]];
 	[fRequestDetails setObject:@"INIT_UPDATE" 
-						forKey:[fTwitterEngine getFollowedTimelineFor:[[PTPreferenceManager sharedInstance] userName] 
+						forKey:[fTwitterEngine getFollowedTimelineFor:[[PTPreferenceManager sharedSingleton] userName] 
 																since:nil startingAtPage:1 count:200]];
 	[fRequestDetails setObject:@"INIT_UPDATE" 
-						forKey:[fTwitterEngine getFollowedTimelineFor:[[PTPreferenceManager sharedInstance] userName] 
+						forKey:[fTwitterEngine getFollowedTimelineFor:[[PTPreferenceManager sharedSingleton] userName] 
 																since:nil startingAtPage:2 count:200]];
 	[fRequestDetails setObject:@"INIT_REPLY_UPDATE" 
 						forKey:[fTwitterEngine getRepliesStartingAtPage:1]];
@@ -204,8 +203,8 @@
 						  version:[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"]
 							  URL:@"http://github.com/koroshiya1/pwitter/wikis/home" 
 							token:@"pwitter"];
-	[fTwitterEngine setUsername:[[PTPreferenceManager sharedInstance] userName] 
-					   password:[[PTPreferenceManager sharedInstance] password]];
+	[fTwitterEngine setUsername:[[PTPreferenceManager sharedSingleton] userName] 
+					   password:[[PTPreferenceManager sharedSingleton] password]];
 	[self loadUnread];
 	[self runInitialUpdates];
 	[self setupUpdateTimer];
@@ -244,8 +243,8 @@
 	[self saveUnread];
 	[[fStatusController content] removeAllObjects];
 	[fStatusController rearrangeObjects];
-	[fTwitterEngine setUsername:[[PTPreferenceManager sharedInstance] userName] 
-					   password:[[PTPreferenceManager sharedInstance] password]];
+	[fTwitterEngine setUsername:[[PTPreferenceManager sharedSingleton] userName] 
+					   password:[[PTPreferenceManager sharedSingleton] password]];
 	[self setupUpdateTimer];
 	[self setupMessageUpdateTimer];
 	[fTwitterEngine closeAllConnections];
@@ -288,10 +287,10 @@
 	[fMenuItem setImage:[NSImage imageNamed:@"menu_icon_off"]];
 	[fMenuItem setMenu:fIconMenu];
 	[fMenuItem setMainController:self];
-	[fMenuItem setSwapped:[[PTPreferenceManager sharedInstance] swapMenuItemBehavior]];
+	[fMenuItem setSwapped:[[PTPreferenceManager sharedSingleton] swapMenuItemBehavior]];
 	fImageMan = [[PTImageManager alloc] init];
 	[self initTransaction];
-	if (![[PTPreferenceManager sharedInstance] disableSoundNotification])
+	if (![[PTPreferenceManager sharedSingleton] disableSoundNotification])
 		[[NSSound soundNamed:@"startUp"] play];
 }
 
@@ -325,19 +324,17 @@
 	NSString *lReqType = [fRequestDetails objectForKey:requestIdentifier];
 	if (lReqType == @"FAV") {
 		PTStatusBox *lBoxToFav = [fFavRecord objectForKey:requestIdentifier];
-		lBoxToFav.entityColor = [NSColor colorWithCalibratedRed:0.4 green:0.2 blue:0.0 alpha:1.0];
+		lBoxToFav.entityColor = [[PTColorManager sharedSingleton] favoriteColor];
 		lBoxToFav.fav = YES;
-		[fRequestDetails removeObjectForKey:lReqType];
 		[fFavRecord removeObjectForKey:requestIdentifier];
 	} else if (lReqType == @"UNFAV") {
 		PTStatusBox *lBoxToFav = [fFavRecord objectForKey:requestIdentifier];
 		if (lBoxToFav.sType == ReplyMessage) {
-			lBoxToFav.entityColor = [NSColor colorWithCalibratedRed:0.3 green:0.1 blue:0.1 alpha:1.0];
+			lBoxToFav.entityColor = [[PTColorManager sharedSingleton] replyColor];
 		} else {
-			lBoxToFav.entityColor = [NSColor colorWithCalibratedRed:0.20 green:0.20 blue:0.20 alpha:1.0];
+			lBoxToFav.entityColor = [[PTColorManager sharedSingleton] tweetColor];
 		}
 		lBoxToFav.fav = NO;
-		[fRequestDetails removeObjectForKey:lReqType];
 		[fFavRecord removeObjectForKey:requestIdentifier];
 	} else if (lReqType == @"MESSAGE") {
 		[self postComplete];
@@ -345,14 +342,12 @@
 		PTStatusBox *lToDelete = [fDeleteRecord objectForKey:requestIdentifier];
 		[fDeleteRecord removeObjectForKey:requestIdentifier];
 		[fBoxesToRemove addObject:lToDelete];
-		[fRequestDetails removeObjectForKey:lReqType];
-		[self endingTransaction];
 	}
 }
 
 - (void)requestFailed:(NSString *)aRequestIdentifier withError:(NSError *)aError
 {
-	BOOL lIgnoreError = [[PTPreferenceManager sharedInstance] ignoreErrors];
+	BOOL lIgnoreError = [[PTPreferenceManager sharedSingleton] ignoreErrors];
 	NSString *lRequestType = [fRequestDetails objectForKey:aRequestIdentifier];
 	if (lRequestType == @"POST" || lRequestType == @"MESSAGE") {
 		[fStatusUpdateField setEnabled:YES];
@@ -392,7 +387,7 @@
 				if (lUpdateType == @"REPLY_UPDATE" || 
 					lUpdateType == @"INIT_REPLY_UPDATE" || 
 					lUpdateType == @"POST" ||
-					(![[PTPreferenceManager sharedInstance] receiveFromNonFollowers] && lUpdateType != @"INIT_UPDATE")) {
+					(![[PTPreferenceManager sharedSingleton] receiveFromNonFollowers] && lUpdateType != @"INIT_UPDATE")) {
 					lDecision = 1;
 				}
 			} else lDecision = 2;
@@ -420,7 +415,7 @@
 		[fIgnoreList setObject:@"" forKey:[[aStatuses lastObject] objectForKey:@"id"]];
 		fCurrentSoundStatus = StatusSent;
 		[self postComplete];
-		if ([[PTPreferenceManager sharedInstance] updateAfterPost] && !fUpdating)
+		if ([[PTPreferenceManager sharedSingleton] updateAfterPost] && !fUpdating)
 			[self updateTimeline:fMainWindow];
 	} else if ((lUpdateType == @"REPLY_UPDATE" || lUpdateType == @"INIT_REPLY_UPDATE") && 
 			   fLastReplyID < lNewId) {
@@ -515,7 +510,7 @@
 		[fRequestDetails setObject:@"UPDATE" 
 							forKey:[fTwitterEngine getFollowedTimelineFor:[fTwitterEngine username] 
 																  sinceID:fLastUpdateID startingAtPage:0 count:200]];
-		if ([[PTPreferenceManager sharedInstance] receiveFromNonFollowers])
+		if ([[PTPreferenceManager sharedSingleton] receiveFromNonFollowers])
 			[fRequestDetails setObject:@"REPLY_UPDATE" 
 								forKey:[fTwitterEngine getRepliesSinceID:fLastReplyID startingAtPage:0 count:20]];
 	}
@@ -523,7 +518,7 @@
 
 - (NSString *)createShortURLs:(NSString *)aMessage {
 	NSString *lServiceURL;
-	switch ([[PTPreferenceManager sharedInstance] urlShorteningService]) {
+	switch ([[PTPreferenceManager sharedSingleton] urlShorteningService]) {
 		case 1:
 			lServiceURL = @"http://tinyurl.com/api-create.php?url=";
 			break;
@@ -559,7 +554,7 @@
 - (void)makePost:(NSString *)aMessage {
 	if ([aMessage length] == 0) return;
 	[self startingTransaction];
-	if ([[PTPreferenceManager sharedInstance] urlShorteningService])
+	if ([[PTPreferenceManager sharedSingleton] urlShorteningService])
 		aMessage = [self createShortURLs:aMessage];
 	NSArray *lSeparated = [aMessage componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 	if ([lSeparated count] >= 2 && [[lSeparated objectAtIndex:0] isEqual:@"D"]) {
@@ -657,7 +652,7 @@
 
 - (void)deleteTweet:(PTStatusBox *)aBox {
 	if (aBox) {
-		if ([aBox.userId isEqualToString:[[PTPreferenceManager sharedInstance] userName]] && 
+		if ([aBox.userId isEqualToString:[[PTPreferenceManager sharedSingleton] userName]] && 
 			(aBox.sType == NormalMessage || aBox.sType == ReplyMessage)) {
 			[self startingTransaction];
 			NSString *lRequestId = [fTwitterEngine deleteUpdate:aBox.updateId];

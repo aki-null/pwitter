@@ -53,7 +53,7 @@
 			if (!aBox.statusLink) aBox.statusLink = lUrl;
         } else if ([lUtils isIDToken:lToken]) {
 			if (aBox.sType == NormalMessage && 
-				[[lToken substringFromIndex:1] isEqualToString:[[PTPreferenceManager sharedInstance] userName]]) {
+				[[lToken substringFromIndex:1] isEqualToString:[[PTPreferenceManager sharedSingleton] userName]]) {
 				aBox.entityColor = [NSColor colorWithCalibratedRed:0.3 green:0.1 blue:0.1 alpha:1.0];
 				aBox.sType = ReplyMessage;
 			}

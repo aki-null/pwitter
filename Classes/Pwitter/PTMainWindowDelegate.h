@@ -15,6 +15,7 @@
     IBOutlet id fMainActionHandler;
     IBOutlet id fMainController;
     IBOutlet id fStatusCollection;
+	id fFieldEditor;
 	PTStatusBox *fOldSelection;
 }
 

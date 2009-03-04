@@ -23,8 +23,8 @@
 	[fStatusController setSortDescriptors:[NSArray arrayWithObject:sortDesc]];
 	[sortDesc release];
 	[fPreferenceWindow loadPreferences];
-	[self setCollectionViewPrototype:[[PTPreferenceManager sharedInstance] useMiniView] 
-						  useClassic:[[PTPreferenceManager sharedInstance] useClassicView]];
+	[self setCollectionViewPrototype:[[PTPreferenceManager sharedSingleton] useMiniView] 
+						  useClassic:[[PTPreferenceManager sharedSingleton] useClassicView]];
 	[fMainWindow makeFirstResponder:fStatusCollectionView];
 }
 
@@ -51,7 +51,7 @@
 }
 
 - (void)startAuthentication {
-	if ([[PTPreferenceManager sharedInstance] autoLogin]) {
+	if ([[PTPreferenceManager sharedSingleton] autoLogin]) {
 		[fMainController setUpTwitterEngine];
 		return;
 	}
@@ -60,8 +60,8 @@
 		modalDelegate:self
 	   didEndSelector:@selector(didEndSheet:returnCode:contextInfo:)
 		  contextInfo:nil];
-	NSString *lTempName = [[PTPreferenceManager sharedInstance] userName];
-	NSString *lTempPass = [[PTPreferenceManager sharedInstance] password];
+	NSString *lTempName = [[PTPreferenceManager sharedSingleton] userName];
+	NSString *lTempPass = [[PTPreferenceManager sharedSingleton] password];
 	if (lTempName)
 		[fAuthUserName setStringValue:lTempName];
 	if (lTempPass)
@@ -71,15 +71,15 @@
 - (void)didEndSheet:(NSWindow *)aSheet returnCode:(int)aReturnCode contextInfo:(void *)aContextInfo
 {
 	[aSheet orderOut:self];
-	[self setCollectionViewPrototype:[[PTPreferenceManager sharedInstance] useMiniView] 
-						  useClassic:[[PTPreferenceManager sharedInstance] useClassicView]];
+	[self setCollectionViewPrototype:[[PTPreferenceManager sharedSingleton] useMiniView] 
+						  useClassic:[[PTPreferenceManager sharedSingleton] useClassicView]];
 	if (fShouldExit) [NSApp terminate:self];
 	if (aSheet == fAuthPanel) [fMainController setUpTwitterEngine];
 }
 
 - (IBAction)closeAuthSheet:(id)sender
 {
-	[[PTPreferenceManager sharedInstance] setUserName:[fAuthUserName stringValue] 
+	[[PTPreferenceManager sharedSingleton] setUserName:[fAuthUserName stringValue] 
 										  password:[fAuthPassword stringValue]];
     [NSApp endSheet:fAuthPanel];
 }

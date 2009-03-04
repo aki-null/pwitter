@@ -10,7 +10,6 @@
 #import "PTMain.h"
 #import "AMCollectionView.h"
 
-
 @implementation PTPostField
 
 - (void)awakeFromNib {
@@ -90,7 +89,7 @@
 		[fMainActionController closeReplyView];
 	}
 	
-	if (![[PTPreferenceManager sharedInstance] postWithModifier]) {
+	if (![[PTPreferenceManager sharedSingleton] postWithModifier]) {
 		return NO;
 	}
 	if (command == @selector(insertNewline:)) {

@@ -59,7 +59,7 @@
 		lTempRect.size.width = aNewSize.width;
 		[[self view] setFrame:lTempRect];
 	}
-	if ([[PTPreferenceManager sharedInstance] useMiniView]) {
+	if ([[PTPreferenceManager sharedSingleton] useMiniView]) {
 		if ([super isSelected]) {
 			if (aNewSize.width != fOldWidth || !fIsOpen) {
 				NSSize lNewSize = [fStatusMessage minSizeForContent];

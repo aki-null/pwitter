@@ -14,7 +14,7 @@
 @implementation PTCustomFilterManager
 
 - (void)awakeFromNib {
-	NSDictionary *lCustomFilters = [[PTPreferenceManager sharedInstance] customFilters];
+	NSDictionary *lCustomFilters = [[PTPreferenceManager sharedSingleton] customFilters];
 	if (lCustomFilters) {
 		fFilterSet = [lCustomFilters mutableCopy];
 	} else {
@@ -57,7 +57,7 @@
 		[[fSelectedFilter itemAtIndex:fCurrentSelection - 1] setTitle:[NSString stringWithFormat:@"Filter %d: %@", fCurrentSelection, [fName stringValue]]];
 	else
 		[[fSelectedFilter itemAtIndex:fCurrentSelection - 1] setTitle:[NSString stringWithFormat:@"Filter %d: Empty", fCurrentSelection]];
-	[[PTPreferenceManager sharedInstance] setCustomFilters:fFilterSet];
+	[[PTPreferenceManager sharedSingleton] setCustomFilters:fFilterSet];
 }
 
 - (void)loadCurrentFilter {

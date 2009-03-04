@@ -56,26 +56,26 @@
 }
 
 - (NSArray *)filterNotifications:(NSArray *)aBoxes {
-	if ([[PTPreferenceManager sharedInstance] disableGrowl])
+	if ([[PTPreferenceManager sharedSingleton] disableGrowl])
 		return nil;
 	PTStatusBox *lCurrentBox;
 	NSMutableArray *lFilteredBoxes = [[NSMutableArray alloc] init];
 	for (lCurrentBox in aBoxes) {
 		switch (lCurrentBox.sType) {
 			case DirectMessage:
-				if (![[PTPreferenceManager sharedInstance] disableMessageNotification])
+				if (![[PTPreferenceManager sharedSingleton] disableMessageNotification])
 					[lFilteredBoxes addObject:lCurrentBox];
 				break;
 			case ReplyMessage:
-				if (![[PTPreferenceManager sharedInstance] disableReplyNotification])
+				if (![[PTPreferenceManager sharedSingleton] disableReplyNotification])
 					[lFilteredBoxes addObject:lCurrentBox];
 				break;
 			case NormalMessage:
-				if (![[PTPreferenceManager sharedInstance] disableStatusNotification])
+				if (![[PTPreferenceManager sharedSingleton] disableStatusNotification])
 					[lFilteredBoxes addObject:lCurrentBox];
 				break;
 			case ErrorMessage:
-				if (![[PTPreferenceManager sharedInstance] disableErrorNotification])
+				if (![[PTPreferenceManager sharedSingleton] disableErrorNotification])
 					[lFilteredBoxes addObject:lCurrentBox];
 				break;
 			default:
@@ -87,7 +87,7 @@
 
 - (void)postNotifications:(NSArray *)aBoxes defaultImage:(NSImage *)aImage {
 	int lMaxNotif;
-	switch ([[PTPreferenceManager sharedInstance] maxNotification]) {
+	switch ([[PTPreferenceManager sharedSingleton] maxNotification]) {
 		case 0:
 			lMaxNotif = 5;
 			break;

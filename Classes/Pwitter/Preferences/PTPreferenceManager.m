@@ -12,18 +12,27 @@
 
 @implementation PTPreferenceManager
 
-+ (PTPreferenceManager *)sharedInstance
+static PTPreferenceManager *sharedSingleton;
+
++ (PTPreferenceManager *)sharedSingleton
 {
-	static PTPreferenceManager *instance;
-	
 	@synchronized(self)
 	{
-		if (!instance)
-		{
-			instance = [[PTPreferenceManager alloc] init];
-			[instance setupPreferences];
-		}
-		return instance;
+		if (!sharedSingleton)
+			[[PTPreferenceManager alloc] init];
+		return sharedSingleton;
+	}
+	return nil;
+}
+
++(id)alloc
+{
+	@synchronized(self)
+	{
+		NSAssert(sharedSingleton == nil, @"Attempted to allocate a second instance of a singleton.");
+		sharedSingleton = [super alloc];
+		[sharedSingleton setupPreferences];
+		return sharedSingleton;
 	}
 	return nil;
 }

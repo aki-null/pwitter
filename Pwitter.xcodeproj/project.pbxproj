@@ -10,6 +10,7 @@
 		61095D0C0F4F7C60001882C7 /* PTTooltipTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 61095D0B0F4F7C60001882C7 /* PTTooltipTransformer.m */; };
 		610E79060F59516800C714D1 /* PTTokenField.m in Sources */ = {isa = PBXBuildFile; fileRef = 610E79050F59516800C714D1 /* PTTokenField.m */; };
 		610E79090F5951B000C714D1 /* PTTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 610E79080F5951B000C714D1 /* PTTextField.m */; };
+		6111C8BE0F5E2E470077EAB7 /* PTColorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6111C8BD0F5E2E470077EAB7 /* PTColorManager.m */; };
 		612BD6900F076F8500EF064D /* Pwitter.icns in Resources */ = {isa = PBXBuildFile; fileRef = 612BD68F0F076F8500EF064D /* Pwitter.icns */; };
 		6131FD4A0F0E28C7004CA960 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6131FD490F0E28C7004CA960 /* Sparkle.framework */; };
 		6131FD5B0F0E297D004CA960 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6131FD490F0E28C7004CA960 /* Sparkle.framework */; };
@@ -130,6 +131,8 @@
 		610E79050F59516800C714D1 /* PTTokenField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTTokenField.m; sourceTree = "<group>"; };
 		610E79070F5951B000C714D1 /* PTTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTTextField.h; sourceTree = "<group>"; };
 		610E79080F5951B000C714D1 /* PTTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTTextField.m; sourceTree = "<group>"; };
+		6111C8BC0F5E2E470077EAB7 /* PTColorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTColorManager.h; sourceTree = "<group>"; };
+		6111C8BD0F5E2E470077EAB7 /* PTColorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTColorManager.m; sourceTree = "<group>"; };
 		612BD68F0F076F8500EF064D /* Pwitter.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Pwitter.icns; sourceTree = "<group>"; };
 		6131FD490F0E28C7004CA960 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		6131FD5F0F0E2B5A004CA960 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
@@ -565,6 +568,8 @@
 		614C9FF80F4EDAAB007B3940 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				6111C8BC0F5E2E470077EAB7 /* PTColorManager.h */,
+				6111C8BD0F5E2E470077EAB7 /* PTColorManager.m */,
 				614C9FF90F4EDAAB007B3940 /* PTImageManager.h */,
 				614C9FFA0F4EDAAB007B3940 /* PTImageManager.m */,
 				614C9FFB0F4EDAAB007B3940 /* PTReadManager.h */,
@@ -725,6 +730,7 @@
 				61C2675B0F58E3DB00B3889E /* PTCustomFilterManager.m in Sources */,
 				610E79060F59516800C714D1 /* PTTokenField.m in Sources */,
 				610E79090F5951B000C714D1 /* PTTextField.m in Sources */,
+				6111C8BE0F5E2E470077EAB7 /* PTColorManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

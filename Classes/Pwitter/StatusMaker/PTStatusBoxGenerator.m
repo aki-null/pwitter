@@ -13,6 +13,7 @@
 #import "PTReadStatusTransformer.h"
 #import "PTTooltipTransformer.h"
 #import "PTReadManager.h"
+#import "PTColorManager.h"
 
 
 @implementation PTStatusBoxGenerator
@@ -44,19 +45,15 @@
 	}
 	if (lNewBox.sType == NormalMessage) {
 		if (aIsReply) {
-			lNewBox.entityColor = [NSColor colorWithCalibratedRed:0.3 green:0.1 blue:0.1 alpha:1.0];
+			lNewBox.entityColor = [[PTColorManager sharedSingleton] replyColor];
 			lNewBox.sType = ReplyMessage;
 		} else {
-//			if ([[[PTPreferenceManager sharedInstance] userName] isEqualToString:[[aStatusInfo objectForKey:@"user"] objectForKey:@"screen_name"]]) {
-//				lNewBox.entityColor = [NSColor colorWithCalibratedRed:0.20 green:0.20 blue:0.20 alpha:1.0];
-//			} else {
-				lNewBox.entityColor = [NSColor colorWithCalibratedRed:0.20 green:0.20 blue:0.20 alpha:1.0];
-//			}
+			lNewBox.entityColor = [[PTColorManager sharedSingleton] tweetColor];
 			lNewBox.sType = NormalMessage;
 		}
 	}
 	if ([[aStatusInfo objectForKey:@"favorited"] boolValue]) {
-		lNewBox.entityColor = [NSColor colorWithCalibratedRed:0.4 green:0.2 blue:0.0 alpha:1.0];
+		lNewBox.entityColor = [[PTColorManager sharedSingleton] favoriteColor];
 		lNewBox.fav = YES;
 	}
 	lNewBox.searchString = [NSString stringWithFormat:@"%@ %@ %@",
@@ -77,7 +74,7 @@
 	lNewBox.statusMessage = [PTStatusFormatter createErrorMessage:aError];
 	lNewBox.statusMessageString = [lNewBox.statusMessage string];
 	lNewBox.userImage = [NSImage imageNamed:@"console.png"];
-	lNewBox.entityColor = [NSColor colorWithCalibratedRed:0.4 green:0.4 blue:0.4 alpha:1.0];
+	lNewBox.entityColor = [[PTColorManager sharedSingleton] errorColor];
 	lNewBox.time = [NSDate date];
 	lNewBox.userHome = nil;
 	lNewBox.sType = ErrorMessage;
@@ -102,7 +99,7 @@
 	} else {
 		lNewBox.userHome = nil;
 	}
-	lNewBox.entityColor = [NSColor colorWithCalibratedRed:0.1 green:0.1 blue:0.3 alpha:1.0];
+	lNewBox.entityColor = [[PTColorManager sharedSingleton] messageColor];
 	lNewBox.sType = DirectMessage;
 	lNewBox.searchString = [NSString stringWithFormat:@"%@ %@ %@",
 							[[aStatusInfo objectForKey:@"sender"] objectForKey:@"screen_name"], 

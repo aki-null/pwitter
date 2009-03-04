@@ -54,14 +54,14 @@ static PTBubbleFactory *sharedSingleton;
 }
 
 - (NSBezierPath *)bubbleWithWidth:(float)aWidth height:(float)aHeight {
-	if (fIsMini != [[PTPreferenceManager sharedInstance] useMiniView] || 
-		fIsClassic != [[PTPreferenceManager sharedInstance] useClassicView] || 
+	if (fIsMini != [[PTPreferenceManager sharedSingleton] useMiniView] || 
+		fIsClassic != [[PTPreferenceManager sharedSingleton] useClassicView] || 
 		fWidth != aWidth || 
 		fHeight != aHeight) {
 		fWidth = aWidth;
 		fHeight = aHeight;
-		fIsMini = [[PTPreferenceManager sharedInstance] useMiniView];
-		fIsClassic = [[PTPreferenceManager sharedInstance] useClassicView];
+		fIsMini = [[PTPreferenceManager sharedSingleton] useMiniView];
+		fIsClassic = [[PTPreferenceManager sharedSingleton] useClassicView];
 		if (fIsClassic) {
 			if (fPath) [fPath release];
 			fPath = [[NSBezierPath alloc] init];
@@ -122,7 +122,7 @@ static PTBubbleFactory *sharedSingleton;
 	NSBezierPath *lPath = [[PTBubbleFactory sharedSingleton] bubbleWithWidth:[self bounds].size.width 
 																	  height:[self bounds].size.height];
 	[lPath fill];
-	[[NSColor colorWithCalibratedRed:0.7 green:0.7 blue:0.7 alpha:1.0] set];
+	[[NSColor colorWithCalibratedRed:1.0 green:1.0 blue:1.0 alpha:0.7] set];
 	[lPath setLineWidth:0.5];
 	[lPath stroke];
 	// render the selection border
@@ -142,8 +142,6 @@ static PTBubbleFactory *sharedSingleton;
 }
 
 - (void)rightMouseDown:(NSEvent *)aEvent {
-	//[super rightMouseDown:aEvent];
-	//[(PTStatusEntityView *)[self superview] forceSelect:YES];
 	[[self superview] mouseDown:aEvent];
 	[(PTStatusEntityView *)[self superview] openContextMenu:aEvent];
 }

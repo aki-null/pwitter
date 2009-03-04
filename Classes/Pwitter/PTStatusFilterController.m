@@ -49,7 +49,7 @@
 }
 
 - (IBAction)showMyPosts:(id)sender {
-	NSPredicate *lPredicate = [NSPredicate predicateWithFormat:@"%K == %@", @"userId", [[PTPreferenceManager sharedInstance] userName]];
+	NSPredicate *lPredicate = [NSPredicate predicateWithFormat:@"%K == %@", @"userId", [[PTPreferenceManager sharedSingleton] userName]];
 	[fStatusController setFilterPredicate:lPredicate];
 	[fMainActionHandler updateCollection];
 }

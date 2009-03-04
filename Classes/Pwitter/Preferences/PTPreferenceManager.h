@@ -14,7 +14,7 @@
 	NSUserDefaults *fPrefData;
 }
 
-+ (PTPreferenceManager *)sharedInstance;
++ (PTPreferenceManager *)sharedSingleton;
 - (void)setupPreferences;
 - (void)setUserName:(NSString *)aUserName password:(NSString *)aPassword;
 - (NSString *)userName;

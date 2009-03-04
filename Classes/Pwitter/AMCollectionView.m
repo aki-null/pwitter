@@ -527,7 +527,7 @@
 	NSSize viewSize;
 	NSRect viewFrame;
 	CGRect visibleRect = NSRectToCGRect([[[self enclosingScrollView] contentView] documentVisibleRect]);
-	BOOL lDisableAnimation = [[PTPreferenceManager sharedInstance] disableAnimation];
+	BOOL lDisableAnimation = [[PTPreferenceManager sharedSingleton] disableAnimation];
 	if (!lDisableAnimation) [NSAnimationContext beginGrouping];
 //	[[NSAnimationContext currentContext] setDuration:1.0];
 	while ((object = [enumerator nextObject])) {

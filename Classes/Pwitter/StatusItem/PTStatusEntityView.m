@@ -87,7 +87,7 @@
 	[lMenu insertItemWithTitle:@"Retweet Selection" action:@selector(retweetSelection:) keyEquivalent:@"r" atIndex:3];
 	[[lMenu itemAtIndex:3] setKeyEquivalentModifierMask:NSCommandKeyMask | NSAlternateKeyMask];
 	[lMenu insertItemWithTitle:@"Delete Selection" action:@selector(deleteSelection:) keyEquivalent:@"⌦" atIndex:4];
-	if (![lBox.userId isEqualToString:[[PTPreferenceManager sharedInstance] userName]] && 
+	if (![lBox.userId isEqualToString:[[PTPreferenceManager sharedSingleton] userName]] && 
 		lBox.sType != DirectMessage)
 		[[lMenu itemAtIndex:4] setAction:nil];
 	[lMenu insertItem:[NSMenuItem separatorItem] atIndex:5];

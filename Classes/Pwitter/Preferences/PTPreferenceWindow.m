@@ -17,18 +17,18 @@
 @implementation PTPreferenceWindow
 
 - (void)loadPreferences {
-	NSString *lTempUserName = [[PTPreferenceManager sharedInstance] userName];
+	NSString *lTempUserName = [[PTPreferenceManager sharedSingleton] userName];
 	if (lTempUserName == nil) lTempUserName = @"";
 	[fUserName setStringValue:lTempUserName];
-	[fTimeInterval selectItemAtIndex:[[PTPreferenceManager sharedInstance] timeInterval] - 1];
-	[fMessageUpdateInterval selectItemAtIndex:[[PTPreferenceManager sharedInstance] messageInterval] - 1];
-	[fBehaviorAfterUpdate selectItemAtIndex:[[PTPreferenceManager sharedInstance] statusUpdateBehavior] - 1];
-	[fStatusController setSelectsInsertedObjects:[[PTPreferenceManager sharedInstance] statusUpdateBehavior] == 1];
+	[fTimeInterval selectItemAtIndex:[[PTPreferenceManager sharedSingleton] timeInterval] - 1];
+	[fMessageUpdateInterval selectItemAtIndex:[[PTPreferenceManager sharedSingleton] messageInterval] - 1];
+	[fBehaviorAfterUpdate selectItemAtIndex:[[PTPreferenceManager sharedSingleton] statusUpdateBehavior] - 1];
+	[fStatusController setSelectsInsertedObjects:[[PTPreferenceManager sharedSingleton] statusUpdateBehavior] == 1];
 	[fPassword setStringValue:@""];
-	[fMainWindow setFloatingPanel:[[PTPreferenceManager sharedInstance] alwaysOnTop]];
-	[fMainWindow setHasShadow:![[PTPreferenceManager sharedInstance] disableWindowShadow]];
-	[[PTPreferenceManager sharedInstance] hideDockIcon] ? [fHideDockIcon setState:NSOnState] : [fHideDockIcon setState:NSOffState];
-	if ([[PTPreferenceManager sharedInstance] disableGrowl]) {
+	[fMainWindow setFloatingPanel:[[PTPreferenceManager sharedSingleton] alwaysOnTop]];
+	[fMainWindow setHasShadow:![[PTPreferenceManager sharedSingleton] disableWindowShadow]];
+	[[PTPreferenceManager sharedSingleton] hideDockIcon] ? [fHideDockIcon setState:NSOnState] : [fHideDockIcon setState:NSOffState];
+	if ([[PTPreferenceManager sharedSingleton] disableGrowl]) {
 		[fDisableMessageNotification setEnabled:NO];
 		[fDisableStatusNotification setEnabled:NO];
 		[fDisableReplyNotification setEnabled:NO];
@@ -41,60 +41,60 @@
 		[fDisableReplyNotification setEnabled:NO];
 		[fDisableErrorNotification setEnabled:NO];
 	}
-	[[fMainController fMenuItem] setSwapped:[[PTPreferenceManager sharedInstance] swapMenuItemBehavior]];
+	[[fMainController fMenuItem] setSwapped:[[PTPreferenceManager sharedSingleton] swapMenuItemBehavior]];
 	// load key combination
 	[self loadKeyCombo];
 	[self turnOffHotKey];
 	[fShortcutRecorder setEnabled:NO];
 	[fQuickReadShortcutRecorder setEnabled:NO];
 	[fHideWhenReading setEnabled:NO];
-	if ([[PTPreferenceManager sharedInstance] quickPost]) {
+	if ([[PTPreferenceManager sharedSingleton] quickPost]) {
 		[fShortcutRecorder setEnabled:YES];
 		[self turnOnHotKey];
 	}
-	if ([[PTPreferenceManager sharedInstance] quickRead]) {
+	if ([[PTPreferenceManager sharedSingleton] quickRead]) {
 		[fQuickReadShortcutRecorder setEnabled:YES];
 		[fHideWhenReading setEnabled:YES];
 		[self turnOnReadHotKey];
 	}
-	[fMainWindow setHidesOnDeactivate:[[PTPreferenceManager sharedInstance] hideOnDeactivate]];
+	[fMainWindow setHidesOnDeactivate:[[PTPreferenceManager sharedSingleton] hideOnDeactivate]];
 }
 
 - (IBAction)pressOK:(id)sender {
-	if ([[PTPreferenceManager sharedInstance] ignoreErrors])
+	if ([[PTPreferenceManager sharedSingleton] ignoreErrors])
 		[fMainActionHandler clearErrors:sender];
-	if ([[PTPreferenceManager sharedInstance] timeInterval] != [fTimeInterval indexOfSelectedItem] + 1) {
-		[[PTPreferenceManager sharedInstance] setTimeInterval:[fTimeInterval indexOfSelectedItem] + 1];
+	if ([[PTPreferenceManager sharedSingleton] timeInterval] != [fTimeInterval indexOfSelectedItem] + 1) {
+		[[PTPreferenceManager sharedSingleton] setTimeInterval:[fTimeInterval indexOfSelectedItem] + 1];
 		[fMainController setupUpdateTimer];
 	}
-	if ([[PTPreferenceManager sharedInstance] messageInterval] != [fMessageUpdateInterval indexOfSelectedItem] + 1) {
-		[[PTPreferenceManager sharedInstance] setMessageInterval:[fMessageUpdateInterval indexOfSelectedItem] + 1];
+	if ([[PTPreferenceManager sharedSingleton] messageInterval] != [fMessageUpdateInterval indexOfSelectedItem] + 1) {
+		[[PTPreferenceManager sharedSingleton] setMessageInterval:[fMessageUpdateInterval indexOfSelectedItem] + 1];
 		[fMainController setupMessageUpdateTimer];
 	}
-	if ([[PTPreferenceManager sharedInstance] statusUpdateBehavior] != [fBehaviorAfterUpdate indexOfSelectedItem] + 1) {
-		[[PTPreferenceManager sharedInstance] setStatusUpdateBehavior:[fBehaviorAfterUpdate indexOfSelectedItem] + 1];
+	if ([[PTPreferenceManager sharedSingleton] statusUpdateBehavior] != [fBehaviorAfterUpdate indexOfSelectedItem] + 1) {
+		[[PTPreferenceManager sharedSingleton] setStatusUpdateBehavior:[fBehaviorAfterUpdate indexOfSelectedItem] + 1];
 	}
 	if ([[fPassword stringValue] length] != 0) {
-		[[PTPreferenceManager sharedInstance] setUserName:[fUserName stringValue] 
+		[[PTPreferenceManager sharedSingleton] setUserName:[fUserName stringValue] 
 											  password:[fPassword stringValue]];
 		fShouldReset = YES;
 	}
-	if ([[PTPreferenceManager sharedInstance] statusUpdateBehavior] == 1) {
+	if ([[PTPreferenceManager sharedSingleton] statusUpdateBehavior] == 1) {
 		[fStatusController setSelectsInsertedObjects:YES];
 	} else {
 		[fStatusController setSelectsInsertedObjects:NO];
 	}
-	if ([[PTPreferenceManager sharedInstance] hideDockIcon] != ([fHideDockIcon state] == NSOnState))
-		[[PTPreferenceManager sharedInstance] setHideDockIcon:[fHideDockIcon state] == NSOnState];
-	[fMainWindow setFloatingPanel:[[PTPreferenceManager sharedInstance] alwaysOnTop]];
-	[fMainWindow setHasShadow:![[PTPreferenceManager sharedInstance] disableWindowShadow]];
-	[[fMainController fMenuItem] setSwapped:[[PTPreferenceManager sharedInstance] swapMenuItemBehavior]];
-	[fMainWindow setHidesOnDeactivate:[[PTPreferenceManager sharedInstance] hideOnDeactivate]];
+	if ([[PTPreferenceManager sharedSingleton] hideDockIcon] != ([fHideDockIcon state] == NSOnState))
+		[[PTPreferenceManager sharedSingleton] setHideDockIcon:[fHideDockIcon state] == NSOnState];
+	[fMainWindow setFloatingPanel:[[PTPreferenceManager sharedSingleton] alwaysOnTop]];
+	[fMainWindow setHasShadow:![[PTPreferenceManager sharedSingleton] disableWindowShadow]];
+	[[fMainController fMenuItem] setSwapped:[[PTPreferenceManager sharedSingleton] swapMenuItemBehavior]];
+	[fMainWindow setHidesOnDeactivate:[[PTPreferenceManager sharedSingleton] hideOnDeactivate]];
 	[self saveKeyCombo];
 	[self turnOffHotKey];
-	if ([[PTPreferenceManager sharedInstance] quickPost])
+	if ([[PTPreferenceManager sharedSingleton] quickPost])
 		[self turnOnHotKey];
-	if ([[PTPreferenceManager sharedInstance] quickRead])
+	if ([[PTPreferenceManager sharedSingleton] quickRead])
 		[self turnOnReadHotKey];
 	[NSApp endSheet:self];
 	if (fShouldReset) [fMainController changeAccount:self];
@@ -179,14 +179,14 @@
 }
 
 - (void)hitReadKey:(PTHotKey *)aHotKey {
-	if ([[PTPreferenceManager sharedInstance] hideWithQuickReadShortcut] && 
+	if ([[PTPreferenceManager sharedSingleton] hideWithQuickReadShortcut] && 
 		[NSApp isActive] && [fMainWindow firstResponder] == fStatusCollectionView)
 		[NSApp hide:self];
 	else {
 		[NSApp activateIgnoringOtherApps:YES];
 		[fMainWindow makeKeyAndOrderFront:self];
 		[fMainWindow makeFirstResponder:fStatusCollectionView];
-		if ([[PTPreferenceManager sharedInstance] selectOldestUnread])
+		if ([[PTPreferenceManager sharedSingleton] selectOldestUnread])
 			[fStatusCollectionView selectOldestUnread];
 	}
 }

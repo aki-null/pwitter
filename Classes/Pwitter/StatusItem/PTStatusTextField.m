@@ -26,7 +26,7 @@
 	[(PTStatusEntityView *)[self superview] openContextMenu:aEvent];
 }
 
-- (NSSize)minSizeForContent { 
+- (NSSize)minSizeForContent {
 	NSRect lFrame = [self frame];
 	NSRect lNewF = lFrame;
 	NSTextView* lEditor = nil;
