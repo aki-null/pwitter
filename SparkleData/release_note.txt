@@ -1,3 +1,20 @@
+4 March 2009: (Version 1.1):
+Feature: Custom filter support
+Feature: Added support for URL shortening services
+Feature: Automatically expanding post field
+Feature: Added an option to hide on deactivate
+Feature: Added an option to change notification limit
+Feature: Added an option to disable animation for performance improvement
+Feature: Added an option to change the maximum tweets to display (reduce this if you are having a problem with slow rendering)
+Improvement: It now shows only one error message per transaction
+Improvement: Better transaction handling
+Improvement: Underline that appears while input Japanese is now white
+Improvement: Removed the scroll arrows
+Improvement: Smaller window size restriction
+Improvement: Post field visual change
+Improvement: Preference window visual change
+Bug Fixed: Typo fix
+
 27 February 2009: (Version 1.0):
 Feature: Dynamically expanding tweet items
 Feature: Ability to delete tweets
