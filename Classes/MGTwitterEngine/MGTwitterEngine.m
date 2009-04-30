@@ -11,8 +11,6 @@
 
 #import "NSData+Base64.h"
 
-#import "PTPreferenceManager.h"
-
 #define USE_LIBXML 0
 
 #if YAJL_AVAILABLE
@@ -951,7 +949,7 @@
 	
     NSString *path = [NSString stringWithFormat:@"friendships/exists.%@", API_FORMAT];
     
-    return [self _sendRequestWithMethod:[[PTPreferenceManager sharedSingleton] usePOSTMethod] ? HTTP_POST_METHOD : nil 
+    return [self _sendRequestWithMethod:nil 
 								   path:path queryParameters:params body:nil 
                             requestType:MGTwitterAccountRequest 
                            responseType:MGTwitterMiscellaneous];
@@ -1112,7 +1110,7 @@
 	}
 	[params setObject:[NSString stringWithFormat:@"%d", tweetCount] forKey:@"count"];
     
-    return [self _sendRequestWithMethod:[[PTPreferenceManager sharedSingleton] usePOSTMethod] ? HTTP_POST_METHOD : nil 
+    return [self _sendRequestWithMethod:nil 
 								   path:path queryParameters:params body:nil 
                             requestType:MGTwitterStatusesRequest 
                            responseType:MGTwitterStatuses];
@@ -1139,7 +1137,7 @@
 	}
 	[params setObject:[NSString stringWithFormat:@"%d", tweetCount] forKey:@"count"];
     
-    return [self _sendRequestWithMethod:[[PTPreferenceManager sharedSingleton] usePOSTMethod] ? HTTP_POST_METHOD : nil 
+    return [self _sendRequestWithMethod:nil 
 								   path:path queryParameters:params body:nil 
                             requestType:MGTwitterStatusesRequest 
                            responseType:MGTwitterStatuses];
@@ -1171,7 +1169,7 @@
         path = [NSString stringWithFormat:@"statuses/user_timeline/%@.%@", username, API_FORMAT];
     }
     
-    return [self _sendRequestWithMethod:[[PTPreferenceManager sharedSingleton] usePOSTMethod] ? HTTP_POST_METHOD : nil 
+    return [self _sendRequestWithMethod:nil 
 								   path:path queryParameters:params body:nil 
                             requestType:MGTwitterStatusesRequest 
                            responseType:MGTwitterStatuses];
@@ -1196,7 +1194,7 @@
         path = [NSString stringWithFormat:@"statuses/user_timeline/%@.%@", username, API_FORMAT];
     }
     
-    return [self _sendRequestWithMethod:[[PTPreferenceManager sharedSingleton] usePOSTMethod] ? HTTP_POST_METHOD : nil 
+    return [self _sendRequestWithMethod:nil 
 								   path:path queryParameters:params body:nil 
                             requestType:MGTwitterStatusesRequest 
                            responseType:MGTwitterStatuses];
@@ -1229,7 +1227,7 @@
         [params setObject:[NSString stringWithFormat:@"%d", updateID] forKey:@"since_id"];
     }
     
-    return [self _sendRequestWithMethod:[[PTPreferenceManager sharedSingleton] usePOSTMethod] ? HTTP_POST_METHOD : nil 
+    return [self _sendRequestWithMethod:nil 
 								   path:path queryParameters:params body:nil 
                             requestType:MGTwitterStatusesRequest 
                            responseType:MGTwitterStatuses];
@@ -1258,7 +1256,7 @@
 	}
 	[params setObject:[NSString stringWithFormat:@"%d", tweetCount] forKey:@"count"];
     
-    return [self _sendRequestWithMethod:[[PTPreferenceManager sharedSingleton] usePOSTMethod] ? HTTP_POST_METHOD : nil 
+    return [self _sendRequestWithMethod:nil 
 								   path:path queryParameters:params body:nil 
                             requestType:MGTwitterStatusesRequest 
                            responseType:MGTwitterStatuses];
@@ -1282,7 +1280,7 @@
 	}
 	[params setObject:[NSString stringWithFormat:@"%d", tweetCount] forKey:@"count"];
     
-    return [self _sendRequestWithMethod:[[PTPreferenceManager sharedSingleton] usePOSTMethod] ? HTTP_POST_METHOD : nil 
+    return [self _sendRequestWithMethod:nil 
 								   path:path queryParameters:params body:nil 
                             requestType:MGTwitterStatusesRequest 
                            responseType:MGTwitterStatuses];
@@ -1303,7 +1301,7 @@
         path = [NSString stringWithFormat:@"favorites/%@.%@", username, API_FORMAT];
     }
     
-    return [self _sendRequestWithMethod:[[PTPreferenceManager sharedSingleton] usePOSTMethod] ? HTTP_POST_METHOD : nil 
+    return [self _sendRequestWithMethod:nil 
 								   path:path queryParameters:params body:nil 
                             requestType:MGTwitterStatusesRequest 
                            responseType:MGTwitterStatuses];
@@ -1314,7 +1312,7 @@
 {
     NSString *path = [NSString stringWithFormat:@"statuses/show/%d.%@", updateID, API_FORMAT];
     
-    return [self _sendRequestWithMethod:[[PTPreferenceManager sharedSingleton] usePOSTMethod] ? HTTP_POST_METHOD : nil 
+    return [self _sendRequestWithMethod:nil 
 								   path:path queryParameters:nil body:nil 
                             requestType:MGTwitterStatusesRequest 
                            responseType:MGTwitterStatus];
@@ -1406,7 +1404,7 @@
     }
     NSString *path = [NSString stringWithFormat:@"users/show/%@.%@", usernameOrID, API_FORMAT];
     
-    return [self _sendRequestWithMethod:[[PTPreferenceManager sharedSingleton] usePOSTMethod] ? HTTP_POST_METHOD : nil 
+    return [self _sendRequestWithMethod:nil 
 								   path:path queryParameters:nil body:nil 
                             requestType:MGTwitterUserInfoRequest 
                            responseType:MGTwitterUser];
@@ -1423,7 +1421,7 @@
         return nil;
     }
     
-    return [self _sendRequestWithMethod:[[PTPreferenceManager sharedSingleton] usePOSTMethod] ? HTTP_POST_METHOD : nil 
+    return [self _sendRequestWithMethod:nil 
 								   path:path queryParameters:params body:nil 
                             requestType:MGTwitterUserInfoRequest 
                            responseType:MGTwitterUser];
@@ -1442,7 +1440,7 @@
         [params setObject:[NSString stringWithFormat:@"%d", pageNum] forKey:@"page"];
     }
     
-    return [self _sendRequestWithMethod:[[PTPreferenceManager sharedSingleton] usePOSTMethod] ? HTTP_POST_METHOD : nil 
+    return [self _sendRequestWithMethod:nil 
 								   path:path queryParameters:params body:nil 
                             requestType:MGTwitterUserInfoRequest 
                            responseType:MGTwitterUsers];
@@ -1458,7 +1456,7 @@
         [params setObject:@"true" forKey:@"lite"]; // slightly bizarre, but correct.
     }
     
-    return [self _sendRequestWithMethod:[[PTPreferenceManager sharedSingleton] usePOSTMethod] ? HTTP_POST_METHOD : nil 
+    return [self _sendRequestWithMethod:nil 
 								   path:path queryParameters:params body:nil 
                             requestType:MGTwitterUserInfoRequest 
                            responseType:MGTwitterUsers];
@@ -1469,7 +1467,7 @@
 {
     NSString *path = [NSString stringWithFormat:@"statuses/featured.%@", API_FORMAT];
     
-    return [self _sendRequestWithMethod:[[PTPreferenceManager sharedSingleton] usePOSTMethod] ? HTTP_POST_METHOD : nil 
+    return [self _sendRequestWithMethod:nil 
 								   path:path queryParameters:nil body:nil 
                             requestType:MGTwitterUserInfoRequest 
                            responseType:MGTwitterUsers];

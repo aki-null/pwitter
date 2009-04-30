@@ -1,3 +1,9 @@
+30 April 2009: (Version 1.1.1):
+Bug Fixed: Post duplication issue fix
+Bug Fixed: Less initial API use
+Bug Fixed: POST method has been deprecated due to Twitter API change
+Bug Fixed: URL shortening service zi.ma is no longer available
+
 4 March 2009: (Version 1.1):
 Feature: Custom filter support
 Feature: Added support for URL shortening services

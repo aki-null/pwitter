@@ -38,7 +38,7 @@ typedef enum statusType {
 @property(copy, readwrite) NSString *userName;
 @property(copy, readwrite) NSAttributedString *statusMessage;
 @property(copy, readwrite) NSString *statusMessageString;
-@property(copy, readwrite) NSImage *userImage;
+@property(assign, readwrite) NSImage *userImage;
 @property(copy, readwrite) NSURL *userHome;
 @property(copy, readwrite) NSURL *statusLink;
 @property(copy, readwrite) NSString *userId;

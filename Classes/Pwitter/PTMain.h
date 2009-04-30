@@ -43,7 +43,6 @@ typedef enum soundEventType {
 	int fLastReplyID;
 	int fReplyUpdateId;
 	NSMutableDictionary *fRequestDetails;
-	NSMutableDictionary *fIgnoreList;
 	NSMutableDictionary *fFavRecord;
 	NSMutableDictionary *fDeleteRecord;
 	PTImageManager *fImageMan;
@@ -64,6 +63,7 @@ typedef enum soundEventType {
 	NSSound *fStatusPosted;
 	BOOL fUpdating;
 	BOOL fIgnoreErrors;
+	NSMutableSet *fStatusRecord;
 }
 - (IBAction)updateTimeline:(id)sender;
 - (IBAction)postStatus:(id)sender;

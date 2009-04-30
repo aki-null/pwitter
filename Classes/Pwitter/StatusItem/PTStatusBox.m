@@ -29,7 +29,6 @@
 @synthesize fav;
 
 - (void)dealloc {
-	if (userImage) [userImage release];
 	if (userName) [userName release];
 	if (statusMessage) [statusMessage release];
 	if (statusMessageString) [statusMessageString release];

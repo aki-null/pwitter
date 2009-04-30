@@ -189,13 +189,8 @@
 	[fRequestDetails setObject:@"INIT_UPDATE" 
 						forKey:[fTwitterEngine getFollowedTimelineFor:[[PTPreferenceManager sharedSingleton] userName] 
 																since:nil startingAtPage:1 count:200]];
-	[fRequestDetails setObject:@"INIT_UPDATE" 
-						forKey:[fTwitterEngine getFollowedTimelineFor:[[PTPreferenceManager sharedSingleton] userName] 
-																since:nil startingAtPage:2 count:200]];
 	[fRequestDetails setObject:@"INIT_REPLY_UPDATE" 
-						forKey:[fTwitterEngine getRepliesStartingAtPage:1]];
-	[fRequestDetails setObject:@"INIT_REPLY_UPDATE" 
-						forKey:[fTwitterEngine getRepliesStartingAtPage:2]];
+						forKey:[fTwitterEngine getRepliesSinceID:fLastReplyID startingAtPage:0 count:100]];
 }
 
 - (void)setUpTwitterEngine {
@@ -214,7 +209,6 @@
 
 - (void)initTransaction {
 	fRequestDetails = [[NSMutableDictionary alloc] init];
-	fIgnoreList = [[NSMutableDictionary alloc] init];
 	fFavRecord = [[NSMutableDictionary alloc] init];
 	fDeleteRecord = [[NSMutableDictionary alloc] init];
 	[fImageMan initResource];
@@ -228,7 +222,6 @@
 
 - (void)deallocTransaction {
 	if (fRequestDetails) [fRequestDetails release];
-	if (fIgnoreList) [fIgnoreList release];
 	if (fFavRecord) [fFavRecord release];
 	if (fDeleteRecord) [fDeleteRecord release];
 	[fImageMan clearResource];
@@ -244,6 +237,7 @@
 	[self saveUnread];
 	[[fStatusController content] removeAllObjects];
 	[fStatusController rearrangeObjects];
+	[fStatusRecord removeAllObjects];
 	[fTwitterEngine setUsername:[[PTPreferenceManager sharedSingleton] userName] 
 					   password:[[PTPreferenceManager sharedSingleton] password]];
 	[self setupUpdateTimer];
@@ -275,6 +269,7 @@
 
 - (void)awakeFromNib
 {
+	fStatusRecord = [[NSMutableSet set] retain];
 	fStatusReceived = [NSSound soundNamed:@"statusReceived"];
 	fReplyReceived = [NSSound soundNamed:@"replyReceived"];
 	fErrorReceived = [NSSound soundNamed:@"error"];
@@ -381,7 +376,7 @@
 	NSDictionary *lLastStatus = nil;
 	NSMutableArray *lTempBoxes = [[NSMutableArray alloc] init];
 	for (lCurrentStatus in aStatuses) {
-		if (![fIgnoreList objectForKey:[lCurrentStatus objectForKey:@"id"]]) {
+		if (![fStatusRecord containsObject:[NSNumber numberWithInt:[[lCurrentStatus objectForKey:@"id"] intValue]]]) {
 			int lDecision = 0;
 			if ([[lCurrentStatus objectForKey:@"in_reply_to_screen_name"] isEqualToString:[fTwitterEngine username]]) {
 				if (lUpdateType == @"REPLY_UPDATE" || 
@@ -399,6 +394,7 @@
 					fCurrentSoundStatus != ErrorReceived)
 					fCurrentSoundStatus = ReplyOrMessageReceived;
 				[lTempBoxes addObject:lBoxToAdd];
+				[fStatusRecord addObject:[NSNumber numberWithInt:lBoxToAdd.updateId]];
 			}
 			if (!lLastStatus) lLastStatus = lCurrentStatus;
 		}
@@ -412,7 +408,6 @@
 	[fBoxesToAdd addObjectsFromArray:lTempBoxes];
 	int lNewId = [[lLastStatus objectForKey:@"id"] intValue];
 	if (lUpdateType == @"POST") {
-		[fIgnoreList setObject:@"" forKey:[[aStatuses lastObject] objectForKey:@"id"]];
 		fCurrentSoundStatus = StatusSent;
 		[self postComplete];
 		if ([[PTPreferenceManager sharedSingleton] updateAfterPost] && !fUpdating)
@@ -500,9 +495,10 @@
 		[fRequestDetails setObject:@"UPDATE" 
 							forKey:[fTwitterEngine getFollowedTimelineFor:[fTwitterEngine username] 
 																  sinceID:fLastUpdateID startingAtPage:0 count:200]];
-		if ([[PTPreferenceManager sharedSingleton] receiveFromNonFollowers])
+		if ([[PTPreferenceManager sharedSingleton] receiveFromNonFollowers]) {
 			[fRequestDetails setObject:@"REPLY_UPDATE" 
-								forKey:[fTwitterEngine getRepliesSinceID:fLastReplyID startingAtPage:0 count:20]];
+								forKey:[fTwitterEngine getRepliesSinceID:fLastReplyID startingAtPage:0 count:200]];
+		}
 	}
 }
 
@@ -514,9 +510,6 @@
 			break;
 		case 2:
 			lServiceURL = @"http://is.gd/api.php?longurl=";
-			break;
-		case 3:
-			lServiceURL = @"http://zi.ma/?module=ShortURL&file=Add&mode=API&url=";
 			break;
 		default:
 			return aMessage;
