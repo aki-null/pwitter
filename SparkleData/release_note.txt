@@ -1,3 +1,7 @@
+13 June 2009: (Version 1.1.2):
+Bug Fixed: Issue with overflown unsigned 32bit integer fixed
+Bug Fixed: Search field was selectable when hidden
+
 30 April 2009: (Version 1.1.1):
 Bug Fixed: Post duplication issue fix
 Bug Fixed: Less initial API use

@@ -184,11 +184,10 @@
 - (void)runInitialUpdates {
 	[self startingTransaction];
 	[fRequestDetails setObject:@"INIT_MESSAGE_UPDATE" 
-						forKey:[fTwitterEngine getDirectMessagesSince:nil
+						forKey:[fTwitterEngine getDirectMessagesSinceID:0
 													   startingAtPage:0]];
 	[fRequestDetails setObject:@"INIT_UPDATE" 
-						forKey:[fTwitterEngine getFollowedTimelineFor:[[PTPreferenceManager sharedSingleton] userName] 
-																since:nil startingAtPage:1 count:200]];
+						forKey:[fTwitterEngine getFollowedTimelineSinceID:0 startingAtPage:1 count:200]];
 	[fRequestDetails setObject:@"INIT_REPLY_UPDATE" 
 						forKey:[fTwitterEngine getRepliesSinceID:fLastReplyID startingAtPage:0 count:100]];
 }
@@ -312,7 +311,7 @@
 	[fMainWindow makeFirstResponder:fStatusCollection];
 }
 
-- (void)connectionFinished {
+- (void)connectionFinished:(NSString *)connectionIdentifier {
 	if ([fTwitterEngine numberOfConnections] == 0)
 		[self endingTransaction];
 }
@@ -394,7 +393,7 @@
 					fCurrentSoundStatus != ErrorReceived)
 					fCurrentSoundStatus = ReplyOrMessageReceived;
 				[lTempBoxes addObject:lBoxToAdd];
-				[fStatusRecord addObject:[NSNumber numberWithInt:lBoxToAdd.updateId]];
+				[fStatusRecord addObject:[NSNumber numberWithUnsignedLong:lBoxToAdd.updateId]];
 			}
 			if (!lLastStatus) lLastStatus = lCurrentStatus;
 		}
@@ -406,7 +405,7 @@
 		[fBoxesToNotify addObjectsFromArray:lTempBoxes];
 	}
 	[fBoxesToAdd addObjectsFromArray:lTempBoxes];
-	int lNewId = [[lLastStatus objectForKey:@"id"] intValue];
+	unsigned long lNewId = [[NSDecimalNumber decimalNumberWithString:[lLastStatus valueForKeyPath:@"id"]] unsignedLongValue];;
 	if (lUpdateType == @"POST") {
 		fCurrentSoundStatus = StatusSent;
 		[self postComplete];
@@ -429,7 +428,7 @@
 	} else if (lReqType == @"MESSAGE")
 		fCurrentSoundStatus = StatusSent;
 	if ([aMessages count] == 0 || 
-		[[[aMessages objectAtIndex:0] objectForKey:@"id"] intValue] == 0 || 
+		[[NSDecimalNumber decimalNumberWithString:[[aMessages objectAtIndex:0] valueForKeyPath:@"id"]] unsignedLongValue] == 0 || 
 		[fRequestDetails objectForKey:aIdentifier] == @"MESSAGE") {
 		return;
 	}
@@ -446,7 +445,7 @@
 	}
 	[fBoxesToAdd addObjectsFromArray:lTempArray];
 	[lTempArray release];
-	fLastMessageID = [[lLastDic objectForKey:@"id"] intValue];
+	fLastMessageID = [[NSDecimalNumber decimalNumberWithString:[lLastDic valueForKeyPath:@"id"]] unsignedLongValue];;
 	if (fCurrentSoundStatus != ErrorReceived)
 		fCurrentSoundStatus = ReplyOrMessageReceived;
 }
@@ -493,8 +492,8 @@
 		[self startingTransaction];
 		fUpdating = YES;
 		[fRequestDetails setObject:@"UPDATE" 
-							forKey:[fTwitterEngine getFollowedTimelineFor:[fTwitterEngine username] 
-																  sinceID:fLastUpdateID startingAtPage:0 count:200]];
+							forKey:[fTwitterEngine getFollowedTimelineSinceID:fLastUpdateID 
+															   startingAtPage:0 count:200]];
 		if ([[PTPreferenceManager sharedSingleton] receiveFromNonFollowers]) {
 			[fRequestDetails setObject:@"REPLY_UPDATE" 
 								forKey:[fTwitterEngine getRepliesSinceID:fLastReplyID startingAtPage:0 count:200]];
@@ -576,7 +575,7 @@
 		[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://twitter.com/%@", lCurrentSelection.userId]]];
 }
 
-- (void)setReplyID:(int)aId {
+- (void)setReplyID:(unsigned long)aId {
 	fReplyUpdateId = aId;
 }
 
@@ -623,7 +622,7 @@
 	for (lCurrentBox in [fStatusController content]) {
 		if (lCurrentBox.sType != ErrorMessage) {
 			[lUnreadDict setObject:[NSNumber numberWithBool:lCurrentBox.readFlag] 
-							forKey:[NSNumber numberWithInt:lCurrentBox.updateId]];
+							forKey:[NSNumber numberWithUnsignedLong:lCurrentBox.updateId]];
 		}
 	}
 	NSString * lPath = [self pathForDataFile];

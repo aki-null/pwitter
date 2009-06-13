@@ -60,8 +60,8 @@
 							[[aStatusInfo objectForKey:@"user"] objectForKey:@"screen_name"], 
 							[[aStatusInfo objectForKey:@"user"] objectForKey:@"name"], 
 							[aStatusInfo objectForKey:@"text"]];
-	lNewBox.updateId = [[aStatusInfo objectForKey:@"id"] intValue];
-	lNewBox.replyId = [[aStatusInfo objectForKey:@"in_reply_to_status_id"] intValue];
+	lNewBox.updateId = [[NSDecimalNumber decimalNumberWithString:[aStatusInfo valueForKeyPath:@"id"]] unsignedLongValue];
+	lNewBox.replyId = [[NSDecimalNumber decimalNumberWithString:[aStatusInfo valueForKeyPath:@"in_reply_to_status_id"]] unsignedLongValue];
 	lNewBox.replyUserId = [aStatusInfo objectForKey:@"in_reply_to_screen_name"];
 	lNewBox.readFlag = [[PTReadManager getInstance] isUpdateRead:lNewBox.updateId];
 	return [lNewBox autorelease];
@@ -105,7 +105,7 @@
 							[[aStatusInfo objectForKey:@"sender"] objectForKey:@"screen_name"], 
 							[[aStatusInfo objectForKey:@"sender"] objectForKey:@"name"], 
 							[aStatusInfo objectForKey:@"text"]];
-	lNewBox.updateId = [[aStatusInfo objectForKey:@"id"] intValue];
+	lNewBox.updateId = [[NSDecimalNumber decimalNumberWithString:[aStatusInfo valueForKeyPath:@"id"]] unsignedLongValue];
 	lNewBox.readFlag = [[PTReadManager getInstance] isUpdateRead:lNewBox.updateId];
 	return [lNewBox autorelease];
 }

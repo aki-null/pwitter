@@ -174,6 +174,7 @@
 
 - (IBAction)openSearchBox:(id)sender {
 	if (!fSearchBoxIsOpen) {
+		[fSearchBox setEnabled:YES];
 		fSearchBoxIsOpen = YES;
 		NSRect lTempRect = [fSearchView frame];
 		[[fSearchView animator] setFrame:NSMakeRect(lTempRect.origin.x, lTempRect.origin.y - 21, lTempRect.size.width, 22)];
@@ -185,6 +186,7 @@
 
 - (IBAction)closeSearchBox:(id)sender {
 	if (fSearchBoxIsOpen) {
+		[fSearchBox setEnabled:NO];
 		fSearchBoxIsOpen = NO;
 		NSRect lTempRect = [fSearchView frame];
 		[[fSearchView animator] setFrame:NSMakeRect(lTempRect.origin.x, lTempRect.origin.y + 21, lTempRect.size.width, 1)];
