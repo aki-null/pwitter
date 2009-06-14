@@ -375,7 +375,8 @@
 	NSDictionary *lLastStatus = nil;
 	NSMutableArray *lTempBoxes = [[NSMutableArray alloc] init];
 	for (lCurrentStatus in aStatuses) {
-		if (![fStatusRecord containsObject:[NSNumber numberWithInt:[[lCurrentStatus objectForKey:@"id"] intValue]]]) {
+		unsigned long tweetID = [[NSDecimalNumber decimalNumberWithString:[lCurrentStatus valueForKeyPath:@"id"]] unsignedLongValue];
+		if (![fStatusRecord containsObject:[NSNumber numberWithUnsignedInt:tweetID]]) {
 			int lDecision = 0;
 			if ([[lCurrentStatus objectForKey:@"in_reply_to_screen_name"] isEqualToString:[fTwitterEngine username]]) {
 				if (lUpdateType == @"REPLY_UPDATE" || 
@@ -405,7 +406,7 @@
 		[fBoxesToNotify addObjectsFromArray:lTempBoxes];
 	}
 	[fBoxesToAdd addObjectsFromArray:lTempBoxes];
-	unsigned long lNewId = [[NSDecimalNumber decimalNumberWithString:[lLastStatus valueForKeyPath:@"id"]] unsignedLongValue];;
+	unsigned long lNewId = [[NSDecimalNumber decimalNumberWithString:[lLastStatus valueForKeyPath:@"id"]] unsignedLongValue];
 	if (lUpdateType == @"POST") {
 		fCurrentSoundStatus = StatusSent;
 		[self postComplete];
