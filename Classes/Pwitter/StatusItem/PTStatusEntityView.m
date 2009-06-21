@@ -24,7 +24,7 @@
 - (void)openInBrowser:(id)sender {
 	PTStatusBox *lBox = [fColItem representedObject];
 	if (lBox.updateId != 0) {
-		NSString *lUrlString = [NSString stringWithFormat:@"http://twitter.com/%@/status/%d", lBox.userId, lBox.updateId];
+		NSString *lUrlString = [NSString stringWithFormat:@"http://twitter.com/%@/status/%u", lBox.userId, lBox.updateId];
 		[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:lUrlString]];
 	}
 }
@@ -42,7 +42,7 @@
 
 - (void)openReply:(id)sender {
 	PTStatusBox *lBox = [fColItem representedObject];
-	NSString *lUrlString = [NSString stringWithFormat:@"http://twitter.com/%@/status/%d", lBox.replyUserId, lBox.replyId];
+	NSString *lUrlString = [NSString stringWithFormat:@"http://twitter.com/%@/status/%u", lBox.replyUserId, lBox.replyId];
 	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:lUrlString]];
 }
 

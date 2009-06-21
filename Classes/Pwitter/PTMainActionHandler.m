@@ -295,7 +295,7 @@
 	PTStatusBox *lCurrentSelection = [[fStatusCollectionView selectedObjects] lastObject];
 	if (lCurrentSelection) {
 		if (lCurrentSelection.sType == NormalMessage || lCurrentSelection.sType == ReplyMessage) {
-			NSString *lUrlString = [NSString stringWithFormat:@"http://twitter.com/%@/status/%d", lCurrentSelection.userId, lCurrentSelection.updateId];
+			NSString *lUrlString = [NSString stringWithFormat:@"http://twitter.com/%@/status/%u", lCurrentSelection.userId, lCurrentSelection.updateId];
 			[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:lUrlString]];
 		}
 	}
@@ -305,7 +305,7 @@
 	PTStatusBox *lCurrentSelection = [[fStatusCollectionView selectedObjects] lastObject];
 	if (lCurrentSelection) {
 		if (lCurrentSelection.replyId != 0) {
-			NSString *lUrlString = [NSString stringWithFormat:@"http://twitter.com/%@/status/%d", lCurrentSelection.replyUserId, lCurrentSelection.replyId];
+			NSString *lUrlString = [NSString stringWithFormat:@"http://twitter.com/%@/status/%u", lCurrentSelection.replyUserId, lCurrentSelection.replyId];
 			[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:lUrlString]];
 		}
 	}
