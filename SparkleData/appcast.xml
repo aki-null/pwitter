@@ -11,7 +11,7 @@
 				http://github.com/koroshiya1/pwitter/raw/master/SparkleData/release_note.txt
 			</sparkle:releaseNotesLink>
 			<pubDate>Thu, 10 Sep 2009 03:29:58 +0000</pubDate>
-			<enclosure url="http://github.com/koroshiya1/pwitter/raw/master/DistributableApplication/Pwitter_1.1.5.zip" sparkle:version="1.1.5" length="1311184" type="application/octet-stream" sparkle:dsaSignature="MC4CFQCl3QdELwrEbC+czoneed169kDyRwIVAI99D0AaU+G2SUPQcXoHVqE0cAUE" />
+			<enclosure url="http://cloud.github.com/downloads/koroshiya1/pwitter/Pwitter_1.1.5.zip" sparkle:version="1.1.5" length="1311184" type="application/octet-stream" sparkle:dsaSignature="MC4CFQCl3QdELwrEbC+czoneed169kDyRwIVAI99D0AaU+G2SUPQcXoHVqE0cAUE" />
 		</item>
 	</channel>
 </rss>
