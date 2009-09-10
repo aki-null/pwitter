@@ -43,6 +43,7 @@
 
 @property (retain) NSString *themeKey;
 
--(void)drawTextInSegment:(int)segment inFrame:(NSRect)frame;
+-(void)drawInteriorForSegment:(NSInteger)segment withFrame:(NSRect)rect;
+-(BOOL)hasText;
 
 @end

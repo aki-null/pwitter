@@ -1,3 +1,7 @@
+10 September 2009: (Version 1.1.5):
+Bug Fixed: Visual glitch in 10.6
+Improvement: Supported the tweet IDs larger than unsigned integer (now 64 bit signed integer)
+
 21 June 2009: (Version 1.1.4):
 Bug Fixed: Fixed the number issue when opening a tweet on browser
 

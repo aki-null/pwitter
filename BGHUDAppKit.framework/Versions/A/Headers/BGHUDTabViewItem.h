@@ -1,11 +1,9 @@
 //
-//  BGHUDTableViewHeaderCell.h
+//  BGHUDTabViewItem.h
 //  BGHUDAppKit
 //
-//  Created by BinaryGod on 6/17/08.
-//
-//  Copyright (c) 2008, Tim Davis (BinaryMethod.com, binary.god@gmail.com)
-//  All rights reserved.
+//  Created by BinaryGod on 5/10/09.
+//  Copyright 2009 none. All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or without modification,
 //  are permitted provided that the following conditions are met:
@@ -35,7 +33,7 @@
 #import <Cocoa/Cocoa.h>
 #import "BGThemeManager.h"
 
-@interface BGHUDTableViewHeaderCell : NSTableHeaderCell {
+@interface BGHUDTabViewItem : NSTabViewItem {
 
 	NSString *themeKey;
 }

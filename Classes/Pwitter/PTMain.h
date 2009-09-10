@@ -38,10 +38,10 @@ typedef enum soundEventType {
     IBOutlet id fIconMenu;
     IBOutlet id fStatusCollection;
 	MGTwitterEngine *fTwitterEngine;
-	unsigned long fLastUpdateID;
-	unsigned long fLastMessageID;
-	unsigned long fLastReplyID;
-	unsigned long fReplyUpdateId;
+	long long fLastUpdateID;
+	long long fLastMessageID;
+	long long fLastReplyID;
+	long long fReplyUpdateId;
 	NSMutableDictionary *fRequestDetails;
 	NSMutableDictionary *fFavRecord;
 	NSMutableDictionary *fDeleteRecord;
@@ -76,7 +76,7 @@ typedef enum soundEventType {
 - (void)runInitialUpdates;
 - (void)setUpTwitterEngine;
 - (void)makePost:(NSString *)aMessage;
-- (void)setReplyID:(unsigned long)aId;
+- (void)setReplyID:(long long)aId;
 - (void)favStatus:(PTStatusBox *)aBox;
 - (void)saveUnread;
 - (void)loadUnread;

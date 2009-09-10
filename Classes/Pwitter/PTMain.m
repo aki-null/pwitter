@@ -375,7 +375,7 @@
 	NSDictionary *lLastStatus = nil;
 	NSMutableArray *lTempBoxes = [[NSMutableArray alloc] init];
 	for (lCurrentStatus in aStatuses) {
-		unsigned long tweetID = [[NSDecimalNumber decimalNumberWithString:[lCurrentStatus valueForKeyPath:@"id"]] unsignedLongValue];
+		long long tweetID = [[NSDecimalNumber decimalNumberWithString:[lCurrentStatus valueForKeyPath:@"id"]] longLongValue];
 		if (![fStatusRecord containsObject:[NSNumber numberWithUnsignedInt:tweetID]]) {
 			int lDecision = 0;
 			if ([[lCurrentStatus objectForKey:@"in_reply_to_screen_name"] isEqualToString:[fTwitterEngine username]]) {
@@ -394,7 +394,7 @@
 					fCurrentSoundStatus != ErrorReceived)
 					fCurrentSoundStatus = ReplyOrMessageReceived;
 				[lTempBoxes addObject:lBoxToAdd];
-				[fStatusRecord addObject:[NSNumber numberWithUnsignedLong:lBoxToAdd.updateId]];
+				[fStatusRecord addObject:[NSNumber numberWithLongLong:lBoxToAdd.updateId]];
 			}
 			if (!lLastStatus) lLastStatus = lCurrentStatus;
 		}
@@ -406,7 +406,7 @@
 		[fBoxesToNotify addObjectsFromArray:lTempBoxes];
 	}
 	[fBoxesToAdd addObjectsFromArray:lTempBoxes];
-	unsigned long lNewId = [[NSDecimalNumber decimalNumberWithString:[lLastStatus valueForKeyPath:@"id"]] unsignedLongValue];
+	long long lNewId = [[NSDecimalNumber decimalNumberWithString:[lLastStatus valueForKeyPath:@"id"]] longLongValue];
 	if (lUpdateType == @"POST") {
 		fCurrentSoundStatus = StatusSent;
 		[self postComplete];
@@ -429,7 +429,7 @@
 	} else if (lReqType == @"MESSAGE")
 		fCurrentSoundStatus = StatusSent;
 	if ([aMessages count] == 0 || 
-		[[NSDecimalNumber decimalNumberWithString:[[aMessages objectAtIndex:0] valueForKeyPath:@"id"]] unsignedLongValue] == 0 || 
+		[[NSDecimalNumber decimalNumberWithString:[[aMessages objectAtIndex:0] valueForKeyPath:@"id"]] longLongValue] == 0 || 
 		[fRequestDetails objectForKey:aIdentifier] == @"MESSAGE") {
 		return;
 	}
@@ -446,7 +446,7 @@
 	}
 	[fBoxesToAdd addObjectsFromArray:lTempArray];
 	[lTempArray release];
-	fLastMessageID = [[NSDecimalNumber decimalNumberWithString:[lLastDic valueForKeyPath:@"id"]] unsignedLongValue];;
+	fLastMessageID = [[NSDecimalNumber decimalNumberWithString:[lLastDic valueForKeyPath:@"id"]] longLongValue];;
 	if (fCurrentSoundStatus != ErrorReceived)
 		fCurrentSoundStatus = ReplyOrMessageReceived;
 }
@@ -576,7 +576,7 @@
 		[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://twitter.com/%@", lCurrentSelection.userId]]];
 }
 
-- (void)setReplyID:(unsigned long)aId {
+- (void)setReplyID:(long long)aId {
 	fReplyUpdateId = aId;
 }
 
@@ -623,7 +623,7 @@
 	for (lCurrentBox in [fStatusController content]) {
 		if (lCurrentBox.sType != ErrorMessage) {
 			[lUnreadDict setObject:[NSNumber numberWithBool:lCurrentBox.readFlag] 
-							forKey:[NSNumber numberWithUnsignedLong:lCurrentBox.updateId]];
+							forKey:[NSNumber numberWithLongLong:lCurrentBox.updateId]];
 		}
 	}
 	NSString * lPath = [self pathForDataFile];

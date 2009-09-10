@@ -19,16 +19,18 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1.1.4</string>
+	<string>1.1.5</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.1.5</string>
+	<key>LSUIElement</key>
+	<false/>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
-	<key>SUPublicDSAKeyFile</key>
-	<string>dsa_pub.pem</string>
 	<key>SUFeedURL</key>
 	<string>http://github.com/koroshiya1/pwitter/raw/master/SparkleData/appcast.xml</string>
-	<key>LSUIElement</key>
-	<false/>
+	<key>SUPublicDSAKeyFile</key>
+	<string>dsa_pub.pem</string>
 </dict>
 </plist>

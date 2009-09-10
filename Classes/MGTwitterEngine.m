@@ -929,12 +929,12 @@
 #pragma mark -
 
 
-- (NSString *)getFollowedTimelineSinceID:(unsigned long)sinceID startingAtPage:(int)page count:(int)count
+- (NSString *)getFollowedTimelineSinceID:(long long)sinceID startingAtPage:(int)page count:(int)count
 {
     return [self getFollowedTimelineSinceID:sinceID withMaximumID:0 startingAtPage:page count:count];
 }
 
-- (NSString *)getFollowedTimelineSinceID:(unsigned long)sinceID withMaximumID:(unsigned long)maxID startingAtPage:(int)page count:(int)count
+- (NSString *)getFollowedTimelineSinceID:(long long)sinceID withMaximumID:(long long)maxID startingAtPage:(int)page count:(int)count
 {
 #if LARGE_ID_TEST
 	if (sinceID > 0) sinceID -= 0x7fffffff;
@@ -945,10 +945,10 @@
 
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:0];
     if (sinceID > 0) {
-        [params setObject:[NSString stringWithFormat:@"%u", sinceID] forKey:@"since_id"];
+        [params setObject:[NSString stringWithFormat:@"%qu", sinceID] forKey:@"since_id"];
     }
     if (maxID > 0) {
-        [params setObject:[NSString stringWithFormat:@"%u", maxID] forKey:@"max_id"];
+        [params setObject:[NSString stringWithFormat:@"%qu", maxID] forKey:@"max_id"];
     }
     if (page > 0) {
         [params setObject:[NSString stringWithFormat:@"%d", page] forKey:@"page"];
@@ -966,12 +966,12 @@
 #pragma mark -
 
 
-- (NSString *)getUserTimelineFor:(NSString *)username sinceID:(unsigned long)sinceID startingAtPage:(int)page count:(int)count
+- (NSString *)getUserTimelineFor:(NSString *)username sinceID:(long long)sinceID startingAtPage:(int)page count:(int)count
 {
     return [self getUserTimelineFor:username sinceID:sinceID withMaximumID:0 startingAtPage:0 count:count];
 }
 
-- (NSString *)getUserTimelineFor:(NSString *)username sinceID:(unsigned long)sinceID withMaximumID:(unsigned long)maxID startingAtPage:(int)page count:(int)count
+- (NSString *)getUserTimelineFor:(NSString *)username sinceID:(long long)sinceID withMaximumID:(long long)maxID startingAtPage:(int)page count:(int)count
 {
 #if LARGE_ID_TEST
 	if (sinceID > 0) sinceID -= 0x7fffffff;
@@ -983,10 +983,10 @@
     
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:0];
     if (sinceID > 0) {
-        [params setObject:[NSString stringWithFormat:@"%u", sinceID] forKey:@"since_id"];
+        [params setObject:[NSString stringWithFormat:@"%qu", sinceID] forKey:@"since_id"];
     }
     if (maxID > 0) {
-        [params setObject:[NSString stringWithFormat:@"%u", maxID] forKey:@"max_id"];
+        [params setObject:[NSString stringWithFormat:@"%qu", maxID] forKey:@"max_id"];
     }
 	if (page > 0) {
         [params setObject:[NSString stringWithFormat:@"%d", page] forKey:@"page"];
@@ -1008,13 +1008,13 @@
 #pragma mark -
 
 
-- (NSString *)getUpdate:(unsigned long)updateID
+- (NSString *)getUpdate:(long long)updateID
 {
 #if LARGE_ID_TEST
 	if (updateID > 0) updateID -= 0x7fffffff;
 #endif
 
-    NSString *path = [NSString stringWithFormat:@"statuses/show/%u.%@", updateID, API_FORMAT];
+    NSString *path = [NSString stringWithFormat:@"statuses/show/%qu.%@", updateID, API_FORMAT];
     
     return [self _sendRequestWithMethod:nil path:path queryParameters:nil body:nil 
                             requestType:MGTwitterUpdateGetRequest
@@ -1028,7 +1028,7 @@
 }
 
 
-- (NSString *)sendUpdate:(NSString *)status inReplyTo:(unsigned long)updateID
+- (NSString *)sendUpdate:(NSString *)status inReplyTo:(long long)updateID
 {
 #if LARGE_ID_TEST
 	if (updateID > 0) updateID -= 0x7fffffff;
@@ -1048,7 +1048,7 @@
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:0];
     [params setObject:trimmedText forKey:@"status"];
     if (updateID > 0) {
-        [params setObject:[NSString stringWithFormat:@"%u", updateID] forKey:@"in_reply_to_status_id"];
+        [params setObject:[NSString stringWithFormat:@"%qu", updateID] forKey:@"in_reply_to_status_id"];
     }
     NSString *body = [self _queryStringWithBase:nil parameters:params prefixed:NO];
     
@@ -1067,12 +1067,12 @@
     return [self getRepliesSinceID:0 startingAtPage:page count:0]; // zero means default
 }
 
-- (NSString *)getRepliesSinceID:(unsigned long)sinceID startingAtPage:(int)page count:(int)count
+- (NSString *)getRepliesSinceID:(long long)sinceID startingAtPage:(int)page count:(int)count
 {
     return [self getRepliesSinceID:sinceID withMaximumID:0 startingAtPage:page count:count];
 }
 
-- (NSString *)getRepliesSinceID:(unsigned long)sinceID withMaximumID:(unsigned long)maxID startingAtPage:(int)page count:(int)count
+- (NSString *)getRepliesSinceID:(long long)sinceID withMaximumID:(long long)maxID startingAtPage:(int)page count:(int)count
 {
 #if LARGE_ID_TEST
 	if (sinceID > 0) sinceID -= 0x7fffffff;
@@ -1085,10 +1085,10 @@
     
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:0];
     if (sinceID > 0) {
-        [params setObject:[NSString stringWithFormat:@"%u", sinceID] forKey:@"since_id"];
+        [params setObject:[NSString stringWithFormat:@"%qu", sinceID] forKey:@"since_id"];
     }
     if (maxID > 0) {
-        [params setObject:[NSString stringWithFormat:@"%u", maxID] forKey:@"max_id"];
+        [params setObject:[NSString stringWithFormat:@"%qu", maxID] forKey:@"max_id"];
     }
     if (page > 0) {
         [params setObject:[NSString stringWithFormat:@"%d", page] forKey:@"page"];
@@ -1106,13 +1106,13 @@
 #pragma mark -
 
 
-- (NSString *)deleteUpdate:(unsigned long)updateID
+- (NSString *)deleteUpdate:(long long)updateID
 {
 #if LARGE_ID_TEST
 	if (updateID > 0) updateID -= 0x7fffffff;
 #endif
 
-    NSString *path = [NSString stringWithFormat:@"statuses/destroy/%u.%@", updateID, API_FORMAT];
+    NSString *path = [NSString stringWithFormat:@"statuses/destroy/%qu.%@", updateID, API_FORMAT];
     
     return [self _sendRequestWithMethod:HTTP_POST_METHOD path:path queryParameters:nil body:nil 
                             requestType:MGTwitterUpdateDeleteRequest
@@ -1209,12 +1209,12 @@
 #pragma mark Direct Message methods
 
 
-- (NSString *)getDirectMessagesSinceID:(unsigned long)sinceID startingAtPage:(int)page
+- (NSString *)getDirectMessagesSinceID:(long long)sinceID startingAtPage:(int)page
 {
     return [self getDirectMessagesSinceID:sinceID withMaximumID:0 startingAtPage:page count:0];
 }
 
-- (NSString *)getDirectMessagesSinceID:(unsigned long)sinceID withMaximumID:(unsigned long)maxID startingAtPage:(int)page count:(int)count
+- (NSString *)getDirectMessagesSinceID:(long long)sinceID withMaximumID:(long long)maxID startingAtPage:(int)page count:(int)count
 {
 #if LARGE_ID_TEST
 	if (sinceID > 0) sinceID -= 0x7fffffff;
@@ -1225,10 +1225,10 @@
     
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:0];
     if (sinceID > 0) {
-        [params setObject:[NSString stringWithFormat:@"%u", sinceID] forKey:@"since_id"];
+        [params setObject:[NSString stringWithFormat:@"%qu", sinceID] forKey:@"since_id"];
     }
     if (maxID > 0) {
-        [params setObject:[NSString stringWithFormat:@"%u", maxID] forKey:@"max_id"];
+        [params setObject:[NSString stringWithFormat:@"%qu", maxID] forKey:@"max_id"];
     }
     if (page > 0) {
         [params setObject:[NSString stringWithFormat:@"%d", page] forKey:@"page"];
@@ -1245,12 +1245,12 @@
 
 #pragma mark -
 
-- (NSString *)getSentDirectMessagesSinceID:(unsigned long)sinceID startingAtPage:(int)page
+- (NSString *)getSentDirectMessagesSinceID:(long long)sinceID startingAtPage:(int)page
 {
     return [self getSentDirectMessagesSinceID:sinceID withMaximumID:0 startingAtPage:page count:0];
 }
 
-- (NSString *)getSentDirectMessagesSinceID:(unsigned long)sinceID withMaximumID:(unsigned long)maxID startingAtPage:(int)page count:(int)count
+- (NSString *)getSentDirectMessagesSinceID:(long long)sinceID withMaximumID:(long long)maxID startingAtPage:(int)page count:(int)count
 {
 #if LARGE_ID_TEST
 	if (sinceID > 0) sinceID -= 0x7fffffff;
@@ -1261,10 +1261,10 @@
     
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:0];
     if (sinceID > 0) {
-        [params setObject:[NSString stringWithFormat:@"%u", sinceID] forKey:@"since_id"];
+        [params setObject:[NSString stringWithFormat:@"%qu", sinceID] forKey:@"since_id"];
     }
     if (maxID > 0) {
-        [params setObject:[NSString stringWithFormat:@"%u", maxID] forKey:@"max_id"];
+        [params setObject:[NSString stringWithFormat:@"%qu", maxID] forKey:@"max_id"];
     }
     if (page > 0) {
         [params setObject:[NSString stringWithFormat:@"%d", page] forKey:@"page"];
@@ -1307,13 +1307,13 @@
 }
 
 
-- (NSString *)deleteDirectMessage:(unsigned long)updateID
+- (NSString *)deleteDirectMessage:(long long)updateID
 {
 #if LARGE_ID_TEST
 	if (updateID > 0) updateID -= 0x7fffffff;
 #endif
 
-    NSString *path = [NSString stringWithFormat:@"direct_messages/destroy/%u.%@", updateID, API_FORMAT];
+    NSString *path = [NSString stringWithFormat:@"direct_messages/destroy/%qu.%@", updateID, API_FORMAT];
     
     return [self _sendRequestWithMethod:HTTP_POST_METHOD path:path queryParameters:nil body:nil 
                             requestType:MGTwitterDirectMessageDeleteRequest 
@@ -1482,7 +1482,7 @@
 #pragma mark -
 
 
-- (NSString *)markUpdate:(unsigned long)updateID asFavorite:(BOOL)flag
+- (NSString *)markUpdate:(long long)updateID asFavorite:(BOOL)flag
 {
 #if LARGE_ID_TEST
 	if (updateID > 0) updateID -= 0x7fffffff;
@@ -1492,11 +1492,11 @@
 	MGTwitterRequestType requestType;
 	if (flag)
 	{
-		path = [NSString stringWithFormat:@"favorites/create/%u.%@", updateID, API_FORMAT];
+		path = [NSString stringWithFormat:@"favorites/create/%qu.%@", updateID, API_FORMAT];
 		requestType = MGTwitterFavoritesEnableRequest;
     }
 	else {
-		path = [NSString stringWithFormat:@"favorites/destroy/%u.%@", updateID, API_FORMAT];
+		path = [NSString stringWithFormat:@"favorites/destroy/%qu.%@", updateID, API_FORMAT];
 		requestType = MGTwitterFavoritesDisableRequest;
 	}
 	
@@ -1604,12 +1604,12 @@
 }
 
 
-- (NSString *)getSearchResultsForQuery:(NSString *)query sinceID:(unsigned long)sinceID startingAtPage:(int)page count:(int)count
+- (NSString *)getSearchResultsForQuery:(NSString *)query sinceID:(long long)sinceID startingAtPage:(int)page count:(int)count
 {
     return [self getSearchResultsForQuery:query sinceID:sinceID startingAtPage:0 count:0 geocode:nil]; // zero means default
 }
 
-- (NSString *)getSearchResultsForQuery:(NSString *)query sinceID:(unsigned long)sinceID startingAtPage:(int)page count:(int)count geocode:(NSString *)geocode
+- (NSString *)getSearchResultsForQuery:(NSString *)query sinceID:(long long)sinceID startingAtPage:(int)page count:(int)count geocode:(NSString *)geocode
 {
 #if LARGE_ID_TEST
 	if (sinceID > 0) sinceID -= 0x7fffffff;
@@ -1622,7 +1622,7 @@
 		[params setObject:query forKey:@"q"];
 	}
     if (sinceID > 0) {
-        [params setObject:[NSString stringWithFormat:@"%u", sinceID] forKey:@"since_id"];
+        [params setObject:[NSString stringWithFormat:@"%qu", sinceID] forKey:@"since_id"];
     }
 	if (page > 0) {
         [params setObject:[NSString stringWithFormat:@"%d", page] forKey:@"page"];

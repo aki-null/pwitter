@@ -54,7 +54,7 @@
 	/*
 	 When enabled, this definition artificially adds 0x7ffffff to each tweet ID that is read from the API. It
 	 also subtracts 0x7fffffff from anything it sends back to the API. This allows you to test your application
-	 code and make sure it works well with large unsigned longs. This is important because tweet IDs that are
+	 code and make sure it works well with large long longs. This is important because tweet IDs that are
 	 treated as signed integers will become negative after 2^32 - 1 (0x7fffffff). This will happen sometime
 	 around the end of May 2009.
 	 

@@ -174,6 +174,7 @@
 
 - (IBAction)openSearchBox:(id)sender {
 	if (!fSearchBoxIsOpen) {
+		[fSearchBox setHidden:NO];
 		[fSearchBox setEnabled:YES];
 		fSearchBoxIsOpen = YES;
 		NSRect lTempRect = [fSearchView frame];
@@ -186,6 +187,7 @@
 
 - (IBAction)closeSearchBox:(id)sender {
 	if (fSearchBoxIsOpen) {
+		[fSearchBox setHidden:YES];
 		[fSearchBox setEnabled:NO];
 		fSearchBoxIsOpen = NO;
 		NSRect lTempRect = [fSearchView frame];
@@ -295,7 +297,7 @@
 	PTStatusBox *lCurrentSelection = [[fStatusCollectionView selectedObjects] lastObject];
 	if (lCurrentSelection) {
 		if (lCurrentSelection.sType == NormalMessage || lCurrentSelection.sType == ReplyMessage) {
-			NSString *lUrlString = [NSString stringWithFormat:@"http://twitter.com/%@/status/%u", lCurrentSelection.userId, lCurrentSelection.updateId];
+			NSString *lUrlString = [NSString stringWithFormat:@"http://twitter.com/%@/status/%qu", lCurrentSelection.userId, lCurrentSelection.updateId];
 			[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:lUrlString]];
 		}
 	}
@@ -305,7 +307,7 @@
 	PTStatusBox *lCurrentSelection = [[fStatusCollectionView selectedObjects] lastObject];
 	if (lCurrentSelection) {
 		if (lCurrentSelection.replyId != 0) {
-			NSString *lUrlString = [NSString stringWithFormat:@"http://twitter.com/%@/status/%u", lCurrentSelection.replyUserId, lCurrentSelection.replyId];
+			NSString *lUrlString = [NSString stringWithFormat:@"http://twitter.com/%@/status/%qu", lCurrentSelection.replyUserId, lCurrentSelection.replyId];
 			[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:lUrlString]];
 		}
 	}

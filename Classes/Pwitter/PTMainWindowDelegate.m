@@ -76,9 +76,8 @@
 	return YES;
 }
 
-- (BOOL)applicationDidBecomeActive:(NSNotification *)aNotification {
+- (void)applicationDidBecomeActive:(NSNotification *)aNotification {
 	[[fMainController fMenuItem] setImage:[NSImage imageNamed:@"menu_icon_off"]];
-	return YES;
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {

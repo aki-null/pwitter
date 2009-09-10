@@ -14,6 +14,6 @@
 }
 + (PTReadManager *)getInstance;
 - (void)setUnreadDict:(NSDictionary *)aDict;
-- (BOOL)isUpdateRead:(unsigned long)aId;
+- (BOOL)isUpdateRead:(long long)aId;
 
 @end
