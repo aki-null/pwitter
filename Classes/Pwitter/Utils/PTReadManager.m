@@ -28,7 +28,7 @@
 
 - (void)setUnreadDict:(NSDictionary *)aDict {
 	if (fUnreads) [fUnreads release];
-	if (aDict)
+	if (aDict && [aDict class] == [NSDictionary class])
 		fUnreads = [aDict copy];
 	else
 		aDict = [[NSDictionary alloc] init];

@@ -28,21 +28,32 @@
 }
 
 - (PTStatusBox *)constructStatusBox:(NSDictionary *)aStatusInfo isReply:(BOOL)aIsReply {
+	NSLog(@"1");
 	PTStatusBox *lNewBox = [[PTStatusBox alloc] init];
+	NSLog(@"2");
 	lNewBox.userId = [[aStatusInfo objectForKey:@"user"] objectForKey:@"screen_name"];
+	NSLog(@"3");
 	lNewBox.userName = [NSString stringWithFormat:@"%@ / %@", [[aStatusInfo objectForKey:@"user"] objectForKey:@"screen_name"], [[aStatusInfo objectForKey:@"user"] objectForKey:@"name"]];
+	NSLog(@"4");
 	NSDate *lReceivedTime = [aStatusInfo objectForKey:@"created_at"];
+	NSLog(@"5");
 	lNewBox.time = lReceivedTime;
+	NSLog(@"6");
 	lNewBox.statusMessage = [PTStatusFormatter formatStatusMessage:[aStatusInfo objectForKey:@"text"] forBox:lNewBox];
+	NSLog(@"7");
 	lNewBox.statusMessageString = [aStatusInfo objectForKey:@"text"];
+	NSLog(@"8");
 	lNewBox.userImage = [fMainController requestUserImage:[[aStatusInfo objectForKey:@"user"] objectForKey:@"profile_image_url"]
 												   forBox:lNewBox];
+	NSLog(@"9");
 	NSString *lUrlStr = [[aStatusInfo objectForKey:@"user"] objectForKey:@"url"];
+	NSLog(@"10");
 	if ([lUrlStr length] != 0) {
 		lNewBox.userHome = [NSURL URLWithString:lUrlStr];
 	} else {
 		lNewBox.userHome = nil;
 	}
+	NSLog(@"11");
 	if (lNewBox.sType == NormalMessage) {
 		if (aIsReply) {
 			lNewBox.entityColor = [[PTColorManager sharedSingleton] replyColor];
@@ -52,18 +63,25 @@
 			lNewBox.sType = NormalMessage;
 		}
 	}
+	NSLog(@"12");
 	if ([[aStatusInfo objectForKey:@"favorited"] boolValue]) {
 		lNewBox.entityColor = [[PTColorManager sharedSingleton] favoriteColor];
 		lNewBox.fav = YES;
 	}
+	NSLog(@"13");
 	lNewBox.searchString = [NSString stringWithFormat:@"%@ %@ %@",
 							[[aStatusInfo objectForKey:@"user"] objectForKey:@"screen_name"], 
 							[[aStatusInfo objectForKey:@"user"] objectForKey:@"name"], 
 							[aStatusInfo objectForKey:@"text"]];
+	NSLog(@"14");
 	lNewBox.updateId = [[NSDecimalNumber decimalNumberWithString:[aStatusInfo valueForKeyPath:@"id"]] longLongValue];
+	NSLog(@"15");
 	lNewBox.replyId = [[NSDecimalNumber decimalNumberWithString:[aStatusInfo valueForKeyPath:@"in_reply_to_status_id"]] longLongValue];
+	NSLog(@"16");
 	lNewBox.replyUserId = [aStatusInfo objectForKey:@"in_reply_to_screen_name"];
+	NSLog(@"17");
 	lNewBox.readFlag = [[PTReadManager getInstance] isUpdateRead:lNewBox.updateId];
+	NSLog(@"18");
 	return [lNewBox autorelease];
 }
 

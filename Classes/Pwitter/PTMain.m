@@ -376,7 +376,7 @@
 	NSMutableArray *lTempBoxes = [[NSMutableArray alloc] init];
 	for (lCurrentStatus in aStatuses) {
 		long long tweetID = [[NSDecimalNumber decimalNumberWithString:[lCurrentStatus valueForKeyPath:@"id"]] longLongValue];
-		if (![fStatusRecord containsObject:[NSNumber numberWithUnsignedInt:tweetID]]) {
+		if (![fStatusRecord containsObject:[NSNumber numberWithLongLong:tweetID]]) {
 			int lDecision = 0;
 			if ([[lCurrentStatus objectForKey:@"in_reply_to_screen_name"] isEqualToString:[fTwitterEngine username]]) {
 				if (lUpdateType == @"REPLY_UPDATE" || 
@@ -388,8 +388,14 @@
 			} else lDecision = 2;
 			if (lDecision != 0) {
 				PTStatusBox *lBoxToAdd = nil;
-				lBoxToAdd = [fStatusBoxGenerator constructStatusBox:lCurrentStatus 
-															isReply:lDecision == 1];
+				@try {
+					lBoxToAdd = [fStatusBoxGenerator constructStatusBox:lCurrentStatus 
+																isReply:lDecision == 1];
+				}
+				@catch (NSException * e) {
+					NSLog(@"%@", lCurrentStatus);
+					continue;
+				}
 				if ((lDecision == 1 || lBoxToAdd.sType == ReplyMessage) && 
 					fCurrentSoundStatus != ErrorReceived)
 					fCurrentSoundStatus = ReplyOrMessageReceived;
@@ -437,7 +443,14 @@
 	NSDictionary *lLastDic = nil;
 	NSMutableArray *lTempArray = [[NSMutableArray alloc] init];
 	for (lCurrentDic in aMessages) {
-		PTStatusBox *lBoxToAdd = [fStatusBoxGenerator constructMessageBox:lCurrentDic];
+		PTStatusBox *lBoxToAdd = nil;
+		@try {
+			lBoxToAdd = [fStatusBoxGenerator constructMessageBox:lCurrentDic];
+		}
+		@catch (NSException * e) {
+			NSLog(@"%@", lBoxToAdd);
+			continue;
+		}
 		[lTempArray addObject:lBoxToAdd];
 		if (!lLastDic) lLastDic = lCurrentDic;
 	}
